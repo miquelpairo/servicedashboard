@@ -1,0 +1,82 @@
+/* ===== BASE - Reset y estilos globales ===== */
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+/* Estilos globales */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+body > *:first-child {
+  margin-top: 0;
+}
+
+/* ===== Títulos ===== */
+h1 {
+  color: #000000;
+  margin-top: 0px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+h2 {
+  color: #000000;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+h3 {
+  color: #000000;
+  margin-top: 15px;
+}
+
+/* ===== Títulos especiales ===== */
+.param-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #000000;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+/* ===== Container ===== */
+.container {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+/* ===== Pre-formatted text ===== */
+pre {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  overflow-x: auto;
+  font-family: "Courier New", monospace;
+  font-size: 0.85em;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 30px;
+  margin-top: 50px;
+  border-top: 3px solid #289a93;
+  color: #6c757d;
+  background-color: white;
+}

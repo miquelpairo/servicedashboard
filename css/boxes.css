@@ -1,0 +1,123 @@
+/* ===== CAJAS DE INFORMACIÓN ===== */
+
+.info-box {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.warning-box {
+  background-color: transparent;
+  border-left: 0px solid #ffc107;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.status-good {
+  background-color: transparent;
+  border-left: 0px solid #28a745;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.status-bad {
+  background-color: transparent;
+  border-left: 0px solid #dc3545;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.success-box {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+/* ===== Grid de información ===== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.info-item {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 3px solid #289a93;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #093a34;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+
+.info-value {
+  color: #333;
+  font-size: 1.1em;
+}
+
+/* Caja de información destacada */
+.info-highlight {
+  color: #17a2b8;
+  background-color: #d1ecf1;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 4px solid #17a2b8;
+}
+
+/* Estado de verificación */
+.verification-status {
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+/* Estado fallido */
+.status-failed {
+  border: 3px solid #dc3545;
+  background-color: #f8d7da;
+}
+
+/* Margen superior para cajas de estado */
+.status-box-top-margin {
+  margin-top: 20px;
+}
+
+/* Título de verificación */
+.verification-title {
+  margin-top: 30px;
+}
+
+/* Upload section */
+.upload-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 2px dashed #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.upload-section:hover {
+  border-color: #289a93;
+}
+
+/* Caja de código/fórmula */
+.code-box {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 5px;
+  font-family: "Courier New", monospace;
+}

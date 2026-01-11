@@ -1,0 +1,143 @@
+/* ===== TABLAS ===== */
+
+table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th {
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 14px;
+  background-color: #f8f9fa;
+  color: #000000;
+  font-weight: bold;
+}
+
+td {
+  padding: 10px;
+  text-align: left;
+  font-size: 13px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* ===== Tabla de resumen ===== */
+.summary-table {
+  font-size: 14px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.summary-table th {
+  font-weight: bold;
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+.summary-table td {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* ===== Info de archivo ===== */
+.file-info {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: center;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+/* Tablas con scroll horizontal y columnas sticky */
+.stats-table-container {
+  overflow-x: auto;
+  max-width: 100%;
+  position: relative;
+}
+
+.stats-table {
+  min-width: 800px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+}
+
+.stats-table th.sticky-col-lamp,
+.stats-table th.sticky-col-n {
+  position: sticky;
+  background-color: #f8f9fa;
+  z-index: 10;
+}
+
+.stats-table th.sticky-col-lamp {
+  left: 0;
+}
+
+.stats-table th.sticky-col-n {
+  left: 80px;
+}
+
+.stats-table td.sticky-col-lamp,
+.stats-table td.sticky-col-n {
+  position: sticky;
+  background-color: #f8f9fa;
+  z-index: 5;
+}
+
+.stats-table td.sticky-col-lamp {
+  left: 0;
+  font-weight: bold;
+}
+
+.stats-table td.sticky-col-n {
+  left: 80px;
+}
+
+/* Valor destacado en tablas */
+.value-highlighted {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2196f3;
+}
+
+/* Tabla con margen top */
+.table-margin-top {
+  margin-top: 15px;
+}
+
+/* Párrafo con estilo de nota al pie de tabla */
+.table-footnote {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+/* Tabla overflow */
+.table-overflow {
+  overflow-x: auto;
+}

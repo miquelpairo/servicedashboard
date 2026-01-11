@@ -1,0 +1,117 @@
+/* =========================================================
+   CAROUSEL + PLOTLY (CORREGIDO / SIN DUPLICADOS)
+   Objetivo:
+   - Evitar overflow horizontal
+   - Controles del carousel SOLO 100px de alto centrados (no ocupan toda la vertical)
+   - No bloquear la leyenda de Plotly
+   ========================================================= */
+
+/* --- FIX GLOBAL: evita scroll horizontal (crítico para Plotly + carousel) --- */
+html, body{
+  max-width: 100%;
+  overflow-x: hidden;   /* si recorta algo raro, cambia a: overflow-x: clip; */
+}
+
+/* --- Carousel base --- */
+.carousel{
+  margin: 20px 0;
+  width: 100%;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item{
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* --- Item --- */
+.carousel-item{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Plotly container --- */
+.carousel .plot-container{
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 20px 70px !important; /* deja espacio a los controles */
+  background: transparent !important;
+}
+
+/* =========================================================
+   CONTROLES DEL CAROUSEL (FIX REAL: 100px de alto, centrados)
+   Bootstrap 4 por defecto: top:0; bottom:0; width:15%;
+   Aquí lo rompemos para que NO ocupe toda la vertical.
+   ========================================================= */
+
+/* Control (el <a>) como caja real de 60x100 centrada verticalmente */
+.carousel.slide > a.carousel-control-prev,
+.carousel.slide > a.carousel-control-next{
+  position: absolute !important;
+  top: 50% !important;
+  bottom: auto !important;     /* rompe bottom:0 */
+  height: 100px !important;    /* alto clicable real */
+  width: 60px !important;      /* ancho clicable real */
+  transform: translateY(-50%) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  opacity: 0.8;
+  z-index: 5;                  /* por encima del plot */
+}
+
+/* Hover visual */
+.carousel.slide > a.carousel-control-prev:hover,
+.carousel.slide > a.carousel-control-next:hover{
+  opacity: 1;
+}
+
+/* Posición lateral */
+.carousel.slide > a.carousel-control-prev{ left: 0 !important; right: auto !important; }
+.carousel.slide > a.carousel-control-next{ right: 0 !important; left: auto !important; }
+
+/* Iconos */
+.carousel.slide > a.carousel-control-prev .carousel-control-prev-icon,
+.carousel.slide > a.carousel-control-next .carousel-control-next-icon{
+  width: 60px !important;
+  height: 60px !important;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 50%;
+}
+
+/* =========================================================
+   INDICADORES
+   ========================================================= */
+
+.carousel-indicators{
+  bottom: -30px;
+}
+
+.carousel-indicators li{
+  background-color: #666;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.carousel-indicators .active{
+  background-color: #2196f3;
+}
+
+/* =========================================================
+   PLOTLY
+   ========================================================= */
+
+/* La leyenda SIEMPRE clicable */
+.js-plotly-plot .plotly .legend{
+  pointer-events: auto !important;
+}

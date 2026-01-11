@@ -1,0 +1,81 @@
+/* ===== BOTONES ===== */
+
+/* Verde para botones dentro de contenido principal */
+.main-content .btn-primary,
+.main-content button,
+.main-content input[type="button"],
+.main-content input[type="submit"],
+.container .btn-primary,
+.container button,
+.container input[type="button"],
+.container input[type="submit"] {
+  background-color: #64B445 !important;
+  color: white !important;
+  padding: 10px 20px;
+  border: none !important;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.main-content .btn-primary:hover,
+.main-content button:hover,
+.main-content input[type="button"]:hover,
+.main-content input[type="submit"]:hover,
+.container .btn-primary:hover,
+.container button:hover,
+.container input[type="button"]:hover,
+.container input[type="submit"]:hover {
+  background-color: #289A93 !important;
+}
+
+/* DataTables buttons */
+.container .dt-button,
+.main-content .dt-button {
+  background-color: #64B445 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: bold !important;
+  padding: 10px 20px !important;
+}
+
+.container .dt-button:hover,
+.main-content .dt-button:hover {
+  background-color: #289A93 !important;
+}
+
+/* Streamlit header buttons: NO verdes */
+header button,
+header [role="button"] {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: initial !important;
+  border-radius: initial !important;
+  box-shadow: none !important;
+}
+
+/* ===== Badges/Etiquetas ===== */
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.badge-success {
+  background-color: #64b445;
+  color: white;
+}
+
+.badge-info {
+  background-color: #4db9d2;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #e08b55;
+  color: white;
+}

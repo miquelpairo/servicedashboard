@@ -1,0 +1,130 @@
+/* ===== ESTILOS ESPECÍFICOS DEL CONSOLIDADOR ===== */
+
+.consolidator-section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.consolidator-section > details {
+  margin: 0;
+}
+
+.consolidator-section > details > summary {
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.consolidator-section > details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.consolidator-section > details > summary::before {
+  content: "▶ ";
+  display: inline-block;
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+
+.consolidator-section > details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.consolidator-section > details > summary:hover {
+  background-color: #e9ecef;
+}
+
+.consolidator-section-header h2 {
+  display: inline;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.consolidator-parsed-content {
+  padding: 20px 0;
+}
+
+.consolidator-full-report-link {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 2px solid #e9ecef;
+  text-align: center;
+}
+
+.consolidator-open-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #64b445;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.consolidator-open-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #289a93;
+}
+
+.consolidator-open-btn:active {
+  transform: translateY(0);
+}
+
+.consolidator-link-description {
+  margin-top: 10px;
+  color: #6c757d;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.consolidator-status-box {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.consolidator-status-ok {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+}
+
+.consolidator-status-warning {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+}
+
+.consolidator-status-fail {
+  background-color: #ffebee;
+  border-left: 4px solid #f44336;
+}
+
+.consolidator-status-info {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+.consolidator-charts-note {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  border-radius: 5px;
+}
+
+.consolidator-description {
+  color: #6c757d;
+  font-size: 0.95em;
+}

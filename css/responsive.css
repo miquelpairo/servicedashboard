@@ -1,0 +1,36 @@
+/* ===== RESPONSIVE ===== */
+
+@media screen and (max-width: 992px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .container {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .plot-container {
+    width: 100%;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 8px 5px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

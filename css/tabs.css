@@ -1,0 +1,107 @@
+/* ===== NAVEGACIÓN CON PESTAÑAS ===== */
+
+.nav-link {
+  color: #64b445 !important;
+  padding: 10px 20px;
+  border-radius: 10px 10px 0 0;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #f8f9fa;
+}
+
+.nav-link.active {
+  color: white !important;
+  background-color: #64b445 !important;
+  font-weight: bold;
+}
+
+/* Bootstrap tabs en main-content */
+.main-content .nav-link {
+  color: #093A34 !important;
+  font-weight: 500;
+}
+
+.main-content .nav-link.active {
+  color: #289A93 !important;
+  background-color: #f0f0f0 !important;
+  border-color: #289A93 !important;
+  font-weight: bold;
+}
+
+.main-content .nav-tabs {
+  border-bottom: 2px solid #289A93;
+}
+
+/* ===== CONTROLES DE CARRUSEL ===== */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #64b445;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: none;
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev-icon {
+  position: absolute;
+  left: 20px;
+  margin-left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev-icon::before {
+  content: "‹";
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-control-next-icon::before {
+  content: "›";
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  background-color: #289a93;
+}
+
+/* Expandibles */
+.main-content details {
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+}
+
+.main-content summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  user-select: none;
+  color: #093a34;
+}
+
+.main-content summary:hover {
+  background-color: #e9ecef;
+}
+
+.main-content details[open] summary {
+  border-bottom: 2px solid #289a93;
+  margin-bottom: 10px;
+}
