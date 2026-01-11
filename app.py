@@ -180,6 +180,15 @@ if uploaded_file:
         key="type_filter"
     )
     
+    # ⭐ AÑADIR AQUÍ - Set filter
+    st.sidebar.markdown("### 📦 Set")
+    available_sets = sorted(df['Set'].dropna().unique().tolist())
+    selected_sets = st.sidebar.multiselect(
+        "Select sets",
+        available_sets,
+        default=available_sets,
+        key="set_filter"
+    )
     # Search filter with quick filters
     st.sidebar.markdown("### 🔍 Search Service")
     
@@ -236,7 +245,10 @@ if uploaded_file:
     
     if selected_types:
         df_filtered = df_filtered[df_filtered['ProductType'].isin(selected_types)]
-    
+
+    if selected_sets:
+        df_filtered = df_filtered[df_filtered['Set'].isin(selected_sets)]
+
     if st.session_state.selected_quick_filters:
         # TODOS los quick filters deben coincidir (AND)
         mask = pd.Series([True] * len(df_filtered), index=df_filtered.index)
@@ -448,7 +460,7 @@ if uploaded_file:
     
     table_columns = [
         'Date', 'City', 'Business Partner Name', 
-        'ItemIdAndName', 'ProductType', 'EUR', 'SalesRepresentative'
+        'ItemIdAndName', 'Set', 'ProductType', 'EUR', 'SalesRepresentative'
     ]
     
     st.dataframe(
@@ -483,6 +495,7 @@ if uploaded_file:
                         month_options,
                         available_reps,
                         available_types,
+                        available_sets,
                         st.session_state.geocode_cache
                     )
                     

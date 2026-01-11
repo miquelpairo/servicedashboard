@@ -11,6 +11,7 @@ from app_config.plotting import BUCHI_COLORS
 
 def generate_service_dashboard_html(df_original, map_data_valid, available_years, 
                                     available_months, available_reps, available_types,
+                                    available_sets,  # ⭐ AÑADIDO
                                     geocode_cache):
     """
     Generate standalone HTML file with embedded data, map, and interactive filters
@@ -22,6 +23,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         available_months: List of available months
         available_reps: List of sales representatives
         available_types: List of product types
+        available_sets: List of sets  # ⭐ AÑADIDO
         geocode_cache: Dictionary with geocoding cache
         
     Returns:
@@ -567,6 +569,19 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             </div>
             
             <div class="filter-group">
+                <details>
+                    <summary>
+                        <span class="summary-text">📦 Sets</span>
+                        <span class="filter-actions">
+                            <button type="button" class="mini-btn" onclick="setGroupChecked('set', true); event.preventDefault(); event.stopPropagation();">All</button>
+                            <button type="button" class="mini-btn" onclick="setGroupChecked('set', false); event.preventDefault(); event.stopPropagation();">None</button>
+                        </span>
+                    </summary>
+                    <div class="checkbox-group" id="setFilters"></div>
+                </details>
+            </div>
+            
+            <div class="filter-group">
                 <details open>
                     <summary>
                         <span class="summary-text">🔍 Search Service</span>
@@ -676,8 +691,9 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                             <th onclick="sortTable(2)" data-col="2">Client</th>
                             <th onclick="sortTable(3)" data-col="3">Service</th>
                             <th onclick="sortTable(4)" data-col="4">Type</th>
-                            <th onclick="sortTable(5)" data-col="5">EUR</th>
-                            <th onclick="sortTable(6)" data-col="6">Rep</th>
+                            <th onclick="sortTable(5)" data-col="5">Set</th>
+                            <th onclick="sortTable(6)" data-col="6">EUR</th>
+                            <th onclick="sortTable(7)" data-col="7">Rep</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody"></tbody>
@@ -704,6 +720,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         const availableMonths = {json.dumps(available_months)};
         const availableReps = {json.dumps(available_reps)};
         const availableTypes = {json.dumps(available_types)};
+        const availableSets = {json.dumps(available_sets)};
         const monthNames = ['January','February','March','April','May','June',
                             'July','August','September','October','November','December'];
 
@@ -756,7 +773,8 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 year: '.year-filter',
                 month: '.month-filter',
                 rep: '.rep-filter',
-                type: '.type-filter'
+                type: '.type-filter',
+                set: '.set-filter'
             }};
             const selector = map[group];
             if (!selector) return;
@@ -855,9 +873,22 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 typeBox.appendChild(l);
             }});
 
+            const setBox = $('setFilters');
+            availableSets.forEach(s => {{
+                const l = document.createElement('label');
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.value = s;
+                cb.checked = true;
+                cb.className = 'set-filter';
+                l.appendChild(cb);
+                l.append(' ' + s);
+                setBox.appendChild(l);
+            }});
+
             // Auto-apply filters on checkbox change with debounce
             const applyDebounced = debounce(applyFilters, 200);
-            document.querySelectorAll('.year-filter, .month-filter, .rep-filter, .type-filter')
+            document.querySelectorAll('.year-filter, .month-filter, .rep-filter, .type-filter, .set-filter')
                 .forEach(cb => cb.addEventListener('change', applyDebounced));
         }}
 
@@ -869,6 +900,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             let months = getCheckedValues('.month-filter', cb => parseInt(cb.value));
             const reps = getCheckedValues('.rep-filter');
             const types = getCheckedValues('.type-filter');
+            const sets = getCheckedValues('.set-filter');
             const manualSearch = safeLower($('searchInput')?.value);
             const clientSearch = safeLower($('clientInput')?.value);
 
@@ -886,6 +918,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 if (!months.includes(m)) return false;
                 if (!reps.includes(row.SalesRepresentative)) return false;
                 if (!types.includes(row.ProductType)) return false;
+                if (!sets.includes(row.Set)) return false;
 
                 const item = safeLower(row.ItemIdAndName);
 
@@ -954,6 +987,11 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 selectedTypes.forEach(v => chips.push(`Type:${{v}}`));
             }}
 
+            const selectedSets = getCheckedValues('.set-filter');
+            if (selectedSets.length > 0 && selectedSets.length < availableSets.length) {{
+                selectedSets.forEach(v => chips.push(`Set:${{v}}`));
+            }}
+
             $('activeChips').innerHTML = '';
             chips.forEach(c => {{
                 const span = document.createElement('span');
@@ -971,6 +1009,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             setAll('.month-filter', false);
             setAll('.rep-filter', true);
             setAll('.type-filter', true);
+            setAll('.set-filter', true);
 
             activeQuickFilters = [];
             document.querySelectorAll('.quick-filter-tag')
@@ -995,6 +1034,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 months: getCheckedValues('.month-filter'),
                 reps: getCheckedValues('.rep-filter'),
                 types: getCheckedValues('.type-filter'),
+                sets: getCheckedValues('.set-filter'),
                 quick: activeQuickFilters,
                 quickMode: quickMode,
                 search: $('searchInput')?.value || '',
@@ -1015,15 +1055,26 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const repsSet   = new Set((s.reps   || []).map(String));
                 const typesSet  = new Set((s.types  || []).map(String));
 
+                // ✅ sets: detectar si el estado guardado incluye sets (si no, default = ALL TRUE)
+                const hasSets = Array.isArray(s.sets) && s.sets.length > 0;
+                const setsSet = new Set((s.sets || []).map(String));
+
                 setAll('.year-filter', false);
                 setAll('.month-filter', false);
                 setAll('.rep-filter', false);
                 setAll('.type-filter', false);
 
+                // 👇 importante: sets default true si no hay s.sets
+                setAll('.set-filter', !hasSets);
+
                 document.querySelectorAll('.year-filter').forEach(cb => cb.checked = yearsSet.has(String(cb.value)));
                 document.querySelectorAll('.month-filter').forEach(cb => cb.checked = monthsSet.has(String(cb.value)));
                 document.querySelectorAll('.rep-filter').forEach(cb => cb.checked = repsSet.has(String(cb.value)));
                 document.querySelectorAll('.type-filter').forEach(cb => cb.checked = typesSet.has(String(cb.value)));
+
+                document.querySelectorAll('.set-filter').forEach(cb => {{
+                    cb.checked = hasSets ? setsSet.has(String(cb.value)) : true;
+                }});
 
                 activeQuickFilters = s.quick || [];
                 quickMode = s.quickMode || 'AND';
@@ -1047,7 +1098,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 try {{ localStorage.removeItem(STORAGE_KEY); }} catch (err) {{}}
             }}
         }}
-
         // =============================
         // ORIGINAL FUNCTIONS (RESTORED)
         // =============================
@@ -1209,10 +1259,14 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                         bVal = b.ProductType;
                         break;
                     case 5:
+                        aVal = a.Set;
+                        bVal = b.Set;
+                        break;
+                    case 6:
                         aVal = a.EUR || 0;
                         bVal = b.EUR || 0;
                         break;
-                    case 6:
+                    case 7:
                         aVal = a.SalesRepresentative;
                         bVal = b.SalesRepresentative;
                         break;
@@ -1237,6 +1291,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     <td>${{escapeHtml(row['Business Partner Name'])}}</td>
                     <td>${{escapeHtml(row.ItemIdAndName)}}</td>
                     <td>${{escapeHtml(row.ProductType)}}</td>
+                    <td>${{escapeHtml(row.Set)}}</td>
                     <td>€${{(row.EUR || 0).toFixed(2)}}</td>
                     <td>${{escapeHtml(row.SalesRepresentative)}}</td>
                 `;
