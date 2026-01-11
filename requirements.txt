@@ -1,0 +1,12 @@
+streamlit>=1.38
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+reportlab>=3.6
+plotly>=5.18.0
+beautifulsoup4==4.12.3
+lxml==5.3.0
+scikit-learn
+streamlit-plotly-events
+
+
