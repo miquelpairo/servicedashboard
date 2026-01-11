@@ -58,6 +58,9 @@ if 'selected_city' not in st.session_state:
 if 'new_coords_added' not in st.session_state:
     st.session_state.new_coords_added = 0
 
+if 'selected_quick_filters' not in st.session_state:
+    st.session_state.selected_quick_filters = []
+
 # Function to load file
 @st.cache_data
 def load_file(file):
@@ -127,6 +130,30 @@ if uploaded_file:
     st.sidebar.success(f"✅ {len(df)} records loaded")
     st.sidebar.info(f"📍 Cached coordinates: {len(st.session_state.geocode_cache)}")
     
+    # Get available options
+    available_years = sorted(df['Year'].dropna().unique().astype(int).tolist())
+    available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
+    available_types = sorted(df['ProductType'].dropna().unique().tolist())
+    available_sets = sorted(df['Set'].dropna().unique().tolist())
+    month_options = list(range(1, 13))
+    month_labels = {
+        1: 'January', 2: 'February', 3: 'March', 4: 'April',
+        5: 'May', 6: 'June', 7: 'July', 8: 'August',
+        9: 'September', 10: 'October', 11: 'November', 12: 'December'
+    }
+    
+    # ⭐ FUNCIÓN RESET - Se define aquí para tener acceso a available_*
+    def reset_all_filters():
+        st.session_state["year_filter"] = available_years
+        st.session_state["month_filter"] = []
+        st.session_state["rep_filter"] = available_reps
+        st.session_state["type_filter"] = available_types
+        st.session_state["set_filter"] = available_sets
+        st.session_state.selected_quick_filters = []
+        st.session_state["search_filter"] = ""
+        st.session_state["client_filter"] = ""
+        st.session_state.selected_city = None
+    
     # ============================================================================
     # FILTERS
     # ============================================================================
@@ -135,7 +162,16 @@ if uploaded_file:
     
     # Year filter
     st.sidebar.markdown("### 📅 Year")
-    available_years = sorted(df['Year'].dropna().unique().astype(int).tolist())
+    col_year1, col_year2 = st.sidebar.columns(2)
+    with col_year1:
+        if st.button("✅ All", key="year_all", use_container_width=True):
+            st.session_state["year_filter"] = available_years
+            st.rerun()
+    with col_year2:
+        if st.button("❌ None", key="year_none", use_container_width=True):
+            st.session_state["year_filter"] = []
+            st.rerun()
+    
     selected_years = st.sidebar.multiselect(
         "Select years",
         available_years,
@@ -145,12 +181,15 @@ if uploaded_file:
     
     # Month filter
     st.sidebar.markdown("### 📆 Month")
-    month_options = list(range(1, 13))
-    month_labels = {
-        1: 'January', 2: 'February', 3: 'March', 4: 'April',
-        5: 'May', 6: 'June', 7: 'July', 8: 'August',
-        9: 'September', 10: 'October', 11: 'November', 12: 'December'
-    }
+    col_month1, col_month2 = st.sidebar.columns(2)
+    with col_month1:
+        if st.button("✅ All", key="month_all", use_container_width=True):
+            st.session_state["month_filter"] = month_options
+            st.rerun()
+    with col_month2:
+        if st.button("❌ None", key="month_none", use_container_width=True):
+            st.session_state["month_filter"] = []
+            st.rerun()
     
     selected_months = st.sidebar.multiselect(
         "Select months (empty = all)",
@@ -162,7 +201,16 @@ if uploaded_file:
     
     # Sales Representative filter
     st.sidebar.markdown("### 👤 Sales Representative")
-    available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
+    col_rep1, col_rep2 = st.sidebar.columns(2)
+    with col_rep1:
+        if st.button("✅ All", key="rep_all", use_container_width=True):
+            st.session_state["rep_filter"] = available_reps
+            st.rerun()
+    with col_rep2:
+        if st.button("❌ None", key="rep_none", use_container_width=True):
+            st.session_state["rep_filter"] = []
+            st.rerun()
+    
     selected_reps = st.sidebar.multiselect(
         "Select representatives",
         available_reps,
@@ -172,7 +220,16 @@ if uploaded_file:
     
     # Product Type filter
     st.sidebar.markdown("### 🏷️ Product Type")
-    available_types = sorted(df['ProductType'].dropna().unique().tolist())
+    col_type1, col_type2 = st.sidebar.columns(2)
+    with col_type1:
+        if st.button("✅ All", key="type_all", use_container_width=True):
+            st.session_state["type_filter"] = available_types
+            st.rerun()
+    with col_type2:
+        if st.button("❌ None", key="type_none", use_container_width=True):
+            st.session_state["type_filter"] = []
+            st.rerun()
+    
     selected_types = st.sidebar.multiselect(
         "Select product types",
         available_types,
@@ -180,22 +237,29 @@ if uploaded_file:
         key="type_filter"
     )
     
-    # ⭐ AÑADIR AQUÍ - Set filter
+    # Set filter
     st.sidebar.markdown("### 📦 Set")
-    available_sets = sorted(df['Set'].dropna().unique().tolist())
+    col_set1, col_set2 = st.sidebar.columns(2)
+    with col_set1:
+        if st.button("✅ All", key="set_all", use_container_width=True):
+            st.session_state["set_filter"] = available_sets
+            st.rerun()
+    with col_set2:
+        if st.button("❌ None", key="set_none", use_container_width=True):
+            st.session_state["set_filter"] = []
+            st.rerun()
+    
     selected_sets = st.sidebar.multiselect(
         "Select sets",
         available_sets,
         default=available_sets,
         key="set_filter"
     )
+    
     # Search filter with quick filters
     st.sidebar.markdown("### 🔍 Search Service")
     
     quick_filter_keywords = ['CARE', 'Exact', 'Start', 'Circle', 'Maintain', 'IQ/OQ', 'OQ', 'Install']
-    
-    if 'selected_quick_filters' not in st.session_state:
-        st.session_state.selected_quick_filters = []
     
     cols = st.sidebar.columns(3)
     for idx, keyword in enumerate(quick_filter_keywords):
@@ -214,7 +278,6 @@ if uploaded_file:
     
     search_text = st.sidebar.text_input(
         "Or type custom search",
-        value="",
         placeholder="e.g., 'maintenance', 'calibration'...",
         key="search_filter",
         help="Filter services containing this text (case insensitive)"
@@ -222,10 +285,19 @@ if uploaded_file:
 
     client_search = st.sidebar.text_input(
         "Filter by Client",
-        value="",
         placeholder="e.g., 'Universidad', 'Hospital'...",
         key="client_filter",
         help="Filter by client name (case insensitive)"
+    )
+    
+    # ⭐ RESET BUTTON - AL FINAL, USANDO on_click
+    st.sidebar.markdown("---")
+    st.sidebar.button(
+        "🔄 Reset All Filters",
+        type="primary",
+        use_container_width=True,
+        on_click=reset_all_filters,
+        key="reset_btn"
     )
     
     # ============================================================================
@@ -260,11 +332,11 @@ if uploaded_file:
         df_filtered = df_filtered[
             df_filtered['ItemIdAndName'].str.contains(search_text, case=False, na=False)
         ]
+    
     if client_search:
         df_filtered = df_filtered[
             df_filtered['Business Partner Name'].str.contains(client_search, case=False, na=False)
         ]
-
 
     # ============================================================================
     # METRICS
@@ -366,7 +438,7 @@ if uploaded_file:
             st.warning("⚠️ Could not geocode any cities.")
         else:
 
-            map_data_valid = map_data_valid.copy()  # Evitar SettingWithCopyWarning
+            map_data_valid = map_data_valid.copy()
             map_data_valid['Size_Display'] = map_data_valid['Total_EUR'].abs()
 
             fig = px.scatter_mapbox(
@@ -520,9 +592,13 @@ if uploaded_file:
         st.markdown("""
         ### 🎯 Quick Guide:
         
-        **Filters:** Select years, months, reps, types, and use quick filter tags
+        **Reset Filters:** Click the "Reset All Filters" button at the bottom to return to default settings
+        
+        **Filters:** Select years, months, reps, types, sets, and use quick filter tags
         
         **Quick Filters:** Click tags to toggle (CARE, Exact, Start, Circle, Maintain, IQ/OQ, OQ)
+        
+        **All/None Buttons:** Quickly select or deselect all options in each filter
         
         **Map:** Interactive bubble map with auto-zoom. Click bubbles to filter table.
         
@@ -546,12 +622,14 @@ else:
     
     st.markdown("""
     ### 📋 Required columns:
-    - `Date`, `Business Partner Name`, `ItemIdAndName`, `ProductType`
+    - `Date`, `Business Partner Name`, `ItemIdAndName`, `ProductType`, `Set`
     - `EUR`, `SalesRepresentative`, `City`, `PostalCode`
     
     ### 🎯 Features:
     - Interactive map with service distribution
     - Quick filter tags for common searches
+    - All/None buttons for each filter group
+    - Reset all filters with one click
     - Export to standalone HTML with filters
     - Persistent geocoding cache
     """)
