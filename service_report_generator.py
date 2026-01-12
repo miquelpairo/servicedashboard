@@ -11,7 +11,7 @@ from app_config.plotting import BUCHI_COLORS
 
 def generate_service_dashboard_html(df_original, map_data_valid, available_years, 
                                     available_months, available_reps, available_types,
-                                    available_sets,  # ⭐ AÑADIDO
+                                    available_sets,
                                     geocode_cache):
     """
     Generate standalone HTML file with embedded data, map, and interactive filters
@@ -1102,57 +1102,75 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // ORIGINAL FUNCTIONS (RESTORED)
         // =============================
         function updateMapData() {{
-            const cityGroups = {{}};
+                    const cityGroups = {{}};
 
-            filteredData.forEach(row => {{
-                const postalStr = String(row.PostalCode || '').trim();
-                const cityStr = String(row.City || '').trim();
-                const key = cityStr + '_' + postalStr;
+                    filteredData.forEach(row => {{
+                        const postalStr = String(row.PostalCode || '').trim();
+                        const cityStr = String(row.City || '').trim();
+                        const key = cityStr + '_' + postalStr;
 
-                if (!cityGroups[key]) {{
-                    cityGroups[key] = {{
-                        City: cityStr,
-                        PostalCode: postalStr,
-                        Total_EUR: 0,
-                        Num_Services: 0,
-                        Representatives: new Set(),
-                        ProductTypes: {{}}
-                    }};
+                        if (!cityGroups[key]) {{
+                            cityGroups[key] = {{
+                                City: cityStr,
+                                PostalCode: postalStr,
+                                Total_EUR: 0,
+                                Num_Services: 0,
+                                Representatives: new Set(),
+                                ProductTypes: {{}}
+                            }};
+                        }}
+
+                        cityGroups[key].Total_EUR += row.EUR || 0;
+                        cityGroups[key].Num_Services += 1;
+                        cityGroups[key].Representatives.add(row.SalesRepresentative);
+
+                        const type = row.ProductType;
+                        cityGroups[key].ProductTypes[type] = (cityGroups[key].ProductTypes[type] || 0) + 1;
+                    }});
+
+                    filteredMapData = Object.values(cityGroups).map(group => {{
+                        const postal = String(group.PostalCode).trim();
+                        const city = String(group.City).trim();
+                        
+                        // ⭐ Normalizar como lo hace Python
+                        const postalNorm = postal.toUpperCase().replace(/\\s+/g, ' ').trim();
+                        const cityNorm = city.toUpperCase().replace(/\\s+/g, ' ').trim();
+                        const country = /^\\d{{4}}-\\d{{3}}$/.test(postal) ? 'pt' : 'es';
+
+                        const cacheKey = `${{postalNorm}}_${{cityNorm}}_${{country}}`;
+                        const cached = coordsCache[cacheKey];
+
+                        // ⭐ Extraer coords del nuevo formato (con metadata)
+                        let lat = null, lon = null;
+                        if (cached) {{
+                            if (Array.isArray(cached) && cached.length === 2) {{
+                                // Formato antiguo: [lat, lon]
+                                lat = cached[0];
+                                lon = cached[1];
+                            }} else if (cached.coords && Array.isArray(cached.coords)) {{
+                                // Formato nuevo: {{coords: [lat, lon], ...}}
+                                lat = cached.coords[0];
+                                lon = cached.coords[1];
+                            }}
+                        }}
+
+                        const types = Object.entries(group.ProductTypes);
+                        const mainType = types.length > 0
+                            ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0]
+                            : 'Mixed';
+
+                        return {{
+                            City: group.City,
+                            PostalCode: group.PostalCode,
+                            Total_EUR: group.Total_EUR,
+                            Num_Services: group.Num_Services,
+                            Representatives: Array.from(group.Representatives).slice(0, 3).join(', '),
+                            Main_Type: mainType,
+                            Latitude: lat,
+                            Longitude: lon
+                        }};
+                    }}).filter(item => item.Latitude && item.Longitude);
                 }}
-
-                cityGroups[key].Total_EUR += row.EUR || 0;
-                cityGroups[key].Num_Services += 1;
-                cityGroups[key].Representatives.add(row.SalesRepresentative);
-
-                const type = row.ProductType;
-                cityGroups[key].ProductTypes[type] = (cityGroups[key].ProductTypes[type] || 0) + 1;
-            }});
-
-            filteredMapData = Object.values(cityGroups).map(group => {{
-                const postal = String(group.PostalCode).trim();
-                const city = String(group.City).trim();
-                const country = /^\\d{{4}}-\\d{{3}}$/.test(postal) ? 'pt' : 'es';
-
-                const cacheKey = `${{postal}}_${{city}}_${{country}}`;
-                const coords = coordsCache[cacheKey];
-
-                const types = Object.entries(group.ProductTypes);
-                const mainType = types.length > 0
-                    ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0]
-                    : 'Mixed';
-
-                return {{
-                    City: group.City,
-                    PostalCode: group.PostalCode,
-                    Total_EUR: group.Total_EUR,
-                    Num_Services: group.Num_Services,
-                    Representatives: Array.from(group.Representatives).slice(0, 3).join(', '),
-                    Main_Type: mainType,
-                    Latitude: coords ? coords[0] : null,
-                    Longitude: coords ? coords[1] : null
-                }};
-            }}).filter(item => item.Latitude && item.Longitude);
-        }}
 
         function updateMetrics() {{
             const totalEUR = filteredData.reduce((sum, row) => sum + (row.EUR || 0), 0);
