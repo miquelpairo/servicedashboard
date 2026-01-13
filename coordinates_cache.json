@@ -12278,5 +12278,29 @@
     "timestamp": "2026-01-12T18:38:14.151246",
     "display_name": "01510, Miñano Menor / Miñao Gutxia, Vitoria-Gasteiz, Gasteizko kuadrilla, Araba / Álava, Euskadi, España",
     "validated": true
+  },
+  "09193_CARDENAJIMENO_es": {
+    "coords": [
+      42.3303559,
+      -3.6208379
+    ],
+    "query": "CARDENAJIMENO, Spain (country=es)",
+    "timestamp": "2026-01-13T09:23:21.465234",
+    "display_name": "Cardeñajimeno, Burgos, Castilla y León, 09192, España",
+    "validated": true,
+    "original_city": "CARDANAJIMENO",
+    "corrected_city": "CARDENAJIMENO"
+  },
+  "E09071_CARDENAJIMENO_es": {
+    "coords": [
+      42.3303559,
+      -3.6208379
+    ],
+    "query": "CARDENAJIMENO, Spain (country=es)",
+    "timestamp": "2026-01-13T09:23:23.461515",
+    "display_name": "Cardeñajimeno, Burgos, Castilla y León, 09192, España",
+    "validated": true,
+    "original_city": "CARDANAJIMENO",
+    "corrected_city": "CARDENAJIMENO"
   }
 }

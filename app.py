@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 import json
@@ -26,9 +27,45 @@ CACHE_FILE = "coordinates_cache.json"
 
 # ⭐ DICCIONARIO DE TYPOS CONOCIDOS
 CITY_CORRECTIONS = {
+    'CARDANAJIMENO': 'CARDENAJIMENO',
     'CARDAÑAJIMENO': 'CARDEÑAJIMENO',
     # Añade más según los vayas encontrando
 }
+
+# ⭐ NUEVA FUNCIÓN: Extraer variantes de ciudad (sin paréntesis)
+def extract_city_candidates(city_text):
+    """
+    Extract city name variants, prioritizing content in parentheses.
+    Example: "CAPARICA (MONTE DE CAPARICA )" -> ["MONTE DE CAPARICA", "CAPARICA"]
+    """
+    if not city_text or pd.isna(city_text):
+        return []
+    
+    city_text = str(city_text).strip()
+    
+    # Buscar patrón X (Y)
+    match = re.match(r'^(.+?)\s*\((.+?)\)\s*$', city_text)
+    
+    if match:
+        outside = match.group(1).strip()  # X
+        inside = match.group(2).strip()   # Y
+        # Priorizar lo que está DENTRO de paréntesis
+        candidates = [inside, outside]
+    else:
+        # No hay paréntesis, usar texto limpio
+        candidates = [city_text]
+    
+    # Limpiar cada candidato: quitar paréntesis residuales, espacios extra
+    cleaned_candidates = []
+    for candidate in candidates:
+        # Remover paréntesis residuales
+        cleaned = re.sub(r'[()]', '', candidate)
+        # Normalizar espacios
+        cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+        if cleaned:
+            cleaned_candidates.append(cleaned)
+    
+    return cleaned_candidates
 
 # ⭐ FASE 1: NORMALIZACIÓN DE TEXTOS
 def normalize_text(text):
@@ -44,7 +81,7 @@ def normalize_text(text):
     text = text.upper()
     return text
 
-# ⭐ FASE 2: BOUNDING BOX VALIDATION
+# ⭐ FASE 2: BOUNDING BOX VALIDATION (AMPLIADOS PARA PT)
 def validate_coordinates(lat, lon, country_code):
     """Validate if coordinates are within expected boundaries (incl. islands)."""
     if lat is None or lon is None:
@@ -56,17 +93,17 @@ def validate_coordinates(lat, lon, country_code):
             # España peninsular (aprox)
             {"lat": (35.5, 44.2), "lon": (-10.5, 5.5)},
             # Canarias (aprox)
-            {"lat": (27.5, 29.6), "lon": (-18.3, -13.0)},
+            {"lat": (27.3, 29.8), "lon": (-18.5, -13.0)},
             # Baleares (aprox)
             {"lat": (38.6, 40.2), "lon": (1.0, 4.6)},
         ],
         "pt": [
             # Portugal continental (aprox)
             {"lat": (36.8, 42.3), "lon": (-9.6, -6.0)},
-            # Madeira (aprox)
-            {"lat": (32.2, 33.2), "lon": (-17.3, -16.2)},
-            # Azores (aprox)
-            {"lat": (36.7, 39.9), "lon": (-31.6, -24.6)},
+            # Madeira + Porto Santo (MÁS AMPLIO)
+            {"lat": (32.0, 33.6), "lon": (-17.5, -16.0)},
+            # Azores (MÁS AMPLIO)
+            {"lat": (36.6, 39.9), "lon": (-31.7, -24.5)},
         ],
     }
 
@@ -103,7 +140,7 @@ def load_cache_from_file():
                             'query': 'legacy',
                             'timestamp': datetime.now().isoformat(),
                             'display_name': None,
-                            'validated': True
+                            'validated_at_geocode': True
                         }
                     else:
                         migrated_cache[key] = value
@@ -216,7 +253,7 @@ def load_file(file):
 _geolocator = Nominatim(user_agent="service_planning_dashboard")
 _geocode = RateLimiter(_geolocator.geocode, min_delay_seconds=1)
 
-# ⭐ FASE 1, 2, 3: FUNCIÓN DE GEOCODIFICACIÓN MEJORADA CON FALLBACK
+# ⭐ FUNCIÓN DE GEOCODIFICACIÓN MEJORADA (sin paréntesis, con candidatos)
 def geocode_location(postal_code, city, country_code='es'):
     """Geocode a location with normalization, metadata, validation and fallback"""
     # ⭐ FASE 1: Normalizar inputs
@@ -249,40 +286,55 @@ def geocode_location(postal_code, city, country_code='es'):
     st.session_state.geocode_stats['api_calls'] += 1
     
     try:
-        # ⭐ FASE 3: Build better queries con variantes Portugal
+        # ⭐ NUEVO: Extraer candidatos de ciudad (sin paréntesis)
+        city_candidates = extract_city_candidates(city)
+        
+        if not city_candidates:
+            city_candidates = [city_corrected]
+        
+        # ⭐ Build queries con múltiples candidatos
+        queries = []
+        
         if country_code == "pt":
             country_name = "Portugal"
             cc = "pt"
             
-            # Queries especiales para casos conocidos problemáticos
-            city_upper = city_corrected.upper()
-            queries = [
-                f"{postal_code} {city_corrected}, {country_name}",
-                f"{city_corrected}, {country_name}",
-                f"{postal_code}, {country_name}" if postal_code else None,
-            ]
+            for city_candidate in city_candidates:
+                city_upper = city_candidate.upper()
+                
+                # Queries básicas
+                queries.append(f"{postal_code} {city_candidate}, {country_name}")
+                queries.append(f"{city_candidate}, {country_name}")
+                
+                # Variantes especiales para Caparica
+                if "CAPARICA" in city_upper:
+                    queries.extend([
+                        f"{postal_code} Monte da Caparica, Almada, {country_name}",
+                        f"Monte da Caparica, Almada, {country_name}",
+                        f"{postal_code} Costa da Caparica, Almada, {country_name}",
+                        f"Costa da Caparica, Almada, {country_name}",
+                        f"{city_candidate}, Almada, {country_name}",
+                    ])
             
-            # Variantes especiales para ciudades problemáticas de Portugal
-            if "CAPARICA" in city_upper:
-                queries.extend([
-                    f"{city_corrected}, Almada, {country_name}",
-                    f"Costa da Caparica, Almada, {country_name}",
-                    f"Caparica, Almada, {country_name}",
-                ])
+            # Postal solo al final (menos prioritario para PT)
+            if postal_code:
+                queries.append(f"{postal_code}, {country_name}")
             
         else:
             country_name = "Spain"
             cc = "es"
-            queries = [
-                f"{postal_code} {city_corrected}, {country_name}",
-                f"{city_corrected}, {country_name}",
-                f"{postal_code}, {country_name}" if postal_code else None
-            ]
+            
+            for city_candidate in city_candidates:
+                queries.append(f"{postal_code} {city_candidate}, {country_name}")
+                queries.append(f"{city_candidate}, {country_name}")
+            
+            if postal_code:
+                queries.append(f"{postal_code}, {country_name}")
         
         location = None
         used_query = None
         
-        # ⭐ FASE 3: Intentar primero con country_codes
+        # ⭐ Intentar primero con country_codes
         for query in queries:
             if query is None:
                 continue
@@ -291,7 +343,7 @@ def geocode_location(postal_code, city, country_code='es'):
                 used_query = f"{query} (country={cc})"
                 break
 
-        # ⭐ FASE 3: Fallback sin restricción de país si falló
+        # ⭐ Fallback sin restricción de país si falló
         if location is None:
             st.session_state.geocode_stats['fallback'] += 1
             for query in queries:
@@ -309,7 +361,7 @@ def geocode_location(postal_code, city, country_code='es'):
         if location:
             coords = (location.latitude, location.longitude)
             
-            # ⭐ FASE 2: Validar coordenadas
+            # ⭐ Validar coordenadas AL MOMENTO DE GEOCODIFICAR
             is_valid = validate_coordinates(coords[0], coords[1], country_code)
             
             if not is_valid:
@@ -317,13 +369,13 @@ def geocode_location(postal_code, city, country_code='es'):
             else:
                 st.session_state.geocode_stats['validated'] += 1
             
-            # ⭐ FASE 2: Guardar con metadata
+            # ⭐ Guardar con metadata (validated_at_geocode para referencia histórica)
             metadata = {
                 'coords': coords,
                 'query': used_query,
                 'timestamp': datetime.now().isoformat(),
                 'display_name': location.address,
-                'validated': is_valid,
+                'validated_at_geocode': is_valid,  # ← Solo referencia histórica
                 'original_city': city_norm,
                 'corrected_city': city_corrected if city_corrected != city_norm else None
             }
@@ -332,14 +384,14 @@ def geocode_location(postal_code, city, country_code='es'):
             st.session_state.new_coords_added += 1
             return coords
         
-        # ⭐ FASE 2: Guardar fallo con timestamp
+        # ⭐ Guardar fallo con timestamp
         st.session_state.geocode_stats['failed'] += 1
         st.session_state.geocode_cache[cache_key] = {
             'coords': None,
             'query': queries[0] if queries else None,
             'timestamp': datetime.now().isoformat(),
             'display_name': None,
-            'validated': False,
+            'validated_at_geocode': False,
             'original_city': city_norm,
             'corrected_city': city_corrected if city_corrected != city_norm else None
         }
@@ -352,7 +404,7 @@ def geocode_location(postal_code, city, country_code='es'):
             'query': str(e),
             'timestamp': datetime.now().isoformat(),
             'display_name': None,
-            'validated': False,
+            'validated_at_geocode': False,
             'original_city': city_norm,
             'corrected_city': city_corrected if city_corrected != city_norm else None
         }
@@ -382,6 +434,7 @@ if uploaded_file:
     available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
     available_types = sorted(df['ProductType'].dropna().unique().tolist())
     available_sets = sorted(df['Set'].dropna().unique().tolist())
+    available_countries = sorted(df['Country'].dropna().unique().tolist())  # ⭐ NUEVO
     month_options = list(range(1, 13))
     month_labels = {
         1: 'January', 2: 'February', 3: 'March', 4: 'April',
@@ -396,145 +449,170 @@ if uploaded_file:
         st.session_state["rep_filter"] = available_reps
         st.session_state["type_filter"] = available_types
         st.session_state["set_filter"] = available_sets
+        st.session_state["country_filter"] = available_countries  # ⭐ NUEVO
         st.session_state.selected_quick_filters = []
         st.session_state["search_filter"] = ""
         st.session_state["client_filter"] = ""
         st.session_state.selected_city = None
     
     # ============================================================================
-    # FILTERS
+    # FILTERS - COLAPSABLES
     # ============================================================================
     st.sidebar.markdown("---")
     st.sidebar.markdown("## 🎛️ Filters")
     
-    # Year filter
-    st.sidebar.markdown("### 📅 Year")
-    col_year1, col_year2 = st.sidebar.columns(2)
-    with col_year1:
-        st.button("✅ All", key="year_all", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"year_filter": available_years}))
-    with col_year2:
-        st.button("❌ None", key="year_none", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"year_filter": []}))
+    # ⭐ NUEVO: Country filter - COLAPSABLE
+    with st.sidebar.expander("🌍 Country", expanded=False):
+        col_country1, col_country2 = st.columns(2)
+        with col_country1:
+            st.button("✅ All", key="country_all", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"country_filter": available_countries}))
+        with col_country2:
+            st.button("❌ None", key="country_none", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"country_filter": []}))
+        
+        selected_countries = st.multiselect(
+            "Select countries",
+            available_countries,
+            default=available_countries,
+            key="country_filter",
+            format_func=lambda x: "🇵🇹 Portugal" if x == 'pt' else "🇪🇸 Spain" if x == 'es' else x,
+            label_visibility="collapsed"
+        )
     
-    selected_years = st.sidebar.multiselect(
-        "Select years",
-        available_years,
-        default=available_years,
-        key="year_filter"
-    )
+    # ⭐ Year filter - COLAPSABLE
+    with st.sidebar.expander("📅 Year", expanded=False):
+        col_year1, col_year2 = st.columns(2)
+        with col_year1:
+            st.button("✅ All", key="year_all", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"year_filter": available_years}))
+        with col_year2:
+            st.button("❌ None", key="year_none", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"year_filter": []}))
+        
+        selected_years = st.multiselect(
+            "Select years",
+            available_years,
+            default=available_years,
+            key="year_filter",
+            label_visibility="collapsed"
+        )
     
-    # Month filter
-    st.sidebar.markdown("### 📆 Month")
-    col_month1, col_month2 = st.sidebar.columns(2)
-    with col_month1:
-        st.button("✅ All", key="month_all", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"month_filter": month_options}))
-    with col_month2:
-        st.button("❌ None", key="month_none", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"month_filter": []}))
+    # ⭐ Month filter - COLAPSABLE
+    with st.sidebar.expander("📆 Month", expanded=False):
+        col_month1, col_month2 = st.columns(2)
+        with col_month1:
+            st.button("✅ All", key="month_all", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"month_filter": month_options}))
+        with col_month2:
+            st.button("❌ None", key="month_none", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"month_filter": []}))
+        
+        selected_months = st.multiselect(
+            "Select months (empty = all)",
+            month_options,
+            default=[],
+            format_func=lambda x: month_labels[x],
+            key="month_filter",
+            label_visibility="collapsed"
+        )
     
-    selected_months = st.sidebar.multiselect(
-        "Select months (empty = all)",
-        month_options,
-        default=[],
-        format_func=lambda x: month_labels[x],
-        key="month_filter"
-    )
+    # ⭐ Sales Representative filter - COLAPSABLE
+    with st.sidebar.expander("👤 Sales Representative", expanded=False):
+        col_rep1, col_rep2 = st.columns(2)
+        with col_rep1:
+            st.button("✅ All", key="rep_all", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"rep_filter": available_reps}))
+        with col_rep2:
+            st.button("❌ None", key="rep_none", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"rep_filter": []}))
+        
+        selected_reps = st.multiselect(
+            "Select representatives",
+            available_reps,
+            default=available_reps,
+            key="rep_filter",
+            label_visibility="collapsed"
+        )
     
-    # Sales Representative filter
-    st.sidebar.markdown("### 👤 Sales Representative")
-    col_rep1, col_rep2 = st.sidebar.columns(2)
-    with col_rep1:
-        st.button("✅ All", key="rep_all", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"rep_filter": available_reps}))
-    with col_rep2:
-        st.button("❌ None", key="rep_none", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"rep_filter": []}))
+    # ⭐ Product Type filter - COLAPSABLE
+    with st.sidebar.expander("🏷️ Product Type", expanded=False):
+        col_type1, col_type2 = st.columns(2)
+        with col_type1:
+            st.button("✅ All", key="type_all", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"type_filter": available_types}))
+        with col_type2:
+            st.button("❌ None", key="type_none", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"type_filter": []}))
+        
+        selected_types = st.multiselect(
+            "Select product types",
+            available_types,
+            default=available_types,
+            key="type_filter",
+            label_visibility="collapsed"
+        )
     
-    selected_reps = st.sidebar.multiselect(
-        "Select representatives",
-        available_reps,
-        default=available_reps,
-        key="rep_filter"
-    )
+    # ⭐ Set filter - COLAPSABLE
+    with st.sidebar.expander("📦 Set", expanded=False):
+        col_set1, col_set2 = st.columns(2)
+        with col_set1:
+            st.button("✅ All", key="set_all", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"set_filter": available_sets}))
+        with col_set2:
+            st.button("❌ None", key="set_none", use_container_width=True,
+                     on_click=lambda: st.session_state.update({"set_filter": []}))
+        
+        selected_sets = st.multiselect(
+            "Select sets",
+            available_sets,
+            default=available_sets,
+            key="set_filter",
+            label_visibility="collapsed"
+        )
     
-    # Product Type filter
-    st.sidebar.markdown("### 🏷️ Product Type")
-    col_type1, col_type2 = st.sidebar.columns(2)
-    with col_type1:
-        st.button("✅ All", key="type_all", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"type_filter": available_types}))
-    with col_type2:
-        st.button("❌ None", key="type_none", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"type_filter": []}))
-    
-    selected_types = st.sidebar.multiselect(
-        "Select product types",
-        available_types,
-        default=available_types,
-        key="type_filter"
-    )
-    
-    # Set filter
-    st.sidebar.markdown("### 📦 Set")
-    col_set1, col_set2 = st.sidebar.columns(2)
-    with col_set1:
-        st.button("✅ All", key="set_all", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"set_filter": available_sets}))
-    with col_set2:
-        st.button("❌ None", key="set_none", use_container_width=True,
-                 on_click=lambda: st.session_state.update({"set_filter": []}))
-    
-    selected_sets = st.sidebar.multiselect(
-        "Select sets",
-        available_sets,
-        default=available_sets,
-        key="set_filter"
-    )
-    
-    # ⭐ FASE 1: Search filter with quick filters AND/OR mode
-    st.sidebar.markdown("### 🔍 Search Service")
-    
-    # AND/OR selector
-    quick_mode = st.sidebar.radio(
-        "Quick filter mode:",
-        options=['AND', 'OR'],
-        horizontal=True,
-        key="quick_filter_mode",
-        help="AND = All keywords must match | OR = Any keyword matches"
-    )
-    
-    quick_filter_keywords = ['CARE', 'Exact', 'Start', 'Circle', 'Maintain', 'IQ/OQ', 'OQ', 'Install']
-    
-    cols = st.sidebar.columns(3)
-    for idx, keyword in enumerate(quick_filter_keywords):
-        col = cols[idx % 3]
-        if col.button(
-            keyword, 
-            key=f"quick_{keyword}",
-            use_container_width=True,
-            type="primary" if keyword in st.session_state.selected_quick_filters else "secondary"
-        ):
-            if keyword in st.session_state.selected_quick_filters:
-                st.session_state.selected_quick_filters.remove(keyword)
-            else:
-                st.session_state.selected_quick_filters.append(keyword)
-            st.rerun()
-    
-    search_text = st.sidebar.text_input(
-        "Or type custom search",
-        placeholder="e.g., 'maintenance', 'calibration'...",
-        key="search_filter",
-        help="Filter services containing this text (case insensitive)"
-    )
+    # ⭐ Search filter - COLAPSABLE
+    with st.sidebar.expander("🔍 Search Service", expanded=False):
+        # AND/OR selector
+        quick_mode = st.radio(
+            "Quick filter mode:",
+            options=['AND', 'OR'],
+            horizontal=True,
+            key="quick_filter_mode",
+            help="AND = All keywords must match | OR = Any keyword matches"
+        )
+        
+        quick_filter_keywords = ['CARE', 'Exact', 'Start', 'Circle', 'Maintain', 'IQ/OQ', 'OQ', 'Install']
+        
+        cols = st.columns(3)
+        for idx, keyword in enumerate(quick_filter_keywords):
+            col = cols[idx % 3]
+            if col.button(
+                keyword, 
+                key=f"quick_{keyword}",
+                use_container_width=True,
+                type="primary" if keyword in st.session_state.selected_quick_filters else "secondary"
+            ):
+                if keyword in st.session_state.selected_quick_filters:
+                    st.session_state.selected_quick_filters.remove(keyword)
+                else:
+                    st.session_state.selected_quick_filters.append(keyword)
+                st.rerun()
+        
+        search_text = st.text_input(
+            "Or type custom search",
+            placeholder="e.g., 'maintenance', 'calibration'...",
+            key="search_filter",
+            help="Filter services containing this text (case insensitive)",
+            label_visibility="collapsed"
+        )
 
-    client_search = st.sidebar.text_input(
-        "Filter by Client",
-        placeholder="e.g., 'Universidad', 'Hospital'...",
-        key="client_filter",
-        help="Filter by client name (case insensitive)"
-    )
+        client_search = st.text_input(
+            "Filter by Client",
+            placeholder="e.g., 'Universidad', 'Hospital'...",
+            key="client_filter",
+            help="Filter by client name (case insensitive)"
+        )
     
     # ⭐ RESET BUTTON
     st.sidebar.markdown("---")
@@ -552,6 +630,9 @@ if uploaded_file:
     
     df_filtered = df.copy()
     
+    if selected_countries:  # ⭐ NUEVO
+        df_filtered = df_filtered[df_filtered['Country'].isin(selected_countries)]
+    
     if selected_years:
         df_filtered = df_filtered[df_filtered['Year'].isin(selected_years)]
     
@@ -567,7 +648,7 @@ if uploaded_file:
     if selected_sets:
         df_filtered = df_filtered[df_filtered['Set'].isin(selected_sets)]
 
-    # ⭐ FASE 1: Quick filters con modo AND/OR
+    # ⭐ Quick filters con modo AND/OR
     if st.session_state.selected_quick_filters:
         if quick_mode == 'AND':
             # TODOS los quick filters deben coincidir (AND)
@@ -636,7 +717,7 @@ if uploaded_file:
     
     st.markdown("### 🗺️ Geographic Distribution")
     
-    # ⭐ FASE 1: Usar columna Country ya calculada
+    # ⭐ Usar columna Country ya calculada
     map_data = df_filtered.groupby(['City', postal_col, 'Country']).agg({
         'EUR': 'sum',
         'Business Partner Name': 'count',
@@ -646,7 +727,7 @@ if uploaded_file:
     
     map_data.columns = ['City', 'PostalCode', 'Country', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']
     
-    # ⭐ FASE 1: DEDUPLICAR antes de geocodificar
+    # ⭐ DEDUPLICAR antes de geocodificar
     st.session_state.new_coords_added = 0
     st.session_state.geocode_stats = {
         'api_calls': 0,
@@ -695,8 +776,11 @@ if uploaded_file:
         else:
             st.success(f"✅ All {len(unique_cities)} unique cities already cached!")
         
-        # Obtener coordenadas del caché
-        coords = []
+        # ⭐ CRÍTICO: Obtener coordenadas del caché y RECALCULAR validación
+        coords_list = []
+        query_list = []
+        display_name_list = []
+        
         for idx, row in map_data.iterrows():
             postal_norm = normalize_text(row['PostalCode'])
             city_norm = normalize_text(row['City'])
@@ -709,82 +793,139 @@ if uploaded_file:
             cache_key = f"{postal_norm}_{city_corrected}_{row['Country']}"
             
             cached = st.session_state.geocode_cache.get(cache_key)
+            
             if cached is None:
-                coords.append((None, None))
+                coords_list.append((None, None))
+                query_list.append(None)
+                display_name_list.append(None)
             elif isinstance(cached, dict):
-                coords.append(cached.get('coords', (None, None)))
+                coords = cached.get('coords', (None, None))
+                coords_list.append(coords)
+                query_list.append(cached.get('query'))
+                display_name_list.append(cached.get('display_name'))
             elif isinstance(cached, (list, tuple)):
-                coords.append(cached)
+                # Formato antiguo (lat, lon)
+                coords_list.append(cached)
+                query_list.append('legacy')
+                display_name_list.append(None)
             else:
-                coords.append((None, None))
+                coords_list.append((None, None))
+                query_list.append(None)
+                display_name_list.append(None)
         
-        map_data['Coordinates'] = coords
+        map_data['Coordinates'] = coords_list
+        map_data['GeoQuery'] = query_list
+        map_data['GeoDisplayName'] = display_name_list
+        
         map_data['Latitude'] = map_data['Coordinates'].apply(lambda x: x[0] if x and x[0] is not None else None)
         map_data['Longitude'] = map_data['Coordinates'].apply(lambda x: x[1] if x and x[1] is not None else None)
         
-        map_data_valid = map_data.dropna(subset=['Latitude', 'Longitude'])
+        # ⭐ Separar geocoded
+        map_data_geocoded = map_data.dropna(subset=['Latitude', 'Longitude']).copy()
         
-        # ⭐ FASE 2: Filtrar coordenadas sospechosas
-        map_data_suspicious = map_data_valid[
-            ~map_data_valid.apply(
-                lambda row: validate_coordinates(row['Latitude'], row['Longitude'], row['Country']),
-                axis=1
-            )
-        ]
+        # ⭐ CRÍTICO: SIEMPRE RECALCULAR GeoValidated con bbox ACTUAL
+        map_data_geocoded['GeoValidated'] = map_data_geocoded.apply(
+            lambda row: validate_coordinates(row['Latitude'], row['Longitude'], row['Country']),
+            axis=1
+        )
         
-        map_data_valid = map_data_valid[
-            map_data_valid.apply(
-                lambda row: validate_coordinates(row['Latitude'], row['Longitude'], row['Country']),
-                axis=1
-            )
-        ]
+        map_data_valid = map_data_geocoded[map_data_geocoded['GeoValidated'] == True].copy()
+        map_data_suspicious = map_data_geocoded[map_data_geocoded['GeoValidated'] == False].copy()
         
-        if len(map_data_valid) == 0:
+        if len(map_data_geocoded) == 0:
             st.warning("⚠️ Could not geocode any cities.")
         else:
-            map_data_valid = map_data_valid.copy()
+            # Preparar ambos datasets con Size_Display
             map_data_valid['Size_Display'] = map_data_valid['Total_EUR'].abs()
-
-            fig = px.scatter_mapbox(
-                map_data_valid,
-                lat='Latitude',
-                lon='Longitude',
-                size='Size_Display',
-                color='Main_Type',
-                size_max=30,
-                hover_name='City',
-                hover_data={
-                    'Total_EUR': ':,.2f',
-                    'Size_Display': False,
-                    'Num_Services': True,
-                    'Representatives': True,
-                    'Latitude': False,
-                    'Longitude': False,
-                    'Main_Type': True,
-                    'Country': True
-                },
-                labels={
-                    'Total_EUR': 'Total EUR',
-                    'Num_Services': 'Services',
-                    'Representatives': 'Reps',
-                    'Main_Type': 'Type',
-                    'Country': 'Country'
-                },
-                zoom=5,
-                height=600,
-            )
+            map_data_suspicious['Size_Display'] = map_data_suspicious['Total_EUR'].abs()
             
+            # Crear figura con 2 traces usando plotly.graph_objects
+            fig = go.Figure()
+            
+            # Trace 1: Valid (círculos azules)
+            if len(map_data_valid) > 0:
+                fig.add_trace(go.Scattermapbox(
+                    lat=map_data_valid['Latitude'],
+                    lon=map_data_valid['Longitude'],
+                    mode='markers',
+                    marker=dict(
+                        size=map_data_valid['Size_Display'] / map_data_valid['Size_Display'].max() * 30,
+                        sizemode='diameter',
+                        sizemin=5,
+                        color='#2E86C1',  # Azul
+                        opacity=0.7,
+                    ),
+                    text=map_data_valid['City'],
+                    customdata=map_data_valid[['Total_EUR', 'Num_Services', 'Representatives', 'Main_Type', 'Country', 'PostalCode']],
+                    hovertemplate=(
+                        '<b>%{text}</b><br>'
+                        'Total EUR: €%{customdata[0]:,.2f}<br>'
+                        'Services: %{customdata[1]}<br>'
+                        'Reps: %{customdata[2]}<br>'
+                        'Type: %{customdata[3]}<br>'
+                        'Country: %{customdata[4]}<br>'
+                        'PostalCode: %{customdata[5]}<br>'
+                        '<extra></extra>'
+                    ),
+                    name='✅ Valid',
+                    showlegend=True
+                ))
+            
+            # Trace 2: Suspicious (triángulos rojos)
+            if len(map_data_suspicious) > 0:
+                fig.add_trace(go.Scattermapbox(
+                    lat=map_data_suspicious['Latitude'],
+                    lon=map_data_suspicious['Longitude'],
+                    mode='markers',
+                    marker=dict(
+                        size=map_data_suspicious['Size_Display'] / map_data_suspicious['Size_Display'].max() * 30,
+                        sizemode='diameter',
+                        sizemin=5,
+                        symbol='triangle',
+                        color='#E74C3C',  # Rojo
+                        opacity=0.8,
+                    ),
+                    text=map_data_suspicious['City'],
+                    customdata=map_data_suspicious[['Total_EUR', 'Num_Services', 'Representatives', 'Main_Type', 'Country', 'PostalCode']],
+                    hovertemplate=(
+                        '<b>⚠️ %{text}</b><br>'
+                        'Total EUR: €%{customdata[0]:,.2f}<br>'
+                        'Services: %{customdata[1]}<br>'
+                        'Reps: %{customdata[2]}<br>'
+                        'Type: %{customdata[3]}<br>'
+                        'Country: %{customdata[4]}<br>'
+                        'PostalCode: %{customdata[5]}<br>'
+                        '<i>Outside expected boundaries</i><br>'
+                        '<extra></extra>'
+                    ),
+                    name='⚠️ Suspicious',
+                    showlegend=True
+                ))
+            
+            # Configurar layout
             fig.update_layout(
                 mapbox_style="open-street-map",
-                margin={"r": 0, "t": 0, "l": 0, "b": 0}
+                margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                height=600,
+                showlegend=True,
+                legend=dict(
+                    yanchor="top",
+                    y=0.99,
+                    xanchor="left",
+                    x=0.01,
+                    bgcolor="rgba(255,255,255,0.9)",
+                    bordercolor="rgba(0,0,0,0.2)",
+                    borderwidth=1
+                )
             )
             
-            if len(map_data_valid) > 0:
-                lat_center = map_data_valid['Latitude'].mean()
-                lon_center = map_data_valid['Longitude'].mean()
+            # Auto-zoom península ibérica
+            if len(map_data_geocoded) > 0:
+                lat_center = map_data_geocoded['Latitude'].mean()
+                lon_center = map_data_geocoded['Longitude'].mean()
                 
-                lat_range = map_data_valid['Latitude'].max() - map_data_valid['Latitude'].min()
-                lon_range = map_data_valid['Longitude'].max() - map_data_valid['Longitude'].min()
+                lat_range = map_data_geocoded['Latitude'].max() - map_data_geocoded['Latitude'].min()
+                lon_range = map_data_geocoded['Longitude'].max() - map_data_geocoded['Longitude'].min()
                 max_range = max(lat_range, lon_range)
                 
                 if max_range < 1:
@@ -813,21 +954,32 @@ if uploaded_file:
             if selected_points and selected_points.selection and selected_points.selection.points:
                 selected_indices = [p['point_index'] for p in selected_points.selection.points]
                 if selected_indices:
-                    selected_city = map_data_valid.iloc[selected_indices[0]]['City']
-                    st.session_state.selected_city = selected_city
-                    st.info(f"🎯 Selected city: **{selected_city}**")
+                    # Determinar de qué trace viene
+                    point_info = selected_points.selection.points[0]
+                    curve_number = point_info.get('curve_number', 0)
+                    
+                    if curve_number == 0 and len(map_data_valid) > 0:
+                        selected_city = map_data_valid.iloc[selected_indices[0]]['City']
+                    elif curve_number == 1 and len(map_data_suspicious) > 0:
+                        selected_city = map_data_suspicious.iloc[selected_indices[0]]['City']
+                    else:
+                        selected_city = None
+                    
+                    if selected_city:
+                        st.session_state.selected_city = selected_city
+                        st.info(f"🎯 Selected city: **{selected_city}**")
             
-            st.caption(f"📍 Showing {len(map_data_valid)} cities with valid coordinates")
+            st.caption(f"📍 Showing {len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious cities")
             
-            # ⭐ FASE 2: Mostrar coordenadas sospechosas
+            # Mantener expander de suspicious
             if len(map_data_suspicious) > 0:
                 with st.expander(f"⚠️ {len(map_data_suspicious)} cities with suspicious coordinates (outside country boundaries)"):
                     st.dataframe(
-                        map_data_suspicious[['City', 'PostalCode', 'Country', 'Latitude', 'Longitude']],
+                        map_data_suspicious[['City', 'PostalCode', 'Country', 'Latitude', 'Longitude', 'GeoQuery', 'GeoDisplayName']],
                         use_container_width=True
                     )
             
-            cities_without_coords = len(map_data) - len(map_data_valid) - len(map_data_suspicious)
+            cities_without_coords = len(map_data) - len(map_data_geocoded)
             if cities_without_coords > 0:
                 with st.expander(f"❌ {cities_without_coords} cities could not be geocoded"):
                     missing_data = map_data[
@@ -874,11 +1026,11 @@ if uploaded_file:
     
     with col2:
         if st.button("🌐 Generate HTML", type="primary", use_container_width=True):
-            if len(map_data_valid) > 0:
+            if len(map_data_geocoded) > 0:
                 with st.spinner("🔄 Generating HTML file..."):
                     html_content = generate_service_dashboard_html(
                         df,
-                        map_data_valid,
+                        map_data_geocoded,
                         available_years,
                         month_options,
                         available_reps,
@@ -904,7 +1056,7 @@ if uploaded_file:
     
     st.markdown("---")
     
-    # ⭐ FASE 3: EXPANDER DEBUG MEJORADO
+    # EXPANDER DEBUG MEJORADO
     with st.expander("🧭 Geocoding Debug & Statistics"):
         st.markdown("### 📊 Current Session Stats")
         col1, col2, col3 = st.columns(3)
@@ -957,7 +1109,6 @@ if uploaded_file:
             col1, col2 = st.columns(2)
             with col1:
                 if st.button("♻️ Retry ALL Failed Geocodes", use_container_width=True):
-                    # Eliminar todas las entradas fallidas
                     st.session_state.geocode_cache = {
                         k: v for k, v in st.session_state.geocode_cache.items()
                         if not (v is None or (isinstance(v, dict) and v.get('coords') is None))
@@ -990,19 +1141,17 @@ if uploaded_file:
         st.markdown("""
         ### 🎯 Quick Guide:
         
-        **Reset Filters:** Click the "Reset All Filters" button at the bottom to return to default settings
+        **Filters:** Collapsible sections including Country filter (🇪🇸 Spain / 🇵🇹 Portugal)
         
-        **Filters:** Select years, months, reps, types, sets, and use quick filter tags
+        **Reset Filters:** Click the "Reset All Filters" button to return to defaults
         
         **Quick Filters:** Click tags to toggle. Use AND mode (all match) or OR mode (any match)
         
-        **All/None Buttons:** Quickly select or deselect all options in each filter
+        **Map:** Valid locations shown as blue circles ●, suspicious as red triangles ▲
         
-        **Map:** Interactive bubble map with auto-zoom. Click bubbles to filter table.
+        **Export HTML:** Standalone file with all data and interactive filters
         
-        **Export HTML:** Standalone file with all data and interactive filters (works offline)
-        
-        **Geocoding:** Automatic normalization, validation, typo correction, and smart fallback for failed locations
+        **Geocoding:** Automatic city name cleaning (removes parentheses), typo correction, and smart fallback
         """)
     
     with st.expander("📊 Cache Management"):
@@ -1047,13 +1196,17 @@ else:
     
     ### 🎯 Features:
     - Interactive map with service distribution
+    - Country filter (🇪🇸 Spain / 🇵🇹 Portugal) based on postal code detection
     - Quick filter tags with AND/OR mode
+    - Collapsible filter sections in sidebar
     - All/None buttons for each filter group
     - Reset all filters with one click
     - Export to standalone HTML with filters
-    - Intelligent geocoding cache with validation
-    - Improved Portugal/Spain geocoding with typo correction
+    - Intelligent geocoding with city name cleaning (removes parentheses)
+    - Typo correction dictionary for known issues
     - Smart fallback when country-restricted search fails
     - Automatic retry for failed locations after 7 days
+    - Two-layer map: valid (blue circles ●) + suspicious (red triangles ▲)
+    - Always recalculates validation with current bounding boxes
     - Debug tools for geocoding issues
     """)
