@@ -388,6 +388,50 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             cursor: pointer;
         }}
         
+        /* ⭐ NUEVO: Estilos para map details */
+        .map-details {{
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+            padding: 0;
+        }}
+        
+        .map-details summary {{
+            cursor: pointer;
+            padding: 15px;
+            font-weight: bold;
+            background: {BUCHI_COLORS['primary']};
+            color: white;
+            border-radius: 8px 8px 0 0;
+            user-select: none;
+            transition: background 0.2s;
+        }}
+        
+        .map-details summary:hover {{
+            background: {BUCHI_COLORS['secondary']};
+        }}
+        
+        .map-details[open] summary {{
+            border-radius: 8px 8px 0 0;
+        }}
+        
+        .map-details h3 {{
+            color: {BUCHI_COLORS['primary']};
+            margin: 16px 0 6px;
+            font-size: 1.1rem;
+        }}
+        
+        #detailsPanel {{
+            padding: 15px;
+        }}
+        
+        #detailsHeader {{
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }}
+        
         #map {{
             width: 100%;
             height: 600px;
@@ -688,9 +732,40 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         <div class="info-box" id="map-section">
             <h2>🗺️ Geographic Distribution</h2>
             <p class="text-caption">
-                <em>Mapa interactivo mostrando la distribución geográfica de servicios. El tamaño de las burbujas representa el volumen de facturación.</em>
+                <em>Mapa interactivo mostrando la distribución geográfica de servicios. El tamaño de las burbujas representa el volumen de facturación. Haz clic en una burbuja para ver detalles.</em>
             </p>
             <div id="map"></div>
+            
+            <!-- ⭐ NUEVO: Panel de detalles de localización -->
+            <details id="mapDetails" class="map-details">
+                <summary>
+                    📌 Selected location details
+                    <span id="selectedSummary" style="opacity:.75; margin-left:8px;"></span>
+                </summary>
+                
+                <div id="detailsPanel" style="margin-top:12px;">
+                    <div id="detailsHeader" style="margin-bottom:10px; font-weight:600;"></div>
+                    
+                    <h3 style="margin:10px 0 6px;">📋 Service Lines</h3>
+                    <div class="table-container" style="max-height: 400px;">
+                        <table id="customersTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>City</th>
+                                    <th>Client</th>
+                                    <th>Service</th>
+                                    <th>Type</th>
+                                    <th>Set</th>
+                                    <th>EUR</th>
+                                    <th>Rep</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
         </div>
         
         <!-- TABLE SECTION -->
@@ -738,7 +813,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         const availableReps = {json.dumps(available_reps)};
         const availableTypes = {json.dumps(available_types)};
         const availableSets = {json.dumps(available_sets)};
-        const availableCountries = {json.dumps(available_countries)};  // ⭐ NUEVO
+        const availableCountries = {json.dumps(available_countries)};
         const monthNames = ['January','February','March','April','May','June',
                             'July','August','September','October','November','December'];
 
@@ -748,7 +823,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         let filteredData = [...fullData];
         let filteredMapData = [];
         let activeQuickFilters = [];
-        let quickMode = 'AND';  // AND (default) | OR
+        let quickMode = 'AND';
         let sortState = {{ column: 0, ascending: false }};
         const STORAGE_KEY = 'service_dashboard_filters_v1';
 
@@ -783,7 +858,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             document.querySelectorAll(selector).forEach(cb => cb.checked = checked);
         }}
 
-        // ⭐ NUEVO: Helper para mostrar nombre de país con bandera
         function formatCountryName(code) {{
             const names = {{
                 'es': '🇪🇸 Spain',
@@ -797,7 +871,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // =============================
         function setGroupChecked(group, checked) {{
             const map = {{
-                country: '.country-filter',  // ⭐ NUEVO
+                country: '.country-filter',
                 year: '.year-filter',
                 month: '.month-filter',
                 rep: '.rep-filter',
@@ -849,7 +923,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // INITIALIZE FILTER UI
         // =============================
         function initializeFilters() {{
-            // ⭐ NUEVO: Country filters
             const countryBox = $('countryFilters');
             availableCountries.forEach(c => {{
                 const l = document.createElement('label');
@@ -882,7 +955,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const cb = document.createElement('input');
                 cb.type = 'checkbox';
                 cb.value = m;
-                cb.checked = false; // ninguno = todos
+                cb.checked = false;
                 cb.className = 'month-filter';
                 l.appendChild(cb);
                 l.append(' ' + monthNames[m - 1]);
@@ -928,7 +1001,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 setBox.appendChild(l);
             }});
 
-            // Auto-apply filters on checkbox change with debounce
             const applyDebounced = debounce(applyFilters, 200);
             document.querySelectorAll('.country-filter, .year-filter, .month-filter, .rep-filter, .type-filter, .set-filter')
                 .forEach(cb => cb.addEventListener('change', applyDebounced));
@@ -938,7 +1010,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // APPLY FILTERS (CORE)
         // =============================
         function applyFilters() {{
-            const countries = getCheckedValues('.country-filter');  // ⭐ NUEVO
+            const countries = getCheckedValues('.country-filter');
             const years = getCheckedValues('.year-filter', cb => parseInt(cb.value));
             let months = getCheckedValues('.month-filter', cb => parseInt(cb.value));
             const reps = getCheckedValues('.rep-filter');
@@ -947,13 +1019,11 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             const manualSearch = safeLower($('searchInput')?.value);
             const clientSearch = safeLower($('clientInput')?.value);
 
-            // Si no hay meses seleccionados → TODOS
             if (months.length === 0) {{
                 months = [...availableMonths];
             }}
 
             filteredData = fullData.filter(row => {{
-                // ⭐ NUEVO: Filtro por país
                 if (!countries.includes(row.Country)) return false;
 
                 const d = new Date(row.Date);
@@ -1010,7 +1080,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 
             activeQuickFilters.forEach(k => chips.push(`Service:${{k}}`));
             
-            // ⭐ NUEVO: Mostrar países seleccionados
             const selectedCountries = getCheckedValues('.country-filter');
             if (selectedCountries.length > 0 && selectedCountries.length < availableCountries.length) {{
                 selectedCountries.forEach(v => chips.push(formatCountryName(v)));
@@ -1057,7 +1126,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // RESET / SELECT ALL / NONE
         // =============================
         function resetFilters() {{
-            setAll('.country-filter', true);  // ⭐ NUEVO
+            setAll('.country-filter', true);
             setAll('.year-filter', true);
             setAll('.month-filter', false);
             setAll('.rep-filter', true);
@@ -1083,7 +1152,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // =============================
         function saveFilterState() {{
             const state = {{
-                countries: getCheckedValues('.country-filter'),  // ⭐ NUEVO
+                countries: getCheckedValues('.country-filter'),
                 years: getCheckedValues('.year-filter'),
                 months: getCheckedValues('.month-filter'),
                 reps: getCheckedValues('.rep-filter'),
@@ -1104,7 +1173,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             try {{
                 const s = JSON.parse(raw);
 
-                // ⭐ NUEVO: Restaurar países
                 const hasCountries = Array.isArray(s.countries) && s.countries.length > 0;
                 const countriesSet = new Set((s.countries || []).map(String));
                 setAll('.country-filter', !hasCountries);
@@ -1159,7 +1227,57 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // ORIGINAL FUNCTIONS (RESTORED)
+        // ⭐ NUEVO: RENDER DETAILS PANEL (con columnas estándar)
+        // =============================
+        function renderDetailsPanel(city, postal, country, rows) {{
+            const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
+            const reps = Array.from(new Set(rows.map(r => r.SalesRepresentative).filter(Boolean))).slice(0, 6).join(', ');
+            const customers = new Set(rows.map(r => r['Business Partner Name'])).size;
+
+            $('detailsHeader').innerHTML =
+                `<b>📍 ${{escapeHtml(city)}} (${{escapeHtml(postal)}})</b> — ${{escapeHtml(country.toUpperCase())}}
+                &nbsp; | &nbsp; Total: <b>€${{totalEUR.toFixed(2)}}</b>
+                &nbsp; | &nbsp; Services: <b>${{rows.length}}</b>
+                &nbsp; | &nbsp; Customers: <b>${{customers}}</b>
+                &nbsp; | &nbsp; Reps: ${{escapeHtml(reps)}}`;
+
+            // Construir tabla con todas las líneas (mismas columnas que tabla principal)
+            const customersBody = $('customersBody');
+            customersBody.innerHTML = '';
+            
+            // Ordenar por fecha descendente
+            const sortedRows = [...rows].sort((a, b) => new Date(b.Date) - new Date(a.Date));
+            
+            sortedRows.forEach(row => {{
+                const tr = document.createElement('tr');
+                const date = new Date(row.Date).toLocaleDateString();
+                tr.innerHTML = `
+                    <td>${{date}}</td>
+                    <td>${{escapeHtml(row.City)}}</td>
+                    <td>${{escapeHtml(row['Business Partner Name'])}}</td>
+                    <td>${{escapeHtml(row.ItemIdAndName)}}</td>
+                    <td>${{escapeHtml(row.ProductType)}}</td>
+                    <td>${{escapeHtml(row.Set)}}</td>
+                    <td>€${{(row.EUR || 0).toFixed(2)}}</td>
+                    <td>${{escapeHtml(row.SalesRepresentative)}}</td>
+                `;
+                customersBody.appendChild(tr);
+            }});
+            
+            // Mostrar mensaje si hay muchas filas
+            if (rows.length > 100) {{
+                const infoRow = document.createElement('tr');
+                infoRow.innerHTML = `
+                    <td colspan="8" style="text-align:center; background:#fff3cd; padding:10px; font-style:italic;">
+                        ℹ️ Showing all ${{rows.length}} services for this location
+                    </td>
+                `;
+                customersBody.appendChild(infoRow);
+            }}
+        }}
+
+        // =============================
+        // ⭐ MEJORADO: UPDATE MAP DATA con LocationKey y TopCustomers
         // =============================
         function updateMapData() {{
             const cityGroups = {{}};
@@ -1167,16 +1285,19 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             filteredData.forEach(row => {{
                 const postalStr = String(row.PostalCode || '').trim();
                 const cityStr = String(row.City || '').trim();
-                const key = cityStr + '_' + postalStr;
+                const country = row.Country || (/^\\d{{4}}-\\d{{3}}$/.test(postalStr) ? 'pt' : 'es');
+                const key = `${{cityStr}}||${{postalStr}}||${{country}}`;
 
                 if (!cityGroups[key]) {{
                     cityGroups[key] = {{
                         City: cityStr,
                         PostalCode: postalStr,
+                        Country: country,
                         Total_EUR: 0,
                         Num_Services: 0,
                         Representatives: new Set(),
-                        ProductTypes: {{}}
+                        ProductTypes: {{}},
+                        Customers: {{}}
                     }};
                 }}
 
@@ -1186,15 +1307,22 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 
                 const type = row.ProductType;
                 cityGroups[key].ProductTypes[type] = (cityGroups[key].ProductTypes[type] || 0) + 1;
+                
+                // ⭐ NUEVO: Agregar customers
+                const customer = String(row['Business Partner Name'] || '').trim() || '(Unknown)';
+                if (!cityGroups[key].Customers[customer]) {{
+                    cityGroups[key].Customers[customer] = 0;
+                }}
+                cityGroups[key].Customers[customer] += (row.EUR || 0);
             }});
 
-            filteredMapData = Object.values(cityGroups).map(group => {{
+            filteredMapData = Object.entries(cityGroups).map(([locationKey, group]) => {{
                 const postal = String(group.PostalCode).trim();
                 const city = String(group.City).trim();
+                const country = group.Country;
                 
                 const postalNorm = postal.toUpperCase().replace(/\\s+/g, ' ').trim();
                 const cityNorm = city.toUpperCase().replace(/\\s+/g, ' ').trim();
-                const country = /^\\d{{4}}-\\d{{3}}$/.test(postal) ? 'pt' : 'es';
 
                 const cacheKey = `${{postalNorm}}_${{cityNorm}}_${{country}}`;
                 const cached = coordsCache[cacheKey];
@@ -1215,13 +1343,27 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0]
                     : 'Mixed';
 
+                // ⭐ NUEVO: Calcular top customers para hover
+                const topCustomers = Object.entries(group.Customers)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 3)
+                    .map(([name, eur]) => name)
+                    .join(', ');
+                
+                const moreCustomers = Object.keys(group.Customers).length > 3 
+                    ? ` (+${{Object.keys(group.Customers).length - 3}} more)` 
+                    : '';
+
                 return {{
                     City: group.City,
                     PostalCode: group.PostalCode,
+                    Country: country,
+                    LocationKey: locationKey,
                     Total_EUR: group.Total_EUR,
                     Num_Services: group.Num_Services,
                     Representatives: Array.from(group.Representatives).slice(0, 3).join(', '),
                     Main_Type: mainType,
+                    TopCustomers: topCustomers + moreCustomers,
                     Latitude: lat,
                     Longitude: lon
                 }};
@@ -1242,6 +1384,9 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             if ($('metricClients')) $('metricClients').textContent = numClients.toLocaleString();
         }}
 
+        // =============================
+        // ⭐ MEJORADO: RENDER MAP con click handler
+        // =============================
         function renderMap() {{
             if (filteredMapData.length === 0) {{
                 $('map').innerHTML = '<p style="text-align:center; padding:50px; color:#999;">No data to display</p>';
@@ -1261,9 +1406,10 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     sizemode: 'diameter'
                 }},
                 text: filteredMapData.map(d =>
-                    `${{d.City}}<br>Total: €${{d.Total_EUR.toFixed(2)}}<br>Services: ${{d.Num_Services}}<br>Reps: ${{d.Representatives}}<br>Type: ${{d.Main_Type}}`
+                    `${{d.City}}<br>Total: €${{d.Total_EUR.toFixed(2)}}<br>Services: ${{d.Num_Services}}<br>Top customers: ${{d.TopCustomers}}`
                 ),
-                hoverinfo: 'text'
+                hoverinfo: 'text',
+                customdata: filteredMapData.map(d => [d.LocationKey])
             }};
 
             const lats = filteredMapData.map(d => d.Latitude);
@@ -1291,6 +1437,31 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             }};
 
             Plotly.newPlot('map', [trace], layout, {{ responsive: true }});
+            
+            // ⭐ NUEVO: Click handler para abrir panel de detalles
+            const mapDiv = $('map');
+            mapDiv.on('plotly_click', function(evt) {{
+                if (!evt?.points?.length) return;
+
+                const locationKey = evt.points[0].customdata?.[0];
+                if (!locationKey) return;
+
+                const [city, postal, country] = locationKey.split('||');
+
+                const rows = filteredData.filter(r => {{
+                    const pc = String(r.PostalCode || '').trim();
+                    const c = String(r.City || '').trim();
+                    const co = r.Country || (/^\\d{{4}}-\\d{{3}}$/.test(pc) ? 'pt' : 'es');
+                    return c === city && pc === postal && co === country;
+                }});
+
+                renderDetailsPanel(city, postal, country, rows);
+
+                $('selectedSummary').textContent = `(${{rows.length}} lines)`;
+                
+                // No abrir automáticamente el details (usuario debe hacerlo manualmente)
+                // $('mapDetails').open = true;
+            }});
         }}
 
         function sortTable(colIndex) {{
@@ -1381,7 +1552,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // BOOT
         // =============================
         initializeFilters();
-        // restoreFilterState(); //
+        // restoreFilterState();
         applyFilters();
     </script>
 

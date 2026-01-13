@@ -944,6 +944,7 @@ if uploaded_file:
                     )
                 )
             
+            # ⭐ NUEVO: Capturar clicks en el mapa
             selected_points = st.plotly_chart(
                 fig, 
                 use_container_width=True,
@@ -951,6 +952,7 @@ if uploaded_file:
                 on_select="rerun"
             )
             
+            # ⭐ NUEVO: Panel de detalles de localización seleccionada
             if selected_points and selected_points.selection and selected_points.selection.points:
                 selected_indices = [p['point_index'] for p in selected_points.selection.points]
                 if selected_indices:
@@ -959,15 +961,63 @@ if uploaded_file:
                     curve_number = point_info.get('curve_number', 0)
                     
                     if curve_number == 0 and len(map_data_valid) > 0:
-                        selected_city = map_data_valid.iloc[selected_indices[0]]['City']
+                        selected_row = map_data_valid.iloc[selected_indices[0]]
                     elif curve_number == 1 and len(map_data_suspicious) > 0:
-                        selected_city = map_data_suspicious.iloc[selected_indices[0]]['City']
+                        selected_row = map_data_suspicious.iloc[selected_indices[0]]
                     else:
-                        selected_city = None
+                        selected_row = None
                     
-                    if selected_city:
-                        st.session_state.selected_city = selected_city
-                        st.info(f"🎯 Selected city: **{selected_city}**")
+                    if selected_row is not None:
+                        selected_city = selected_row['City']
+                        selected_postal = selected_row['PostalCode']
+                        selected_country = selected_row['Country']
+                        
+                        # ⭐ NUEVO: Filtrar datos originales por esta localización
+                        location_data = df_filtered[
+                            (df_filtered['City'] == selected_city) & 
+                            (df_filtered[postal_col] == selected_postal) &
+                            (df_filtered['Country'] == selected_country)
+                        ].copy()
+                        
+                        # ⭐ NUEVO: Mostrar panel de detalles con expander
+                        with st.expander(f"📌 {selected_city} ({selected_postal}) — {selected_country.upper()} ({len(location_data)} lines)", expanded=True):
+                            # Header con métricas
+                            col1, col2, col3, col4 = st.columns(4)
+                            with col1:
+                                st.metric("💰 Total EUR", f"€{location_data['EUR'].sum():,.2f}")
+                            with col2:
+                                st.metric("📊 Services", len(location_data))
+                            with col3:
+                                st.metric("👥 Customers", location_data['Business Partner Name'].nunique())
+                            with col4:
+                                reps = location_data['SalesRepresentative'].unique()
+                                st.metric("👤 Reps", len(reps))
+                                if len(reps) <= 3:
+                                    st.caption(", ".join(reps))
+                                else:
+                                    st.caption(f"{', '.join(reps[:3])} (+{len(reps)-3} more)")
+                            
+                            st.markdown("---")
+                            
+                            # ⭐ Tabla con todas las líneas (ordenadas por fecha descendente)
+                            st.markdown("### 📋 Service Lines")
+                            location_data_sorted = location_data.sort_values('Date', ascending=False)
+                            
+                            # Columnas para la tabla
+                            table_columns = [
+                                'Date', 'City', 'Business Partner Name', 
+                                'ItemIdAndName', 'Set', 'ProductType', 'EUR', 'SalesRepresentative'
+                            ]
+                            
+                            st.dataframe(
+                                location_data_sorted[table_columns],
+                                use_container_width=True,
+                                height=400,
+                                hide_index=True
+                            )
+                            
+                            if len(location_data) > 100:
+                                st.info(f"ℹ️ Showing all {len(location_data)} services for this location")
             
             st.caption(f"📍 Showing {len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious cities")
             
@@ -990,13 +1040,8 @@ if uploaded_file:
     st.markdown("---")
     st.markdown("### 📋 Service Details")
     
+    # ⭐ Simplificado - Sin filtro de ciudad
     df_table = df_filtered.copy()
-    if st.session_state.selected_city:
-        df_table = df_table[df_table['City'] == st.session_state.selected_city]
-        
-        if st.button("🔄 Clear city filter", key="clear_city"):
-            st.session_state.selected_city = None
-            st.rerun()
     
     table_columns = [
         'Date', 'City', 'Business Partner Name', 
@@ -1149,6 +1194,8 @@ if uploaded_file:
         
         **Map:** Valid locations shown as blue circles ●, suspicious as red triangles ▲
         
+        **Click on bubbles:** Opens a detail panel with all services for that location
+        
         **Export HTML:** Standalone file with all data and interactive filters
         
         **Geocoding:** Automatic city name cleaning (removes parentheses), typo correction, and smart fallback
@@ -1201,6 +1248,7 @@ else:
     - Collapsible filter sections in sidebar
     - All/None buttons for each filter group
     - Reset all filters with one click
+    - Click on map bubbles to see detailed service breakdown
     - Export to standalone HTML with filters
     - Intelligent geocoding with city name cleaning (removes parentheses)
     - Typo correction dictionary for known issues
