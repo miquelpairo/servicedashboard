@@ -10689,13 +10689,6 @@
     "display_name": "09193, Carcedo de Burgos, Burgos, Castilla y León, España",
     "validated": true
   },
-  "E09071_CARDANAJIMENO_es": {
-    "coords": null,
-    "query": "E09071 CARDAÑAJIMENO, Spain",
-    "timestamp": "2026-01-12T18:34:20.480695",
-    "display_name": null,
-    "validated": false
-  },
   "30350_CARTAGENAS_es": {
     "coords": [
       43.1735328,
@@ -11405,13 +11398,6 @@
     "timestamp": "2026-01-12T18:36:02.727198",
     "display_name": "Monells, Cruïlles, Monells i Sant Sadurní de l'Heura, Baix Empordà, Girona, Catalunya, 17116, España",
     "validated": true
-  },
-  "2829-516 CAPARICA_MONTE DE CAPARICA_es": {
-    "coords": null,
-    "query": "2829-516 Caparica MONTE DE CAPARICA, Spain",
-    "timestamp": "2026-01-12T18:36:07.946289",
-    "display_name": null,
-    "validated": false
   },
   "08160_MONTMELO_es": {
     "coords": [

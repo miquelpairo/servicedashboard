@@ -24,6 +24,12 @@ apply_buchi_styles()
 # File path for persistent geocoding cache
 CACHE_FILE = "coordinates_cache.json"
 
+# ⭐ DICCIONARIO DE TYPOS CONOCIDOS
+CITY_CORRECTIONS = {
+    'CARDAÑAJIMENO': 'CARDEÑAJIMENO',
+    # Añade más según los vayas encontrando
+}
+
 # ⭐ FASE 1: NORMALIZACIÓN DE TEXTOS
 def normalize_text(text):
     """Normalize text for consistent cache keys"""
@@ -40,24 +46,39 @@ def normalize_text(text):
 
 # ⭐ FASE 2: BOUNDING BOX VALIDATION
 def validate_coordinates(lat, lon, country_code):
-    """Validate if coordinates are within expected country boundaries"""
+    """Validate if coordinates are within expected boundaries (incl. islands)."""
     if lat is None or lon is None:
         return False
-    
-    # Bounding boxes aproximados
-    bbox = {
-        'pt': {'lat': (36.5, 42.5), 'lon': (-9.5, -6.0)},  # Portugal
-        'es': {'lat': (35.5, 44.0), 'lon': (-10.0, 5.0)}   # España + Islas
+
+    # Multiple bounding boxes per country (mainland + islands)
+    bboxes = {
+        "es": [
+            # España peninsular (aprox)
+            {"lat": (35.5, 44.2), "lon": (-10.5, 5.5)},
+            # Canarias (aprox)
+            {"lat": (27.5, 29.6), "lon": (-18.3, -13.0)},
+            # Baleares (aprox)
+            {"lat": (38.6, 40.2), "lon": (1.0, 4.6)},
+        ],
+        "pt": [
+            # Portugal continental (aprox)
+            {"lat": (36.8, 42.3), "lon": (-9.6, -6.0)},
+            # Madeira (aprox)
+            {"lat": (32.2, 33.2), "lon": (-17.3, -16.2)},
+            # Azores (aprox)
+            {"lat": (36.7, 39.9), "lon": (-31.6, -24.6)},
+        ],
     }
-    
-    if country_code not in bbox:
-        return True  # Si no conocemos el país, aceptamos
-    
-    bounds = bbox[country_code]
-    lat_ok = bounds['lat'][0] <= lat <= bounds['lat'][1]
-    lon_ok = bounds['lon'][0] <= lon <= bounds['lon'][1]
-    
-    return lat_ok and lon_ok
+
+    if country_code not in bboxes:
+        return True  # si no sabemos el país, no invalidamos
+
+    for bb in bboxes[country_code]:
+        if bb["lat"][0] <= lat <= bb["lat"][1] and bb["lon"][0] <= lon <= bb["lon"][1]:
+            return True
+
+    return False
+
 
 # Function to load cache from file
 def load_cache_from_file():
@@ -151,7 +172,9 @@ if 'geocode_stats' not in st.session_state:
         'cache_hits': 0,
         'failed': 0,
         'validated': 0,
-        'suspicious': 0
+        'suspicious': 0,
+        'corrected': 0,
+        'fallback': 0
     }
 
 # Function to load file
@@ -193,15 +216,21 @@ def load_file(file):
 _geolocator = Nominatim(user_agent="service_planning_dashboard")
 _geocode = RateLimiter(_geolocator.geocode, min_delay_seconds=1)
 
-# ⭐ FASE 1, 2: FUNCIÓN DE GEOCODIFICACIÓN MEJORADA
+# ⭐ FASE 1, 2, 3: FUNCIÓN DE GEOCODIFICACIÓN MEJORADA CON FALLBACK
 def geocode_location(postal_code, city, country_code='es'):
-    """Geocode a location with normalization, metadata, and validation"""
+    """Geocode a location with normalization, metadata, validation and fallback"""
     # ⭐ FASE 1: Normalizar inputs
     postal_norm = normalize_text(postal_code)
     city_norm = normalize_text(city)
     
-    # Crear cache key con textos normalizados
-    cache_key = f"{postal_norm}_{city_norm}_{country_code}"
+    # ⭐ FASE 3: Aplicar correcciones de typos conocidos
+    city_corrected = city_norm
+    if city_norm in CITY_CORRECTIONS:
+        city_corrected = CITY_CORRECTIONS[city_norm]
+        st.session_state.geocode_stats['corrected'] += 1
+    
+    # Crear cache key con textos normalizados (usando city corregida)
+    cache_key = f"{postal_norm}_{city_corrected}_{country_code}"
     
     # Check cache
     if cache_key in st.session_state.geocode_cache:
@@ -220,34 +249,62 @@ def geocode_location(postal_code, city, country_code='es'):
     st.session_state.geocode_stats['api_calls'] += 1
     
     try:
-        # Build better queries
+        # ⭐ FASE 3: Build better queries con variantes Portugal
         if country_code == "pt":
             country_name = "Portugal"
             cc = "pt"
+            
+            # Queries especiales para casos conocidos problemáticos
+            city_upper = city_corrected.upper()
             queries = [
-                f"{postal_code} {city}, {country_name}",
-                f"{city}, {country_name}",
-                f"{postal_code}, {country_name}" if postal_code else None
+                f"{postal_code} {city_corrected}, {country_name}",
+                f"{city_corrected}, {country_name}",
+                f"{postal_code}, {country_name}" if postal_code else None,
             ]
+            
+            # Variantes especiales para ciudades problemáticas de Portugal
+            if "CAPARICA" in city_upper:
+                queries.extend([
+                    f"{city_corrected}, Almada, {country_name}",
+                    f"Costa da Caparica, Almada, {country_name}",
+                    f"Caparica, Almada, {country_name}",
+                ])
+            
         else:
             country_name = "Spain"
             cc = "es"
             queries = [
-                f"{postal_code} {city}, {country_name}",
-                f"{city}, {country_name}",
+                f"{postal_code} {city_corrected}, {country_name}",
+                f"{city_corrected}, {country_name}",
                 f"{postal_code}, {country_name}" if postal_code else None
             ]
         
         location = None
         used_query = None
         
+        # ⭐ FASE 3: Intentar primero con country_codes
         for query in queries:
             if query is None:
                 continue
             location = _geocode(query, country_codes=cc)
             if location:
-                used_query = query
+                used_query = f"{query} (country={cc})"
                 break
+
+        # ⭐ FASE 3: Fallback sin restricción de país si falló
+        if location is None:
+            st.session_state.geocode_stats['fallback'] += 1
+            for query in queries:
+                if query is None:
+                    continue
+                location = _geocode(query)  # Sin country_codes
+                if location:
+                    # Solo aceptar si pasa validación bbox
+                    if validate_coordinates(location.latitude, location.longitude, country_code):
+                        used_query = f"{query} (fallback, no country restriction)"
+                        break
+                    else:
+                        location = None  # Descartamos si cae fuera
 
         if location:
             coords = (location.latitude, location.longitude)
@@ -266,7 +323,9 @@ def geocode_location(postal_code, city, country_code='es'):
                 'query': used_query,
                 'timestamp': datetime.now().isoformat(),
                 'display_name': location.address,
-                'validated': is_valid
+                'validated': is_valid,
+                'original_city': city_norm,
+                'corrected_city': city_corrected if city_corrected != city_norm else None
             }
             
             st.session_state.geocode_cache[cache_key] = metadata
@@ -280,7 +339,9 @@ def geocode_location(postal_code, city, country_code='es'):
             'query': queries[0] if queries else None,
             'timestamp': datetime.now().isoformat(),
             'display_name': None,
-            'validated': False
+            'validated': False,
+            'original_city': city_norm,
+            'corrected_city': city_corrected if city_corrected != city_norm else None
         }
         return None
 
@@ -291,7 +352,9 @@ def geocode_location(postal_code, city, country_code='es'):
             'query': str(e),
             'timestamp': datetime.now().isoformat(),
             'display_name': None,
-            'validated': False
+            'validated': False,
+            'original_city': city_norm,
+            'corrected_city': city_corrected if city_corrected != city_norm else None
         }
         return None
 
@@ -590,7 +653,9 @@ if uploaded_file:
         'cache_hits': 0,
         'failed': 0,
         'validated': 0,
-        'suspicious': 0
+        'suspicious': 0,
+        'corrected': 0,
+        'fallback': 0
     }
     
     if len(map_data) > 0:
@@ -601,7 +666,13 @@ if uploaded_file:
         for idx, row in unique_cities.iterrows():
             postal_norm = normalize_text(row['PostalCode'])
             city_norm = normalize_text(row['City'])
-            cache_key = f"{postal_norm}_{city_norm}_{row['Country']}"
+            
+            # Aplicar corrección si existe
+            city_corrected = city_norm
+            if city_norm in CITY_CORRECTIONS:
+                city_corrected = CITY_CORRECTIONS[city_norm]
+            
+            cache_key = f"{postal_norm}_{city_corrected}_{row['Country']}"
             
             if cache_key not in st.session_state.geocode_cache:
                 cities_to_geocode.append((idx, row))
@@ -629,7 +700,13 @@ if uploaded_file:
         for idx, row in map_data.iterrows():
             postal_norm = normalize_text(row['PostalCode'])
             city_norm = normalize_text(row['City'])
-            cache_key = f"{postal_norm}_{city_norm}_{row['Country']}"
+            
+            # Aplicar corrección si existe
+            city_corrected = city_norm
+            if city_norm in CITY_CORRECTIONS:
+                city_corrected = CITY_CORRECTIONS[city_norm]
+            
+            cache_key = f"{postal_norm}_{city_corrected}_{row['Country']}"
             
             cached = st.session_state.geocode_cache.get(cache_key)
             if cached is None:
@@ -753,10 +830,10 @@ if uploaded_file:
             cities_without_coords = len(map_data) - len(map_data_valid) - len(map_data_suspicious)
             if cities_without_coords > 0:
                 with st.expander(f"❌ {cities_without_coords} cities could not be geocoded"):
-                    missing_cities = map_data[
+                    missing_data = map_data[
                         map_data['Coordinates'].apply(lambda x: x == (None, None) or x is None)
-                    ]['City'].tolist()
-                    st.write(missing_cities)
+                    ][['City', 'PostalCode', 'Country']]
+                    st.dataframe(missing_data, use_container_width=True)
     
     st.markdown("---")
     st.markdown("### 📋 Service Details")
@@ -839,6 +916,8 @@ if uploaded_file:
             st.metric("⚠️ Suspicious", st.session_state.geocode_stats['suspicious'])
         with col3:
             st.metric("❌ Failed", st.session_state.geocode_stats['failed'])
+            st.metric("🔧 Auto-corrected", st.session_state.geocode_stats['corrected'])
+            st.metric("🔄 Fallback Used", st.session_state.geocode_stats['fallback'])
             cache_rate = (st.session_state.geocode_stats['cache_hits'] / 
                          max(1, st.session_state.geocode_stats['cache_hits'] + st.session_state.geocode_stats['api_calls'])) * 100
             st.metric("💾 Cache Rate", f"{cache_rate:.1f}%")
@@ -857,9 +936,13 @@ if uploaded_file:
                     
                     query_used = value.get('query', 'N/A') if isinstance(value, dict) else 'N/A'
                     timestamp = value.get('timestamp', 'N/A') if isinstance(value, dict) else 'N/A'
+                    original_city = value.get('original_city', 'N/A') if isinstance(value, dict) else 'N/A'
+                    corrected_city = value.get('corrected_city') if isinstance(value, dict) else None
                     
                     failed_entries.append({
                         'City': city,
+                        'Original': original_city,
+                        'Corrected': corrected_city if corrected_city else '-',
                         'PostalCode': postal,
                         'Country': country,
                         'Query': query_used,
@@ -919,7 +1002,7 @@ if uploaded_file:
         
         **Export HTML:** Standalone file with all data and interactive filters (works offline)
         
-        **Geocoding:** Automatic normalization, validation, and retry for failed locations
+        **Geocoding:** Automatic normalization, validation, typo correction, and smart fallback for failed locations
         """)
     
     with st.expander("📊 Cache Management"):
@@ -969,7 +1052,8 @@ else:
     - Reset all filters with one click
     - Export to standalone HTML with filters
     - Intelligent geocoding cache with validation
-    - Improved Portugal/Spain geocoding support
+    - Improved Portugal/Spain geocoding with typo correction
+    - Smart fallback when country-restricted search fails
     - Automatic retry for failed locations after 7 days
     - Debug tools for geocoding issues
     """)
