@@ -25,49 +25,35 @@ apply_buchi_styles()
 # File path for persistent geocoding cache
 CACHE_FILE = "coordinates_cache.json"
 
-# ⭐ DICCIONARIO DE TYPOS CONOCIDOS
-CITY_CORRECTIONS = {
-    'CARDANAJIMENO': 'CARDENAJIMENO',
-    'CARDAÑAJIMENO': 'CARDEÑAJIMENO',
-    # Añade más según los vayas encontrando
+# ⭐ COUNTRY OVERRIDES - Outliers reales fuera de ES/PT/AD
+COUNTRY_OVERRIDES = {
+    ("11635", "ATHENS"): "gr",
+    ("69469", "WEINHEIM"): "de",
 }
 
-# ⭐ NUEVA FUNCIÓN: Extraer variantes de ciudad (sin paréntesis)
-def extract_city_candidates(city_text):
+# ⭐ LIMPIEZA REAL DE CÓDIGO POSTAL (CRÍTICO)
+def extract_postal_clean(postal_code):
     """
-    Extract city name variants, prioritizing content in parentheses.
-    Example: "CAPARICA (MONTE DE CAPARICA )" -> ["MONTE DE CAPARICA", "CAPARICA"]
+    Extrae un código postal real de strings sucios:
+    - '195 0256' -> '19502-56' o '19502'
+    - '2829-516 Caparica' -> '2829-516'
+    - 'CELRÀ 17460' -> '17460'
     """
-    if not city_text or pd.isna(city_text):
-        return []
+    if postal_code is None or pd.isna(postal_code):
+        return ""
     
-    city_text = str(city_text).strip()
+    s = str(postal_code).strip().upper()
     
-    # Buscar patrón X (Y)
-    match = re.match(r'^(.+?)\s*\((.+?)\)\s*$', city_text)
+    # Buscar patrones válidos: PT (1234-567) o ES (12345)
+    m = re.search(r"\d{4}-\d{3}|\d{5}", s)
+    postal_clean = m.group(0) if m else s
     
-    if match:
-        outside = match.group(1).strip()  # X
-        inside = match.group(2).strip()   # Y
-        # Priorizar lo que está DENTRO de paréntesis
-        candidates = [inside, outside]
-    else:
-        # No hay paréntesis, usar texto limpio
-        candidates = [city_text]
+    # Limpiar espacios internos que deberían ser guiones (PT format)
+    postal_clean = postal_clean.replace(" ", "-")
     
-    # Limpiar cada candidato: quitar paréntesis residuales, espacios extra
-    cleaned_candidates = []
-    for candidate in candidates:
-        # Remover paréntesis residuales
-        cleaned = re.sub(r'[()]', '', candidate)
-        # Normalizar espacios
-        cleaned = re.sub(r'\s+', ' ', cleaned).strip()
-        if cleaned:
-            cleaned_candidates.append(cleaned)
-    
-    return cleaned_candidates
+    return postal_clean
 
-# ⭐ FASE 1: NORMALIZACIÓN DE TEXTOS
+# ⭐ NORMALIZACIÓN DE TEXTOS
 def normalize_text(text):
     """Normalize text for consistent cache keys"""
     if not text or pd.isna(text):
@@ -75,13 +61,56 @@ def normalize_text(text):
     text = str(text).strip()
     # Remove multiple spaces
     text = re.sub(r'\s+', ' ', text)
-    # Normalize unicode (á -> a, ñ -> n, etc.) para cache más eficiente
-    text = unicodedata.normalize('NFKD', text).encode('ASCII', 'ignore').decode('ASCII')
     # Uppercase for consistency
     text = text.upper()
     return text
 
-# ⭐ FASE 2: BOUNDING BOX VALIDATION (AMPLIADOS PARA PT)
+# ⭐ DETECCIÓN DE PAÍS POR CÓDIGO POSTAL + CIUDAD (ACTUALIZADO)
+def detect_country_from_postal(postal_code, city=None):
+    """
+    Detect country code from postal code format + city overrides.
+    - Portugal (pt): ^\d{4}-\d{3}$
+    - Andorra (ad): ^AD[- ]?\d{3}$
+    - España (es): ^\d{5}$
+    - Greece (gr): hardcoded override
+    - Germany (de): hardcoded override
+    - Default: es
+    """
+    postal_clean = extract_postal_clean(postal_code)
+    city_norm = normalize_text(city) if city else ""
+    
+    # 1️⃣ Overrides explícitos (outliers reales)
+    forced = COUNTRY_OVERRIDES.get((postal_clean, city_norm))
+    if forced:
+        return forced
+    
+    # 2️⃣ Reglas normales por patrón
+    # Portugal: 1234-567
+    if re.match(r'^\d{4}-\d{3}$', postal_clean):
+        return 'pt'
+    
+    # Andorra: AD123 o AD-123 o AD 123
+    if re.match(r'^AD[- ]?\d{3}$', postal_clean):
+        return 'ad'
+    
+    # España: 12345
+    if re.match(r'^\d{5}$', postal_clean):
+        return 'es'
+    
+    # Default
+    return 'es'
+
+# ⭐ NORMALIZACIÓN DE CÓDIGO POSTAL PARA CACHE KEY
+def normalize_postal_code(postal_code):
+    """Normalize postal code removing spaces and hyphens for cache key"""
+    if not postal_code or pd.isna(postal_code):
+        return ""
+    postal = str(postal_code).strip().upper()
+    # Remover espacios y guiones
+    postal = re.sub(r'[\s-]+', '', postal)
+    return postal
+
+# ⭐ BOUNDING BOX VALIDATION (ACTUALIZADO CON GR Y DE)
 def validate_coordinates(lat, lon, country_code):
     """Validate if coordinates are within expected boundaries (incl. islands)."""
     if lat is None or lon is None:
@@ -100,10 +129,22 @@ def validate_coordinates(lat, lon, country_code):
         "pt": [
             # Portugal continental (aprox)
             {"lat": (36.8, 42.3), "lon": (-9.6, -6.0)},
-            # Madeira + Porto Santo (MÁS AMPLIO)
+            # Madeira + Porto Santo
             {"lat": (32.0, 33.6), "lon": (-17.5, -16.0)},
-            # Azores (MÁS AMPLIO)
+            # Azores
             {"lat": (36.6, 39.9), "lon": (-31.7, -24.5)},
+        ],
+        "ad": [
+            # Andorra (pequeño)
+            {"lat": (42.4, 42.7), "lon": (1.4, 1.8)},
+        ],
+        "gr": [
+            # Greece (mainland + islands)
+            {"lat": (34.5, 41.8), "lon": (19.0, 29.8)},
+        ],
+        "de": [
+            # Germany
+            {"lat": (47.2, 55.2), "lon": (5.5, 15.5)},
         ],
     }
 
@@ -124,28 +165,7 @@ def load_cache_from_file():
         try:
             with open(CACHE_FILE, 'r', encoding='utf-8') as f:
                 cache = json.load(f)
-                
-                # ⭐ FASE 2: Convertir cache antiguo (coords) a nuevo formato (metadata)
-                migrated_cache = {}
-                for key, value in cache.items():
-                    if value is None:
-                        migrated_cache[key] = value
-                    elif isinstance(value, dict):
-                        # Ya está en nuevo formato
-                        migrated_cache[key] = value
-                    elif isinstance(value, (list, tuple)) and len(value) == 2:
-                        # Formato antiguo (lat, lon) -> migrar a metadata
-                        migrated_cache[key] = {
-                            'coords': value,
-                            'query': 'legacy',
-                            'timestamp': datetime.now().isoformat(),
-                            'display_name': None,
-                            'validated_at_geocode': True
-                        }
-                    else:
-                        migrated_cache[key] = value
-                
-                return migrated_cache
+                return cache
         except Exception as e:
             st.warning(f"⚠️ Could not load cache file: {e}")
             return {}
@@ -168,27 +188,6 @@ st.markdown('<div class="main-header">🗺️ Service Planning Dashboard</div>',
 # Initialize session state
 if 'geocode_cache' not in st.session_state:
     st.session_state.geocode_cache = load_cache_from_file()
-    
-    # ⭐ FASE 2: Limpiar entradas fallidas antiguas (>7 días)
-    now = datetime.now()
-    cleaned_cache = {}
-    for key, value in st.session_state.geocode_cache.items():
-        if value is None:
-            # Entry fallida - no la guardamos para reintentarla
-            continue
-        elif isinstance(value, dict) and value.get('coords') is None:
-            # Entry fallida con metadata - verificar timestamp
-            try:
-                ts = datetime.fromisoformat(value.get('timestamp', now.isoformat()))
-                if (now - ts).days < 7:
-                    cleaned_cache[key] = value  # Menos de 7 días, mantener
-                # Si >7 días, no la incluimos para reintentarla
-            except:
-                pass  # Si hay error en timestamp, no la incluimos
-        else:
-            cleaned_cache[key] = value
-    
-    st.session_state.geocode_cache = cleaned_cache
 
 if 'selected_city' not in st.session_state:
     st.session_state.selected_city = None
@@ -199,7 +198,6 @@ if 'new_coords_added' not in st.session_state:
 if 'selected_quick_filters' not in st.session_state:
     st.session_state.selected_quick_filters = []
 
-# ⭐ FASE 1: Initialize quick filter mode
 if 'quick_filter_mode' not in st.session_state:
     st.session_state.quick_filter_mode = 'AND'
 
@@ -210,8 +208,8 @@ if 'geocode_stats' not in st.session_state:
         'failed': 0,
         'validated': 0,
         'suspicious': 0,
-        'corrected': 0,
-        'fallback': 0
+        'postcode_mismatch': 0,
+        'low_confidence': 0
     }
 
 # Function to load file
@@ -229,7 +227,7 @@ def load_file(file):
             df['Month'] = df['Date'].dt.month
             df['Month_Name'] = df['Date'].dt.strftime('%B')
             
-            # ⭐ FASE 1: Añadir columna Country al cargar archivo
+            # ⭐ DETECTAR PAÍS POR CÓDIGO POSTAL + CIUDAD (ACTUALIZADO)
             postal_col = None
             for col in df.columns:
                 if col.lower() in ['postalcode', 'postal code', 'postal_code', 'zipcode', 'zip_code', 'cp', 'codigo postal']:
@@ -237,9 +235,11 @@ def load_file(file):
                     break
             
             if postal_col:
-                df['Country'] = df[postal_col].apply(
-                    lambda x: 'pt' if re.match(r'^\d{4}-\d{3}$', str(x).strip()) else 'es'
-                )
+                # Usar postal + ciudad para detección (NO solo postal)
+                df['Country'] = [
+                    detect_country_from_postal(p, c)
+                    for p, c in zip(df[postal_col], df['City'])
+                ]
             else:
                 df['Country'] = 'es'  # Default España
             
@@ -249,25 +249,25 @@ def load_file(file):
             return None
     return None
 
-# ⭐ CREAR GEOLOCATOR UNA SOLA VEZ (fuera de la función)
+# ⭐ CREAR GEOLOCATOR UNA SOLA VEZ
 _geolocator = Nominatim(user_agent="service_planning_dashboard")
 _geocode = RateLimiter(_geolocator.geocode, min_delay_seconds=1)
 
-# ⭐ FUNCIÓN DE GEOCODIFICACIÓN MEJORADA (sin paréntesis, con candidatos)
+# ⭐ FUNCIÓN DE GEOCODIFICACIÓN (POSTAL-FIRST MEJORADO)
 def geocode_location(postal_code, city, country_code='es'):
-    """Geocode a location with normalization, metadata, validation and fallback"""
-    # ⭐ FASE 1: Normalizar inputs
-    postal_norm = normalize_text(postal_code)
-    city_norm = normalize_text(city)
+    """
+    Geocode a location using POSTAL-FIRST strategy.
+    The postal code is the source of truth, city is only for display/fallback.
+    """
     
-    # ⭐ FASE 3: Aplicar correcciones de typos conocidos
-    city_corrected = city_norm
-    if city_norm in CITY_CORRECTIONS:
-        city_corrected = CITY_CORRECTIONS[city_norm]
-        st.session_state.geocode_stats['corrected'] += 1
+    # ⭐ Limpiar código postal ANTES de todo
+    postal_clean = extract_postal_clean(postal_code)
     
-    # Crear cache key con textos normalizados (usando city corregida)
-    cache_key = f"{postal_norm}_{city_corrected}_{country_code}"
+    # ⭐ Normalizar código postal para cache key
+    postal_norm = normalize_postal_code(postal_clean)
+    
+    # ⭐ CACHE KEY: postal + country (SIN ciudad)
+    cache_key = f"{postal_norm}_{country_code}"
     
     # Check cache
     if cache_key in st.session_state.geocode_cache:
@@ -278,90 +278,81 @@ def geocode_location(postal_code, city, country_code='es'):
             return None
         elif isinstance(cached, dict):
             return cached.get('coords')
-        elif isinstance(cached, (list, tuple)):
-            return cached  # Formato antiguo
         return None
 
     # ⭐ No está en caché, geocodificar
     st.session_state.geocode_stats['api_calls'] += 1
     
+    # Mapeo de códigos de país (ACTUALIZADO CON GR Y DE)
+    country_names = {
+        'es': ('Spain', 'es'),
+        'pt': ('Portugal', 'pt'),
+        'ad': ('Andorra', 'ad'),
+        'gr': ('Greece', 'gr'),
+        'de': ('Germany', 'de'),
+    }
+    
+    country_name, cc = country_names.get(country_code, ('Spain', 'es'))
+    
     try:
-        # ⭐ NUEVO: Extraer candidatos de ciudad (sin paréntesis)
-        city_candidates = extract_city_candidates(city)
-        
-        if not city_candidates:
-            city_candidates = [city_corrected]
-        
-        # ⭐ Build queries con múltiples candidatos
-        queries = []
-        
-        if country_code == "pt":
-            country_name = "Portugal"
-            cc = "pt"
-            
-            for city_candidate in city_candidates:
-                city_upper = city_candidate.upper()
-                
-                # Queries básicas
-                queries.append(f"{postal_code} {city_candidate}, {country_name}")
-                queries.append(f"{city_candidate}, {country_name}")
-                
-                # Variantes especiales para Caparica
-                if "CAPARICA" in city_upper:
-                    queries.extend([
-                        f"{postal_code} Monte da Caparica, Almada, {country_name}",
-                        f"Monte da Caparica, Almada, {country_name}",
-                        f"{postal_code} Costa da Caparica, Almada, {country_name}",
-                        f"Costa da Caparica, Almada, {country_name}",
-                        f"{city_candidate}, Almada, {country_name}",
-                    ])
-            
-            # Postal solo al final (menos prioritario para PT)
-            if postal_code:
-                queries.append(f"{postal_code}, {country_name}")
-            
-        else:
-            country_name = "Spain"
-            cc = "es"
-            
-            for city_candidate in city_candidates:
-                queries.append(f"{postal_code} {city_candidate}, {country_name}")
-                queries.append(f"{city_candidate}, {country_name}")
-            
-            if postal_code:
-                queries.append(f"{postal_code}, {country_name}")
+        # ⭐ QUERIES EN ORDEN (POSTAL-FIRST)
+        queries = [
+            # 1️⃣ Primario: Solo postal limpio + país
+            (f"{postal_clean}, {country_name}", cc, False),
+            # 2️⃣ Alternativo: Solo postal con country_codes
+            (f"{postal_clean}", cc, False),
+            # 3️⃣ Fallback controlado: postal + ciudad + país
+            (f"{postal_clean} {city}, {country_name}", cc, False),
+            # 4️⃣ Último recurso: ciudad + país (low confidence)
+            (f"{city}, {country_name}", cc, True),
+        ]
         
         location = None
         used_query = None
+        low_confidence = False
         
-        # ⭐ Intentar primero con country_codes
-        for query in queries:
+        for query, country_codes, is_low_conf in queries:
             if query is None:
                 continue
-            location = _geocode(query, country_codes=cc)
+            
+            # Geocodificar con addressdetails para validar postcode
+            location = _geocode(query, country_codes=country_codes, addressdetails=True)
+            
             if location:
-                used_query = f"{query} (country={cc})"
-                break
-
-        # ⭐ Fallback sin restricción de país si falló
-        if location is None:
-            st.session_state.geocode_stats['fallback'] += 1
-            for query in queries:
-                if query is None:
-                    continue
-                location = _geocode(query)  # Sin country_codes
-                if location:
-                    # Solo aceptar si pasa validación bbox
-                    if validate_coordinates(location.latitude, location.longitude, country_code):
-                        used_query = f"{query} (fallback, no country restriction)"
+                # ⭐ VALIDACIÓN MEJORADA: No descartar si postcode viene vacío
+                returned_postcode = location.raw.get("address", {}).get("postcode", "")
+                returned_postcode_norm = normalize_postal_code(returned_postcode)
+                
+                # ❌ Descartar SOLO si:
+                # - Devuelve postcode NO vacío Y
+                # - Es diferente al nuestro
+                if returned_postcode_norm and returned_postcode_norm != postal_norm:
+                    # No descartes todavía: valida por bbox y marca mismatch
+                    coords_tmp = (location.latitude, location.longitude)
+                    if validate_coordinates(coords_tmp[0], coords_tmp[1], country_code):
+                        used_query = f"{query} (postcode mismatch: {returned_postcode} != {postal_clean})"
+                        low_confidence = True
+                        st.session_state.geocode_stats['postcode_mismatch'] += 1
                         break
                     else:
-                        location = None  # Descartamos si cae fuera
+                        # Fuera de bbox Y postcode diferente → siguiente query
+                        st.session_state.geocode_stats['postcode_mismatch'] += 1
+                        location = None
+                        continue
+                
+                # ✅ Postcode coincide o viene vacío → ACEPTAR
+                used_query = f"{query} (country={country_codes})"
+                low_confidence = is_low_conf
+                
+                if is_low_conf:
+                    st.session_state.geocode_stats['low_confidence'] += 1
+                
+                break
 
         if location:
             coords = (location.latitude, location.longitude)
             
-            # ⭐ Validar coordenadas AL MOMENTO DE GEOCODIFICAR
+            # ⭐ Validar coordenadas con bbox (WARNING, no filtro duro)
             is_valid = validate_coordinates(coords[0], coords[1], country_code)
             
             if not is_valid:
@@ -369,31 +360,45 @@ def geocode_location(postal_code, city, country_code='es'):
             else:
                 st.session_state.geocode_stats['validated'] += 1
             
-            # ⭐ Guardar con metadata (validated_at_geocode para referencia histórica)
+            # ⭐ Extraer ciudad resuelta de Nominatim
+            address = location.raw.get("address", {})
+            resolved_city = (
+                address.get("city") or 
+                address.get("town") or 
+                address.get("village") or 
+                address.get("municipality") or
+                ""
+            )
+            
+            # ⭐ Guardar con metadata
             metadata = {
                 'coords': coords,
-                'query': used_query,
-                'timestamp': datetime.now().isoformat(),
+                'country': country_code,
+                'input_city': city,  # Ciudad del Excel
+                'resolved_city': resolved_city,  # Ciudad devuelta por Nominatim
                 'display_name': location.address,
-                'validated_at_geocode': is_valid,  # ← Solo referencia histórica
-                'original_city': city_norm,
-                'corrected_city': city_corrected if city_corrected != city_norm else None
+                'query_used': used_query,
+                'validated': is_valid,
+                'low_confidence': low_confidence,
+                'timestamp': datetime.now().isoformat()
             }
             
             st.session_state.geocode_cache[cache_key] = metadata
             st.session_state.new_coords_added += 1
             return coords
         
-        # ⭐ Guardar fallo con timestamp
+        # ⭐ Guardar fallo con metadata
         st.session_state.geocode_stats['failed'] += 1
         st.session_state.geocode_cache[cache_key] = {
             'coords': None,
-            'query': queries[0] if queries else None,
-            'timestamp': datetime.now().isoformat(),
+            'country': country_code,
+            'input_city': city,
+            'resolved_city': None,
             'display_name': None,
-            'validated_at_geocode': False,
-            'original_city': city_norm,
-            'corrected_city': city_corrected if city_corrected != city_norm else None
+            'query_used': f"Failed after trying {len(queries)} queries",
+            'validated': False,
+            'low_confidence': False,
+            'timestamp': datetime.now().isoformat()
         }
         return None
 
@@ -401,12 +406,14 @@ def geocode_location(postal_code, city, country_code='es'):
         st.session_state.geocode_stats['failed'] += 1
         st.session_state.geocode_cache[cache_key] = {
             'coords': None,
-            'query': str(e),
-            'timestamp': datetime.now().isoformat(),
+            'country': country_code,
+            'input_city': city,
+            'resolved_city': None,
             'display_name': None,
-            'validated_at_geocode': False,
-            'original_city': city_norm,
-            'corrected_city': city_corrected if city_corrected != city_norm else None
+            'query_used': f"Exception: {str(e)}",
+            'validated': False,
+            'low_confidence': False,
+            'timestamp': datetime.now().isoformat()
         }
         return None
 
@@ -434,7 +441,7 @@ if uploaded_file:
     available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
     available_types = sorted(df['ProductType'].dropna().unique().tolist())
     available_sets = sorted(df['Set'].dropna().unique().tolist())
-    available_countries = sorted(df['Country'].dropna().unique().tolist())  # ⭐ NUEVO
+    available_countries = sorted(df['Country'].dropna().unique().tolist())
     month_options = list(range(1, 13))
     month_labels = {
         1: 'January', 2: 'February', 3: 'March', 4: 'April',
@@ -449,7 +456,7 @@ if uploaded_file:
         st.session_state["rep_filter"] = available_reps
         st.session_state["type_filter"] = available_types
         st.session_state["set_filter"] = available_sets
-        st.session_state["country_filter"] = available_countries  # ⭐ NUEVO
+        st.session_state["country_filter"] = available_countries
         st.session_state.selected_quick_filters = []
         st.session_state["search_filter"] = ""
         st.session_state["client_filter"] = ""
@@ -461,7 +468,7 @@ if uploaded_file:
     st.sidebar.markdown("---")
     st.sidebar.markdown("## 🎛️ Filters")
     
-    # ⭐ NUEVO: Country filter - COLAPSABLE
+    # ⭐ Country filter - COLAPSABLE
     with st.sidebar.expander("🌍 Country", expanded=False):
         col_country1, col_country2 = st.columns(2)
         with col_country1:
@@ -471,12 +478,20 @@ if uploaded_file:
             st.button("❌ None", key="country_none", use_container_width=True,
                      on_click=lambda: st.session_state.update({"country_filter": []}))
         
+        country_format_map = {
+            'es': '🇪🇸 Spain',
+            'pt': '🇵🇹 Portugal',
+            'ad': '🇦🇩 Andorra',
+            'gr': '🇬🇷 Greece',
+            'de': '🇩🇪 Germany'
+        }
+        
         selected_countries = st.multiselect(
             "Select countries",
             available_countries,
             default=available_countries,
             key="country_filter",
-            format_func=lambda x: "🇵🇹 Portugal" if x == 'pt' else "🇪🇸 Spain" if x == 'es' else x,
+            format_func=lambda x: country_format_map.get(x, x),
             label_visibility="collapsed"
         )
     
@@ -630,7 +645,7 @@ if uploaded_file:
     
     df_filtered = df.copy()
     
-    if selected_countries:  # ⭐ NUEVO
+    if selected_countries:
         df_filtered = df_filtered[df_filtered['Country'].isin(selected_countries)]
     
     if selected_years:
@@ -651,19 +666,16 @@ if uploaded_file:
     # ⭐ Quick filters con modo AND/OR
     if st.session_state.selected_quick_filters:
         if quick_mode == 'AND':
-            # TODOS los quick filters deben coincidir (AND)
             mask = pd.Series([True] * len(df_filtered), index=df_filtered.index)
             for keyword in st.session_state.selected_quick_filters:
                 mask &= df_filtered['ItemIdAndName'].str.contains(keyword, case=False, na=False)
             df_filtered = df_filtered[mask]
-        else:  # OR mode
-            # CUALQUIER quick filter coincide (OR)
+        else:
             mask = pd.Series([False] * len(df_filtered), index=df_filtered.index)
             for keyword in st.session_state.selected_quick_filters:
                 mask |= df_filtered['ItemIdAndName'].str.contains(keyword, case=False, na=False)
             df_filtered = df_filtered[mask]
     elif search_text:
-        # Manual search
         df_filtered = df_filtered[
             df_filtered['ItemIdAndName'].str.contains(search_text, case=False, na=False)
         ]
@@ -717,15 +729,16 @@ if uploaded_file:
     
     st.markdown("### 🗺️ Geographic Distribution")
     
-    # ⭐ Usar columna Country ya calculada
-    map_data = df_filtered.groupby(['City', postal_col, 'Country']).agg({
+    # ⭐ Agrupar por POSTAL + COUNTRY (no city)
+    map_data = df_filtered.groupby([postal_col, 'Country']).agg({
+        'City': lambda x: x.mode()[0] if len(x.mode()) > 0 else x.iloc[0],  # Ciudad más frecuente
         'EUR': 'sum',
         'Business Partner Name': 'count',
         'SalesRepresentative': lambda x: ', '.join(x.unique()[:3]),
         'ProductType': lambda x: x.mode()[0] if len(x.mode()) > 0 else 'Mixed'
     }).reset_index()
     
-    map_data.columns = ['City', 'PostalCode', 'Country', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']
+    map_data.columns = ['PostalCode', 'Country', 'City', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']
     
     # ⭐ DEDUPLICAR antes de geocodificar
     st.session_state.new_coords_added = 0
@@ -735,38 +748,32 @@ if uploaded_file:
         'failed': 0,
         'validated': 0,
         'suspicious': 0,
-        'corrected': 0,
-        'fallback': 0
+        'postcode_mismatch': 0,
+        'low_confidence': 0
     }
     
     if len(map_data) > 0:
-        # Crear lista de ciudades únicas a geocodificar
-        unique_cities = map_data[['City', 'PostalCode', 'Country']].drop_duplicates()
+        # Crear lista de códigos postales únicos a geocodificar
+        unique_postals = map_data[['PostalCode', 'City', 'Country']].drop_duplicates()
         
-        cities_to_geocode = []
-        for idx, row in unique_cities.iterrows():
-            postal_norm = normalize_text(row['PostalCode'])
-            city_norm = normalize_text(row['City'])
-            
-            # Aplicar corrección si existe
-            city_corrected = city_norm
-            if city_norm in CITY_CORRECTIONS:
-                city_corrected = CITY_CORRECTIONS[city_norm]
-            
-            cache_key = f"{postal_norm}_{city_corrected}_{row['Country']}"
+        postals_to_geocode = []
+        for idx, row in unique_postals.iterrows():
+            postal_clean = extract_postal_clean(row['PostalCode'])
+            postal_norm = normalize_postal_code(postal_clean)
+            cache_key = f"{postal_norm}_{row['Country']}"
             
             if cache_key not in st.session_state.geocode_cache:
-                cities_to_geocode.append((idx, row))
+                postals_to_geocode.append((idx, row))
         
-        if cities_to_geocode:
-            st.info(f"🌍 Need to geocode {len(cities_to_geocode)} unique cities (already cached: {len(unique_cities) - len(cities_to_geocode)})")
+        if postals_to_geocode:
+            st.info(f"🌍 Need to geocode {len(postals_to_geocode)} unique postal codes (already cached: {len(unique_postals) - len(postals_to_geocode)})")
             
-            with st.spinner(f"Geocoding {len(cities_to_geocode)} cities..."):
+            with st.spinner(f"Geocoding {len(postals_to_geocode)} postal codes..."):
                 progress_bar = st.progress(0)
                 
-                for progress_idx, (idx, row) in enumerate(cities_to_geocode):
+                for progress_idx, (idx, row) in enumerate(postals_to_geocode):
                     coord = geocode_location(row['PostalCode'], row['City'], row['Country'])
-                    progress_bar.progress((progress_idx + 1) / len(cities_to_geocode))
+                    progress_bar.progress((progress_idx + 1) / len(postals_to_geocode))
                 
                 progress_bar.empty()
             
@@ -774,48 +781,33 @@ if uploaded_file:
                 if save_cache_to_file(st.session_state.geocode_cache):
                     st.success(f"✅ Added {st.session_state.new_coords_added} new coordinates to cache")
         else:
-            st.success(f"✅ All {len(unique_cities)} unique cities already cached!")
+            st.success(f"✅ All {len(unique_postals)} unique postal codes already cached!")
         
-        # ⭐ CRÍTICO: Obtener coordenadas del caché y RECALCULAR validación
+        # ⭐ Obtener coordenadas del caché
         coords_list = []
-        query_list = []
-        display_name_list = []
+        resolved_city_list = []
         
         for idx, row in map_data.iterrows():
-            postal_norm = normalize_text(row['PostalCode'])
-            city_norm = normalize_text(row['City'])
-            
-            # Aplicar corrección si existe
-            city_corrected = city_norm
-            if city_norm in CITY_CORRECTIONS:
-                city_corrected = CITY_CORRECTIONS[city_norm]
-            
-            cache_key = f"{postal_norm}_{city_corrected}_{row['Country']}"
+            postal_clean = extract_postal_clean(row['PostalCode'])
+            postal_norm = normalize_postal_code(postal_clean)
+            cache_key = f"{postal_norm}_{row['Country']}"
             
             cached = st.session_state.geocode_cache.get(cache_key)
             
             if cached is None:
                 coords_list.append((None, None))
-                query_list.append(None)
-                display_name_list.append(None)
+                resolved_city_list.append(None)
             elif isinstance(cached, dict):
                 coords = cached.get('coords', (None, None))
                 coords_list.append(coords)
-                query_list.append(cached.get('query'))
-                display_name_list.append(cached.get('display_name'))
-            elif isinstance(cached, (list, tuple)):
-                # Formato antiguo (lat, lon)
-                coords_list.append(cached)
-                query_list.append('legacy')
-                display_name_list.append(None)
+                # Usar resolved_city si existe, sino input_city
+                resolved_city_list.append(cached.get('resolved_city') or cached.get('input_city') or row['City'])
             else:
                 coords_list.append((None, None))
-                query_list.append(None)
-                display_name_list.append(None)
+                resolved_city_list.append(None)
         
         map_data['Coordinates'] = coords_list
-        map_data['GeoQuery'] = query_list
-        map_data['GeoDisplayName'] = display_name_list
+        map_data['ResolvedCity'] = resolved_city_list
         
         map_data['Latitude'] = map_data['Coordinates'].apply(lambda x: x[0] if x and x[0] is not None else None)
         map_data['Longitude'] = map_data['Coordinates'].apply(lambda x: x[1] if x and x[1] is not None else None)
@@ -823,7 +815,7 @@ if uploaded_file:
         # ⭐ Separar geocoded
         map_data_geocoded = map_data.dropna(subset=['Latitude', 'Longitude']).copy()
         
-        # ⭐ CRÍTICO: SIEMPRE RECALCULAR GeoValidated con bbox ACTUAL
+        # ⭐ RECALCULAR GeoValidated con bbox ACTUAL (WARNING, no filtro duro)
         map_data_geocoded['GeoValidated'] = map_data_geocoded.apply(
             lambda row: validate_coordinates(row['Latitude'], row['Longitude'], row['Country']),
             axis=1
@@ -833,13 +825,13 @@ if uploaded_file:
         map_data_suspicious = map_data_geocoded[map_data_geocoded['GeoValidated'] == False].copy()
         
         if len(map_data_geocoded) == 0:
-            st.warning("⚠️ Could not geocode any cities.")
+            st.warning("⚠️ Could not geocode any postal codes.")
         else:
             # Preparar ambos datasets con Size_Display
             map_data_valid['Size_Display'] = map_data_valid['Total_EUR'].abs()
             map_data_suspicious['Size_Display'] = map_data_suspicious['Total_EUR'].abs()
             
-            # Crear figura con 2 traces usando plotly.graph_objects
+            # Crear figura con 2 traces
             fig = go.Figure()
             
             # Trace 1: Valid (círculos azules)
@@ -852,19 +844,19 @@ if uploaded_file:
                         size=map_data_valid['Size_Display'] / map_data_valid['Size_Display'].max() * 30,
                         sizemode='diameter',
                         sizemin=5,
-                        color='#2E86C1',  # Azul
+                        color='#2E86C1',
                         opacity=0.7,
                     ),
-                    text=map_data_valid['City'],
-                    customdata=map_data_valid[['Total_EUR', 'Num_Services', 'Representatives', 'Main_Type', 'Country', 'PostalCode']],
+                    text=map_data_valid['ResolvedCity'],
+                    customdata=map_data_valid[['PostalCode', 'Country', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']],
                     hovertemplate=(
                         '<b>%{text}</b><br>'
-                        'Total EUR: €%{customdata[0]:,.2f}<br>'
-                        'Services: %{customdata[1]}<br>'
-                        'Reps: %{customdata[2]}<br>'
-                        'Type: %{customdata[3]}<br>'
-                        'Country: %{customdata[4]}<br>'
-                        'PostalCode: %{customdata[5]}<br>'
+                        'PostalCode: %{customdata[0]}<br>'
+                        'Country: %{customdata[1]}<br>'
+                        'Total EUR: €%{customdata[2]:,.2f}<br>'
+                        'Services: %{customdata[3]}<br>'
+                        'Reps: %{customdata[4]}<br>'
+                        'Type: %{customdata[5]}<br>'
                         '<extra></extra>'
                     ),
                     name='✅ Valid',
@@ -882,19 +874,19 @@ if uploaded_file:
                         sizemode='diameter',
                         sizemin=5,
                         symbol='triangle',
-                        color='#E74C3C',  # Rojo
+                        color='#E74C3C',
                         opacity=0.8,
                     ),
-                    text=map_data_suspicious['City'],
-                    customdata=map_data_suspicious[['Total_EUR', 'Num_Services', 'Representatives', 'Main_Type', 'Country', 'PostalCode']],
+                    text=map_data_suspicious['ResolvedCity'],
+                    customdata=map_data_suspicious[['PostalCode', 'Country', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']],
                     hovertemplate=(
                         '<b>⚠️ %{text}</b><br>'
-                        'Total EUR: €%{customdata[0]:,.2f}<br>'
-                        'Services: %{customdata[1]}<br>'
-                        'Reps: %{customdata[2]}<br>'
-                        'Type: %{customdata[3]}<br>'
-                        'Country: %{customdata[4]}<br>'
-                        'PostalCode: %{customdata[5]}<br>'
+                        'PostalCode: %{customdata[0]}<br>'
+                        'Country: %{customdata[1]}<br>'
+                        'Total EUR: €%{customdata[2]:,.2f}<br>'
+                        'Services: %{customdata[3]}<br>'
+                        'Reps: %{customdata[4]}<br>'
+                        'Type: %{customdata[5]}<br>'
                         '<i>Outside expected boundaries</i><br>'
                         '<extra></extra>'
                     ),
@@ -919,7 +911,7 @@ if uploaded_file:
                 )
             )
             
-            # Auto-zoom península ibérica
+            # Auto-zoom
             if len(map_data_geocoded) > 0:
                 lat_center = map_data_geocoded['Latitude'].mean()
                 lon_center = map_data_geocoded['Longitude'].mean()
@@ -944,7 +936,7 @@ if uploaded_file:
                     )
                 )
             
-            # ⭐ NUEVO: Capturar clicks en el mapa
+            # ⭐ Capturar clicks en el mapa
             selected_points = st.plotly_chart(
                 fig, 
                 use_container_width=True,
@@ -952,11 +944,10 @@ if uploaded_file:
                 on_select="rerun"
             )
             
-            # ⭐ NUEVO: Panel de detalles de localización seleccionada
+            # ⭐ Panel de detalles de localización seleccionada
             if selected_points and selected_points.selection and selected_points.selection.points:
                 selected_indices = [p['point_index'] for p in selected_points.selection.points]
                 if selected_indices:
-                    # Determinar de qué trace viene
                     point_info = selected_points.selection.points[0]
                     curve_number = point_info.get('curve_number', 0)
                     
@@ -968,20 +959,18 @@ if uploaded_file:
                         selected_row = None
                     
                     if selected_row is not None:
-                        selected_city = selected_row['City']
                         selected_postal = selected_row['PostalCode']
                         selected_country = selected_row['Country']
+                        display_city = selected_row['ResolvedCity']
                         
-                        # ⭐ NUEVO: Filtrar datos originales por esta localización
+                        # ⭐ Filtrar datos originales por POSTAL + COUNTRY
                         location_data = df_filtered[
-                            (df_filtered['City'] == selected_city) & 
                             (df_filtered[postal_col] == selected_postal) &
                             (df_filtered['Country'] == selected_country)
                         ].copy()
                         
-                        # ⭐ NUEVO: Mostrar panel de detalles con expander
-                        with st.expander(f"📌 {selected_city} ({selected_postal}) — {selected_country.upper()} ({len(location_data)} lines)", expanded=True):
-                            # Header con métricas
+                        # ⭐ Mostrar panel de detalles
+                        with st.expander(f"📌 {display_city} ({selected_postal}) — {selected_country.upper()} ({len(location_data)} lines)", expanded=True):
                             col1, col2, col3, col4 = st.columns(4)
                             with col1:
                                 st.metric("💰 Total EUR", f"€{location_data['EUR'].sum():,.2f}")
@@ -999,11 +988,9 @@ if uploaded_file:
                             
                             st.markdown("---")
                             
-                            # ⭐ Tabla con todas las líneas (ordenadas por fecha descendente)
                             st.markdown("### 📋 Service Lines")
                             location_data_sorted = location_data.sort_values('Date', ascending=False)
                             
-                            # Columnas para la tabla
                             table_columns = [
                                 'Date', 'City', 'Business Partner Name', 
                                 'ItemIdAndName', 'Set', 'ProductType', 'EUR', 'SalesRepresentative'
@@ -1019,28 +1006,27 @@ if uploaded_file:
                             if len(location_data) > 100:
                                 st.info(f"ℹ️ Showing all {len(location_data)} services for this location")
             
-            st.caption(f"📍 Showing {len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious cities")
+            st.caption(f"📍 Showing {len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious postal codes")
             
-            # Mantener expander de suspicious
+            # Expander de suspicious
             if len(map_data_suspicious) > 0:
-                with st.expander(f"⚠️ {len(map_data_suspicious)} cities with suspicious coordinates (outside country boundaries)"):
+                with st.expander(f"⚠️ {len(map_data_suspicious)} postal codes with suspicious coordinates (outside country boundaries)"):
                     st.dataframe(
-                        map_data_suspicious[['City', 'PostalCode', 'Country', 'Latitude', 'Longitude', 'GeoQuery', 'GeoDisplayName']],
+                        map_data_suspicious[['PostalCode', 'Country', 'ResolvedCity', 'Latitude', 'Longitude']],
                         use_container_width=True
                     )
             
-            cities_without_coords = len(map_data) - len(map_data_geocoded)
-            if cities_without_coords > 0:
-                with st.expander(f"❌ {cities_without_coords} cities could not be geocoded"):
+            postals_without_coords = len(map_data) - len(map_data_geocoded)
+            if postals_without_coords > 0:
+                with st.expander(f"❌ {postals_without_coords} postal codes could not be geocoded"):
                     missing_data = map_data[
                         map_data['Coordinates'].apply(lambda x: x == (None, None) or x is None)
-                    ][['City', 'PostalCode', 'Country']]
+                    ][['PostalCode', 'Country', 'City']]
                     st.dataframe(missing_data, use_container_width=True)
     
     st.markdown("---")
     st.markdown("### 📋 Service Details")
     
-    # ⭐ Simplificado - Sin filtro de ciudad
     df_table = df_filtered.copy()
     
     table_columns = [
@@ -1101,7 +1087,9 @@ if uploaded_file:
     
     st.markdown("---")
     
-    # EXPANDER DEBUG MEJORADO
+    # ============================================================================
+    # EXPANDER DEBUG COMPLETO
+    # ============================================================================
     with st.expander("🧭 Geocoding Debug & Statistics"):
         st.markdown("### 📊 Current Session Stats")
         col1, col2, col3 = st.columns(3)
@@ -1113,8 +1101,8 @@ if uploaded_file:
             st.metric("⚠️ Suspicious", st.session_state.geocode_stats['suspicious'])
         with col3:
             st.metric("❌ Failed", st.session_state.geocode_stats['failed'])
-            st.metric("🔧 Auto-corrected", st.session_state.geocode_stats['corrected'])
-            st.metric("🔄 Fallback Used", st.session_state.geocode_stats['fallback'])
+            st.metric("🔀 Postcode Mismatch", st.session_state.geocode_stats['postcode_mismatch'])
+            st.metric("⚠️ Low Confidence", st.session_state.geocode_stats['low_confidence'])
             cache_rate = (st.session_state.geocode_stats['cache_hits'] / 
                          max(1, st.session_state.geocode_stats['cache_hits'] + st.session_state.geocode_stats['api_calls'])) * 100
             st.metric("💾 Cache Rate", f"{cache_rate:.1f}%")
@@ -1124,26 +1112,18 @@ if uploaded_file:
         
         failed_entries = []
         for key, value in st.session_state.geocode_cache.items():
-            if value is None or (isinstance(value, dict) and value.get('coords') is None):
+            if isinstance(value, dict) and value.get('coords') is None:
                 parts = key.split('_')
-                if len(parts) >= 3:
+                if len(parts) >= 2:
                     country = parts[-1]
-                    city = '_'.join(parts[1:-1])
-                    postal = parts[0]
-                    
-                    query_used = value.get('query', 'N/A') if isinstance(value, dict) else 'N/A'
-                    timestamp = value.get('timestamp', 'N/A') if isinstance(value, dict) else 'N/A'
-                    original_city = value.get('original_city', 'N/A') if isinstance(value, dict) else 'N/A'
-                    corrected_city = value.get('corrected_city') if isinstance(value, dict) else None
+                    postal = '_'.join(parts[:-1])
                     
                     failed_entries.append({
-                        'City': city,
-                        'Original': original_city,
-                        'Corrected': corrected_city if corrected_city else '-',
                         'PostalCode': postal,
                         'Country': country,
-                        'Query': query_used,
-                        'Timestamp': timestamp
+                        'Input City': value.get('input_city', 'N/A'),
+                        'Query Used': value.get('query_used', 'N/A'),
+                        'Timestamp': value.get('timestamp', 'N/A')
                     })
         
         if failed_entries:
@@ -1154,31 +1134,18 @@ if uploaded_file:
             col1, col2 = st.columns(2)
             with col1:
                 if st.button("♻️ Retry ALL Failed Geocodes", use_container_width=True):
+                    # Limpiar solo los fallidos
                     st.session_state.geocode_cache = {
                         k: v for k, v in st.session_state.geocode_cache.items()
-                        if not (v is None or (isinstance(v, dict) and v.get('coords') is None))
+                        if not (isinstance(v, dict) and v.get('coords') is None)
                     }
                     save_cache_to_file(st.session_state.geocode_cache)
                     st.success("✅ Failed entries cleared. Refresh to retry geocoding.")
                     st.rerun()
             with col2:
-                if st.button("🗑️ Clear OLD Failed (>7 days)", use_container_width=True):
-                    now = datetime.now()
-                    cleaned = {}
-                    for k, v in st.session_state.geocode_cache.items():
-                        if isinstance(v, dict) and v.get('coords') is None:
-                            try:
-                                ts = datetime.fromisoformat(v.get('timestamp', now.isoformat()))
-                                if (now - ts).days < 7:
-                                    cleaned[k] = v
-                            except:
-                                pass
-                        else:
-                            cleaned[k] = v
-                    st.session_state.geocode_cache = cleaned
-                    save_cache_to_file(st.session_state.geocode_cache)
-                    st.success("✅ Old failed entries cleared!")
-                    st.rerun()
+                if st.button("🗑️ Clear Failed by Country", use_container_width=True):
+                    # Selector de país
+                    st.info("Use the country filter above and click Retry ALL to clear specific countries")
         else:
             st.success("✅ No failed geocoding attempts!")
     
@@ -1186,7 +1153,13 @@ if uploaded_file:
         st.markdown("""
         ### 🎯 Quick Guide:
         
-        **Filters:** Collapsible sections including Country filter (🇪🇸 Spain / 🇵🇹 Portugal)
+        **NEW: Enhanced Postal-First Geocoding** 🎯
+        - **Postal code cleaning**: Handles dirty formats like `"195 0256"`, `"2829-516 Caparica"`, `"CELRÀ 17460"`
+        - **Country detection**: Automatic ES/PT/AD detection + explicit overrides for GR/DE
+        - **Flexible validation**: Accepts results when postcode is empty (common in Nominatim)
+        - **Outlier support**: Athens (GR) and Weinheim (DE) properly handled
+        
+        **Filters:** Collapsible sections including Country filter (🇪🇸 🇵🇹 🇦🇩 🇬🇷 🇩🇪)
         
         **Reset Filters:** Click the "Reset All Filters" button to return to defaults
         
@@ -1194,17 +1167,30 @@ if uploaded_file:
         
         **Map:** Valid locations shown as blue circles ●, suspicious as red triangles ▲
         
-        **Click on bubbles:** Opens a detail panel with all services for that location
+        **Click on bubbles:** Opens a detail panel with all services for that postal code
         
         **Export HTML:** Standalone file with all data and interactive filters
         
-        **Geocoding:** Automatic city name cleaning (removes parentheses), typo correction, and smart fallback
+        **Geocoding Strategy:**
+        1. **Clean postal code** first (extract valid format)
+        2. Primary: `{postal_clean}, {country}` 🎯
+        3. Alternative: `{postal_clean}` with country restriction
+        4. Fallback: `{postal_clean} {city}, {country}`
+        5. Last resort: `{city}, {country}` (marked as low confidence)
+        
+        **Validation:**
+        - Returned postcode compared to requested (if not empty)
+        - Bounding box check (warning only, not filter)
+        - Failed geocodes tracked and can be retried
+        - Dirty postal codes automatically cleaned
         """)
     
     with st.expander("📊 Cache Management"):
         st.write(f"**Total cached locations:** {len(st.session_state.geocode_cache)}")
         st.write(f"**New coordinates added:** {st.session_state.new_coords_added}")
         st.write(f"**Cache file:** `{os.path.abspath(CACHE_FILE)}`")
+        
+        st.markdown("### 🔧 Cache Actions")
         
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -1218,7 +1204,7 @@ if uploaded_file:
             if st.button("🔄 Clear PT failed", use_container_width=True):
                 st.session_state.geocode_cache = {
                     k: v for k, v in st.session_state.geocode_cache.items()
-                    if not (k.endswith("_pt") and (v is None or (isinstance(v, dict) and v.get('coords') is None)))
+                    if not (k.endswith("_pt") and isinstance(v, dict) and v.get('coords') is None)
                 }
                 save_cache_to_file(st.session_state.geocode_cache)
                 st.success("✅ PT failed cleared!")
@@ -1227,10 +1213,30 @@ if uploaded_file:
             if st.button("🔄 Clear ES failed", use_container_width=True):
                 st.session_state.geocode_cache = {
                     k: v for k, v in st.session_state.geocode_cache.items()
-                    if not (k.endswith("_es") and (v is None or (isinstance(v, dict) and v.get('coords') is None)))
+                    if not (k.endswith("_es") and isinstance(v, dict) and v.get('coords') is None)
                 }
                 save_cache_to_file(st.session_state.geocode_cache)
                 st.success("✅ ES failed cleared!")
+                st.rerun()
+        
+        st.markdown("---")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("♻️ Reset Cache (Enhanced)", use_container_width=True, type="primary", help="⚠️ Clear old cache to use enhanced postal-first strategy with cleaning"):
+                st.session_state.geocode_cache = {}
+                if os.path.exists(CACHE_FILE):
+                    os.remove(CACHE_FILE)
+                st.success("✅ Cache reset! Enhanced postal-first strategy with cleaning will be used on next geocoding.")
+                st.rerun()
+        with col2:
+            if st.button("🔄 Clear AD failed", use_container_width=True):
+                st.session_state.geocode_cache = {
+                    k: v for k, v in st.session_state.geocode_cache.items()
+                    if not (k.endswith("_ad") and isinstance(v, dict) and v.get('coords') is None)
+                }
+                save_cache_to_file(st.session_state.geocode_cache)
+                st.success("✅ AD failed cleared!")
                 st.rerun()
 
 else:
@@ -1242,19 +1248,25 @@ else:
     - `EUR`, `SalesRepresentative`, `City`, `PostalCode`
     
     ### 🎯 Features:
+    - **NEW: Enhanced Postal Cleaning** 🧹 - Handles dirty formats automatically
+    - **NEW: Multi-country Support** 🌍 - ES, PT, AD, GR, DE
+    - **NEW: Flexible Validation** ✅ - Accepts results when postcode is empty
+    - **Postal-First Geocoding** 🎯 - Postal code is source of truth
+    - **Andorra Support** 🇦🇩 - Properly detects Andorra postal codes (AD123)
+    - **Postcode Validation** - Prevents incorrect geocoding
     - Interactive map with service distribution
-    - Country filter (🇪🇸 Spain / 🇵🇹 Portugal) based on postal code detection
+    - Country filter (🇪🇸 Spain / 🇵🇹 Portugal / 🇦🇩 Andorra / 🇬🇷 Greece / 🇩🇪 Germany)
     - Quick filter tags with AND/OR mode
     - Collapsible filter sections in sidebar
     - All/None buttons for each filter group
     - Reset all filters with one click
     - Click on map bubbles to see detailed service breakdown
     - Export to standalone HTML with filters
-    - Intelligent geocoding with city name cleaning (removes parentheses)
-    - Typo correction dictionary for known issues
-    - Smart fallback when country-restricted search fails
-    - Automatic retry for failed locations after 7 days
     - Two-layer map: valid (blue circles ●) + suspicious (red triangles ▲)
-    - Always recalculates validation with current bounding boxes
-    - Debug tools for geocoding issues
+    - Comprehensive debug tools for geocoding issues
+    - Low confidence flagging for city-based geocoding
+    - Cache management with country-specific clearing
+    
+    ### 🔄 Migration Note:
+    If you have an existing cache, use the **"Reset Cache (Enhanced)"** button to clear the old cache and use the enhanced postal-first strategy with automatic cleaning.
     """)

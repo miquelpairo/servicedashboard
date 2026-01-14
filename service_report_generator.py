@@ -849,6 +849,14 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 .replaceAll("'", '&#39;');
         }}
 
+        function extractPostalClean(postal) {{
+            if (!postal) return '';
+            const s = String(postal).trim().toUpperCase();
+            const m = s.match(/\\d{{4}}-\\d{{3}}|\\d{{5}}/);
+            const clean = m ? m[0] : s;
+            return clean.replace(/\\s+/g, '-');
+        }}
+
         function getCheckedValues(selector, mapFn) {{
             return Array.from(document.querySelectorAll(selector + ':checked'))
                 .map(cb => mapFn ? mapFn(cb) : cb.value);
@@ -1318,13 +1326,15 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 
             filteredMapData = Object.entries(cityGroups).map(([locationKey, group]) => {{
                 const postal = String(group.PostalCode).trim();
+                const postalClean = extractPostalClean(postal);
                 const city = String(group.City).trim();
                 const country = group.Country;
                 
-                const postalNorm = postal.toUpperCase().replace(/\\s+/g, ' ').trim();
+                const postalNorm = postalClean.toUpperCase().replace(/\\s+/g, ' ').trim();
                 const cityNorm = city.toUpperCase().replace(/\\s+/g, ' ').trim();
 
-                const cacheKey = `${{postalNorm}}_${{cityNorm}}_${{country}}`;
+                const postalNormClean = postalNorm.replace(/[\\s-]+/g, '');
+                const cacheKey = `${{postalNormClean}}_${{country}}`;
                 const cached = coordsCache[cacheKey];
 
                 let lat = null, lon = null;
@@ -1332,9 +1342,12 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     if (Array.isArray(cached) && cached.length === 2) {{
                         lat = cached[0];
                         lon = cached[1];
-                    }} else if (cached.coords && Array.isArray(cached.coords)) {{
-                        lat = cached.coords[0];
-                        lon = cached.coords[1];
+                    }} else if (cached && typeof cached === 'object') {{
+                        const coords = cached.coords;
+                        if (coords && Array.isArray(coords) && coords.length === 2) {{
+                            lat = coords[0];
+                            lon = coords[1];
+                        }}
                     }}
                 }}
 
