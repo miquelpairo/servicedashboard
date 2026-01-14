@@ -869,7 +869,10 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         function formatCountryName(code) {{
             const names = {{
                 'es': '🇪🇸 Spain',
-                'pt': '🇵🇹 Portugal'
+                'pt': '🇵🇹 Portugal',
+                'ad': '🇦🇩 Andorra',
+                'de': '🇩🇪 Alemania',
+                'gr': '🇬🇷 Grecia'
             }};
             return names[code] || code;
         }}
