@@ -4,9 +4,23 @@ Generates standalone HTML dashboards with interactive filters and maps
 """
 
 import json
+import re
 from datetime import datetime
 from core.report_utils import load_buchi_css, get_sidebar_styles, get_common_report_styles
 from app_config.plotting import BUCHI_COLORS
+
+
+def _extract_postal_clean_js_like(p: str) -> str:
+    """
+    Imitamos tu regex JS: \\d{4}-\\d{3} | \\d{5}
+    y luego quitamos espacios y guiones en el key final.
+    """
+    if p is None:
+        return ""
+    s = str(p).strip().upper()
+    m = re.search(r"\d{4}-\d{3}|\d{5}", s)
+    clean = m.group(0) if m else s
+    return clean
 
 
 def generate_service_dashboard_html(df_original, map_data_valid, available_years, 
@@ -16,6 +30,9 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
     """
     Generate standalone HTML file with embedded data, map, and interactive filters
     
+   
+    # Detect postal code column
+
     Args:
         df_original: Full dataset DataFrame
         map_data_valid: Map data with valid coordinates
@@ -40,18 +57,82 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
     if not postal_col:
         return ""
     
-    # ⭐ NUEVO: Obtener países disponibles
-    available_countries = sorted(df_original['Country'].unique().tolist())
+    # Obtener países disponibles
+    available_countries = sorted(df_original['Country'].dropna().unique().tolist())
     
-    # Prepare data for export
+    # ------------------------------------------------------------------
+    # 1) EXPORT DATA (fullData)
+    # ------------------------------------------------------------------
+   
     df_for_export = df_original.copy()
-    df_for_export['Date'] = df_for_export['Date'].dt.strftime('%Y-%m-%d')
+    
+    # Robusto ante NaT
+    df_for_export['Date'] = df_for_export['Date'].dt.strftime('%Y-%m-%d').fillna('')
     df_for_export['PostalCode'] = df_for_export[postal_col].astype(str).str.strip()
     
-    full_data_json = df_for_export.to_json(orient='records')
-    map_data_json = map_data_valid.to_json(orient='records')
-    coords_cache_json = json.dumps(geocode_cache)
-    product_types_list = list(df_original['ProductType'].unique())
+
+
+    full_data_json = df_for_export.to_json(orient='records', default_handler=str)
+    
+    # ------------------------------------------------------------------
+    # 2) EXPORT CACHE (coordsCache) - LITE + COMPATIBLE con tu JS
+    # ------------------------------------------------------------------
+    coords_cache_lite = {}
+
+    def _js_key(postal_raw, country_raw):
+        country = str(country_raw or "").strip().lower()
+        if not country:
+            return None
+        postal_clean = _extract_postal_clean_js_like(postal_raw)
+        if not postal_clean:
+            return None
+        postal_norm_clean = postal_clean.upper().replace(" ", "").replace("-", "")
+        return f"{postal_norm_clean}_{country}"
+
+    # A) Fuente primaria: map_data_valid (rápido)
+    if map_data_valid is not None and (not map_data_valid.empty) and \
+    ("Latitude" in map_data_valid.columns) and ("Longitude" in map_data_valid.columns):
+
+        postal_column = "PostalCode" if "PostalCode" in map_data_valid.columns else postal_col
+
+        for _, row in map_data_valid.iterrows():
+            k = _js_key(row.get(postal_column), row.get("Country"))
+            if not k:
+                continue
+            lat = row.get("Latitude")
+            lon = row.get("Longitude")
+            if lat is None or lon is None:
+                continue
+            coords_cache_lite[k] = [float(lat), float(lon)]
+
+    # B) Completar para TODO el df usando postales únicos + cache (O(U), sin scans)
+    unique_locations = (
+        df_original[[postal_col, "Country"]]
+        .dropna(subset=["Country"])
+        .drop_duplicates()
+    )
+
+    for _, row in unique_locations.iterrows():
+        k = _js_key(row[postal_col], row["Country"])
+        if not k or k in coords_cache_lite:
+            continue
+
+        v = geocode_cache.get(k)
+        if isinstance(v, (list, tuple)) and len(v) == 2 and v[0] is not None and v[1] is not None:
+            coords_cache_lite[k] = [float(v[0]), float(v[1])]
+            continue
+
+        if isinstance(v, dict):
+            coords = v.get("coords")
+            if isinstance(coords, (list, tuple)) and len(coords) == 2 and coords[0] is not None and coords[1] is not None:
+                coords_cache_lite[k] = [float(coords[0]), float(coords[1])]
+
+    coords_cache_json = json.dumps(coords_cache_lite)
+    
+    # ------------------------------------------------------------------
+    # 3) Product types list
+    # ------------------------------------------------------------------
+    product_types_list = list(df_original['ProductType'].dropna().unique())
     
     # Load BUCHI styles
     buchi_css = load_buchi_css()
@@ -388,7 +469,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             cursor: pointer;
         }}
         
-        /* ⭐ NUEVO: Estilos para map details */
+        /* Estilos para map details */
         .map-details {{
             margin-top: 20px;
             border: 1px solid #ddd;
@@ -563,7 +644,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 {sidebar_items}
         
         <div style="padding: 20px;">
-            <!-- ⭐ NUEVO: Filtro de Country -->
+            <!-- Filtro de Country -->
             <div class="filter-group">
                 <details>
                     <summary>
@@ -669,8 +750,12 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             </div>
             
             <div class="filter-group">
-                <label>👥 Filter by Client</label>
-                <input type="text" id="clientInput" placeholder="e.g., 'Universidad', 'Hospital'...">
+                <details>
+                    <summary>
+                        <span class="summary-text">👥 Client</span>
+                    </summary>
+                    <input type="text" id="clientInput" placeholder="e.g., 'Universidad', 'Hospital'..." style="margin-top: 8px;">
+                </details>
             </div>
             
             <button class="apply-filters-btn" onclick="applyFilters()">🔄 Apply Filters</button>
@@ -703,7 +788,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 </tr>
                 <tr>
                     <th>Coordenadas en caché</th>
-                    <td>{len(geocode_cache)}</td>
+                    <td>{len(coords_cache_lite)}</td>
                 </tr>
             </table>
         </div>
@@ -736,7 +821,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             </p>
             <div id="map"></div>
             
-            <!-- ⭐ NUEVO: Panel de detalles de localización -->
+            <!-- Panel de detalles de localización -->
             <details id="mapDetails" class="map-details">
                 <summary>
                     📌 Selected location details
@@ -1238,7 +1323,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // ⭐ NUEVO: RENDER DETAILS PANEL (con columnas estándar)
+        // RENDER DETAILS PANEL
         // =============================
         function renderDetailsPanel(city, postal, country, rows) {{
             const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
@@ -1252,11 +1337,9 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 &nbsp; | &nbsp; Customers: <b>${{customers}}</b>
                 &nbsp; | &nbsp; Reps: ${{escapeHtml(reps)}}`;
 
-            // Construir tabla con todas las líneas (mismas columnas que tabla principal)
             const customersBody = $('customersBody');
             customersBody.innerHTML = '';
             
-            // Ordenar por fecha descendente
             const sortedRows = [...rows].sort((a, b) => new Date(b.Date) - new Date(a.Date));
             
             sortedRows.forEach(row => {{
@@ -1264,18 +1347,17 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const date = new Date(row.Date).toLocaleDateString();
                 tr.innerHTML = `
                     <td>${{date}}</td>
-                    <td>${{escapeHtml(row.City)}}</td>
-                    <td>${{escapeHtml(row['Business Partner Name'])}}</td>
-                    <td>${{escapeHtml(row.ItemIdAndName)}}</td>
-                    <td>${{escapeHtml(row.ProductType)}}</td>
-                    <td>${{escapeHtml(row.Set)}}</td>
+                    <td>${{escapeHtml(row.City || '')}}</td>
+                    <td>${{escapeHtml(row['Business Partner Name'] || '')}}</td>
+                    <td>${{escapeHtml(row.ItemIdAndName || '')}}</td>
+                    <td>${{escapeHtml(row.ProductType || '')}}</td>
+                    <td>${{escapeHtml(row.Set || '')}}</td>
                     <td>€${{(row.EUR || 0).toFixed(2)}}</td>
-                    <td>${{escapeHtml(row.SalesRepresentative)}}</td>
+                    <td>${{escapeHtml(row.SalesRepresentative || '')}}</td>
                 `;
                 customersBody.appendChild(tr);
             }});
             
-            // Mostrar mensaje si hay muchas filas
             if (rows.length > 100) {{
                 const infoRow = document.createElement('tr');
                 infoRow.innerHTML = `
@@ -1288,7 +1370,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // ⭐ MEJORADO: UPDATE MAP DATA con LocationKey y TopCustomers
+        // UPDATE MAP DATA
         // =============================
         function updateMapData() {{
             const cityGroups = {{}};
@@ -1296,7 +1378,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             filteredData.forEach(row => {{
                 const postalStr = String(row.PostalCode || '').trim();
                 const cityStr = String(row.City || '').trim();
-                const country = row.Country || (/^\\d{{4}}-\\d{{3}}$/.test(postalStr) ? 'pt' : 'es');
+                const country = row.Country;
                 const key = `${{cityStr}}||${{postalStr}}||${{country}}`;
 
                 if (!cityGroups[key]) {{
@@ -1319,7 +1401,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const type = row.ProductType;
                 cityGroups[key].ProductTypes[type] = (cityGroups[key].ProductTypes[type] || 0) + 1;
                 
-                // ⭐ NUEVO: Agregar customers
                 const customer = String(row['Business Partner Name'] || '').trim() || '(Unknown)';
                 if (!cityGroups[key].Customers[customer]) {{
                     cityGroups[key].Customers[customer] = 0;
@@ -1334,13 +1415,13 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const country = group.Country;
                 
                 const postalNorm = postalClean.toUpperCase().replace(/\\s+/g, ' ').trim();
-                const cityNorm = city.toUpperCase().replace(/\\s+/g, ' ').trim();
-
                 const postalNormClean = postalNorm.replace(/[\\s-]+/g, '');
                 const cacheKey = `${{postalNormClean}}_${{country}}`;
                 const cached = coordsCache[cacheKey];
 
-                let lat = null, lon = null;
+                let lat = null;
+                let lon = null;
+                
                 if (cached) {{
                     if (Array.isArray(cached) && cached.length === 2) {{
                         lat = cached[0];
@@ -1359,7 +1440,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0]
                     : 'Mixed';
 
-                // ⭐ NUEVO: Calcular top customers para hover
                 const topCustomers = Object.entries(group.Customers)
                     .sort((a, b) => b[1] - a[1])
                     .slice(0, 3)
@@ -1383,7 +1463,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     Latitude: lat,
                     Longitude: lon
                 }};
-            }}).filter(item => item.Latitude && item.Longitude);
+            }}).filter(item => item.Latitude != null && item.Longitude != null);
         }}
 
         function updateMetrics() {{
@@ -1401,7 +1481,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // ⭐ MEJORADO: RENDER MAP con click handler
+        // RENDER MAP
         // =============================
         function renderMap() {{
             if (filteredMapData.length === 0) {{
@@ -1454,7 +1534,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 
             Plotly.newPlot('map', [trace], layout, {{ responsive: true }});
             
-            // ⭐ NUEVO: Click handler para abrir panel de detalles
             const mapDiv = $('map');
             mapDiv.on('plotly_click', function(evt) {{
                 if (!evt?.points?.length) return;
@@ -1472,11 +1551,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 }});
 
                 renderDetailsPanel(city, postal, country, rows);
-
                 $('selectedSummary').textContent = `(${{rows.length}} lines)`;
-                
-                // No abrir automáticamente el details (usuario debe hacerlo manualmente)
-                // $('mapDetails').open = true;
             }});
         }}
 
@@ -1504,32 +1579,32 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                         bVal = new Date(b.Date);
                         break;
                     case 1:
-                        aVal = a.City;
-                        bVal = b.City;
+                        aVal = a.City || '';
+                        bVal = b.City || '';
                         break;
                     case 2:
-                        aVal = a['Business Partner Name'];
-                        bVal = b['Business Partner Name'];
+                        aVal = a['Business Partner Name'] || '';
+                        bVal = b['Business Partner Name'] || '';
                         break;
                     case 3:
-                        aVal = a.ItemIdAndName;
-                        bVal = b.ItemIdAndName;
+                        aVal = a.ItemIdAndName || '';
+                        bVal = b.ItemIdAndName || '';
                         break;
                     case 4:
-                        aVal = a.ProductType;
-                        bVal = b.ProductType;
+                        aVal = a.ProductType || '';
+                        bVal = b.ProductType || '';
                         break;
                     case 5:
-                        aVal = a.Set;
-                        bVal = b.Set;
+                        aVal = a.Set || '';
+                        bVal = b.Set || '';
                         break;
                     case 6:
                         aVal = a.EUR || 0;
                         bVal = b.EUR || 0;
                         break;
                     case 7:
-                        aVal = a.SalesRepresentative;
-                        bVal = b.SalesRepresentative;
+                        aVal = a.SalesRepresentative || '';
+                        bVal = b.SalesRepresentative || '';
                         break;
                 }}
 
@@ -1548,13 +1623,13 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const date = new Date(row.Date).toLocaleDateString();
                 tr.innerHTML = `
                     <td>${{date}}</td>
-                    <td>${{escapeHtml(row.City)}}</td>
-                    <td>${{escapeHtml(row['Business Partner Name'])}}</td>
-                    <td>${{escapeHtml(row.ItemIdAndName)}}</td>
-                    <td>${{escapeHtml(row.ProductType)}}</td>
-                    <td>${{escapeHtml(row.Set)}}</td>
+                    <td>${{escapeHtml(row.City || '')}}</td>
+                    <td>${{escapeHtml(row['Business Partner Name'] || '')}}</td>
+                    <td>${{escapeHtml(row.ItemIdAndName || '')}}</td>
+                    <td>${{escapeHtml(row.ProductType || '')}}</td>
+                    <td>${{escapeHtml(row.Set || '')}}</td>
                     <td>€${{(row.EUR || 0).toFixed(2)}}</td>
-                    <td>${{escapeHtml(row.SalesRepresentative)}}</td>
+                    <td>${{escapeHtml(row.SalesRepresentative || '')}}</td>
                 `;
                 tbody.appendChild(tr);
             }});
@@ -1568,7 +1643,6 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // BOOT
         // =============================
         initializeFilters();
-        // restoreFilterState();
         applyFilters();
     </script>
 
