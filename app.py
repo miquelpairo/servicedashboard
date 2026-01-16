@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from buchi_streamlit_theme import apply_buchi_styles
 from service_report_generator import generate_service_dashboard_html
+import os 
 
 # Import geocoding service
 from core.geocoding_service import (
@@ -16,6 +17,13 @@ from core.geocoding_service import (
     build_cache_key,
     normalize_triplet_inputs,
 )
+
+from core.account_linker import AccountLinker
+
+
+ACCOUNT_MAPPING_FILE = os.path.join("core", "accounts_URL.xlsx")
+ACCOUNT_CACHE_FILE = os.path.join("core", "account_link_cache.json")
+ACCOUNT_MIN_SCORE = 80  # el que quieras para export html (yo pondría 80 aquí)
 
 
 # Page configuration
@@ -34,6 +42,16 @@ st.markdown('<div class="main-header">🗺️ Service Planning Dashboard</div>',
 # Initialize session state
 if 'geocoding_service' not in st.session_state:
     st.session_state.geocoding_service = GeocodingService()
+
+if "account_linker" not in st.session_state:
+    st.session_state.account_linker = None
+
+if "df_enriched" not in st.session_state:
+    st.session_state.df_enriched = None
+
+if "account_cache_dirty" not in st.session_state:
+    st.session_state.account_cache_dirty = False
+
 
 if 'selected_city' not in st.session_state:
     st.session_state.selected_city = None
@@ -92,13 +110,50 @@ uploaded_file = st.sidebar.file_uploader(
 
 if uploaded_file:
     df = load_file(uploaded_file)
+    # Identificador estable del fichero (nombre + tamaño) para evitar recalcular en cada rerun
+    file_key = f"{uploaded_file.name}:{uploaded_file.size}"
     
     if df is None:
         st.stop()
     
+    # ------------------------------------------------------------------------
+    # 🔗 ACCOUNT LINKER: init + load cache + enrich ONCE per uploaded file
+    # ------------------------------------------------------------------------
+    mapping_file = ACCOUNT_MAPPING_FILE if os.path.exists(ACCOUNT_MAPPING_FILE) else None
+
+    # "fingerprint" simple para detectar cambio de archivo subido
+    # (nombre + tamaño). Si quieres más robusto luego hacemos hash.
+    file_fingerprint = f"{uploaded_file.name}_{uploaded_file.size}"
+
+    if st.session_state.get("account_file_fingerprint") != file_fingerprint:
+        st.session_state.account_file_fingerprint = file_fingerprint
+        st.session_state.df_enriched = None
+        st.session_state.account_linker = None
+
+    if st.session_state.account_linker is None:
+        linker = AccountLinker(mapping_file, min_score=ACCOUNT_MIN_SCORE, debug=False) if mapping_file else AccountLinker(min_score=ACCOUNT_MIN_SCORE)
+        # carga cache si existe
+        try:
+            linker.load_cache(ACCOUNT_CACHE_FILE)
+        except Exception:
+            pass
+
+        st.session_state.account_linker = linker
+
+    if st.session_state.df_enriched is None:
+        with st.spinner("🔗 Linking accounts (cached) ..."):
+            st.session_state.df_enriched = st.session_state.account_linker.enrich_dataframe(
+                df,
+                account_col="Business Partner Name"
+            )
+            st.session_state.account_cache_dirty = True
+
+
     st.sidebar.success(f"✅ {len(df)} records loaded")
     st.sidebar.info(f"📍 Cached coordinates: {len(st.session_state.geocoding_service.cache)}")
     
+    df_base = st.session_state.df_enriched if st.session_state.df_enriched is not None else df
+
     # Get available options
     available_years = sorted(df['Year'].dropna().unique().astype(int).tolist())
     available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
@@ -309,7 +364,7 @@ if uploaded_file:
     # APPLY FILTERS
     # ============================================================================
     
-    df_filtered = df.copy()
+    df_filtered = df_base.copy()
     
     if selected_countries:
         df_filtered = df_filtered[df_filtered['Country'].isin(selected_countries)]
@@ -847,30 +902,135 @@ if uploaded_file:
     st.caption(f"📊 Showing {len(df_table)} services")
     
     # ============================================================================
+    # ACCOUNT LINKING ANALYSIS (antes de Export Dashboard)
+    # ============================================================================
+    
+    st.markdown("---")
+    st.markdown("## 🔗 Account Linking Analysis")
+
+    default_account_mapping = os.path.join("core", "accounts_URL.xlsx")
+
+    # Inicializa contenedores en session_state
+    if "account_linking" not in st.session_state:
+        st.session_state.account_linking = {}
+
+    # Solo calculamos si:
+    #  - existe el mapping
+    #  - no hay resultados para este file_key
+    if os.path.exists(default_account_mapping):
+        if file_key not in st.session_state.account_linking:
+            with st.spinner("🔍 Calculating account linking analysis (one-time per upload)..."):
+                linker = AccountLinker(default_account_mapping, min_score=85, debug=True)
+
+                unique_accounts = df['Business Partner Name'].dropna().unique().tolist()
+
+                for account in unique_accounts:
+                    linker.get_url_fuzzy(account, top_n=5)
+
+                stats = linker.get_stats()
+                match_report = linker.get_match_report()
+
+                # Guardar resultados “congelados” para este fichero
+                st.session_state.account_linking[file_key] = {
+                    "stats": stats,
+                    "match_report": match_report,
+                    "min_score": 85,
+                    "mapping_file": default_account_mapping,
+                    "n_unique_accounts": len(unique_accounts),
+                }
+
+        # Mostrar resultados guardados (instantáneo)
+        data = st.session_state.account_linking[file_key]
+        stats = data["stats"]
+        match_report = data["match_report"]
+
+        with st.expander("📊 Account URL Matching Statistics & Analysis", expanded=False):
+            st.caption(
+                f"Mapping: {data['mapping_file']} | "
+                f"Unique accounts: {data['n_unique_accounts']} | "
+                f"Min score: {data['min_score']}"
+            )
+
+            col1, col2, col3, col4 = st.columns(4)
+            with col1:
+                st.metric("📚 Available Mappings", stats['total_mappings'])
+            with col2:
+                st.metric("🔍 Queries", stats['total_queries'])
+            with col3:
+                st.metric("✅ Matches", stats['exact_matches'] + stats['fuzzy_matches'])
+            with col4:
+                st.metric("📊 Match Rate", stats['match_rate'])
+
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("🎯 Exact Matches", stats['exact_matches'])
+            with col2:
+                st.metric("🔀 Fuzzy Matches", stats['fuzzy_matches'])
+            with col3:
+                st.metric("❌ No Matches", stats['no_matches'])
+
+            st.markdown("### 🔍 Detailed Match Report")
+            st.dataframe(match_report, use_container_width=True, height=400)
+
+            # Si quieres export, mejor recalcular log SOLO cuando pulses (porque el log es grande)
+            col1, col2 = st.columns([3, 1])
+            with col2:
+                if st.button("♻️ Recompute analysis now", use_container_width=True):
+                    st.session_state.account_linking.pop(file_key, None)
+                    st.rerun()
+    else:
+        st.info(f"ℹ️ Account mapping file not found: {default_account_mapping}")
+
+
+
+    # ------------------------------------------------------------------------
+    # 💾 SAVE Account Linking Cache (once per run if dirty)
+    # ------------------------------------------------------------------------
+    if st.session_state.account_cache_dirty and st.session_state.account_linker is not None:
+        ok = st.session_state.account_linker.save_cache(ACCOUNT_CACHE_FILE)
+        if ok:
+            st.session_state.account_cache_dirty = False
+
+    
+    # ============================================================================
     # GENERATE HTML
     # ============================================================================
     
     st.markdown("---")
     st.markdown("## 📥 Export Dashboard")
     
+    # ⭐ NUEVO: Default account mapping file
+    default_account_mapping = os.path.join("core", "accounts_URL.xlsx")
+    
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.info("💡 Generate a standalone HTML file with interactive filters. It includes all data and works offline!")
+        st.info("💡 Generate a standalone HTML file with interactive filters and account links!")
     
     with col2:
         if st.button("🌐 Generate HTML", type="primary", use_container_width=True):
-            if len(map_data_geocoded) > 0:
+            if len(map_data_valid) > 0:
                 with st.spinner("🔄 Generating HTML file..."):
+                    # ⭐ MODIFICADO: Use default account mapping if exists + show stats
+                    mapping_file = default_account_mapping if os.path.exists(default_account_mapping) else None
+                    
+                    if mapping_file:
+                        st.info(f"🔗 Using account mappings from: {mapping_file}")
+                        # ⭐ AÑADIDO: Show quick stats
+                        linker_temp = AccountLinker(mapping_file, min_score=85, debug=False)
+                        quick_stats = linker_temp.get_stats()
+                        st.caption(f"📊 {quick_stats['total_mappings']} mappings loaded | Min score: {quick_stats['min_score']}")
+                    
                     html_content = generate_service_dashboard_html(
-                        df,
+                        df_base,
                         map_data_valid,
                         available_years,
                         month_options,
                         available_reps,
                         available_types,
                         available_sets,
-                        st.session_state.geocoding_service.cache
+                        st.session_state.geocoding_service.cache,
+                        account_mapping_file=mapping_file
                     )
                     
                     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

@@ -12712,5 +12712,761 @@
     "status": "HARDCODED",
     "suspect_score": 0,
     "timestamp": "2026-01-15T13:27:06.719570"
+  },
+  "incomplete_844740_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195 0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T08:58:21.530127"
+  },
+  "incomplete_406602_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T08:58:21.530127"
+  },
+  "incomplete_868024_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T08:58:21.531136"
+  },
+  "incomplete_807127_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:01:17.743321"
+  },
+  "incomplete_380106_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:01:17.744318"
+  },
+  "incomplete_23904_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:01:17.744318"
+  },
+  "incomplete_448319_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:17:36.949834"
+  },
+  "incomplete_92547_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195-0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:17:36.950851"
+  },
+  "incomplete_219076_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:17:36.950851"
+  },
+  "incomplete_568684_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:17:36.950851"
+  },
+  "incomplete_963932_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:17:36.950851"
+  },
+  "incomplete_401600_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:17:36.951829"
+  },
+  "incomplete_627067_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:37:59.351468"
+  },
+  "incomplete_490942_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195-0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:37:59.353464"
+  },
+  "incomplete_573765_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:37:59.355456"
+  },
+  "incomplete_69792_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:37:59.356453"
+  },
+  "incomplete_576821_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:37:59.356453"
+  },
+  "incomplete_789264_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:37:59.356453"
+  },
+  "incomplete_941144_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:58:12.575745"
+  },
+  "incomplete_418796_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195-0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:58:12.576741"
+  },
+  "incomplete_707603_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:58:12.576741"
+  },
+  "incomplete_358081_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:58:12.577738"
+  },
+  "incomplete_478926_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:58:12.577738"
+  },
+  "incomplete_121776_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T11:58:12.577738"
+  },
+  "incomplete_654936_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T15:09:16.633039"
+  },
+  "incomplete_355539_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195-0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T15:09:16.635035"
+  },
+  "incomplete_290391_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T15:09:16.636033"
+  },
+  "incomplete_306846_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T15:09:16.637030"
+  },
+  "incomplete_68874_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T15:09:16.638026"
+  },
+  "incomplete_272699_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T15:09:16.640021"
+  },
+  "incomplete_159338_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:36:29.263577"
+  },
+  "incomplete_596828_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195-0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:36:29.264574"
+  },
+  "incomplete_726474_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:36:29.264574"
+  },
+  "incomplete_659462_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:36:29.265571"
+  },
+  "incomplete_496039_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:36:29.265571"
+  },
+  "incomplete_276791_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:36:29.265571"
+  },
+  "incomplete_868679_es": {
+    "coords": [
+      43.3623,
+      -8.4115
+    ],
+    "country": "es",
+    "input_city": "A CORUÑA",
+    "input_postal": "15071A",
+    "resolved_city": "A Coruña",
+    "display_name": "A Coruña, ES",
+    "query_used": "HARDCODED: ('15071A', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:38:50.987931"
+  },
+  "incomplete_238482_es": {
+    "coords": [
+      38.7078,
+      -9.1366
+    ],
+    "country": "es",
+    "input_city": "LISBOA",
+    "input_postal": "195-0256",
+    "resolved_city": "Lisboa",
+    "display_name": "Lisboa, ES",
+    "query_used": "HARDCODED: ('1950256', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:38:50.989925"
+  },
+  "incomplete_204596_es": {
+    "coords": [
+      43.3183,
+      -1.9812
+    ],
+    "country": "es",
+    "input_city": "DONOSTIA/SAN SEBASTIAN",
+    "input_postal": "2014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "Donostia / San Sebastián, ES",
+    "query_used": "HARDCODED: ('2014', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:38:50.989925"
+  },
+  "incomplete_266242_es": {
+    "coords": [
+      38.676,
+      -9.165
+    ],
+    "country": "es",
+    "input_city": "Almada",
+    "input_postal": "2805",
+    "resolved_city": "Almada",
+    "display_name": "Almada, ES",
+    "query_used": "HARDCODED: ('2805', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:38:50.989925"
+  },
+  "incomplete_47160_es": {
+    "coords": [
+      41.3006,
+      -7.7441
+    ],
+    "country": "es",
+    "input_city": "VILA REAL",
+    "input_postal": "5000",
+    "resolved_city": "Vila Real",
+    "display_name": "Vila Real, ES",
+    "query_used": "HARDCODED: ('5000', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:38:50.990920"
+  },
+  "incomplete_622527_es": {
+    "coords": [
+      42.331,
+      -3.62
+    ],
+    "country": "es",
+    "input_city": "CARDAÑAJIMENO",
+    "input_postal": "E09071",
+    "resolved_city": "Cardeñajimeno",
+    "display_name": "Cardeñajimeno, ES",
+    "query_used": "HARDCODED: ('E09071', 'es')",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "HARDCODED",
+    "suspect_score": 0,
+    "timestamp": "2026-01-16T16:38:50.990920"
   }
 }

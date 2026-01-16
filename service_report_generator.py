@@ -4,35 +4,22 @@ Generates standalone HTML dashboards with interactive filters and maps
 """
 
 import json
-import re
+import os
 from datetime import datetime
+from typing import Optional
 from core.report_utils import load_buchi_css, get_sidebar_styles, get_common_report_styles
 from app_config.plotting import BUCHI_COLORS
-
-
-def _extract_postal_clean_js_like(p: str) -> str:
-    """
-    Imitamos tu regex JS: \\d{4}-\\d{3} | \\d{5}
-    y luego quitamos espacios y guiones en el key final.
-    """
-    if p is None:
-        return ""
-    s = str(p).strip().upper()
-    m = re.search(r"\d{4}-\d{3}|\d{5}", s)
-    clean = m.group(0) if m else s
-    return clean
+from core.account_linker import AccountLinker
 
 
 def generate_service_dashboard_html(df_original, map_data_valid, available_years, 
                                     available_months, available_reps, available_types,
                                     available_sets,
-                                    geocode_cache):
+                                    geocode_cache,
+                                    account_mapping_file: Optional[str] = None):
     """
     Generate standalone HTML file with embedded data, map, and interactive filters
     
-   
-    # Detect postal code column
-
     Args:
         df_original: Full dataset DataFrame
         map_data_valid: Map data with valid coordinates
@@ -42,6 +29,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         available_types: List of product types
         available_sets: List of sets
         geocode_cache: Dictionary with geocoding cache
+        account_mapping_file: Optional path to Excel/CSV with Account Name and Account URL columns
         
     Returns:
         str: Complete HTML content
@@ -57,82 +45,25 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
     if not postal_col:
         return ""
     
-    # Obtener países disponibles
-    available_countries = sorted(df_original['Country'].dropna().unique().tolist())
-    
-    # ------------------------------------------------------------------
-    # 1) EXPORT DATA (fullData)
-    # ------------------------------------------------------------------
-   
+    # ⭐ Linker + enrich (solo una vez, en Python)
+    linker = AccountLinker(account_mapping_file, min_score=80) if account_mapping_file else AccountLinker()
+
+    available_countries = sorted(df_original['Country'].unique().tolist())
     df_for_export = df_original.copy()
-    
-    # Robusto ante NaT
-    df_for_export['Date'] = df_for_export['Date'].dt.strftime('%Y-%m-%d').fillna('')
+
+    # Asegura Date en string (como ya hacías)
+    df_for_export['Date'] = df_for_export['Date'].dt.strftime('%Y-%m-%d')
     df_for_export['PostalCode'] = df_for_export[postal_col].astype(str).str.strip()
-    
+
+    # ⭐ NUEVO: añade AccountURL / score / matched name (una sola vez)
+    df_for_export = linker.enrich_dataframe(df_for_export, account_col='Business Partner Name')
 
 
-    full_data_json = df_for_export.to_json(orient='records', default_handler=str)
-    
-    # ------------------------------------------------------------------
-    # 2) EXPORT CACHE (coordsCache) - LITE + COMPATIBLE con tu JS
-    # ------------------------------------------------------------------
-    coords_cache_lite = {}
 
-    def _js_key(postal_raw, country_raw):
-        country = str(country_raw or "").strip().lower()
-        if not country:
-            return None
-        postal_clean = _extract_postal_clean_js_like(postal_raw)
-        if not postal_clean:
-            return None
-        postal_norm_clean = postal_clean.upper().replace(" ", "").replace("-", "")
-        return f"{postal_norm_clean}_{country}"
-
-    # A) Fuente primaria: map_data_valid (rápido)
-    if map_data_valid is not None and (not map_data_valid.empty) and \
-    ("Latitude" in map_data_valid.columns) and ("Longitude" in map_data_valid.columns):
-
-        postal_column = "PostalCode" if "PostalCode" in map_data_valid.columns else postal_col
-
-        for _, row in map_data_valid.iterrows():
-            k = _js_key(row.get(postal_column), row.get("Country"))
-            if not k:
-                continue
-            lat = row.get("Latitude")
-            lon = row.get("Longitude")
-            if lat is None or lon is None:
-                continue
-            coords_cache_lite[k] = [float(lat), float(lon)]
-
-    # B) Completar para TODO el df usando postales únicos + cache (O(U), sin scans)
-    unique_locations = (
-        df_original[[postal_col, "Country"]]
-        .dropna(subset=["Country"])
-        .drop_duplicates()
-    )
-
-    for _, row in unique_locations.iterrows():
-        k = _js_key(row[postal_col], row["Country"])
-        if not k or k in coords_cache_lite:
-            continue
-
-        v = geocode_cache.get(k)
-        if isinstance(v, (list, tuple)) and len(v) == 2 and v[0] is not None and v[1] is not None:
-            coords_cache_lite[k] = [float(v[0]), float(v[1])]
-            continue
-
-        if isinstance(v, dict):
-            coords = v.get("coords")
-            if isinstance(coords, (list, tuple)) and len(coords) == 2 and coords[0] is not None and coords[1] is not None:
-                coords_cache_lite[k] = [float(coords[0]), float(coords[1])]
-
-    coords_cache_json = json.dumps(coords_cache_lite)
-    
-    # ------------------------------------------------------------------
-    # 3) Product types list
-    # ------------------------------------------------------------------
-    product_types_list = list(df_original['ProductType'].dropna().unique())
+    full_data_json = df_for_export.to_json(orient='records')
+    map_data_json = map_data_valid.to_json(orient='records')
+    coords_cache_json = json.dumps(geocode_cache)
+    product_types_list = list(df_original['ProductType'].unique())
     
     # Load BUCHI styles
     buchi_css = load_buchi_css()
@@ -469,7 +400,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             cursor: pointer;
         }}
         
-        /* Estilos para map details */
+        /* ⭐ NUEVO: Estilos para map details */
         .map-details {{
             margin-top: 20px;
             border: 1px solid #ddd;
@@ -644,7 +575,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 {sidebar_items}
         
         <div style="padding: 20px;">
-            <!-- Filtro de Country -->
+            <!-- ⭐ NUEVO: Filtro de Country -->
             <div class="filter-group">
                 <details>
                     <summary>
@@ -788,7 +719,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 </tr>
                 <tr>
                     <th>Coordenadas en caché</th>
-                    <td>{len(coords_cache_lite)}</td>
+                    <td>{len(geocode_cache)}</td>
                 </tr>
             </table>
         </div>
@@ -821,7 +752,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             </p>
             <div id="map"></div>
             
-            <!-- Panel de detalles de localización -->
+            <!-- ⭐ NUEVO: Panel de detalles de localización -->
             <details id="mapDetails" class="map-details">
                 <summary>
                     📌 Selected location details
@@ -961,6 +892,24 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             }};
             return names[code] || code;
         }}
+
+
+        
+        // =============================
+        // ⭐ NUEVO: ACCOUNT LINK (precalculated in Python)
+        // =============================
+        function getAccountLinkFromRow(row) {{
+            const name = String(row['Business Partner Name'] ?? '').trim();
+            const url = row.AccountURL;  // precalculado desde Python
+
+            if (url) {{
+                return `<a href="${{url}}" target="_blank" style="color:#2E86C1; text-decoration:none;">${{escapeHtml(name)}}</a>`;
+            }}
+
+            return escapeHtml(name);
+        }}
+       
+
 
         // =============================
         // ALL/NONE GROUP BUTTONS
@@ -1323,7 +1272,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // RENDER DETAILS PANEL
+        // ⭐ MODIFICADO: RENDER DETAILS PANEL (con account links)
         // =============================
         function renderDetailsPanel(city, postal, country, rows) {{
             const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
@@ -1348,7 +1297,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 tr.innerHTML = `
                     <td>${{date}}</td>
                     <td>${{escapeHtml(row.City || '')}}</td>
-                    <td>${{escapeHtml(row['Business Partner Name'] || '')}}</td>
+                    <td>${{getAccountLinkFromRow(row)}}</td>
                     <td>${{escapeHtml(row.ItemIdAndName || '')}}</td>
                     <td>${{escapeHtml(row.ProductType || '')}}</td>
                     <td>${{escapeHtml(row.Set || '')}}</td>
@@ -1370,7 +1319,8 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // UPDATE MAP DATA
+        // ⭐ MEJORADO: UPDATE MAP DATA con LocationKey y TopCustomers
+        // 🔥 FIX: Inicializar variables antes del bucle
         // =============================
         function updateMapData() {{
             const cityGroups = {{}};
@@ -1378,7 +1328,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
             filteredData.forEach(row => {{
                 const postalStr = String(row.PostalCode || '').trim();
                 const cityStr = String(row.City || '').trim();
-                const country = row.Country;
+                const country = row.Country || (/^\\d{{4}}-\\d{{3}}$/.test(postalStr) ? 'pt' : 'es');
                 const key = `${{cityStr}}||${{postalStr}}||${{country}}`;
 
                 if (!cityGroups[key]) {{
@@ -1401,6 +1351,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const type = row.ProductType;
                 cityGroups[key].ProductTypes[type] = (cityGroups[key].ProductTypes[type] || 0) + 1;
                 
+                // ⭐ NUEVO: Agregar customers
                 const customer = String(row['Business Partner Name'] || '').trim() || '(Unknown)';
                 if (!cityGroups[key].Customers[customer]) {{
                     cityGroups[key].Customers[customer] = 0;
@@ -1415,10 +1366,13 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 const country = group.Country;
                 
                 const postalNorm = postalClean.toUpperCase().replace(/\\s+/g, ' ').trim();
+                const cityNorm = city.toUpperCase().replace(/\\s+/g, ' ').trim();
+
                 const postalNormClean = postalNorm.replace(/[\\s-]+/g, '');
                 const cacheKey = `${{postalNormClean}}_${{country}}`;
                 const cached = coordsCache[cacheKey];
 
+                // 🔥 FIX: Inicializar variables antes de usarlas
                 let lat = null;
                 let lon = null;
                 
@@ -1440,6 +1394,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0]
                     : 'Mixed';
 
+                // ⭐ NUEVO: Calcular top customers para hover
                 const topCustomers = Object.entries(group.Customers)
                     .sort((a, b) => b[1] - a[1])
                     .slice(0, 3)
@@ -1463,7 +1418,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                     Latitude: lat,
                     Longitude: lon
                 }};
-            }}).filter(item => item.Latitude != null && item.Longitude != null);
+            }}).filter(item => item.Latitude && item.Longitude);
         }}
 
         function updateMetrics() {{
@@ -1481,7 +1436,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         }}
 
         // =============================
-        // RENDER MAP
+        // ⭐ MEJORADO: RENDER MAP con click handler
         // =============================
         function renderMap() {{
             if (filteredMapData.length === 0) {{
@@ -1534,6 +1489,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
 
             Plotly.newPlot('map', [trace], layout, {{ responsive: true }});
             
+            // ⭐ NUEVO: Click handler para abrir panel de detalles
             const mapDiv = $('map');
             mapDiv.on('plotly_click', function(evt) {{
                 if (!evt?.points?.length) return;
@@ -1551,6 +1507,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 }});
 
                 renderDetailsPanel(city, postal, country, rows);
+
                 $('selectedSummary').textContent = `(${{rows.length}} lines)`;
             }});
         }}
@@ -1624,7 +1581,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
                 tr.innerHTML = `
                     <td>${{date}}</td>
                     <td>${{escapeHtml(row.City || '')}}</td>
-                    <td>${{escapeHtml(row['Business Partner Name'] || '')}}</td>
+                    <td>${{getAccountLinkFromRow(row)}}</td>
                     <td>${{escapeHtml(row.ItemIdAndName || '')}}</td>
                     <td>${{escapeHtml(row.ProductType || '')}}</td>
                     <td>${{escapeHtml(row.Set || '')}}</td>
@@ -1643,6 +1600,7 @@ def generate_service_dashboard_html(df_original, map_data_valid, available_years
         // BOOT
         // =============================
         initializeFilters();
+        // restoreFilterState();
         applyFilters();
     </script>
 

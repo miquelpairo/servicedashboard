@@ -1,0 +1,4458 @@
+{
+  "INACTIVO EMPRESA METROPOLITANA DE ABASTECIMIENTO Y SANEAMIENTO DE AGUAS DE SEVILLA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQEGQA3/view",
+    "score": 100,
+    "matched_name": "EMPRESA METROPOLITANA DE ABASTECIMIENTO Y SANEAMIENTO DE AGUAS DE SEVILLA SA",
+    "matched_key": "EMPRESA METROPOLITANA DE ABASTECIMIENTO Y SANEAMIENTO DE AGUAS DE SEVILLA",
+    "source": "fuzzy"
+  },
+  "4 D PHARMA LEON SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000D3VBqQAN/view",
+    "score": 100,
+    "matched_name": "4 D PHARMA LEÓN, SLU",
+    "matched_key": "4 D PHARMA LEON SLU",
+    "source": "exact"
+  },
+  "AB AZUCARERA IBERIA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh18QQAR/view",
+    "score": 100,
+    "matched_name": "AB AZUCARERA IBERIA SL.",
+    "matched_key": "AB AZUCARERA IBERIA",
+    "source": "fuzzy"
+  },
+  "ABBOTT LABORATORIES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCrgQAH/view",
+    "score": 100,
+    "matched_name": "ABBOTT LABORATORIES SA",
+    "matched_key": "ABBOTT LABORATORIES",
+    "source": "exact"
+  },
+  "ACEFE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCZEQA5/view",
+    "score": 100,
+    "matched_name": "ACEFE, S.A.",
+    "matched_key": "ACEFE",
+    "source": "exact"
+  },
+  "ACEITES DEL SUR COOSUR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh158QAB/view",
+    "score": 100,
+    "matched_name": "ACEITES DEL SUR - COOSUR SA",
+    "matched_key": "ACEITES DEL SUR COOSUR",
+    "source": "exact"
+  },
+  "ACEITES SIERRA SUR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpIAQAY/view",
+    "score": 100,
+    "matched_name": "ACEITES SIERRA SUR, S.A.",
+    "matched_key": "ACEITES SIERRA SUR",
+    "source": "exact"
+  },
+  "ACONDICIONAMIENTO TARRASENSE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0umQAB/view",
+    "score": 100,
+    "matched_name": "ACONDICIONAMIENTO TARRASENSE",
+    "matched_key": "ACONDICIONAMIENTO TARRASENSE",
+    "source": "exact"
+  },
+  "ACTYLAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOF2QAN/view",
+    "score": 100,
+    "matched_name": "ACTYLAB SL",
+    "matched_key": "ACTYLAB",
+    "source": "exact"
+  },
+  "ADISSEO NUTRICION ANIMAL SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000001E1DOIA0/view",
+    "score": 100,
+    "matched_name": "ADISSEO NUTRICION ANIMAL SLU",
+    "matched_key": "ADISSEO NUTRICION ANIMAL SLU",
+    "source": "exact"
+  },
+  "ADM ANIMAL NUTRITION SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD54QAH/view",
+    "score": 100,
+    "matched_name": "ADM  ANIMAL NUTRITION SPAIN, SL",
+    "matched_key": "ADM ANIMAL NUTRITION SPAIN",
+    "source": "exact"
+  },
+  "ADM WILD VALENCIA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOIPQA3/view",
+    "score": 100,
+    "matched_name": "ADM WILD VALENCIA SA.",
+    "matched_key": "ADM WILD VALENCIA",
+    "source": "fuzzy"
+  },
+  "AGC PHARMA CHEMICALS EUROPE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCR6QAP/view",
+    "score": 100,
+    "matched_name": "AGC PHARMA CHEMICALS EUROPE S.L.",
+    "matched_key": "AGC PHARMA CHEMICALS EUROPE",
+    "source": "exact"
+  },
+  "AGENCIA DE GESTION AGRARIA Y PESQUERA DE ANDALUCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PMV8rQAH/view",
+    "score": 100,
+    "matched_name": "AGENCIA DE GESTIÓN AGRARIA Y PESQUERA DE ANDALUCÍA",
+    "matched_key": "AGENCIA DE GESTION AGRARIA Y PESQUERA DE ANDALUCIA",
+    "source": "exact"
+  },
+  "AGENCIA DE RESIDUS DE CATALUNYA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0twQAB/view",
+    "score": 100,
+    "matched_name": "AGENCIA DE RESIDUS DE CATALUNYA",
+    "matched_key": "AGENCIA DE RESIDUS DE CATALUNYA",
+    "source": "exact"
+  },
+  "AGENCIA ESPANOLA DE SEGURIDAD ALIMENTARIA Y NUTRICION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000crD4dQAE/view",
+    "score": 100,
+    "matched_name": "AGENCIA ESPAÑOLA DE SEGURIDAD ALIMENTARIA Y NUTRICION",
+    "matched_key": "AGENCIA ESPANOLA DE SEGURIDAD ALIMENTARIA Y NUTRICION",
+    "source": "exact"
+  },
+  "AGENCIA ESTATAL CONSEJO SUPERIOR DE INVESTIGACIONES CIENTIFICAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003GhYPiQAN/view?ws=%2Flightning%2Fr%2FAccount%2F0017S000008NaZvQAK%2Fview",
+    "score": 100,
+    "matched_name": "AGENCIA ESTATAL CONSEJO SUPERIOR DE INVESTIGACIONES CIENTIFICAS",
+    "matched_key": "AGENCIA ESTATAL CONSEJO SUPERIOR DE INVESTIGACIONES CIENTIFICAS",
+    "source": "exact"
+  },
+  "AGENCIA ESTATAL DE LA ADMINISTRACION TRIBUTARIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYCvQAN/view",
+    "score": 100,
+    "matched_name": "AGENCIA ESTATAL DE LA ADMINISTRACION TRIBUTARIA",
+    "matched_key": "AGENCIA ESTATAL DE LA ADMINISTRACION TRIBUTARIA",
+    "source": "exact"
+  },
+  "AGENOR MANTENIMIENTOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JSQAZ/view",
+    "score": 100,
+    "matched_name": "AGENOR MANTENIMIENTOS SA",
+    "matched_key": "AGENOR MANTENIMIENTOS",
+    "source": "exact"
+  },
+  "AGILENT TECHNOLOGIES SPAIN SOCIEDAD LIMITADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCPRQA5/view",
+    "score": 100,
+    "matched_name": "AGILENT TECHNOLOGIES SPAIN SOCIEDAD LIMITADA.",
+    "matched_key": "AGILENT TECHNOLOGIES SPAIN SOCIEDAD LIMITADA",
+    "source": "exact"
+  },
+  "AGRALIA FERTILIZANTES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Sjp6fQAB/view",
+    "score": 100,
+    "matched_name": "AGRALIA FERTILIZANTES, SL",
+    "matched_key": "AGRALIA FERTILIZANTES",
+    "source": "exact"
+  },
+  "AGRIFLUIDE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KgQAJ/view",
+    "score": 100,
+    "matched_name": "AGRIFLUIDE SL",
+    "matched_key": "AGRIFLUIDE",
+    "source": "exact"
+  },
+  "AGROLAB MEDIOAMBIENTE SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQOSQA3/view",
+    "score": 100,
+    "matched_name": "AGROLAB MEDIOAMBIENTE, SLU",
+    "matched_key": "AGROLAB MEDIOAMBIENTE SLU",
+    "source": "exact"
+  },
+  "AGROLABORATORIO ALIMENTARIO SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PMtnhQAD/view",
+    "score": 100,
+    "matched_name": "AGROLABORATORIO ALIMENTARIO SL",
+    "matched_key": "AGROLABORATORIO ALIMENTARIO",
+    "source": "fuzzy"
+  },
+  "AGRUPA LABORATORIO SOCIEDAD LIMITADA LABORAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000002UDd3IAG/view",
+    "score": 100,
+    "matched_name": "AGRUPA LABORATORIO SOCIEDAD LIMITADA LABORAL.",
+    "matched_key": "AGRUPA LABORATORIO SOCIEDAD LIMITADA LABORAL",
+    "source": "exact"
+  },
+  "AGUA DE VALLADOLID EPE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NVQAZ/view",
+    "score": 100,
+    "matched_name": "AGUA DE VALLADOLID EPE",
+    "matched_key": "AGUA DE VALLADOLID EPE",
+    "source": "exact"
+  },
+  "AGUAS MUNICIPALIZADAS DE ALICANTE E M": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOIUQA3/view",
+    "score": 100,
+    "matched_name": "AGUAS MUNICIPALIZADAS DE ALICANTE, E.M.",
+    "matched_key": "AGUAS MUNICIPALIZADAS DE ALICANTE E M",
+    "source": "exact"
+  },
+  "AIDISA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008OCmaQAG/view",
+    "score": 100,
+    "matched_name": "AIDISA",
+    "matched_key": "AIDISA",
+    "source": "exact"
+  },
+  "AIGUES DE BARCELONA EMPRESA METROPOLITANA DE GESTIO DEL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCAKQA5/view",
+    "score": 100,
+    "matched_name": "AIGÜES DE BARCELONA, EMPRESA METROPOLITANA DE GESTIÓ DEL",
+    "matched_key": "AIGUES DE BARCELONA EMPRESA METROPOLITANA DE GESTIO DEL",
+    "source": "exact"
+  },
+  "AIGUES DE MANRESA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0u7QAB/view",
+    "score": 100,
+    "matched_name": "AIGUES DE MANRESA SA",
+    "matched_key": "AIGUES DE MANRESA",
+    "source": "exact"
+  },
+  "AIGUES DE MATARO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0uYQAR/view",
+    "score": 100,
+    "matched_name": "AIGUES DE MATARO SA",
+    "matched_key": "AIGUES DE MATARO",
+    "source": "exact"
+  },
+  "AIGUES DE VIC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0yaQAB/view",
+    "score": 100,
+    "matched_name": "AIGUES DE VIC, SA",
+    "matched_key": "AIGUES DE VIC",
+    "source": "exact"
+  },
+  "AIGUES DEL PRAT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0zpQAB/view",
+    "score": 100,
+    "matched_name": "AIGUES DEL PRAT SA",
+    "matched_key": "AIGUES DEL PRAT",
+    "source": "exact"
+  },
+  "AIMPLAS INSTITUTO TECNOLOGICO DEL PLASTICO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009kjGOQAY/view",
+    "score": 100,
+    "matched_name": "AIMPLAS-INSTITUTO TECNOLÓGICO DEL PLÁSTICO",
+    "matched_key": "AIMPLAS INSTITUTO TECNOLOGICO DEL PLASTICO",
+    "source": "exact"
+  },
+  "AINIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003FINw8QAH/view",
+    "score": 100,
+    "matched_name": "AINIA",
+    "matched_key": "AINIA",
+    "source": "exact"
+  },
+  "AJUNTAMENT DE SABADELL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0txQAB/view",
+    "score": 100,
+    "matched_name": "AJUNTAMENT DE SABADELL",
+    "matched_key": "AJUNTAMENT DE SABADELL",
+    "source": "exact"
+  },
+  "ALCO SUBMINISTRES PER A LABORATORI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCZpQAP/view",
+    "score": 100,
+    "matched_name": "ALCO SUBMINISTRES PER A LABORATORI SA",
+    "matched_key": "ALCO SUBMINISTRES PER A LABORATORI",
+    "source": "exact"
+  },
+  "ALIMENTACION Y NUTRICION FAMILIAR SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOddQAF/view",
+    "score": 100,
+    "matched_name": "ALIMENTACION Y NUTRICION FAMILIAR SL",
+    "matched_key": "ALIMENTACION Y NUTRICION FAMILIAR",
+    "source": "fuzzy"
+  },
+  "ALLERGY THERAPEUTICS IBERICA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCxjQAH/view",
+    "score": 100,
+    "matched_name": "ALLERGY THERAPEUTICS IBERICA SLU",
+    "matched_key": "ALLERGY THERAPEUTICS IBERICA SLU",
+    "source": "exact"
+  },
+  "ALMIRALL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYJBQA3/view",
+    "score": 100,
+    "matched_name": "ALMIRALL SA",
+    "matched_key": "ALMIRALL",
+    "source": "exact"
+  },
+  "ALTER FARMACIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh18EQAR/view",
+    "score": 100,
+    "matched_name": "ALTER FARMACIA SA",
+    "matched_key": "ALTER FARMACIA",
+    "source": "exact"
+  },
+  "ANDROS GRANADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000002RIxWIAW/view",
+    "score": 100,
+    "matched_name": "ANDROS GRANADA SL.",
+    "matched_key": "ANDROS GRANADA",
+    "source": "exact"
+  },
+  "ANFACO CYTMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDB7QAP/view",
+    "score": 100,
+    "matched_name": "ANFACO-CYTMA.",
+    "matched_key": "ANFACO CYTMA",
+    "source": "exact"
+  },
+  "ANGULAS AGUINAGA S A U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPpXQAV/view",
+    "score": 100,
+    "matched_name": "ANGULAS AGUINAGA, S.A.U.",
+    "matched_key": "ANGULAS AGUINAGA S A U",
+    "source": "exact"
+  },
+  "ANTONIO N NOBREGA II": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000000ep2GIAQ/view",
+    "score": 100,
+    "matched_name": "ANTÓNIO N.NÓBREGA, S.A.",
+    "matched_key": "ANTONIO N NOBREGA",
+    "source": "fuzzy"
+  },
+  "APARATOS NORMALIZADOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYK4QAN/view",
+    "score": 100,
+    "matched_name": "APARATOS NORMALIZADOS SA",
+    "matched_key": "APARATOS NORMALIZADOS",
+    "source": "exact"
+  },
+  "AQUAMBIENTE SERVICIOS SECTOR AGUA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQC7NQAX/view",
+    "score": 100,
+    "matched_name": "AQUAMBIENTE SERVICIOS SECTOR AGUA, SAU",
+    "matched_key": "AQUAMBIENTE SERVICIOS SECTOR AGUA SAU",
+    "source": "exact"
+  },
+  "ARAFARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh162QAB/view",
+    "score": 100,
+    "matched_name": "ARAFARMA GROUP, SA",
+    "matched_key": "ARAFARMA",
+    "source": "exact"
+  },
+  "ARCELORMITTAL INNOVACION INVESTIGACION E INVERSION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008OjjJQAS/view",
+    "score": 100,
+    "matched_name": "ARCELORMITTAL INNOVACIÓN, INVESTIGACIÓN E INVERSIÓN S.L.",
+    "matched_key": "ARCELORMITTAL INNOVACION INVESTIGACION E INVERSION",
+    "source": "exact"
+  },
+  "ARCHROMA IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0zoQAB/view",
+    "score": 100,
+    "matched_name": "ARCHROMA IBERICA SL",
+    "matched_key": "ARCHROMA IBERICA",
+    "source": "exact"
+  },
+  "ARDENA PAMPLONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD8rQAH/view",
+    "score": 100,
+    "matched_name": "ARDENA PAMPLONA, S.L.",
+    "matched_key": "ARDENA PAMPLONA",
+    "source": "exact"
+  },
+  "AREA METROPOLITANA DE BARCELONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCjJQAX/view",
+    "score": 100,
+    "matched_name": "AREA METROPOLITANA DE BARCELONA",
+    "matched_key": "AREA METROPOLITANA DE BARCELONA",
+    "source": "exact"
+  },
+  "ARGONVIA SERVICOS DE ENGENHARIA LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ic5hKQAR/view",
+    "score": 100,
+    "matched_name": "ARGONVIA - SERVIÇOS DE ENGENHARIA, LDA",
+    "matched_key": "ARGONVIA SERVICOS DE ENGENHARIA LDA",
+    "source": "exact"
+  },
+  "ARNO INFRAESTRUCTURAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000H010qIAB/view",
+    "score": 100,
+    "matched_name": "ARNO INFRAESTRUCTURAS SL.",
+    "matched_key": "ARNO INFRAESTRUCTURAS",
+    "source": "exact"
+  },
+  "ARPIVAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1DWQAZ/view",
+    "score": 100,
+    "matched_name": "ARPIVAL SA",
+    "matched_key": "ARPIVAL",
+    "source": "exact"
+  },
+  "ASCENZA AGRO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbV79QAF/view",
+    "score": 100,
+    "matched_name": "ASCENZA AGRO, S.A.",
+    "matched_key": "ASCENZA AGRO",
+    "source": "exact"
+  },
+  "ASOC INVEST INDUSTRIAS DE LA CARNE DEL PRINCIPADO DE ASTURIAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IaxSLQAZ/view",
+    "score": 100,
+    "matched_name": "ASOC. INVEST.  INDUSTRIAS DE LA CARNE DEL PRINCIPADO DE ASTURIAS",
+    "matched_key": "ASOC INVEST INDUSTRIAS DE LA CARNE DEL PRINCIPADO DE ASTURIAS",
+    "source": "exact"
+  },
+  "ASOCIACION DE LA INDUSTRIA NAVARRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PNgUOQA1/view",
+    "score": 100,
+    "matched_name": "ASOCIACION DE LA INDUSTRIA NAVARRA",
+    "matched_key": "ASOCIACION DE LA INDUSTRIA NAVARRA",
+    "source": "exact"
+  },
+  "ASOCIACION EMPRESARIAL DE INVESTIGACION CENTRO TECNOLOGICO DEL CALZADO DE LA REGION DE MURCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPpNQAV/view",
+    "score": 100,
+    "matched_name": "ASOCIACION EMPRESARIAL DE INVESTIGACION CENTRO TECNOLOGICO DEL CALZADO DE LA REGION DE MURCIA",
+    "matched_key": "ASOCIACION EMPRESARIAL DE INVESTIGACION CENTRO TECNOLOGICO DEL CALZADO DE LA REGION DE MURCIA",
+    "source": "exact"
+  },
+  "ASOCIACION EMPRESARIAL DE INVESTIGACION CENTRO TECNOLOGICO NACIONAL DE LA CONSERVA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000FmlOFQAZ/view",
+    "score": 100,
+    "matched_name": "ASOCIACION EMPRESARIAL DE INVESTIGACION CENTRO TECNOLOGICO NACIONAL DE LA CONSERVA",
+    "matched_key": "ASOCIACION EMPRESARIAL DE INVESTIGACION CENTRO TECNOLOGICO NACIONAL DE LA CONSERVA",
+    "source": "exact"
+  },
+  "ASOCIACION PROF PRODUCTORES SUSTRATOS Y HONGOS LA RIOJA NAVARRA Y ARAGON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009k7KyQAI/view",
+    "score": 100,
+    "matched_name": "ASOCIACIÓN  PROF. PRODUCTORES SUSTRATOS Y HONGOS LA RIOJA, NAVARRA Y ARAGÓN",
+    "matched_key": "ASOCIACION PROF PRODUCTORES SUSTRATOS Y HONGOS LA RIOJA NAVARRA Y ARAGON",
+    "source": "exact"
+  },
+  "ASOCIACION CENTRO DE INVESTIGACION COOP EN BIOCIENCIAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDO1QAP/view",
+    "score": 100,
+    "matched_name": "ASOCIACIÓN CENTRO DE INVESTIGACIÓN COOP EN BIOCIENCIAS",
+    "matched_key": "ASOCIACION CENTRO DE INVESTIGACION COOP EN BIOCIENCIAS",
+    "source": "exact"
+  },
+  "ASOCIACION INVESTIGACION IND TEXTIL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCOaQAP/view",
+    "score": 93,
+    "matched_name": "ASOCIACION DE INVESTIGACION DE LA INDUSTRIA TEXTIL \"AITEX\"",
+    "matched_key": "ASOCIACION DE INVESTIGACION DE LA INDUSTRIA TEXTIL AITEX",
+    "source": "fuzzy"
+  },
+  "ASPARIA GLYCOMICS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IcA5AQAV/view",
+    "score": 100,
+    "matched_name": "ASPARÍA GLYCOMICS",
+    "matched_key": "ASPARIA GLYCOMICS",
+    "source": "exact"
+  },
+  "ASSOCIACIO INTERPROF LLETER DE CATALUNYA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008NfYHQA0/view",
+    "score": 98,
+    "matched_name": "ASSOCIACIO INTERPROF.  LLETERA DE CATALUNYA",
+    "matched_key": "ASSOCIACIO INTERPROF LLETERA DE CATALUNYA",
+    "source": "fuzzy"
+  },
+  "AXENCIA GALEGA DA CALIDADE ALIMENTARIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000cu2qbQAA/view",
+    "score": 100,
+    "matched_name": "AXENCIA GALEGA DA CALIDADE ALIMENTARIA",
+    "matched_key": "AXENCIA GALEGA DA CALIDADE ALIMENTARIA",
+    "source": "exact"
+  },
+  "BARNA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD7fQAH/view",
+    "score": 100,
+    "matched_name": "BARNA SA",
+    "matched_key": "BARNA",
+    "source": "exact"
+  },
+  "BASF ESPANOLA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDF3QAP/view",
+    "score": 100,
+    "matched_name": "BASF ESPAÑOLA, SL",
+    "matched_key": "BASF ESPANOLA",
+    "source": "exact"
+  },
+  "BASQUEVOLT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLzbaQAD/view",
+    "score": 100,
+    "matched_name": "BASQUEVOLT, S.A.",
+    "matched_key": "BASQUEVOLT",
+    "source": "exact"
+  },
+  "BAYER HISPANIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh11DQAR/view",
+    "score": 100,
+    "matched_name": "BAYER HISPANIA SL",
+    "matched_key": "BAYER HISPANIA",
+    "source": "exact"
+  },
+  "BCN PEPTIDES SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYJaQAN/view",
+    "score": 100,
+    "matched_name": "BCN PEPTIDES, SAU",
+    "matched_key": "BCN PEPTIDES SAU",
+    "source": "exact"
+  },
+  "BEAUTYGE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0uvQAB/view",
+    "score": 100,
+    "matched_name": "BEAUTYGE S.L.",
+    "matched_key": "BEAUTYGE",
+    "source": "exact"
+  },
+  "BEVZERO SERVICES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Wym4gQAB/view",
+    "score": 100,
+    "matched_name": "BEVZERO SERVICES SL.",
+    "matched_key": "BEVZERO SERVICES",
+    "source": "exact"
+  },
+  "BIODIESEL BILBAO SOCIEDAD LIMITADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPVUQA3/view",
+    "score": 100,
+    "matched_name": "BIODIESEL BILBAO SOCIEDAD LIMITADA",
+    "matched_key": "BIODIESEL BILBAO SOCIEDAD LIMITADA",
+    "source": "exact"
+  },
+  "BIOETANOL GALICIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPooQAF/view",
+    "score": 100,
+    "matched_name": "BIOETANOL GALICIA SA",
+    "matched_key": "BIOETANOL GALICIA",
+    "source": "exact"
+  },
+  "BIOHORM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10pQAB/view",
+    "score": 100,
+    "matched_name": "BIOHORM, S.L.",
+    "matched_key": "BIOHORM",
+    "source": "exact"
+  },
+  "BIOIBERICA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCdBQAX/view",
+    "score": 100,
+    "matched_name": "BIOIBERICA SAU",
+    "matched_key": "BIOIBERICA SAU",
+    "source": "exact"
+  },
+  "BIOINICIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoTASQA3/view",
+    "score": 100,
+    "matched_name": "BIOINICIA SL.",
+    "matched_key": "BIOINICIA",
+    "source": "exact"
+  },
+  "BIOPOLIS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPVTQA3/view",
+    "score": 100,
+    "matched_name": "BIOPOLIS SL.",
+    "matched_key": "BIOPOLIS",
+    "source": "exact"
+  },
+  "BIOSIGMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDGaQAP/view",
+    "score": 100,
+    "matched_name": "BIOSIGMA SL",
+    "matched_key": "BIOSIGMA",
+    "source": "exact"
+  },
+  "BRESFOR INDUSTRIA DO FORMOL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ib9LcQAJ/view",
+    "score": 100,
+    "matched_name": "BRESFOR - INDÚSTRIA DO FORMOL, S.A.",
+    "matched_key": "BRESFOR INDUSTRIA DO FORMOL",
+    "source": "exact"
+  },
+  "BRILEN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000004UclbIAC/view",
+    "score": 100,
+    "matched_name": "BRILEN SA",
+    "matched_key": "BRILEN",
+    "source": "exact"
+  },
+  "BUDENHEIM IBERICA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SmKS0QAN/view",
+    "score": 100,
+    "matched_name": "BUDENHEIM IBERICA, SLU",
+    "matched_key": "BUDENHEIM IBERICA SLU",
+    "source": "exact"
+  },
+  "BUNGE IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYKsQAN/view",
+    "score": 100,
+    "matched_name": "BUNGE IBÉRICA, S.A.",
+    "matched_key": "BUNGE IBERICA",
+    "source": "exact"
+  },
+  "C VIRAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWBwQAN/view",
+    "score": 100,
+    "matched_name": "C VIRAL SL",
+    "matched_key": "C VIRAL",
+    "source": "exact"
+  },
+  "C T I C CENTRO TECNOLOGICO DAS INDUSTRIAS DO COURO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbgxVQAR/view",
+    "score": 100,
+    "matched_name": "C.T.I.C. - CENTRO TECNOLÓGICO DAS INDÚSTRIAS DO COURO",
+    "matched_key": "C T I C CENTRO TECNOLOGICO DAS INDUSTRIAS DO COURO",
+    "source": "exact"
+  },
+  "CAIXABANK EQUIPMENT FINANCE S A U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000D1l5GQAR/view",
+    "score": 100,
+    "matched_name": "CAIXABANK EQUIPMENT FINANCE, S.A.U.",
+    "matched_key": "CAIXABANK EQUIPMENT FINANCE S A U",
+    "source": "exact"
+  },
+  "CALIBRE SCIENTIFIC SPAIN S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IaunTQAR/view",
+    "score": 100,
+    "matched_name": "CALIBRE SCIENTIFIC SPAIN, S.L.U.",
+    "matched_key": "CALIBRE SCIENTIFIC SPAIN S L U",
+    "source": "exact"
+  },
+  "CALITEC LAB S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCLOQA5/view",
+    "score": 100,
+    "matched_name": "CALITEC LAB, S.L.U.",
+    "matched_key": "CALITEC LAB S L U",
+    "source": "exact"
+  },
+  "CAMPARI ESPANA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0ywQAB/view",
+    "score": 100,
+    "matched_name": "CAMPARI ESPAÑA, SL",
+    "matched_key": "CAMPARI ESPANA",
+    "source": "exact"
+  },
+  "CANALIFE": {
+    "status": "NO_MATCH",
+    "url": null,
+    "score": 70,
+    "matched_name": "ANAGALIDE SA",
+    "matched_key": "ANAGALIDE",
+    "source": "below_threshold"
+  },
+  "CASLAB PRODUCTOS PARA LABORATORIO SOCIEDAD LIMITADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoODEQA3/view",
+    "score": 100,
+    "matched_name": "CASLAB PRODUCTOS PARA LABORATORIO SOCIEDAD LIMITADA.",
+    "matched_key": "CASLAB PRODUCTOS PARA LABORATORIO SOCIEDAD LIMITADA",
+    "source": "exact"
+  },
+  "CATALANA DE TRACTAMENT D OLIS RESIDUALS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000ct9O5QAI/view",
+    "score": 100,
+    "matched_name": "CATALANA DE TRACTAMENT D'OLIS RESIDUALS SA",
+    "matched_key": "CATALANA DE TRACTAMENT D OLIS RESIDUALS",
+    "source": "exact"
+  },
+  "CELTA INGENIEROS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPY3QAN/view",
+    "score": 100,
+    "matched_name": "CELTA INGENIEROS SL",
+    "matched_key": "CELTA INGENIEROS",
+    "source": "exact"
+  },
+  "CENTRE ESTUDIS CONSTRUCCIO I ANAL MAT SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000D2UmhQAF/view",
+    "score": 100,
+    "matched_name": "CENTRE ESTUDIS CONSTRUCCIÓ I ANAL. MAT. , SLU",
+    "matched_key": "CENTRE ESTUDIS CONSTRUCCIO I ANAL MAT SLU",
+    "source": "exact"
+  },
+  "CENTRO INTEGRADO AGROFORESTAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000004Y48gIAC/view",
+    "score": 100,
+    "matched_name": "CENTRO  INTEGRADO AGROFORESTAL",
+    "matched_key": "CENTRO INTEGRADO AGROFORESTAL",
+    "source": "exact"
+  },
+  "CENTRO DE ESTUDIOS Y EXPERIMENTACION DE OBRAS PUBLICAS CEE OP MINISTERIO DE OBRAS PUBLICAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoEghQAF/view",
+    "score": 100,
+    "matched_name": "CENTRO DE ESTUDIOS Y EXPERIMENTACION DE OBRAS PUBLICAS CEE OP-MINISTERIO DE OBRAS PUBLICAS",
+    "matched_key": "CENTRO DE ESTUDIOS Y EXPERIMENTACION DE OBRAS PUBLICAS CEE OP MINISTERIO DE OBRAS PUBLICAS",
+    "source": "exact"
+  },
+  "CENTRO DE INVESTIGACIONES CIENTIFICAS Y TECNOLOGICAS DE EXTREMADURA CICYTEX": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCRPQA5/view",
+    "score": 100,
+    "matched_name": "CENTRO DE INVESTIGACIONES CIENTIFICAS Y TECNOLOGICAS DE EXTREMADURA CICYTEX",
+    "matched_key": "CENTRO DE INVESTIGACIONES CIENTIFICAS Y TECNOLOGICAS DE EXTREMADURA CICYTEX",
+    "source": "exact"
+  },
+  "CENTRO INV ENERGETICAS MEDIOAMBIENTALES Y TECNOLOGICAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SjoxiQAB/view",
+    "score": 96,
+    "matched_name": "CENTRO DE INVESTIGACIONES ENERGETICAS MEDIOAMBIENTALES Y TECNOLOGICAS",
+    "matched_key": "CENTRO DE INVESTIGACIONES ENERGETICAS MEDIOAMBIENTALES Y TECNOLOGICAS",
+    "source": "fuzzy"
+  },
+  "CENTRO NACIONAL DE TECNOLOGIA Y SEGURIDAD ALIMENTARIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD9GQAX/view",
+    "score": 100,
+    "matched_name": "CENTRO NACIONAL DE TECNOLOGIA Y SEGURIDAD ALIMENTARIA",
+    "matched_key": "CENTRO NACIONAL DE TECNOLOGIA Y SEGURIDAD ALIMENTARIA",
+    "source": "exact"
+  },
+  "CERTEST BIOTEC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Z9TtcQAF/view",
+    "score": 100,
+    "matched_name": "Certest Biotec, SL",
+    "matched_key": "CERTEST BIOTEC",
+    "source": "exact"
+  },
+  "CHEMICALNOR CONSUMIVEIS E EQUIPAMENTO DE LABORATORIO LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PKTKCQA5/view",
+    "score": 100,
+    "matched_name": "CHEMICALNOR - CONSUMÍVEIS E EQUIPAMENTO DE LABORATÓRIO, LDA",
+    "matched_key": "CHEMICALNOR CONSUMIVEIS E EQUIPAMENTO DE LABORATORIO LDA",
+    "source": "exact"
+  },
+  "CIENYTECH SOLUCIONES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCNhQAP/view",
+    "score": 100,
+    "matched_name": "CIENYTECH SOLUCIONES SL.",
+    "matched_key": "CIENYTECH SOLUCIONES",
+    "source": "exact"
+  },
+  "CIFP DON BOSCO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Bb1KxQAJ/view",
+    "score": 100,
+    "matched_name": "CIFP DON BOSCO",
+    "matched_key": "CIFP DON BOSCO",
+    "source": "exact"
+  },
+  "CIFP MANUEL ANTONIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003cHzYGQA0/view",
+    "score": 100,
+    "matched_name": "CIFP Manuel Antonio",
+    "matched_key": "CIFP MANUEL ANTONIO",
+    "source": "exact"
+  },
+  "CIFRA CROCANTE RESTAURACAO LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LOxOxQAL/view",
+    "score": 100,
+    "matched_name": "CIFRA CROCANTE - RESTAURAÇÃO, LDA",
+    "matched_key": "CIFRA CROCANTE RESTAURACAO LDA",
+    "source": "exact"
+  },
+  "CLINICAL NUTRITION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCRZQA5/view",
+    "score": 100,
+    "matched_name": "CLINICAL NUTRITION SA",
+    "matched_key": "CLINICAL NUTRITION",
+    "source": "exact"
+  },
+  "COCTELAND": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PKAJ3QAP/view",
+    "score": 100,
+    "matched_name": "COCTELAND SL.",
+    "matched_key": "COCTELAND",
+    "source": "exact"
+  },
+  "COFAC COOPERATIVA DE FORMACAO E ANIMACAO CULTURAL C R L": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000ctAbmQAE/view",
+    "score": 100,
+    "matched_name": "COFAC - COOPERATIVA DE FORMAÇÃO E ANIMAÇÃO CULTURAL, C.R.L.",
+    "matched_key": "COFAC COOPERATIVA DE FORMACAO E ANIMACAO CULTURAL C R L",
+    "source": "exact"
+  },
+  "COL OFICIAL FARMACEUTICOS PROVINCIA ALICANTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCOuQAP/view",
+    "score": 100,
+    "matched_name": "COL. OFICIAL FARMACEUTICOS PROVINCIA ALICANTE",
+    "matched_key": "COL OFICIAL FARMACEUTICOS PROVINCIA ALICANTE",
+    "source": "exact"
+  },
+  "COMERCIAL MEDICA Y DE LABORATORIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYXqQAN/view",
+    "score": 100,
+    "matched_name": "COMERCIAL MEDICA Y DE LABORATORIO SL",
+    "matched_key": "COMERCIAL MEDICA Y DE LABORATORIO",
+    "source": "exact"
+  },
+  "COMERCIAL TECNOQUIMICA ENMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpFtQAI/view",
+    "score": 100,
+    "matched_name": "COMERCIAL TECNOQUÍMICA ENMA, S.L.",
+    "matched_key": "COMERCIAL TECNOQUIMICA ENMA",
+    "source": "exact"
+  },
+  "COMPLEMENTOS DE PIENSOS COMPUESTOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JFQAZ/view",
+    "score": 100,
+    "matched_name": "COMPLEMENTOS DE PIENSOS COMPUESTOS, SA",
+    "matched_key": "COMPLEMENTOS DE PIENSOS COMPUESTOS",
+    "source": "exact"
+  },
+  "COMPO EXPERT SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003cH81JQAS/view",
+    "score": 100,
+    "matched_name": "COMPO EXPERT SPAIN SL",
+    "matched_key": "COMPO EXPERT SPAIN",
+    "source": "exact"
+  },
+  "CONDORCHEM ENVITECH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10vQAB/view",
+    "score": 100,
+    "matched_name": "CONDORCHEM ENVITECH SL.",
+    "matched_key": "CONDORCHEM ENVITECH",
+    "source": "exact"
+  },
+  "CONSEJO SUP INV CIENTIFICAS CSIC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYPiQAN/view",
+    "score": 100,
+    "matched_name": "CONSEJO SUP. INV. CIENTÍFICAS -CSIC",
+    "matched_key": "CONSEJO SUP INV CIENTIFICAS CSIC",
+    "source": "exact"
+  },
+  "CONSORCI BESOS TORDERA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYIDQA3/view",
+    "score": 100,
+    "matched_name": "CONSORCI BESÒS TORDERA",
+    "matched_key": "CONSORCI BESOS TORDERA",
+    "source": "exact"
+  },
+  "CONSORCIO CENTRO INVEST BIOMEDICA EN RED CIBER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpG0QAI/view",
+    "score": 100,
+    "matched_name": "CONSORCIO CENTRO INVEST.  BIOMÉDICA EN RED (CIBER)",
+    "matched_key": "CONSORCIO CENTRO INVEST BIOMEDICA EN RED CIBER",
+    "source": "exact"
+  },
+  "CONSA MEDIO AMBIENTE VIVIENDA Y AGRICULTURA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1EoQAJ/view",
+    "score": 100,
+    "matched_name": "CONSª MEDIO AMBIENTE, VIVIENDA Y AGRICULTURA",
+    "matched_key": "CONSA MEDIO AMBIENTE VIVIENDA Y AGRICULTURA",
+    "source": "exact"
+  },
+  "COPAM COMPANHIA PORTUGUESA DE AMIDOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0017S00000IbUw9QAF/view",
+    "score": 100,
+    "matched_name": "COPAM - COMPANHIA PORTUGUESA DE AMIDOS, S.A.",
+    "matched_key": "COPAM COMPANHIA PORTUGUESA DE AMIDOS",
+    "source": "exact"
+  },
+  "COPRIMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCsQAN/view",
+    "score": 100,
+    "matched_name": "COPRIMA, SL",
+    "matched_key": "COPRIMA",
+    "source": "exact"
+  },
+  "CORPORACION ALIMENTARIA GUISSONA SOCIEDAD ANONIMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BbxqfQAB/view",
+    "score": 100,
+    "matched_name": "CORPORACION ALIMENTARIA GUISSONA, SOCIEDAD ANONIMA",
+    "matched_key": "CORPORACION ALIMENTARIA GUISSONA SOCIEDAD ANONIMA",
+    "source": "exact"
+  },
+  "COSMOS AROMATICA INTERNACIONAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000AMmMXQA1/view",
+    "score": 100,
+    "matched_name": "COSMOS AROMATICA INTERNACIONAL SA",
+    "matched_key": "COSMOS AROMATICA INTERNACIONAL",
+    "source": "exact"
+  },
+  "CRODA IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1D4QAJ/view",
+    "score": 88,
+    "matched_name": "CROP IBERICA SA",
+    "matched_key": "CROP IBERICA",
+    "source": "fuzzy"
+  },
+  "CURIA SPAIN SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD84QAH/view",
+    "score": 100,
+    "matched_name": "CURIA SPAIN, SAU",
+    "matched_key": "CURIA SPAIN SAU",
+    "source": "exact"
+  },
+  "CITRICOS Y REFRESCANTES SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQNAQA3/view",
+    "score": 100,
+    "matched_name": "CÍTRICOS Y REFRESCANTES, SAU",
+    "matched_key": "CITRICOS Y REFRESCANTES SAU",
+    "source": "exact"
+  },
+  "DALLANT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWC4QAN/view",
+    "score": 100,
+    "matched_name": "DALLANT SA",
+    "matched_key": "DALLANT",
+    "source": "exact"
+  },
+  "DASAN CIENTIFICA SOCIEDAD LIMITADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PKTwUQAX/view",
+    "score": 100,
+    "matched_name": "DASAN CIENTIFICA, SOCIEDAD LIMITADA.",
+    "matched_key": "DASAN CIENTIFICA SOCIEDAD LIMITADA",
+    "source": "exact"
+  },
+  "DAWN FOODS PORTUGAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000004QGDJIA4/view",
+    "score": 100,
+    "matched_name": "DAWN FOODS PORTUGAL, S.A.",
+    "matched_key": "DAWN FOODS PORTUGAL",
+    "source": "exact"
+  },
+  "DCOOP S C AND": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000SsspdQAB/view",
+    "score": 100,
+    "matched_name": "DCOOP S.C. AND",
+    "matched_key": "DCOOP S C AND",
+    "source": "exact"
+  },
+  "DDBIOLAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SjQkKQAV/view",
+    "score": 100,
+    "matched_name": "DDBIOLAB, S.L.",
+    "matched_key": "DDBIOLAB",
+    "source": "exact"
+  },
+  "DE HEUS NUTRICION ANIMAL SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYY0QAN/view",
+    "score": 100,
+    "matched_name": "DE HEUS NUTRICION ANIMAL SAU",
+    "matched_key": "DE HEUS NUTRICION ANIMAL SAU",
+    "source": "exact"
+  },
+  "DEPURACIO I TECNOLOGIA DE L AIGUA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCizQAH/view",
+    "score": 100,
+    "matched_name": "DEPURACIO I TECNOLOGIA DE L'AIGUA SL",
+    "matched_key": "DEPURACIO I TECNOLOGIA DE L AIGUA",
+    "source": "exact"
+  },
+  "DEPURADORES D OSONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhY4iQAF/view",
+    "score": 100,
+    "matched_name": "DEPURADORES D'OSONA SL",
+    "matched_key": "DEPURADORES D OSONA",
+    "source": "exact"
+  },
+  "DERIVADOS DEL FLUOR S A U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoEVfQAN/view",
+    "score": 86,
+    "matched_name": "DERIVADOS DEL FLUOR SOCIEDAD ANONIMA",
+    "matched_key": "DERIVADOS DEL FLUOR SOCIEDAD ANONIMA",
+    "source": "fuzzy"
+  },
+  "DESTILERIAS MUNOZ GALVEZ": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1IuQAJ/view",
+    "score": 100,
+    "matched_name": "DESTILERIAS MUÑOZ GALVEZ SA",
+    "matched_key": "DESTILERIAS MUNOZ GALVEZ",
+    "source": "exact"
+  },
+  "DIAGNOSTIC GRIFOLS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0v0QAB/view",
+    "score": 100,
+    "matched_name": "DIAGNOSTIC GRIFOLS SA",
+    "matched_key": "DIAGNOSTIC GRIFOLS",
+    "source": "exact"
+  },
+  "DIBAQ DIPROTEG": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1K7QAJ/view",
+    "score": 100,
+    "matched_name": "DIBAQ DIPROTEG SA",
+    "matched_key": "DIBAQ DIPROTEG",
+    "source": "exact"
+  },
+  "DIPUTACION DE PONTEVEDRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000WzDFjQAN/view",
+    "score": 100,
+    "matched_name": "DIPUTACION PROVINCIAL DE PONTEVEDRA",
+    "matched_key": "DIPUTACION PROVINCIAL DE PONTEVEDRA",
+    "source": "fuzzy"
+  },
+  "DIPUTACION PROVINCIAL DE TOLEDO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NCQAZ/view",
+    "score": 100,
+    "matched_name": "DIPUTACION PROVINCIAL DE TOLEDO",
+    "matched_key": "DIPUTACION PROVINCIAL DE TOLEDO",
+    "source": "exact"
+  },
+  "DIRECCION GENERAL DE POLITICA COMERCIAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000gxM59QAE/view",
+    "score": 100,
+    "matched_name": "DIRECCION GENERAL DE POLITICA COMERCIAL",
+    "matched_key": "DIRECCION GENERAL DE POLITICA COMERCIAL",
+    "source": "exact"
+  },
+  "DISTRIBUCIONES INDUSTRIALES Y CIENTIFICAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCPZQA5/view",
+    "score": 100,
+    "matched_name": "DISTRIBUCIONES INDUSTRIALES Y CIENTIFICAS SL",
+    "matched_key": "DISTRIBUCIONES INDUSTRIALES Y CIENTIFICAS",
+    "source": "exact"
+  },
+  "DIVASA FARMAVIC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBouQAH/view",
+    "score": 100,
+    "matched_name": "DIVASA FARMAVIC SA",
+    "matched_key": "DIVASA FARMAVIC",
+    "source": "exact"
+  },
+  "DOW CHEMICAL IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoTYfQAN/view",
+    "score": 100,
+    "matched_name": "DOW CHEMICAL IBERICA SL",
+    "matched_key": "DOW CHEMICAL IBERICA",
+    "source": "exact"
+  },
+  "DROGALLEGA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoTCrQAN/view",
+    "score": 100,
+    "matched_name": "DROGALLEGA SL",
+    "matched_key": "DROGALLEGA",
+    "source": "exact"
+  },
+  "DUKE CHEM SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10mQAB/view",
+    "score": 100,
+    "matched_name": "DUKE CHEM SA",
+    "matched_key": "DUKE CHEM",
+    "source": "fuzzy"
+  },
+  "DUKES ROAD": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000PKHcfIAH/view",
+    "score": 100,
+    "matched_name": "DUKES ROAD S.L.U.",
+    "matched_key": "DUKES ROAD S L U",
+    "source": "fuzzy"
+  },
+  "E R T EQUIPAMENTOS E REPARACOES TECNICAS LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LSiAAQA1/view",
+    "score": 100,
+    "matched_name": "E.R.T.-EQUIPAMENTOS E REPARAÇÕES TÉCNICAS, LDA",
+    "matched_key": "E R T EQUIPAMENTOS E REPARACOES TECNICAS LDA",
+    "source": "exact"
+  },
+  "ECOLLAGENA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000KN9K4IAL/view",
+    "score": 100,
+    "matched_name": "ECOLLAGENA S.L.",
+    "matched_key": "ECOLLAGENA",
+    "source": "exact"
+  },
+  "ECOLOGICA IBERICA Y MEDITERRANEA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCTfQAP/view",
+    "score": 100,
+    "matched_name": "ECOLOGICA IBERICA Y MEDITERRANEA SA",
+    "matched_key": "ECOLOGICA IBERICA Y MEDITERRANEA",
+    "source": "exact"
+  },
+  "ECONOCOM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh18eQAB/view",
+    "score": 100,
+    "matched_name": "ECONOCOM SA",
+    "matched_key": "ECONOCOM",
+    "source": "exact"
+  },
+  "EDUARDO RODRIGUEZ GUTIEZ": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000001WXGSIA4/view",
+    "score": 100,
+    "matched_name": "EDUARDO RODRÍGUEZ GUTIEZ",
+    "matched_key": "EDUARDO RODRIGUEZ GUTIEZ",
+    "source": "exact"
+  },
+  "ELAN SERVICIOS Y APARATOS PARA LABORATORIOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KNQAZ/view",
+    "score": 100,
+    "matched_name": "ELAN S.L.",
+    "matched_key": "ELAN",
+    "source": "fuzzy"
+  },
+  "EMPRESA METROPOLITANA DE ABASTECIMIENTO Y SANEAMIENTO DE AGUAS DE SEVILLA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQEGQA3/view",
+    "score": 100,
+    "matched_name": "EMPRESA METROPOLITANA DE ABASTECIMIENTO Y SANEAMIENTO DE AGUAS DE SEVILLA SA",
+    "matched_key": "EMPRESA METROPOLITANA DE ABASTECIMIENTO Y SANEAMIENTO DE AGUAS DE SEVILLA",
+    "source": "exact"
+  },
+  "EMPRESA MUNICIPAL D AIGUES I CLAVEGUERAM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Kq9tkQAB/view",
+    "score": 100,
+    "matched_name": "EMPRESA MUNICIPAL D'AIGÚES I CLAVEGUERAM, S.A.",
+    "matched_key": "EMPRESA MUNICIPAL D AIGUES I CLAVEGUERAM",
+    "source": "exact"
+  },
+  "EMPRESA MUNICIPAL MIXTA D AIGUES TARRAGONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KiQAJ/view",
+    "score": 100,
+    "matched_name": "EMPRESA MUNICIPAL MIXTA D'AIGÜES TARRAGONA, S.A.",
+    "matched_key": "EMPRESA MUNICIPAL MIXTA D AIGUES TARRAGONA",
+    "source": "exact"
+  },
+  "EMPRESA PROVINCIAL DE AGUAS COSTA BLANCA PROAGUAS COSTABLANCA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCOzQAP/view",
+    "score": 100,
+    "matched_name": "EMPRESA PROVINCIAL DE AGUAS COSTA BLANCA PROAGUAS COSTABLANCA SA",
+    "matched_key": "EMPRESA PROVINCIAL DE AGUAS COSTA BLANCA PROAGUAS COSTABLANCA",
+    "source": "exact"
+  },
+  "ENANTIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCYVQA5/view",
+    "score": 100,
+    "matched_name": "ENANTIA SL",
+    "matched_key": "ENANTIA",
+    "source": "exact"
+  },
+  "ENARTIS SEPSA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh14tQAB/view",
+    "score": 100,
+    "matched_name": "ENARTIS SEPSA SAU",
+    "matched_key": "ENARTIS SEPSA SAU",
+    "source": "exact"
+  },
+  "ENTA ESCOLA DE NOVAS TECNOLOGIAS DOS ACORES ASSOCIACAO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000crajnQAA/view",
+    "score": 100,
+    "matched_name": "ENTA - ESCOLA DE NOVAS TECNOLOGIAS DOS AÇORES - ASSOCIAÇÃO",
+    "matched_key": "ENTA ESCOLA DE NOVAS TECNOLOGIAS DOS ACORES ASSOCIACAO",
+    "source": "exact"
+  },
+  "ERCROS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003MbUMTQA3/view",
+    "score": 100,
+    "matched_name": "ERCROS - ARAGONESAS DELSA, S.A. - Aragonesas Delsa, SA - Frabrica de Almussafes",
+    "matched_key": "ERCROS ARAGONESAS DELSA S A ARAGONESAS DELSA SA FRABRICA DE ALMUSSAFES",
+    "source": "fuzzy"
+  },
+  "ESPANOLA DE I D": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhZirQAF/view",
+    "score": 100,
+    "matched_name": "ESPAÑOLA DE I+D S.A.",
+    "matched_key": "ESPANOLA DE I D",
+    "source": "exact"
+  },
+  "ESPECIALIDADES FARMACEUTICAS CENTRUM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQC6oQAH/view",
+    "score": 100,
+    "matched_name": "ESPECIALIDADES FARMACEUTICAS CENTRUM SA",
+    "matched_key": "ESPECIALIDADES FARMACEUTICAS CENTRUM",
+    "source": "exact"
+  },
+  "ESTEVE QUIMICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCTkQAP/view",
+    "score": 100,
+    "matched_name": "ESTEVE QUIMICA SA",
+    "matched_key": "ESTEVE QUIMICA",
+    "source": "exact"
+  },
+  "EUROFINS ANALISIS ALIMENTARIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000CLiToIAL/view",
+    "score": 100,
+    "matched_name": "EUROFINS ANALISIS ALIMENTARIO NORDESTE S.L. - EUROFINS -",
+    "matched_key": "EUROFINS ANALISIS ALIMENTARIO NORDESTE S L EUROFINS",
+    "source": "fuzzy"
+  },
+  "EUROFINS BIOPHARMA PROD TESTING SPAIN SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000007GPkoIAG/view",
+    "score": 96,
+    "matched_name": "Eurofins BioPharma Product Testing Spain S.L.U.",
+    "matched_key": "EUROFINSBIOPHARMAPRODUCTTESTINGSPAINSLU",
+    "source": "fuzzy"
+  },
+  "EUROFINS ECOSUR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCZ3QAP/view",
+    "score": 100,
+    "matched_name": "EUROFINS ECOSUR, S.A. - EUROFINS -",
+    "matched_key": "EUROFINS ECOSUR S A EUROFINS",
+    "source": "fuzzy"
+  },
+  "EUROFINS VILLAPHARMA RESEARCH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003YT19eQAD/view",
+    "score": 100,
+    "matched_name": "EUROFINS VILLAPHARMA RESEARCH, SL",
+    "matched_key": "EUROFINS VILLAPHARMA RESEARCH",
+    "source": "exact"
+  },
+  "EUROMED": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10aQAB/view",
+    "score": 100,
+    "matched_name": "EUROMED SA",
+    "matched_key": "EUROMED",
+    "source": "exact"
+  },
+  "EURORESINAS INDUSTRIAS QUIMICAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ib8igQAB/view",
+    "score": 100,
+    "matched_name": "EURORESINAS - INDÚSTRIAS QUÍMICAS, S.A.",
+    "matched_key": "EURORESINAS INDUSTRIAS QUIMICAS",
+    "source": "exact"
+  },
+  "EUSKALMAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000SsNqcQAF/view",
+    "score": 100,
+    "matched_name": "EUSKALMAN SL",
+    "matched_key": "EUSKALMAN",
+    "source": "exact"
+  },
+  "EXOBIOPHARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000002RcMjIAK/view",
+    "score": 100,
+    "matched_name": "Exobiopharma SL",
+    "matched_key": "EXOBIOPHARMA",
+    "source": "exact"
+  },
+  "EXOLUM CORPORATION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh18GQAR/view",
+    "score": 100,
+    "matched_name": "EXOLUM CORPORATION, S.A.",
+    "matched_key": "EXOLUM CORPORATION",
+    "source": "exact"
+  },
+  "EXPERBUY ESPANA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008Nuo5QAC/view",
+    "score": 100,
+    "matched_name": "EXPERBUY ESPAÑA , SL",
+    "matched_key": "EXPERBUY ESPANA",
+    "source": "exact"
+  },
+  "EUROFINS CENTRO ANALITICO MIGUEZ MUINOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JeQAJ/view",
+    "score": 100,
+    "matched_name": "Eurofins Centro Analítico Miguez Muiños, S.L.",
+    "matched_key": "EUROFINS CENTRO ANALITICO MIGUEZ MUINOS",
+    "source": "exact"
+  },
+  "FAES FARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDO6QAP/view",
+    "score": 100,
+    "matched_name": "FAES FARMA",
+    "matched_key": "FAES FARMA",
+    "source": "exact"
+  },
+  "FARM ID ASSOCIACAO DA FACULDADE DE FARMACIA PARA A INVESTIGACAO E DESENVOLVIMENTO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000bwvLFQAY/view",
+    "score": 91,
+    "matched_name": "Investigação e Desenvolvimento (INESC ID)",
+    "matched_key": "INVESTIGACAO E DESENVOLVIMENTO INESC ID",
+    "source": "fuzzy"
+  },
+  "FARMAPROJECTS SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0upQAB/view",
+    "score": 100,
+    "matched_name": "FARMAPROJECTS SA",
+    "matched_key": "FARMAPROJECTS",
+    "source": "fuzzy"
+  },
+  "FARMHISPANIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoTEEQA3/view",
+    "score": 100,
+    "matched_name": "FARMHISPANIA S.A.",
+    "matched_key": "FARMHISPANIA",
+    "source": "exact"
+  },
+  "FCIENCIAS ID ASSOCIACAO PARA A INVESTIGACAO E DESENVOLVIMENTO DE CIENCIAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000bwvLFQAY/view",
+    "score": 91,
+    "matched_name": "Investigação e Desenvolvimento (INESC ID)",
+    "matched_key": "INVESTIGACAO E DESENVOLVIMENTO INESC ID",
+    "source": "fuzzy"
+  },
+  "FERRER INTERNACIONAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCEvQAP/view",
+    "score": 100,
+    "matched_name": "FERRER INTERNACIONAL SA",
+    "matched_key": "FERRER INTERNACIONAL",
+    "source": "exact"
+  },
+  "FERTIBERIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBXZQA5/view",
+    "score": 100,
+    "matched_name": "FERTIBERIA, SA",
+    "matched_key": "FERTIBERIA",
+    "source": "exact"
+  },
+  "FERTILIZANTES ORGANOMINERALES ARAGON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008O2jsQAC/view",
+    "score": 100,
+    "matched_name": "FERTILIZANTES ORGANOMINERALES ARAGÓN, SA",
+    "matched_key": "FERTILIZANTES ORGANOMINERALES ARAGON",
+    "source": "exact"
+  },
+  "FERTILIZANTES ORGANOMINERALES ARAGON SA INACTIVO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008O2jsQAC/view",
+    "score": 100,
+    "matched_name": "FERTILIZANTES ORGANOMINERALES ARAGÓN, SA",
+    "matched_key": "FERTILIZANTES ORGANOMINERALES ARAGON",
+    "source": "fuzzy"
+  },
+  "FERTINAGRO BIOTECH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003EQBsJQAX/view",
+    "score": 100,
+    "matched_name": "FERTINAGRO BIOTECH SL.",
+    "matched_key": "FERTINAGRO BIOTECH",
+    "source": "exact"
+  },
+  "FERTINAGRO FERTESA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LPt6UQAT/view",
+    "score": 100,
+    "matched_name": "FERTINAGRO FERTESA SL.",
+    "matched_key": "FERTINAGRO FERTESA",
+    "source": "exact"
+  },
+  "FERTINAGRO SUR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCt3QAH/view",
+    "score": 100,
+    "matched_name": "FERTINAGRO SUR SL.",
+    "matched_key": "FERTINAGRO SUR",
+    "source": "exact"
+  },
+  "FERTINAGRO TECNOS MAXIMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SlyREQAZ/view",
+    "score": 100,
+    "matched_name": "FERTINAGRO TECNOS MAXIMA, S.L.U",
+    "matched_key": "FERTINAGRO TECNOS MAXIMA S L U",
+    "source": "fuzzy"
+  },
+  "FIBRAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh15cQAB/view",
+    "score": 100,
+    "matched_name": "FIBRAN, SA",
+    "matched_key": "FIBRAN",
+    "source": "exact"
+  },
+  "FISHER SCIENTIFIC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003GhYR5QAN/view",
+    "score": 100,
+    "matched_name": "FISHER SCIENTIFIC SL",
+    "matched_key": "FISHER SCIENTIFIC",
+    "source": "exact"
+  },
+  "FITOSOIL LABORATORIOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Bb555QAB/view",
+    "score": 100,
+    "matched_name": "FITOSOIL LABORATORIOS SL",
+    "matched_key": "FITOSOIL LABORATORIOS",
+    "source": "exact"
+  },
+  "FORESA INDUSTRIAS QUIMICAS DEL NOROESTE SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLYzIQAX/view",
+    "score": 90,
+    "matched_name": "INDUSTRIAS QUIMICAS DEL EBRO, SA",
+    "matched_key": "INDUSTRIAS QUIMICAS DEL EBRO",
+    "source": "fuzzy"
+  },
+  "FOURCLOUD SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/001Vj000006TI7mIAG/view",
+    "score": 100,
+    "matched_name": "FOURCLOUD, SLU",
+    "matched_key": "FOURCLOUD SLU",
+    "source": "exact"
+  },
+  "FREIXENET": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCgZQAX/view",
+    "score": 100,
+    "matched_name": "FREIXENET SA",
+    "matched_key": "FREIXENET",
+    "source": "exact"
+  },
+  "FRISELVA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SmMa0QAF/view",
+    "score": 100,
+    "matched_name": "FRISELVA, S.A.",
+    "matched_key": "FRISELVA",
+    "source": "exact"
+  },
+  "FUND TECNALIA RESERARCH AND INNOVATION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003Yh1PJQAZ/view",
+    "score": 92,
+    "matched_name": "FUNDACION TECNALIA RESEARCH & INNOVATION",
+    "matched_key": "FUNDACION TECNALIA RESEARCH AND INNOVATION",
+    "source": "fuzzy"
+  },
+  "FUNDACIO INSTITUT CATALA DE RECERCA DEL AIGUA ICRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LPCfXQAX/view",
+    "score": 100,
+    "matched_name": "FUNDACIO INSTITUT CATALA DE RECERCA DEL AIGUA ICRA",
+    "matched_key": "FUNDACIO INSTITUT CATALA DE RECERCA DEL AIGUA ICRA",
+    "source": "exact"
+  },
+  "FUNDACION AZTI AZTI FUNDAZIOA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCsxQAH/view",
+    "score": 100,
+    "matched_name": "FUNDACION AZTI AZTI FUNDAZIOA",
+    "matched_key": "FUNDACION AZTI AZTI FUNDAZIOA",
+    "source": "exact"
+  },
+  "FUNDACION CENTRO TECNOLOGICO DE CEREALES DE CASTILLA Y LEON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009kiSAQAY/view",
+    "score": 100,
+    "matched_name": "FUNDACION CENTRO TECNOLOGICO DE CEREALES DE CASTILLA Y LEON",
+    "matched_key": "FUNDACION CENTRO TECNOLOGICO DE CEREALES DE CASTILLA Y LEON",
+    "source": "exact"
+  },
+  "FUNDACION CIC ENERGIGUNE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCOBQA5/view",
+    "score": 100,
+    "matched_name": "FUNDACION CIC ENERGIGUNE",
+    "matched_key": "FUNDACION CIC ENERGIGUNE",
+    "source": "exact"
+  },
+  "FUNDACION DONOSTIA INTERNATIONAL PHYSICS CENTER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009koxpQAA/view",
+    "score": 100,
+    "matched_name": "FUNDACION DONOSTIA INTERNATIONAL PHYSICS CENTER",
+    "matched_key": "FUNDACION DONOSTIA INTERNATIONAL PHYSICS CENTER",
+    "source": "exact"
+  },
+  "FUNDACION GAIKER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCV0QAP/view",
+    "score": 100,
+    "matched_name": "FUNDACION GAIKER",
+    "matched_key": "FUNDACION GAIKER",
+    "source": "exact"
+  },
+  "FUNDACIO INST RECERCA EN ENERGIA DE CATALUNYA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003Sl9E4QAJ/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓ INST. RECERCA EN ENERGÍA DE CATALUNYA",
+    "matched_key": "FUNDACIO INST RECERCA EN ENERGIA DE CATALUNYA",
+    "source": "exact"
+  },
+  "FUNDACIO INSTITUT CATALA DE NANOCIENCIA I NANOTECNOLOGIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBgvQAH/view",
+    "score": 87,
+    "matched_name": "Instituto Catalán de Nanociencia y Nanotecnología (ICN2)",
+    "matched_key": "INSTITUTO CATALAN DE NANOCIENCIA Y NANOTECNOLOGIA ICN2",
+    "source": "fuzzy"
+  },
+  "FUNDACIO PRIVADA INSTITUT CATALA D INVESTIGACIO QUIMICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDFTQA5/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓ PRIVADA INSTITUT CATALÀ D'INVESTIGACIÓ QUÍMICA",
+    "matched_key": "FUNDACIO PRIVADA INSTITUT CATALA D INVESTIGACIO QUIMICA",
+    "source": "exact"
+  },
+  "FUNDACION BCMATERIALS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003ZoOmgQAF/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓN BCMATERIALS",
+    "matched_key": "FUNDACION BCMATERIALS",
+    "source": "exact"
+  },
+  "FUNDACION BIOFISICA BIZKAIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0017S00000D2aDAQAZ/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓN BIOFÍSICA BIZKAIA",
+    "matched_key": "FUNDACION BIOFISICA BIZKAIA",
+    "source": "exact"
+  },
+  "FUNDACION CENER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbxgHQAR/view",
+    "score": 100,
+    "matched_name": "FUNDACION CENER",
+    "matched_key": "FUNDACION CENER",
+    "source": "exact"
+  },
+  "FUNDACION CENTRO TECNOLOXICO DA CARNE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003ZoSraQAF/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓN CENTRO TECNOLÓXICO DA CARNE",
+    "matched_key": "FUNDACION CENTRO TECNOLOXICO DA CARNE",
+    "source": "exact"
+  },
+  "FUNDACION CIRCE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003QcbcWQAR/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓN CIRCE",
+    "matched_key": "FUNDACION CIRCE",
+    "source": "exact"
+  },
+  "FUNDACION IMDEA ENERGIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003Yh1ELQAZ/view",
+    "score": 100,
+    "matched_name": "FUNDACIÓN IMDEA ENERGÍA",
+    "matched_key": "FUNDACION IMDEA ENERGIA",
+    "source": "exact"
+  },
+  "FUNDACION UNIVERSITARIA SAN ANTONIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000X10QoQAJ/view",
+    "score": 100,
+    "matched_name": "UCAM - FUNDACIÓN UNIVERSITARIA SAN ANTONIO DE CARTAGENA - Ciencias de la Salud - Biotecnología Vegetal para la Agricultura y Alimentación",
+    "matched_key": "UCAM FUNDACION UNIVERSITARIA SAN ANTONIO DE CARTAGENA CIENCIAS DE LA SALUD BIOTECNOLOGIA VEGETAL PARA LA AGRICULTURA Y ALIMENTACION",
+    "source": "fuzzy"
+  },
+  "FUNKY FAMILY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQNVQA3/view",
+    "score": 100,
+    "matched_name": "FUNKY FAMILY, S.L.",
+    "matched_key": "FUNKY FAMILY",
+    "source": "exact"
+  },
+  "GALCHIMIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCJQA3/view",
+    "score": 100,
+    "matched_name": "GALCHIMIA SA",
+    "matched_key": "GALCHIMIA",
+    "source": "exact"
+  },
+  "GALICALAB SOCIEDAD LIMITADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000WyvPyQAJ/view",
+    "score": 100,
+    "matched_name": "GALICALAB SOCIEDAD LIMITADA.",
+    "matched_key": "GALICALAB SOCIEDAD LIMITADA",
+    "source": "exact"
+  },
+  "GALLEGA DE CORRECTORES NAYA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCKQA3/view",
+    "score": 100,
+    "matched_name": "GALLEGA DE CORRECTORES NAYA SL",
+    "matched_key": "GALLEGA DE CORRECTORES NAYA",
+    "source": "exact"
+  },
+  "GALLEGA DE MATERIAL CIENTIFICO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCO6QAP/view",
+    "score": 100,
+    "matched_name": "GALLEGA DE MATERIAL CIENTIFICO SA",
+    "matched_key": "GALLEGA DE MATERIAL CIENTIFICO",
+    "source": "exact"
+  },
+  "GALLETAS GULLON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BbRH7QAN/view",
+    "score": 100,
+    "matched_name": "GALLETAS GULLON, SA",
+    "matched_key": "GALLETAS GULLON",
+    "source": "exact"
+  },
+  "GALMEDIC SUMINISTROS MEDICOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCLqQAP/view",
+    "score": 100,
+    "matched_name": "GALMEDIC SUMINISTROS MEDICOS SL",
+    "matched_key": "GALMEDIC SUMINISTROS MEDICOS",
+    "source": "exact"
+  },
+  "GAMBASTAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh14qQAB/view",
+    "score": 100,
+    "matched_name": "GAMBASTAR SL",
+    "matched_key": "GAMBASTAR",
+    "source": "exact"
+  },
+  "GEDILAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLJUyQAP/view",
+    "score": 100,
+    "matched_name": "GEDILAB SL.",
+    "matched_key": "GEDILAB",
+    "source": "exact"
+  },
+  "GENERAL AGROPECUARIA ACOR S C": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NSQAZ/view",
+    "score": 100,
+    "matched_name": "GENERAL AGROPECUARIA ACOR S.C.",
+    "matched_key": "GENERAL AGROPECUARIA ACOR S C",
+    "source": "exact"
+  },
+  "GENERAL MILLS SAN ADRIAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000004ssUBIAY/view",
+    "score": 100,
+    "matched_name": "GENERAL MILLS SAN ADRIAN SL",
+    "matched_key": "GENERAL MILLS SAN ADRIAN",
+    "source": "exact"
+  },
+  "GENERALITAT VALENCIANA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoETRQA3/view",
+    "score": 100,
+    "matched_name": "GENERALITAT VALENCIANA",
+    "matched_key": "GENERALITAT VALENCIANA",
+    "source": "exact"
+  },
+  "GENTEC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0z7QAB/view",
+    "score": 100,
+    "matched_name": "GENTEC SA",
+    "matched_key": "GENTEC",
+    "source": "exact"
+  },
+  "GENTLEBAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPVdQAN/view",
+    "score": 100,
+    "matched_name": "GENTLEBAR SL.",
+    "matched_key": "GENTLEBAR",
+    "source": "exact"
+  },
+  "GLOBAL FEED SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000SsJIIQA3/view",
+    "score": 100,
+    "matched_name": "GLOBAL FEED SLU",
+    "matched_key": "GLOBAL FEED SLU",
+    "source": "exact"
+  },
+  "GLOBAL OMNIUM SERVICIOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCqbQAH/view",
+    "score": 100,
+    "matched_name": "GLOBAL OMNIUM SERVICIOS, S.L.",
+    "matched_key": "GLOBAL OMNIUM SERVICIOS",
+    "source": "exact"
+  },
+  "GLYCOSCIENCE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IcC6kQAF/view",
+    "score": 100,
+    "matched_name": "GLYCOSCIENCE S.L.",
+    "matched_key": "GLYCOSCIENCE",
+    "source": "exact"
+  },
+  "GOBIERNO VASCO EUSKO JAURLARITZA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jnsxQAA/view",
+    "score": 100,
+    "matched_name": "GOBIERNO VASCO EUSKO JAURLARITZA",
+    "matched_key": "GOBIERNO VASCO EUSKO JAURLARITZA",
+    "source": "exact"
+  },
+  "GRAPHENEA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1PUQAZ/view",
+    "score": 100,
+    "matched_name": "GRAPHENEA SA",
+    "matched_key": "GRAPHENEA",
+    "source": "exact"
+  },
+  "GRUPO AGROTECNOLOGIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCPTQA5/view",
+    "score": 100,
+    "matched_name": "GRUPO AGROTECNOLOGIA SL.",
+    "matched_key": "GRUPO AGROTECNOLOGIA",
+    "source": "exact"
+  },
+  "GRUPO PREMIER PIGS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000X08oLQAR/view",
+    "score": 100,
+    "matched_name": "GRUPO PREMIER PIGS SL",
+    "matched_key": "GRUPO PREMIER PIGS",
+    "source": "exact"
+  },
+  "HAUSMANN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Bbp3IQAR/view",
+    "score": 100,
+    "matched_name": "HAUSMANN SL",
+    "matched_key": "HAUSMANN",
+    "source": "exact"
+  },
+  "HEALTH TECH BIO ACTIVES SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003YSy6BQAT/view",
+    "score": 85,
+    "matched_name": "HTBA (Health Tech BioActives)",
+    "matched_key": "HTBAHEALTHTECHBIOACTIVES",
+    "source": "fuzzy"
+  },
+  "HERMANOS BLANCO BARRENA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCOqQAP/view",
+    "score": 100,
+    "matched_name": "HERMANOS BLANCO BARRENA, SA",
+    "matched_key": "HERMANOS BLANCO BARRENA",
+    "source": "exact"
+  },
+  "HIDROTEC TECNOLOGIA DEL AGUA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KHQAZ/view",
+    "score": 100,
+    "matched_name": "HIDROTEC TECNOLOGIA DEL AGUA SL",
+    "matched_key": "HIDROTEC TECNOLOGIA DEL AGUA",
+    "source": "fuzzy"
+  },
+  "HIFAS DA TERRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008N0HEQA0/view",
+    "score": 100,
+    "matched_name": "HIFAS DA TERRA S.L.",
+    "matched_key": "HIFAS DA TERRA",
+    "source": "exact"
+  },
+  "HOTEL RITZ": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000byGGEQA2/view",
+    "score": 100,
+    "matched_name": "HOTEL RITZ, S.A.",
+    "matched_key": "HOTEL RITZ",
+    "source": "exact"
+  },
+  "HOVIONE FARMACIENCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PMbtvQAD/view",
+    "score": 100,
+    "matched_name": "HOVIONE FARMACIÊNCIA, S.A.",
+    "matched_key": "HOVIONE FARMACIENCIA",
+    "source": "exact"
+  },
+  "HRS HEAT EXCHANGERS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1ItQAJ/view",
+    "score": 100,
+    "matched_name": "HRS HEAT EXCHANGERS SL",
+    "matched_key": "HRS HEAT EXCHANGERS",
+    "source": "exact"
+  },
+  "I GRAPE LABORATORY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOoBQAV/view",
+    "score": 100,
+    "matched_name": "I-GRAPE LABORATORY SL.",
+    "matched_key": "I GRAPE LABORATORY",
+    "source": "exact"
+  },
+  "I T S INDUSTRIA TRANSFORMADORA DE SUBPRODUTOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000jjgcXQAQ/view",
+    "score": 100,
+    "matched_name": "I.T.S. - INDÚSTRIA TRANSFORMADORA DE SUBPRODUTOS, S.A.",
+    "matched_key": "I T S INDUSTRIA TRANSFORMADORA DE SUBPRODUTOS",
+    "source": "exact"
+  },
+  "IBERCHAMP SAT 9921": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQOcQAN/view",
+    "score": 100,
+    "matched_name": "IBERCHAMP SAT 9921",
+    "matched_key": "IBERCHAMP SAT 9921",
+    "source": "exact"
+  },
+  "IBERHOSPITEX": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLdmdQAD/view",
+    "score": 100,
+    "matched_name": "IBERHOSPITEX, SA",
+    "matched_key": "IBERHOSPITEX",
+    "source": "exact"
+  },
+  "IDAI NATURE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008O4X6QAK/view",
+    "score": 100,
+    "matched_name": "IDAI NATURE, SL",
+    "matched_key": "IDAI NATURE",
+    "source": "exact"
+  },
+  "IES PADRE ISLA DE LEON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008OjBtQAK/view",
+    "score": 100,
+    "matched_name": "IES PADRE ISLA DE LEON",
+    "matched_key": "IES PADRE ISLA DE LEON",
+    "source": "exact"
+  },
+  "IFF BENICARLO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ss3I0QAJ/view",
+    "score": 100,
+    "matched_name": "IFF-BENICARLO SL",
+    "matched_key": "IFF BENICARLO",
+    "source": "exact"
+  },
+  "IGH FLAVOURS AND TECHNOLOGY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1ISQAZ/view",
+    "score": 100,
+    "matched_name": "IGH FLAVOURS&TECHNOLOGY SA.",
+    "matched_key": "IGH FLAVOURS AND TECHNOLOGY",
+    "source": "exact"
+  },
+  "IKERLAT POLYMERS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOIyQAN/view",
+    "score": 100,
+    "matched_name": "IKERLAT POLYMERS SL",
+    "matched_key": "IKERLAT POLYMERS",
+    "source": "exact"
+  },
+  "ILC INSTRUMENTOS DE LABORATORIO E CIENTIFICOS LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003arIZZQA2/view",
+    "score": 100,
+    "matched_name": "ILC-Instrumentos de Laboratório e Científicos. Lda",
+    "matched_key": "ILC INSTRUMENTOS DE LABORATORIO E CIENTIFICOS LDA",
+    "source": "exact"
+  },
+  "IMPORTACO CASA PONS SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOIFQA3/view",
+    "score": 100,
+    "matched_name": "IMPORTACO CASA PONS SAU",
+    "matched_key": "IMPORTACO CASA PONS SAU",
+    "source": "exact"
+  },
+  "INDROPS MEDIO AMBIENTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBpKQAX/view",
+    "score": 100,
+    "matched_name": "INDROPS MEDIO AMBIENTE S.L.",
+    "matched_key": "INDROPS MEDIO AMBIENTE",
+    "source": "exact"
+  },
+  "INDUSTRIAL QUIMICA LASEM SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0zbQAB/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAL QUIMICA LASEM, SAU",
+    "matched_key": "INDUSTRIAL QUIMICA LASEM SAU",
+    "source": "exact"
+  },
+  "INDUSTRIAL VETERINARIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SkaH7QAJ/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAL VETERINARIA, S.L.",
+    "matched_key": "INDUSTRIAL VETERINARIA",
+    "source": "exact"
+  },
+  "INDUSTRIAS AFINES S L ARPO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009kmvaQAA/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAS AFINES S.L. (ARPO)",
+    "matched_key": "INDUSTRIAS AFINES S L ARPO",
+    "source": "exact"
+  },
+  "INDUSTRIAS LACTEAS DE GRANADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCBiQAP/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAS LACTEAS DE GRANADA S.L.",
+    "matched_key": "INDUSTRIAS LACTEAS DE GRANADA",
+    "source": "exact"
+  },
+  "INDUSTRIAS LACTEAS DE MOLLERUSA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCVXQA5/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAS LACTEAS DE MOLLERUSA SL.",
+    "matched_key": "INDUSTRIAS LACTEAS DE MOLLERUSA",
+    "source": "exact"
+  },
+  "INDUSTRIAS LACTEAS DE NADELA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000NXNjsIAH/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAS LACTEAS DE NADELA SL.",
+    "matched_key": "INDUSTRIAS LACTEAS DE NADELA",
+    "source": "exact"
+  },
+  "INDUSTRIAS SUESCUN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JDQAZ/view",
+    "score": 100,
+    "matched_name": "INDUSTRIAS SUESCUN SA",
+    "matched_key": "INDUSTRIAS SUESCUN",
+    "source": "exact"
+  },
+  "INESCOP": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoSymQAF/view",
+    "score": 100,
+    "matched_name": "INESCOP",
+    "matched_key": "INESCOP",
+    "source": "exact"
+  },
+  "INFARMED AUTORIDADE NACIONAL DO MEDICAMENTO E PRODUTOS DE SAUDE I P": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU86QAF/view",
+    "score": 100,
+    "matched_name": "INFARMED - AUTORIDADE NACIONAL DO MEDICAMENTO E PRODUTOS DE SAÚDE, I.P.",
+    "matched_key": "INFARMED AUTORIDADE NACIONAL DO MEDICAMENTO E PRODUTOS DE SAUDE I P",
+    "source": "exact"
+  },
+  "INGREDIENT ODYSSEY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000008zJ9DIAU/view",
+    "score": 100,
+    "matched_name": "INGREDIENT ODYSSEY, S.A.",
+    "matched_key": "INGREDIENT ODYSSEY",
+    "source": "exact"
+  },
+  "INIMOGA SOCIEDADE UNIPESSOAL LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000cuZaxQAE/view",
+    "score": 100,
+    "matched_name": "INIMOGA, SOCIEDADE UNIPESSOAL, LDA",
+    "matched_key": "INIMOGA SOCIEDADE UNIPESSOAL LDA",
+    "source": "exact"
+  },
+  "INKE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0zTQAR/view",
+    "score": 100,
+    "matched_name": "INKE SA",
+    "matched_key": "INKE",
+    "source": "exact"
+  },
+  "INNOLACT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCAGQA5/view",
+    "score": 100,
+    "matched_name": "INNOLACT SL",
+    "matched_key": "INNOLACT",
+    "source": "exact"
+  },
+  "INNOUP FARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCWQA3/view",
+    "score": 100,
+    "matched_name": "INNOUP FARMA, SL",
+    "matched_key": "INNOUP FARMA",
+    "source": "exact"
+  },
+  "INNOVPLANTPROTECT ASSOCIACAO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU8GQAV/view",
+    "score": 100,
+    "matched_name": "INNOVPLANTPROTECT - ASSOCIAÇÃO",
+    "matched_key": "INNOVPLANTPROTECT ASSOCIACAO",
+    "source": "exact"
+  },
+  "INST TECN DEL EMBALAJE TRANSPORTE Y LOGISTICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008NkQKQA0/view",
+    "score": 100,
+    "matched_name": "INST. TECN. DEL EMBALAJE, TRANSPORTE Y LOGÍSTICA",
+    "matched_key": "INST TECN DEL EMBALAJE TRANSPORTE Y LOGISTICA",
+    "source": "exact"
+  },
+  "INST TECNO AGRARIO DE CASTILLA Y LEON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NoQAJ/view",
+    "score": 87,
+    "matched_name": "INSTITUTO TECNOLOGICO AGRARIO DE CASTILLA Y LEON",
+    "matched_key": "INSTITUTO TECNOLOGICO AGRARIO DE CASTILLA Y LEON",
+    "source": "fuzzy"
+  },
+  "INSTITUT DE RECERCA I TECNOLOGIA AGROALIMENTARIES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYMoQAN/view",
+    "score": 100,
+    "matched_name": "INSTITUT DE RECERCA I TECNOLOGIA AGROALIMENTARIES",
+    "matched_key": "INSTITUT DE RECERCA I TECNOLOGIA AGROALIMENTARIES",
+    "source": "exact"
+  },
+  "INSTITUT QUIMIC DE SARRIA CETS FUNDACIO PRIVADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCTuQAP/view",
+    "score": 100,
+    "matched_name": "INSTITUT QUÍMIC DE SARRIÁ -CETS FUNDACIÓ PRIVADA",
+    "matched_key": "INSTITUT QUIMIC DE SARRIA CETS FUNDACIO PRIVADA",
+    "source": "exact"
+  },
+  "INSTITUTO BIOMAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQP6QAN/view",
+    "score": 100,
+    "matched_name": "INSTITUTO BIOMAR, SA",
+    "matched_key": "INSTITUTO BIOMAR",
+    "source": "exact"
+  },
+  "INSTITUTO DE TECNOLOGIA QUIMICA E BIOLOGICA ANTONIO XAVIER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ib8jUQAR/view",
+    "score": 100,
+    "matched_name": "INSTITUTO DE TECNOLOGIA QUÍMICA E BIOLÓGICA ANTÓNIO XAVIER",
+    "matched_key": "INSTITUTO DE TECNOLOGIA QUIMICA E BIOLOGICA ANTONIO XAVIER",
+    "source": "exact"
+  },
+  "INSTITUTO DOS VINHOS DO DOURO E DO PORTO I P": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUwnQAF/view",
+    "score": 100,
+    "matched_name": "INSTITUTO DOS VINHOS DO DOURO E DO PORTO, I.P.",
+    "matched_key": "INSTITUTO DOS VINHOS DO DOURO E DO PORTO I P",
+    "source": "exact"
+  },
+  "INSTITUTO GRIFOLS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10qQAB/view",
+    "score": 100,
+    "matched_name": "INSTITUTO GRIFOLS SA",
+    "matched_key": "INSTITUTO GRIFOLS",
+    "source": "exact"
+  },
+  "INSTITUTO HIDROGRAFICO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU8VQAV/view",
+    "score": 100,
+    "matched_name": "INSTITUTO HIDROGRÁFICO",
+    "matched_key": "INSTITUTO HIDROGRAFICO",
+    "source": "exact"
+  },
+  "INSTITUTO MURCIANO DE INVESTIGACION Y DESARROLLO AGRARIO Y MEDIOAMBIENTAL IMIDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003TNN5UQAX/view",
+    "score": 100,
+    "matched_name": "INSTITUTO MURCIANO DE INVESTIGACION Y DESARROLLO AGRARIO Y MEDIOAMBIENTAL IMIDA",
+    "matched_key": "INSTITUTO MURCIANO DE INVESTIGACION Y DESARROLLO AGRARIO Y MEDIOAMBIENTAL IMIDA",
+    "source": "exact"
+  },
+  "INSTITUTO POLITECNICO DE BEJA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU9EQAV/view",
+    "score": 90,
+    "matched_name": "INSTITUTO POLITECNICO DE PORTALEGRE",
+    "matched_key": "INSTITUTO POLITECNICO DE PORTALEGRE",
+    "source": "fuzzy"
+  },
+  "INSTITUTO POLITECNICO DE BRAGANCA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbV5WQAV/view",
+    "score": 100,
+    "matched_name": "INSTITUTO POLITÉCNICO DE BRAGANÇA",
+    "matched_key": "INSTITUTO POLITECNICO DE BRAGANCA",
+    "source": "exact"
+  },
+  "INSTITUTO PORTUGUES DO MAR E DA ATMOSFERA I P": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0017S00000IbU9dQAF/view",
+    "score": 100,
+    "matched_name": "INSTITUTO PORTUGUÊS DO MAR E DA ATMOSFERA, I.P.",
+    "matched_key": "INSTITUTO PORTUGUES DO MAR E DA ATMOSFERA I P",
+    "source": "exact"
+  },
+  "INSTITUTO REGIONAL INVEST Y DES AGROALIM Y FORESTAL CASTILLA LA MANCHA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008ONFIQA4/view",
+    "score": 100,
+    "matched_name": "INSTITUTO REGIONAL INVEST. Y DES. AGROALIM. Y FORESTAL CASTILLA-LA MANCHA",
+    "matched_key": "INSTITUTO REGIONAL INVEST Y DES AGROALIM Y FORESTAL CASTILLA LA MANCHA",
+    "source": "exact"
+  },
+  "INSTITUTO SUPERIOR DE ENGENHARIA DO PORTO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ibgm2QAB/view",
+    "score": 100,
+    "matched_name": "INSTITUTO SUPERIOR DE ENGENHARIA DO PORTO",
+    "matched_key": "INSTITUTO SUPERIOR DE ENGENHARIA DO PORTO",
+    "source": "exact"
+  },
+  "INSTITUTO SUPERIOR TECNICO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU8RQAV/view",
+    "score": 100,
+    "matched_name": "INSTITUTO SUPERIOR TÉCNICO",
+    "matched_key": "INSTITUTO SUPERIOR TECNICO",
+    "source": "exact"
+  },
+  "INSTITUTO TECN METALMECANICO MUEBLE MADERA EMBALJE Y AFINES AIDIMME": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003bcweJQAQ/view",
+    "score": 94,
+    "matched_name": "AIDIMME - INSTITUTO TECNOLÓGICO METALMECÁNICO, MUEBLE, MADERA, EMBALAJE Y AFINES",
+    "matched_key": "AIDIMME INSTITUTO TECNOLOGICO METALMECANICO MUEBLE MADERA EMBALAJE Y AFINES",
+    "source": "fuzzy"
+  },
+  "INSTITUTO VALENCIANO DE INVESTIGACIONES AGRARIAS IVIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LPSZqQAP/view",
+    "score": 100,
+    "matched_name": "INSTITUTO VALENCIANO DE INVESTIGACIONES AGRARIAS (IVIA)",
+    "matched_key": "INSTITUTO VALENCIANO DE INVESTIGACIONES AGRARIAS IVIA",
+    "source": "exact"
+  },
+  "INTEMAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoE7NQAV/view",
+    "score": 100,
+    "matched_name": "INTEMAN SA",
+    "matched_key": "INTEMAN",
+    "source": "exact"
+  },
+  "INTERLAB LABORATORIOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCdQAN/view",
+    "score": 100,
+    "matched_name": "INTERLAB LABORATORIOS SL.",
+    "matched_key": "INTERLAB LABORATORIOS",
+    "source": "exact"
+  },
+  "INTERQUIM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCRLQA5/view",
+    "score": 100,
+    "matched_name": "INTERQUIM SA",
+    "matched_key": "INTERQUIM",
+    "source": "exact"
+  },
+  "INVESTIGACION Y DESARROLLO DE ENSAYOS AGROALIMENTARIOS S L IDEAGRO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000JgITuIAN/view",
+    "score": 100,
+    "matched_name": "INVESTIGACION Y DESARROLLO DE ENSAYOS AGROALIMENTARIOS S.L. -IDEAGRO-",
+    "matched_key": "INVESTIGACION Y DESARROLLO DE ENSAYOS AGROALIMENTARIOS S L IDEAGRO",
+    "source": "exact"
+  },
+  "INVESTIGACION Y AVANCE BIOTECNOLOGICO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000MeUR4IAN/view",
+    "score": 100,
+    "matched_name": "INVESTIGACION Y AVANCE BIOTECNOLOGICO SL",
+    "matched_key": "INVESTIGACION Y AVANCE BIOTECNOLOGICO",
+    "source": "exact"
+  },
+  "IST ID ASSOCIACAO DO INSTITUTO SUPERIOR TECNICO PARA A INVESTIGACAO E DESENVOLVIMENTO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU8RQAV/view",
+    "score": 100,
+    "matched_name": "INSTITUTO SUPERIOR TÉCNICO",
+    "matched_key": "INSTITUTO SUPERIOR TECNICO",
+    "source": "fuzzy"
+  },
+  "IVASCULAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh140QAB/view",
+    "score": 100,
+    "matched_name": "IVASCULAR SL.",
+    "matched_key": "IVASCULAR",
+    "source": "exact"
+  },
+  "INSTITUTO DE BIOLOGIA EXPERIMENTAL E TECNOLOGICA IBET": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbU8QQAV/view",
+    "score": 100,
+    "matched_name": "Instituto de Biologia Experimental e Tecnológica (Ibet)",
+    "matched_key": "INSTITUTO DE BIOLOGIA EXPERIMENTAL E TECNOLOGICA IBET",
+    "source": "exact"
+  },
+  "INTERMALTA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000007jkhoQAA/view",
+    "score": 100,
+    "matched_name": "Intermalta SA",
+    "matched_key": "INTERMALTA",
+    "source": "exact"
+  },
+  "JACOBS DOUWE EGBERTS ES S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10ZQAR/view",
+    "score": 100,
+    "matched_name": "JACOBS DOUWE EGBERTS ES, S.L.U.",
+    "matched_key": "JACOBS DOUWE EGBERTS ES S L U",
+    "source": "exact"
+  },
+  "JAVIER SOLANAS LABOARAGON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDJMQA5/view",
+    "score": 100,
+    "matched_name": "JAVIER SOLANAS LABOARAGON SL",
+    "matched_key": "JAVIER SOLANAS LABOARAGON",
+    "source": "exact"
+  },
+  "JOROFON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCZPQA5/view",
+    "score": 100,
+    "matched_name": "JOROFON SL - El Celler de Can Roca",
+    "matched_key": "JOROFON SL EL CELLER DE CAN ROCA",
+    "source": "fuzzy"
+  },
+  "JOSE SANCHEZ ARANDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BbBdnQAF/view",
+    "score": 100,
+    "matched_name": "JOSE SANCHEZ ARANDA SL",
+    "matched_key": "JOSE SANCHEZ ARANDA",
+    "source": "exact"
+  },
+  "JUNTA CONTRATACION MINISTERIO HACIENDA Y ADM PULICAS": {
+    "status": "NO_MATCH",
+    "url": null,
+    "score": 61,
+    "matched_name": "MINISTERIO DE AGRICULTURA, PESCA Y ALIMENTACION",
+    "matched_key": "MINISTERIO DE AGRICULTURA PESCA Y ALIMENTACION",
+    "source": "below_threshold"
+  },
+  "JUNTA DE CASTILLA Y LEON SERVICIOS CENTRALES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NUQAZ/view",
+    "score": 100,
+    "matched_name": "JUNTA DE CASTILLA Y LEON SERVICIOS CENTRALES",
+    "matched_key": "JUNTA DE CASTILLA Y LEON SERVICIOS CENTRALES",
+    "source": "exact"
+  },
+  "JUSTESA IMAGEN S A U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQC61QAH/view",
+    "score": 100,
+    "matched_name": "JUSTESA IMAGEN S.A.U.",
+    "matched_key": "JUSTESA IMAGEN S A U",
+    "source": "exact"
+  },
+  "KERN PHARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQChwQAH/view",
+    "score": 100,
+    "matched_name": "KERN PHARMA SL",
+    "matched_key": "KERN PHARMA",
+    "source": "exact"
+  },
+  "KEYBIOLOGICAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BaBlwQAF/view",
+    "score": 100,
+    "matched_name": "KEYBIOLOGICAL SL.",
+    "matched_key": "KEYBIOLOGICAL",
+    "source": "exact"
+  },
+  "KEYLAND POLYMER UV MAT SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000BJtnGIAT/view",
+    "score": 92,
+    "matched_name": "KEYLAND POLYMER UV MATERIALS SPAIN S.L. - BARCELONA",
+    "matched_key": "KEYLAND POLYMER UV MATERIALS SPAIN S L BARCELONA",
+    "source": "fuzzy"
+  },
+  "KRUSTAGROUP SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQPVQA3/view",
+    "score": 100,
+    "matched_name": "KRUSTAGROUP, SAU",
+    "matched_key": "KRUSTAGROUP SAU",
+    "source": "exact"
+  },
+  "KINSY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SjY5ZQAV/view",
+    "score": 100,
+    "matched_name": "KINSY, S.L.",
+    "matched_key": "KINSY",
+    "source": "exact"
+  },
+  "LA PERLA DE GRANADOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000U6n05IAB/view",
+    "score": 100,
+    "matched_name": "LA PERLA DE GRANADOS S.L.",
+    "matched_key": "LA PERLA DE GRANADOS",
+    "source": "exact"
+  },
+  "LAB INTERP GALEGO ANALISE DO LEITE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQOwQAN/view",
+    "score": 100,
+    "matched_name": "LAB. INTERP. GALEGO ANÁLISE DO LEITE",
+    "matched_key": "LAB INTERP GALEGO ANALISE DO LEITE",
+    "source": "exact"
+  },
+  "LAB INTERPROF LACTEO CASTILLA LA MANCHA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BbZ1YQAV/view",
+    "score": 100,
+    "matched_name": "LAB. INTERPROF. LÁCTEO CASTILLA-LA MANCHA",
+    "matched_key": "LAB INTERPROF LACTEO CASTILLA LA MANCHA",
+    "source": "exact"
+  },
+  "LABAQUA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCJ4QAP/view",
+    "score": 100,
+    "matched_name": "LABAQUA SAU",
+    "matched_key": "LABAQUA SAU",
+    "source": "exact"
+  },
+  "LABIANA PHARMACEUTICALS SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0zgQAB/view",
+    "score": 100,
+    "matched_name": "LABIANA PHARMACEUTICALS SL",
+    "matched_key": "LABIANA PHARMACEUTICALS",
+    "source": "fuzzy"
+  },
+  "LABORATORI CAT GARIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQOrQAN/view",
+    "score": 100,
+    "matched_name": "LABORATORI CAT-GARIN, SL",
+    "matched_key": "LABORATORI CAT GARIN",
+    "source": "exact"
+  },
+  "LABORATORIO ACCIMESA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000U6k8fIAB/view",
+    "score": 100,
+    "matched_name": "LABORATORIO ACCIMESA SOCIEDAD LIMITADA.",
+    "matched_key": "LABORATORIO ACCIMESA SOCIEDAD LIMITADA",
+    "source": "fuzzy"
+  },
+  "LABORATORIO AGRAMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KWQAZ/view",
+    "score": 100,
+    "matched_name": "LABORATORIO AGRAMA SL",
+    "matched_key": "LABORATORIO AGRAMA",
+    "source": "exact"
+  },
+  "LABORATORIO AGROALIMENTARIO INDUSTRIAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ss2cxQAB/view",
+    "score": 100,
+    "matched_name": "LABORATORIO AGROALIMENTARIO INDUSTRIAL SL",
+    "matched_key": "LABORATORIO AGROALIMENTARIO INDUSTRIAL",
+    "source": "exact"
+  },
+  "LABORATORIO ALDO UNION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000D2xHNQAZ/view",
+    "score": 100,
+    "matched_name": "LABORATORIO ALDO UNIÓN, S.L",
+    "matched_key": "LABORATORIO ALDO UNION",
+    "source": "exact"
+  },
+  "LABORATORIO DR OLIVER RODES SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCYBQA5/view",
+    "score": 100,
+    "matched_name": "LABORATORIO DR. OLIVER RODES SAU",
+    "matched_key": "LABORATORIO DR OLIVER RODES SAU",
+    "source": "exact"
+  },
+  "LABORATORIO ECHEVARNE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCTzQAP/view",
+    "score": 100,
+    "matched_name": "LABORATORIO ECHEVARNE SA.",
+    "matched_key": "LABORATORIO ECHEVARNE",
+    "source": "exact"
+  },
+  "LABORATORIO INTERPROFESIONAL LACTEO DE CASTILLA Y LEON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCPpQAP/view",
+    "score": 100,
+    "matched_name": "LABORATORIO INTERPROFESIONAL LACTEO DE CASTILLA Y LEON SA",
+    "matched_key": "LABORATORIO INTERPROFESIONAL LACTEO DE CASTILLA Y LEON",
+    "source": "exact"
+  },
+  "LABORATORIO LINAS SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpFxQAI/view",
+    "score": 100,
+    "matched_name": "LABORATORIO LINAS, SLU",
+    "matched_key": "LABORATORIO LINAS SLU",
+    "source": "exact"
+  },
+  "LABORATORIO QUIMICO MICROBIOLOGICO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000D0Zz8QAF/view",
+    "score": 100,
+    "matched_name": "LABORATORIO QUIMICO MICROBIOLOGICO SL",
+    "matched_key": "LABORATORIO QUIMICO MICROBIOLOGICO",
+    "source": "exact"
+  },
+  "LABORATORIOS ALTER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008NePZQA0/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS ALTER SA",
+    "matched_key": "LABORATORIOS ALTER",
+    "source": "exact"
+  },
+  "LABORATORIOS BROMATOLOGICOS ARABA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00002vH8ieQAC/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS BROMATOLOGICOS ARABA, S.A.",
+    "matched_key": "LABORATORIOS BROMATOLOGICOS ARABA",
+    "source": "exact"
+  },
+  "LABORATORIOS CALIER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10GQAR/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS CALIER, S.A.",
+    "matched_key": "LABORATORIOS CALIER",
+    "source": "exact"
+  },
+  "LABORATORIOS CINFA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000cthWeQAI/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS CINFA, S.A.",
+    "matched_key": "LABORATORIOS CINFA",
+    "source": "exact"
+  },
+  "LABORATORIOS ERN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCU4QAP/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS ERN SA",
+    "matched_key": "LABORATORIOS ERN",
+    "source": "exact"
+  },
+  "LABORATORIOS ESPINOS Y BOFILL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBWbQAP/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS ESPINOS Y BOFILL SA",
+    "matched_key": "LABORATORIOS ESPINOS Y BOFILL",
+    "source": "exact"
+  },
+  "LABORATORIOS FARMACEUTICOS ROVI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LObStQAL/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS FARMACEUTICOS ROVI SA",
+    "matched_key": "LABORATORIOS FARMACEUTICOS ROVI",
+    "source": "exact"
+  },
+  "LABORATORIOS FARMALAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PMSdVQAX/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS FARMALAN SA",
+    "matched_key": "LABORATORIOS FARMALAN",
+    "source": "exact"
+  },
+  "LABORATORIOS INIBSA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh10QQAR/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS INIBSA SA",
+    "matched_key": "LABORATORIOS INIBSA",
+    "source": "exact"
+  },
+  "LABORATORIOS IZADI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQExQAN/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS IZADI, SL",
+    "matched_key": "LABORATORIOS IZADI",
+    "source": "exact"
+  },
+  "LABORATORIOS LEON FARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPWHQA3/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS LEON FARMA SAU",
+    "matched_key": "LABORATORIOS LEON FARMA SAU",
+    "source": "fuzzy"
+  },
+  "LABORATORIOS LICONSA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpG7QAI/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS LICONSA SAU",
+    "matched_key": "LABORATORIOS LICONSA SAU",
+    "source": "fuzzy"
+  },
+  "LABORATORIOS MEDICAMENTOS INTERNACIONALES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1EYQAZ/view",
+    "score": 100,
+    "matched_name": "MEDINSA - LABORATORIOS MEDICAMENTOS INTERNACIONALES SA",
+    "matched_key": "MEDINSA LABORATORIOS MEDICAMENTOS INTERNACIONALES",
+    "source": "fuzzy"
+  },
+  "LABORATORIOS MENARINI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0yoQAB/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS MENARINI SA",
+    "matched_key": "LABORATORIOS MENARINI",
+    "source": "exact"
+  },
+  "LABORATORIOS NORMON": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1EeQAJ/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS NORMON SA",
+    "matched_key": "LABORATORIOS NORMON",
+    "source": "exact"
+  },
+  "LABORATORIOS RUBIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000003Hb4cQAC/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS RUBIÓ S.A.",
+    "matched_key": "LABORATORIOS RUBIO",
+    "source": "exact"
+  },
+  "LABORATORIOS SALVAT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCYpQAP/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS SALVAT SA",
+    "matched_key": "LABORATORIOS SALVAT",
+    "source": "exact"
+  },
+  "LABORATORIOS SAYCI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpFyQAI/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS SAYCI, SL",
+    "matched_key": "LABORATORIOS SAYCI",
+    "source": "exact"
+  },
+  "LABORATORIOS SERVIER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoEvwQAF/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS SERVIER SL",
+    "matched_key": "LABORATORIOS SERVIER",
+    "source": "exact"
+  },
+  "LABORATORIOS SYVA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoTYGQA3/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS SYVA SA",
+    "matched_key": "LABORATORIOS SYVA",
+    "source": "exact"
+  },
+  "LABORATORIOS TECNOLOGICOS DE LEVANTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBnTQAX/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS TECNOLOGICOS DE LEVANTE SL",
+    "matched_key": "LABORATORIOS TECNOLOGICOS DE LEVANTE",
+    "source": "exact"
+  },
+  "LABORATORIOS VINAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0tzQAB/view",
+    "score": 100,
+    "matched_name": "LABORATORIOS VIÑAS SA",
+    "matched_key": "LABORATORIOS VINAS",
+    "source": "exact"
+  },
+  "LABORATORIO IBERICO INTERNACIONAL DE NANOTECNOLOGIA LIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUAWQA3/view",
+    "score": 100,
+    "matched_name": "LABORATÓRIO IBÉRICO INTERNACIONAL DE NANOTECNOLOGIA (LIN)",
+    "matched_key": "LABORATORIO IBERICO INTERNACIONAL DE NANOTECNOLOGIA LIN",
+    "source": "exact"
+  },
+  "LABORATORIO NACIONAL DE ENGENHARIA CIVIL I P": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000A91s4IAB/view",
+    "score": 100,
+    "matched_name": "LABORATÓRIO NACIONAL DE ENGENHARIA CIVIL, I.P.",
+    "matched_key": "LABORATORIO NACIONAL DE ENGENHARIA CIVIL I P",
+    "source": "exact"
+  },
+  "LABORSPIRIT LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PKD93QAH/view",
+    "score": 100,
+    "matched_name": "LABORSPIRIT, LDA",
+    "matched_key": "LABORSPIRIT LDA",
+    "source": "exact"
+  },
+  "LACER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0u4QAB/view",
+    "score": 100,
+    "matched_name": "LACER SA",
+    "matched_key": "LACER",
+    "source": "exact"
+  },
+  "LACTEOS IND AGRUPADOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PNqDxQAL/view",
+    "score": 89,
+    "matched_name": "LACTEOS INDUSTRIALES AGRUPADOS SA",
+    "matched_key": "LACTEOS INDUSTRIALES AGRUPADOS",
+    "source": "fuzzy"
+  },
+  "LETI PHARMA S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpFrQAI/view",
+    "score": 100,
+    "matched_name": "LETI Pharma, S.L.U.",
+    "matched_key": "LETI PHARMA S L U",
+    "source": "exact"
+  },
+  "LILLY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000cu1aEQAQ/view",
+    "score": 100,
+    "matched_name": "LILLY SA",
+    "matched_key": "LILLY",
+    "source": "exact"
+  },
+  "LINEALAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPWgQAN/view",
+    "score": 100,
+    "matched_name": "LINEALAB SL",
+    "matched_key": "LINEALAB",
+    "source": "exact"
+  },
+  "LINLAB SOLUCIONES DE LABORATORIOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQOhQAN/view",
+    "score": 100,
+    "matched_name": "LINLAB SOLUCIONES DE LABORATORIOS, S.L",
+    "matched_key": "LINLAB SOLUCIONES DE LABORATORIOS",
+    "source": "exact"
+  },
+  "LIPOTEC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCO7QAP/view",
+    "score": 100,
+    "matched_name": "LIPOTEC SA",
+    "matched_key": "LIPOTEC",
+    "source": "exact"
+  },
+  "LLAMAS PERUANAS SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000007jURhQAM/view",
+    "score": 100,
+    "matched_name": "LLAMAS PERUANAS SPAIN, S.L.",
+    "matched_key": "LLAMAS PERUANAS SPAIN",
+    "source": "exact"
+  },
+  "LLAMBI MATEOS FRANCISCO DE ASIS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jo0GQAQ/view",
+    "score": 100,
+    "matched_name": "LLAMBI MATEOS FRANCISCO DE ASIS",
+    "matched_key": "LLAMBI MATEOS FRANCISCO DE ASIS",
+    "source": "exact"
+  },
+  "LLUCH ESSENCE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0znQAB/view",
+    "score": 100,
+    "matched_name": "LLUCH ESSENCE SL",
+    "matched_key": "LLUCH ESSENCE",
+    "source": "exact"
+  },
+  "LOCET BIERZO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCspQAH/view",
+    "score": 100,
+    "matched_name": "LOCET BIERZO, S.L.",
+    "matched_key": "LOCET BIERZO",
+    "source": "exact"
+  },
+  "LONZA BIOLOGICS PORRINO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCjUQAX/view",
+    "score": 100,
+    "matched_name": "LONZA BIOLOGICS PORRIÑO SL",
+    "matched_key": "LONZA BIOLOGICS PORRINO",
+    "source": "exact"
+  },
+  "LUCTA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCCRQA5/view",
+    "score": 100,
+    "matched_name": "LUCTA, SA",
+    "matched_key": "LUCTA",
+    "source": "exact"
+  },
+  "LUNAGUA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQMlQAN/view",
+    "score": 100,
+    "matched_name": "LUNAGUA, S.L.",
+    "matched_key": "LUNAGUA",
+    "source": "exact"
+  },
+  "M F TECNICA INDUSTRIAL I MEDIAMBIENTAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj0000021iSTIAY/view",
+    "score": 100,
+    "matched_name": "M F TECNICA INDUSTRIAL I MEDIAMBIENTAL SL",
+    "matched_key": "M F TECNICA INDUSTRIAL I MEDIAMBIENTAL",
+    "source": "exact"
+  },
+  "MAFA BIOSCIENCE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BblwVQAR/view",
+    "score": 100,
+    "matched_name": "MAFA BIOSCIENCE SA",
+    "matched_key": "MAFA BIOSCIENCE",
+    "source": "exact"
+  },
+  "MAISON THIERCELIN SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003QcdiFQAR/view",
+    "score": 100,
+    "matched_name": "MAISON  THIERCELIN SLU",
+    "matched_key": "MAISON THIERCELIN SLU",
+    "source": "exact"
+  },
+  "MANCOMUNITAT INTERC PENEDES GARRAF": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0uJQAR/view",
+    "score": 100,
+    "matched_name": "MANCOMUNITAT INTERC. PENEDÈS-GARRAF",
+    "matched_key": "MANCOMUNITAT INTERC PENEDES GARRAF",
+    "source": "exact"
+  },
+  "MANE IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYGWQA3/view",
+    "score": 100,
+    "matched_name": "MANE IBERICA SA",
+    "matched_key": "MANE IBERICA",
+    "source": "exact"
+  },
+  "MANTEQUERIAS ARIAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh17zQAB/view",
+    "score": 100,
+    "matched_name": "MANTEQUERIAS ARIAS SA",
+    "matched_key": "MANTEQUERIAS ARIAS",
+    "source": "exact"
+  },
+  "MANUFACTURAS CEYLAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOIeQAN/view",
+    "score": 100,
+    "matched_name": "MANUFACTURAS CEYLAN SL",
+    "matched_key": "MANUFACTURAS CEYLAN",
+    "source": "exact"
+  },
+  "MARENOSTRUM TECH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLL3gQAH/view",
+    "score": 100,
+    "matched_name": "MARENOSTRUM TECH, SL",
+    "matched_key": "MARENOSTRUM TECH",
+    "source": "exact"
+  },
+  "MARINOTEIS SOCIEDADE DE PROMOCAO E CONSTRUCAO DE HOTEIS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Sr0wNQAR/view",
+    "score": 100,
+    "matched_name": "MARINOTÉIS - SOCIEDADE DE PROMOÇÃO E CONSTRUÇÃO DE HÓTEIS, S.A.",
+    "matched_key": "MARINOTEIS SOCIEDADE DE PROMOCAO E CONSTRUCAO DE HOTEIS",
+    "source": "exact"
+  },
+  "MASOL IBERIA BIOFUEL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SkaqAQAR/view",
+    "score": 100,
+    "matched_name": "MASOL IBERIA BIOFUEL, S.L.",
+    "matched_key": "MASOL IBERIA BIOFUEL",
+    "source": "exact"
+  },
+  "MASSO ANALITICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000007j7YjQAI/view",
+    "score": 100,
+    "matched_name": "MASSO ANALITICA SA",
+    "matched_key": "MASSO ANALITICA",
+    "source": "exact"
+  },
+  "MATERIAL Y EQUIPOS DE VIDRIO DE LABORATORIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD2ZQAX/view",
+    "score": 100,
+    "matched_name": "MATERIAL Y EQUIPOS DE VIDRIO DE LABORATORIO SA",
+    "matched_key": "MATERIAL Y EQUIPOS DE VIDRIO DE LABORATORIO",
+    "source": "exact"
+  },
+  "MCNEIL IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1CqQAJ/view",
+    "score": 100,
+    "matched_name": "MCNEIL IBERICA SL",
+    "matched_key": "MCNEIL IBERICA",
+    "source": "exact"
+  },
+  "MEDICHEM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0uLQAR/view",
+    "score": 100,
+    "matched_name": "MEDICHEM SA",
+    "matched_key": "MEDICHEM",
+    "source": "exact"
+  },
+  "MERCK": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCrQAN/view",
+    "score": 100,
+    "matched_name": "MERCK SL",
+    "matched_key": "MERCK",
+    "source": "exact"
+  },
+  "MINISTERIO DE AGRICULTURA PESCA Y ALIMENTACION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCjQAN/view",
+    "score": 100,
+    "matched_name": "MINISTERIO DE AGRICULTURA, PESCA Y ALIMENTACION",
+    "matched_key": "MINISTERIO DE AGRICULTURA PESCA Y ALIMENTACION",
+    "source": "exact"
+  },
+  "MIRALLERS 1912": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLsrWQAT/view",
+    "score": 100,
+    "matched_name": "MIRALLERS 1912 SL.",
+    "matched_key": "MIRALLERS 1912",
+    "source": "exact"
+  },
+  "MOA BIOTECH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000gvfdXQAQ/view",
+    "score": 100,
+    "matched_name": "MOA BIOTECH SL.",
+    "matched_key": "MOA BIOTECH",
+    "source": "exact"
+  },
+  "MOEHS CATALANA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCenQAH/view",
+    "score": 100,
+    "matched_name": "MOEHS CATALANA SL",
+    "matched_key": "MOEHS CATALANA",
+    "source": "exact"
+  },
+  "MOEHS IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BciW9QAJ/view",
+    "score": 100,
+    "matched_name": "MOEHS IBERICA SL",
+    "matched_key": "MOEHS IBERICA",
+    "source": "exact"
+  },
+  "MOEVE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCVcQAP/view",
+    "score": 100,
+    "matched_name": "MOEVE S.A.",
+    "matched_key": "MOEVE",
+    "source": "exact"
+  },
+  "MOLECULA LABORIOSA LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PMykPQAT/view",
+    "score": 100,
+    "matched_name": "MOLÉCULA LABORIOSA, LDA",
+    "matched_key": "MOLECULA LABORIOSA LDA",
+    "source": "exact"
+  },
+  "MONTAJES Y EQUIPAMIENTOS DE LAB CANARIAS SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoEV9QAN/view",
+    "score": 95,
+    "matched_name": "MELCAN SLU (MONTAJES Y EQUIPAMIENTOS DE LABORATORIOS CANARIAS)",
+    "matched_key": "MELCAN SLU MONTAJES Y EQUIPAMIENTOS DE LABORATORIOS CANARIAS",
+    "source": "fuzzy"
+  },
+  "MOYRESA GIRASOL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoSoaQAF/view",
+    "score": 100,
+    "matched_name": "MOYRESA GIRASOL SL",
+    "matched_key": "MOYRESA GIRASOL",
+    "source": "exact"
+  },
+  "MOZAR TECHNOLOGY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000X14K8QAJ/view",
+    "score": 100,
+    "matched_name": "MOZAR TECHNOLOGY SL",
+    "matched_key": "MOZAR TECHNOLOGY",
+    "source": "exact"
+  },
+  "MUD WINE BAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000005kOm1IAE/view",
+    "score": 100,
+    "matched_name": "MUD WINE BAR SL.",
+    "matched_key": "MUD WINE BAR",
+    "source": "exact"
+  },
+  "NABLA 2000": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NKQAZ/view",
+    "score": 100,
+    "matched_name": "NABLA 2000 SL",
+    "matched_key": "NABLA 2000",
+    "source": "exact"
+  },
+  "NATAC BIOTECH SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCyIQAX/view",
+    "score": 100,
+    "matched_name": "NATAC BIOTECH SLU",
+    "matched_key": "NATAC BIOTECH SLU",
+    "source": "exact"
+  },
+  "NESTLE ESPANA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000Uj8t0IAB/view",
+    "score": 100,
+    "matched_name": "NESTLE ESPAÑA SAU - NESCAFÉ Girona",
+    "matched_key": "NESTLE ESPANA SAU NESCAFE GIRONA",
+    "source": "fuzzy"
+  },
+  "NESTLE PORTUGAL UNIPESSOAL LDA FABRICA AVANCA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PMrmfQAD/view",
+    "score": 100,
+    "matched_name": "NESTLÉ PORTUGAL, UNIPESSOAL, LDA. - FÁBRICA DE AVANCA",
+    "matched_key": "NESTLE PORTUGAL UNIPESSOAL LDA FABRICA DE AVANCA",
+    "source": "fuzzy"
+  },
+  "NET INTERLAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD3mQAH/view",
+    "score": 100,
+    "matched_name": "NET INTERLAB, SA",
+    "matched_key": "NET INTERLAB",
+    "source": "exact"
+  },
+  "NEXT SERVICES IBERIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQMMQA3/view",
+    "score": 100,
+    "matched_name": "NEXT SERVICES IBERIA, SL",
+    "matched_key": "NEXT SERVICES IBERIA",
+    "source": "exact"
+  },
+  "NIRCO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYWdQAN/view",
+    "score": 100,
+    "matched_name": "NIRCO SL",
+    "matched_key": "NIRCO",
+    "source": "exact"
+  },
+  "NOUCOR HEALTH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008NRp1QAG/view",
+    "score": 100,
+    "matched_name": "NOUCOR HEALTH S.A.",
+    "matched_key": "NOUCOR HEALTH",
+    "source": "exact"
+  },
+  "NOVA ID FCT ASSOCIACAO PARA INOVACAO E DESENVOLVIMENTO DA FCTC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000WzgXaQAJ/view",
+    "score": 100,
+    "matched_name": "NOVA.ID.FCT - ASSOCIAÇÃO PARA INOVAÇÃO E DESENVOLVIMENTO DA FCTC",
+    "matched_key": "NOVA ID FCT ASSOCIACAO PARA INOVACAO E DESENVOLVIMENTO DA FCTC",
+    "source": "exact"
+  },
+  "NOVUS SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KxQAJ/view",
+    "score": 100,
+    "matched_name": "NOVUS SPAIN SA",
+    "matched_key": "NOVUS SPAIN",
+    "source": "exact"
+  },
+  "NUCAPS NANOTECHNOLOGY": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SmBEKQA3/view",
+    "score": 100,
+    "matched_name": "NUCAPS Nanotechnology, S.L.",
+    "matched_key": "NUCAPS NANOTECHNOLOGY",
+    "source": "exact"
+  },
+  "NUEVA GALIMPLANT S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000ROLbjIAH/view",
+    "score": 100,
+    "matched_name": "NUEVA GALIMPLANT S.L.U.",
+    "matched_key": "NUEVA GALIMPLANT S L U",
+    "source": "exact"
+  },
+  "NUTRICEAL FOODS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ib8kcQAB/view",
+    "score": 100,
+    "matched_name": "NUTRICEAL FOODS, S.A.",
+    "matched_key": "NUTRICEAL FOODS",
+    "source": "exact"
+  },
+  "OLIVITE EXPORT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000003xfwlIAA/view",
+    "score": 100,
+    "matched_name": "OLIVITE EXPORT SL",
+    "matched_key": "OLIVITE EXPORT",
+    "source": "exact"
+  },
+  "ORGANISMO AUTONOMO MADRID SALUD": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000X0KTYQA3/view",
+    "score": 100,
+    "matched_name": "ORGANISMO AUTONOMO MADRID SALUD",
+    "matched_key": "ORGANISMO AUTONOMO MADRID SALUD",
+    "source": "exact"
+  },
+  "ORGANICOS PEDRIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008NdxVQAS/view",
+    "score": 100,
+    "matched_name": "ORGÁNICOS PEDRÍN",
+    "matched_key": "ORGANICOS PEDRIN",
+    "source": "exact"
+  },
+  "ORO AGRI EUROPE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbV7hQAF/view",
+    "score": 100,
+    "matched_name": "ORO AGRI EUROPE, S.A.",
+    "matched_key": "ORO AGRI EUROPE",
+    "source": "exact"
+  },
+  "OVIGANIC IBERICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PKTQAQA5/view",
+    "score": 100,
+    "matched_name": "OVIGANIC IBERICA SL",
+    "matched_key": "OVIGANIC IBERICA",
+    "source": "exact"
+  },
+  "PALOBIOFARMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JAQAZ/view",
+    "score": 100,
+    "matched_name": "PALOBIOFARMA SL",
+    "matched_key": "PALOBIOFARMA",
+    "source": "exact"
+  },
+  "PARALAB EQUIPAMENTOS INDUSTRIAIS E DE LABORATORIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000G6SdIIAV/view",
+    "score": 100,
+    "matched_name": "PARALAB - EQUIPAMENTOS INDUSTRIAIS E DE LABORATÓRIO, S.A.",
+    "matched_key": "PARALAB EQUIPAMENTOS INDUSTRIAIS E DE LABORATORIO",
+    "source": "exact"
+  },
+  "PASA FABRICACION SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYdoQAF/view",
+    "score": 100,
+    "matched_name": "PASA FABRICACION SL",
+    "matched_key": "PASA FABRICACION",
+    "source": "fuzzy"
+  },
+  "PASTAS ALIMENTICIAS ROMERO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQNtQAN/view",
+    "score": 100,
+    "matched_name": "PASTAS ALIMENTICIAS ROMERO, S.A.",
+    "matched_key": "PASTAS ALIMENTICIAS ROMERO",
+    "source": "exact"
+  },
+  "PAVASAL EMPRESA CONSTRUCTORA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000cuYGNQA2/view",
+    "score": 100,
+    "matched_name": "PAVASAL EMPRESA CONSTRUCTORA SA",
+    "matched_key": "PAVASAL EMPRESA CONSTRUCTORA",
+    "source": "exact"
+  },
+  "PERGRAS PROYECTOS Y DESARROLLO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpGBQAY/view",
+    "score": 100,
+    "matched_name": "PERGRAS PROYECTOS Y DESARROLLO, SL",
+    "matched_key": "PERGRAS PROYECTOS Y DESARROLLO",
+    "source": "exact"
+  },
+  "PERKINELMER SCIENTIFIC SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000WzKCIQA3/view",
+    "score": 100,
+    "matched_name": "PERKINELMER SCIENTIFIC SPAIN SL.",
+    "matched_key": "PERKINELMER SCIENTIFIC SPAIN",
+    "source": "exact"
+  },
+  "PHARMA MAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQC95QAH/view",
+    "score": 100,
+    "matched_name": "PHARMA MAR SA",
+    "matched_key": "PHARMA MAR",
+    "source": "exact"
+  },
+  "PHARMEX ADVANCED LABORATORIES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPWCQA3/view",
+    "score": 100,
+    "matched_name": "PHARMEX ADVANCED LABORATORIES SL",
+    "matched_key": "PHARMEX ADVANCED LABORATORIES",
+    "source": "exact"
+  },
+  "PIENSOS PROCASA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BbRrGQAV/view",
+    "score": 100,
+    "matched_name": "PIENSOS PROCASA SA",
+    "matched_key": "PIENSOS PROCASA",
+    "source": "exact"
+  },
+  "PINOPINE PRODUTOS QUIMICOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbV7rQAF/view",
+    "score": 100,
+    "matched_name": "PINOPINE - PRODUTOS QUÍMICOS, S.A",
+    "matched_key": "PINOPINE PRODUTOS QUIMICOS",
+    "source": "exact"
+  },
+  "PINSOS SANT ANTONI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000IyfihIAB/view",
+    "score": 100,
+    "matched_name": "PINSOS SANT ANTONI, SA",
+    "matched_key": "PINSOS SANT ANTONI",
+    "source": "exact"
+  },
+  "PLANETAS ALINEADOS SLU YEITE BAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000gw1ieQAA/view",
+    "score": 100,
+    "matched_name": "PLANETAS ALINEADOS SLU - YEITE BAR",
+    "matched_key": "PLANETAS ALINEADOS SLU YEITE BAR",
+    "source": "exact"
+  },
+  "PLASTICOS CASTELLA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpFzQAI/view",
+    "score": 100,
+    "matched_name": "PLASTICOS CASTELLA, SAU",
+    "matched_key": "PLASTICOS CASTELLA SAU",
+    "source": "exact"
+  },
+  "POLYKEY POLYMERS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000D3IJ6QAN/view",
+    "score": 100,
+    "matched_name": "POLYKEY POLYMERS SL.",
+    "matched_key": "POLYKEY POLYMERS",
+    "source": "exact"
+  },
+  "POLYPEPTIDE THERAPEUTIC SOLUTIONS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD30QAH/view",
+    "score": 100,
+    "matched_name": "POLYPEPTIDE THERAPEUTIC SOLUTIONS, SL.",
+    "matched_key": "POLYPEPTIDE THERAPEUTIC SOLUTIONS",
+    "source": "exact"
+  },
+  "PROALAN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh101QAB/view",
+    "score": 100,
+    "matched_name": "PROALAN SA",
+    "matched_key": "PROALAN",
+    "source": "exact"
+  },
+  "PROCAVI": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000PLvIFQA1/view",
+    "score": 100,
+    "matched_name": "PROCAVI SL",
+    "matched_key": "PROCAVI",
+    "source": "exact"
+  },
+  "PROD CAPILARES L OREAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpGDQAY/view",
+    "score": 100,
+    "matched_name": "PROD. CAPILARES L'OREAL, SA",
+    "matched_key": "PROD CAPILARES L OREAL",
+    "source": "exact"
+  },
+  "PRODEQ ASSOCIACAO PARA O DESENVOLVIMENTO DA ENGENHARIA QUIMICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000002oNjSIAU/view",
+    "score": 100,
+    "matched_name": "PRODEQ - ASSOCIAÇÃO PARA O DESENVOLVIMENTO DA ENGENHARIA QUÍMICA",
+    "matched_key": "PRODEQ ASSOCIACAO PARA O DESENVOLVIMENTO DA ENGENHARIA QUIMICA",
+    "source": "exact"
+  },
+  "PRODUCTOS AGROVIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh14wQAB/view",
+    "score": 100,
+    "matched_name": "PRODUCTOS AGROVIN SA",
+    "matched_key": "PRODUCTOS AGROVIN",
+    "source": "exact"
+  },
+  "PRODUCTOS QUIMICOS DE MURCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003FIOVoQAP/view",
+    "score": 100,
+    "matched_name": "PRODUCTOS QUIMICOS DE MURCIA SL",
+    "matched_key": "PRODUCTOS QUIMICOS DE MURCIA",
+    "source": "exact"
+  },
+  "PRODUCTOS QUIMICOS DE LABORATORIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1IkQAJ/view",
+    "score": 100,
+    "matched_name": "PRODUCTOS QUIMICOS LABORATORIO SA",
+    "matched_key": "PRODUCTOS QUIMICOS LABORATORIO",
+    "source": "fuzzy"
+  },
+  "PRODUCTOS SOLUBLES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LPEbcQAH/view",
+    "score": 100,
+    "matched_name": "PRODUCTOS SOLUBLES SA",
+    "matched_key": "PRODUCTOS SOLUBLES",
+    "source": "exact"
+  },
+  "PROQUINORTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SmNa9QAF/view",
+    "score": 100,
+    "matched_name": "PROQUINORTE, S.A.",
+    "matched_key": "PROQUINORTE",
+    "source": "exact"
+  },
+  "PROSISA LAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1K0QAJ/view",
+    "score": 100,
+    "matched_name": "PROSISA LAB SL.",
+    "matched_key": "PROSISA LAB",
+    "source": "exact"
+  },
+  "PROVITAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCRtQAP/view",
+    "score": 100,
+    "matched_name": "PROVITAL SA",
+    "matched_key": "PROVITAL",
+    "source": "exact"
+  },
+  "PERKINELMER SINGAPORE PTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SjWdeQAF/view",
+    "score": 100,
+    "matched_name": "PerkinElmer Singapore Pte.Ltd.",
+    "matched_key": "PERKINELMER SINGAPORE PTE",
+    "source": "exact"
+  },
+  "QLABO EQUIPAMENTOS DE LABORATORIO E SERVICOS LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000StI6VQAV/view",
+    "score": 100,
+    "matched_name": "QLABO - EQUIPAMENTOS DE LABORATÓRIO E SERVIÇOS, LDA",
+    "matched_key": "QLABO EQUIPAMENTOS DE LABORATORIO E SERVICOS LDA",
+    "source": "exact"
+  },
+  "QUALITY CHEMICALS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LOhmsQAD/view",
+    "score": 100,
+    "matched_name": "QUALITY CHEMICALS SL",
+    "matched_key": "QUALITY CHEMICALS",
+    "source": "exact"
+  },
+  "QUIMEGA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOakQAF/view",
+    "score": 100,
+    "matched_name": "QUIMEGA SL",
+    "matched_key": "QUIMEGA",
+    "source": "exact"
+  },
+  "QUIMICA DEL ESTRONCIO SA SOCIEDAD UNIPERSONAL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPaEQAV/view",
+    "score": 100,
+    "matched_name": "QUIMICA DEL ESTRONCIO, SA, SOCIEDAD UNIPERSONAL",
+    "matched_key": "QUIMICA DEL ESTRONCIO SA SOCIEDAD UNIPERSONAL",
+    "source": "exact"
+  },
+  "QUIMICA SINTETICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1CpQAJ/view",
+    "score": 100,
+    "matched_name": "QUIMICA SINTETICA SA",
+    "matched_key": "QUIMICA SINTETICA",
+    "source": "exact"
+  },
+  "QUIMICA Y MEDIO AMBIENTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDKnQAP/view",
+    "score": 100,
+    "matched_name": "QUÍMICA Y MEDIO AMBIENTE, S.L.",
+    "matched_key": "QUIMICA Y MEDIO AMBIENTE",
+    "source": "exact"
+  },
+  "RAIZ INSTITUTO DE INVESTIGACAO DA FLORESTA E PAPEL": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ib9blQAB/view",
+    "score": 100,
+    "matched_name": "RAIZ - INSTITUTO DE INVESTIGAÇÃO DA FLORESTA E PAPEL",
+    "matched_key": "RAIZ INSTITUTO DE INVESTIGACAO DA FLORESTA E PAPEL",
+    "source": "exact"
+  },
+  "RANKE QUIMICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoEfyQAF/view",
+    "score": 100,
+    "matched_name": "RANKE QUIMICA SA",
+    "matched_key": "RANKE QUIMICA",
+    "source": "exact"
+  },
+  "RDN SERVICOS DE BIOTECNOLOGIA UNIPESSOAL LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000LSi3iQAD/view",
+    "score": 100,
+    "matched_name": "RDN SERVIÇOS DE BIOTECNOLOGIA, UNIPESSOAL, LDA",
+    "matched_key": "RDN SERVICOS DE BIOTECNOLOGIA UNIPESSOAL LDA",
+    "source": "exact"
+  },
+  "RECIPHARM PARETS": {
+    "status": "NO_MATCH",
+    "url": null,
+    "score": 72,
+    "matched_name": "RECIPHARM LEGANES SLU",
+    "matched_key": "RECIPHARM LEGANES SLU",
+    "source": "below_threshold"
+  },
+  "REDOX LAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCKqQAP/view",
+    "score": 100,
+    "matched_name": "REDOX LAB SL",
+    "matched_key": "REDOX LAB",
+    "source": "exact"
+  },
+  "REM REPRESENTACIONES EDUARDO MUNIZ": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCR0QAP/view",
+    "score": 100,
+    "matched_name": "REM REPRESENTACIONES EDUARDO MUÑIZ SL",
+    "matched_key": "REM REPRESENTACIONES EDUARDO MUNIZ",
+    "source": "exact"
+  },
+  "REPSOL QUIMICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000b1wU8QAI/view",
+    "score": 100,
+    "matched_name": "REPSOL QUIMICA SA",
+    "matched_key": "REPSOL QUIMICA",
+    "source": "exact"
+  },
+  "RESPUESTA A LABORATORIO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQNuQAN/view",
+    "score": 100,
+    "matched_name": "RESPUESTA A LABORATORIO, S.L.",
+    "matched_key": "RESPUESTA A LABORATORIO",
+    "source": "exact"
+  },
+  "REUS SERVEIS MUNICIPALS S A DIVISIO AIGUES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQDDSQA5/view",
+    "score": 100,
+    "matched_name": "REUS SERVEIS MUNICIPALS, S.A. (Divisió Aigües).",
+    "matched_key": "REUS SERVEIS MUNICIPALS S A DIVISIO AIGUES",
+    "source": "exact"
+  },
+  "RIERA NADEU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh107QAB/view",
+    "score": 100,
+    "matched_name": "RIERA NADEU SA",
+    "matched_key": "RIERA NADEU",
+    "source": "exact"
+  },
+  "ROCHE DIAGNOSTICS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000003Hc38QAC/view",
+    "score": 100,
+    "matched_name": "ROCHE DIAGNOSTICS, SL",
+    "matched_key": "ROCHE DIAGNOSTICS",
+    "source": "exact"
+  },
+  "ROLABO OUTSOURCING": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCeXQAX/view",
+    "score": 100,
+    "matched_name": "ROLABO OUTSOURCING S.L.",
+    "matched_key": "ROLABO OUTSOURCING",
+    "source": "exact"
+  },
+  "ROQUETTE LAISA ESPANA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoERyQAN/view",
+    "score": 100,
+    "matched_name": "ROQUETTE LAISA ESPAÑA SA",
+    "matched_key": "ROQUETTE LAISA ESPANA",
+    "source": "exact"
+  },
+  "ROTOQUIMICA LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Md9z9QAB/view",
+    "score": 100,
+    "matched_name": "Rotoquimica, Lda",
+    "matched_key": "ROTOQUIMICA LDA",
+    "source": "exact"
+  },
+  "ROVI ESCUZAR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000003DLzdIAG/view",
+    "score": 100,
+    "matched_name": "ROVI ESCUZAR SL.",
+    "matched_key": "ROVI ESCUZAR",
+    "source": "exact"
+  },
+  "RUA ANCHIETA 13 GESTAO IMOBILIARIA LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000K4R2wIAF/view",
+    "score": 100,
+    "matched_name": "RUA ANCHIETA 13 - GESTÃO IMOBILIÁRIA, LDA",
+    "matched_key": "RUA ANCHIETA 13 GESTAO IMOBILIARIA LDA",
+    "source": "exact"
+  },
+  "SA LIPMES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBlTQAX/view",
+    "score": 100,
+    "matched_name": "SA LIPMES",
+    "matched_key": "SA LIPMES",
+    "source": "exact"
+  },
+  "SAG MANUFACTURING SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD59QAH/view",
+    "score": 100,
+    "matched_name": "SAG MANUFACTURING SL",
+    "matched_key": "SAG MANUFACTURING",
+    "source": "fuzzy"
+  },
+  "SARPI IBERICA S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1KsQAJ/view",
+    "score": 100,
+    "matched_name": "SARPI IBÉRICA, S.L.U",
+    "matched_key": "SARPI IBERICA S L U",
+    "source": "exact"
+  },
+  "SARVAL BIO INDUSTRIES S L U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoStkQAF/view",
+    "score": 100,
+    "matched_name": "SARVAL BIO-INDUSTRIES S.L.U.",
+    "matched_key": "SARVAL BIO INDUSTRIES S L U",
+    "source": "exact"
+  },
+  "SCENTIUM FLAVOURS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBvgQAH/view",
+    "score": 100,
+    "matched_name": "SCENTIUM FLAVOURS S.L.",
+    "matched_key": "SCENTIUM FLAVOURS",
+    "source": "exact"
+  },
+  "SCHARLAB": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWDIQA3/view",
+    "score": 100,
+    "matched_name": "SCHARLAB SL",
+    "matched_key": "SCHARLAB",
+    "source": "exact"
+  },
+  "SEBOL COMERCIO E INDUSTRIA DE SEBO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Ib8f7QAB/view",
+    "score": 100,
+    "matched_name": "SEBOL - COMÉRCIO E INDÚSTRIA DE SEBO, S.A.",
+    "matched_key": "SEBOL COMERCIO E INDUSTRIA DE SEBO",
+    "source": "exact"
+  },
+  "SEDQ HEALTHY CROPS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0yvQAB/view",
+    "score": 100,
+    "matched_name": "SEDQ HEALTHY CROPS S.L.",
+    "matched_key": "SEDQ HEALTHY CROPS",
+    "source": "exact"
+  },
+  "SEGURALIMENT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NqQAJ/view",
+    "score": 100,
+    "matched_name": "SEGURALIMENT SL",
+    "matched_key": "SEGURALIMENT",
+    "source": "exact"
+  },
+  "SEPIOL SOCIEDAD ANONIMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh15zQAB/view",
+    "score": 100,
+    "matched_name": "SEPIOL SOCIEDAD ANONIMA",
+    "matched_key": "SEPIOL SOCIEDAD ANONIMA",
+    "source": "exact"
+  },
+  "SERVICIOS DE LA COMARCA DE PAMPLONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009kmwwQAA/view",
+    "score": 100,
+    "matched_name": "SERVICIOS DE LA COMARCA DE PAMPLONA SA",
+    "matched_key": "SERVICIOS DE LA COMARCA DE PAMPLONA",
+    "source": "exact"
+  },
+  "SERVIQUIMIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBpTQAX/view",
+    "score": 100,
+    "matched_name": "SERVIQUIMIA SL",
+    "matched_key": "SERVIQUIMIA",
+    "source": "exact"
+  },
+  "SG SERVICIOS HOSPITALARIOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0zGQAR/view",
+    "score": 100,
+    "matched_name": "SG SERVICIOS HOSPITALARIOS SL",
+    "matched_key": "SG SERVICIOS HOSPITALARIOS",
+    "source": "exact"
+  },
+  "SIENERG INSTRUMENTACION": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BaWbiQAF/view",
+    "score": 100,
+    "matched_name": "SIENERG INSTRUMENTACION, SL",
+    "matched_key": "SIENERG INSTRUMENTACION",
+    "source": "exact"
+  },
+  "SILLIKER IBERICA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCUxQAP/view",
+    "score": 100,
+    "matched_name": "SILLIKER IBERICA SAU",
+    "matched_key": "SILLIKER IBERICA SAU",
+    "source": "exact"
+  },
+  "SIPCAM INAGRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhZqTQAV/view",
+    "score": 100,
+    "matched_name": "SIPCAM INAGRA SA",
+    "matched_key": "SIPCAM INAGRA",
+    "source": "exact"
+  },
+  "SOCIEDAD AGRICOLA GALLEGA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpGEQAY/view",
+    "score": 100,
+    "matched_name": "SOCIEDAD AGRÍCOLA GALLEGA, S.L.",
+    "matched_key": "SOCIEDAD AGRICOLA GALLEGA",
+    "source": "exact"
+  },
+  "SOCIEDAD ANONIMA ROBAMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0ydQAB/view",
+    "score": 100,
+    "matched_name": "SOCIEDAD ANONIMA ROBAMA",
+    "matched_key": "SOCIEDAD ANONIMA ROBAMA",
+    "source": "exact"
+  },
+  "SOCIEDAD MUNICIPAL AGUAS DE BURGOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj0000039fAoIAI/view",
+    "score": 100,
+    "matched_name": "SOCIEDAD MUNICIPAL AGUAS DE BURGOS SA",
+    "matched_key": "SOCIEDAD MUNICIPAL AGUAS DE BURGOS",
+    "source": "exact"
+  },
+  "SOCIEDADE MINEIRA DE NEVES CORVO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUCwQAN/view",
+    "score": 100,
+    "matched_name": "SOCIEDADE MINEIRA DE NEVES-CORVO, S.A.",
+    "matched_key": "SOCIEDADE MINEIRA DE NEVES CORVO",
+    "source": "exact"
+  },
+  "SOLVENTIA VIOLANTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003SkbAbQAJ/view",
+    "score": 100,
+    "matched_name": "SOLVENTIA VIOLANTE, S.L.",
+    "matched_key": "SOLVENTIA VIOLANTE",
+    "source": "exact"
+  },
+  "SPECIALITES PET FOOD": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003ZoTsxQAF/view",
+    "score": 100,
+    "matched_name": "SPECIALITES PET FOOD",
+    "matched_key": "SPECIALITES PET FOOD",
+    "source": "exact"
+  },
+  "SPF DIANA ESPANA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoTsxQAF/view",
+    "score": 100,
+    "matched_name": "SPF-DIANA ESPANA S.L.",
+    "matched_key": "SPF DIANA ESPANA",
+    "source": "fuzzy"
+  },
+  "SUEZ RR IWS IBERICA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpG5QAI/view",
+    "score": 100,
+    "matched_name": "SUEZ RR IWS IBERICA, SLU",
+    "matched_key": "SUEZ RR IWS IBERICA SLU",
+    "source": "exact"
+  },
+  "SUGELABOR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003dQwa0QAC/view",
+    "score": 100,
+    "matched_name": "SUGELABOR SA",
+    "matched_key": "SUGELABOR",
+    "source": "exact"
+  },
+  "SUMOL COMPAL MARCAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0017S00000cuNIHQA2/view",
+    "score": 100,
+    "matched_name": "SUMOL+COMPAL Marcas, S.A.",
+    "matched_key": "SUMOL COMPAL MARCAS",
+    "source": "exact"
+  },
+  "SYMBORG BUSINESS DEVELOPMENT SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000Gws8TIAR/view",
+    "score": 100,
+    "matched_name": "SYMBORG BUSINESS DEVELOPMENT SLU",
+    "matched_key": "SYMBORG BUSINESS DEVELOPMENT SLU",
+    "source": "exact"
+  },
+  "SYMBORG SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Mn9ysQAB/view",
+    "score": 100,
+    "matched_name": "SYMBORG, SLU",
+    "matched_key": "SYMBORG SLU",
+    "source": "exact"
+  },
+  "SYMRISE GRANADA SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003gzlaQQAQ/view",
+    "score": 100,
+    "matched_name": "Symrise Granada",
+    "matched_key": "SYMRISE GRANADA",
+    "source": "fuzzy"
+  },
+  "SYNTHELIA ORGANICS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000csvySQAQ/view",
+    "score": 100,
+    "matched_name": "SYNTHELIA ORGANICS SL.",
+    "matched_key": "SYNTHELIA ORGANICS",
+    "source": "exact"
+  },
+  "SYNTHON HISPANIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCSxQAP/view",
+    "score": 100,
+    "matched_name": "SYNTHON HISPANIA SL",
+    "matched_key": "SYNTHON HISPANIA",
+    "source": "exact"
+  },
+  "TECNICA GANADERA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003Yh1MxQAJ/view",
+    "score": 100,
+    "matched_name": "TECNICA GANADERA SL",
+    "matched_key": "TECNICA GANADERA",
+    "source": "exact"
+  },
+  "TECNIFRED GLOBAL SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQKWQA3/view",
+    "score": 100,
+    "matched_name": "TECNIFRED GLOBAL, SLU",
+    "matched_key": "TECNIFRED GLOBAL SLU",
+    "source": "exact"
+  },
+  "TECNOQUIM": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCLsQAP/view",
+    "score": 100,
+    "matched_name": "TECNOQUIM SL",
+    "matched_key": "TECNOQUIM",
+    "source": "exact"
+  },
+  "TEKNOVAS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000009jpGFQAY/view",
+    "score": 100,
+    "matched_name": "TEKNOVAS SA",
+    "matched_key": "TEKNOVAS",
+    "source": "exact"
+  },
+  "TELETEST ANALYTIKA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCVlQAP/view",
+    "score": 100,
+    "matched_name": "TELETEST ANALYTIKA, SA",
+    "matched_key": "TELETEST ANALYTIKA",
+    "source": "exact"
+  },
+  "TESTO INDUSTRIAL SERVICES S A U": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQNZQA3/view",
+    "score": 100,
+    "matched_name": "TESTO INDUSTRIAL SERVICES, S.A.U.",
+    "matched_key": "TESTO INDUSTRIAL SERVICES S A U",
+    "source": "exact"
+  },
+  "TOLQUIMEX": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NLQAZ/view",
+    "score": 100,
+    "matched_name": "TOLQUIMEX SL",
+    "matched_key": "TOLQUIMEX",
+    "source": "exact"
+  },
+  "TORRECID": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003cKw9AQAS/view",
+    "score": 100,
+    "matched_name": "TORRECID S.A.",
+    "matched_key": "TORRECID",
+    "source": "exact"
+  },
+  "TORTO BAR AND COCKTAILS LDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000RwDIZIA3/view",
+    "score": 100,
+    "matched_name": "TORTO - BAR & COCKTAILS, LDA",
+    "matched_key": "TORTO BAR AND COCKTAILS LDA",
+    "source": "exact"
+  },
+  "TOWA PHARMACEUTICAL EUROPE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQBY7QAP/view",
+    "score": 100,
+    "matched_name": "TOWA PHARMACEUTICAL EUROPE S.L.",
+    "matched_key": "TOWA PHARMACEUTICAL EUROPE",
+    "source": "exact"
+  },
+  "TRACTAMENT DE RESIDUS I D AIGUES RESIDUALS DEL SISTEMA DE GIRONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCr2QAH/view",
+    "score": 100,
+    "matched_name": "TRACTAMENT DE RESIDUS I D'AIGUES RESIDUALS DEL SISTEMA DE GIRONA SA",
+    "matched_key": "TRACTAMENT DE RESIDUS I D AIGUES RESIDUALS DEL SISTEMA DE GIRONA",
+    "source": "exact"
+  },
+  "TRADE TRADE CORPORATION INTERNATIONAL SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000003J2E5IAK/view",
+    "score": 100,
+    "matched_name": "TRADE CORPORATION INTERNATIONAL SAU - Fábrica Albacete",
+    "matched_key": "TRADE CORPORATION INTERNATIONAL SAU FABRICA ALBACETE",
+    "source": "fuzzy"
+  },
+  "TRUMPLER ESPANOLA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh0yrQAB/view",
+    "score": 100,
+    "matched_name": "TRUMPLER ESPAÑOLA SA",
+    "matched_key": "TRUMPLER ESPANOLA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD AUTONOMA DE MADRID": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYQ3QAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD AUTONOMA DE MADRID",
+    "matched_key": "UNIVERSIDAD AUTONOMA DE MADRID",
+    "source": "exact"
+  },
+  "UNIVERSIDAD CASTILLA LA MANCHA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhY52QAF/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD CASTILLA LA MANCHA",
+    "matched_key": "UNIVERSIDAD CASTILLA LA MANCHA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD COMPLUTENSE DE MADRID": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCgHQAX/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD COMPLUTENSE DE MADRID",
+    "matched_key": "UNIVERSIDAD COMPLUTENSE DE MADRID",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE ALCALA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhXUQQA3/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE ALCALA",
+    "matched_key": "UNIVERSIDAD DE ALCALA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE ALICANTE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Sl1RFQAZ/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE ALICANTE",
+    "matched_key": "UNIVERSIDAD DE ALICANTE",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE CANTABRIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPOdQAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE CANTABRIA",
+    "matched_key": "UNIVERSIDAD DE CANTABRIA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE CORDOBA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhZiaQAF/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE CORDOBA",
+    "matched_key": "UNIVERSIDAD DE CORDOBA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE CADIZ": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPLEQA3/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE CADIZ",
+    "matched_key": "UNIVERSIDAD DE CADIZ",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE GRANADA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCq5QAH/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE GRANADA",
+    "matched_key": "UNIVERSIDAD DE GRANADA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE LA RIOJA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPbbQAF/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE LA RIOJA",
+    "matched_key": "UNIVERSIDAD DE LA RIOJA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE MURCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008Nzx7QAC/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE MURCIA",
+    "matched_key": "UNIVERSIDAD DE MURCIA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE NAVARRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JWQAZ/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE NAVARRA",
+    "matched_key": "UNIVERSIDAD DE NAVARRA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE SALAMANCA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000Bb4PoQAJ/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE SALAMANCA",
+    "matched_key": "UNIVERSIDAD DE SALAMANCA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE SEVILLA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003d4X4FQAU/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE SEVILLA",
+    "matched_key": "UNIVERSIDAD DE SEVILLA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE VALLADOLID": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NWQAZ/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE VALLADOLID",
+    "matched_key": "UNIVERSIDAD DE VALLADOLID",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE VIGO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWDSQA3/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE VIGO",
+    "matched_key": "UNIVERSIDAD DE VIGO",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DE ZARAGOZA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1NxQAJ/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DE ZARAGOZA",
+    "matched_key": "UNIVERSIDAD DE ZARAGOZA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD DEL PAIS VASCO EUSKAL HERRIKO UNIBERTSITATEA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhZ3LQAV/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD DEL PAIS VASCO -  EUSKAL HERRIKO UNIBERTSITATEA",
+    "matched_key": "UNIVERSIDAD DEL PAIS VASCO EUSKAL HERRIKO UNIBERTSITATEA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD EUROPEA DE MADRID SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoQO3QAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD EUROPEA DE MADRID, SAU",
+    "matched_key": "UNIVERSIDAD EUROPEA DE MADRID SAU",
+    "source": "exact"
+  },
+  "UNIVERSIDAD MIGUEL HERNANDEZ DE ELCHE": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008O41EQAS/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD MIGUEL HERNANDEZ DE ELCHE",
+    "matched_key": "UNIVERSIDAD MIGUEL HERNANDEZ DE ELCHE",
+    "source": "exact"
+  },
+  "UNIVERSIDAD NACIONAL DE EDUCACION A DISTANCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh18pQAB/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD NACIONAL DE EDUCACION A DISTANCIA",
+    "matched_key": "UNIVERSIDAD NACIONAL DE EDUCACION A DISTANCIA",
+    "source": "exact"
+  },
+  "UNIVERSIDAD POLITECNICA DE MADRID": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000BbYVnQAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD POLITÉCNICA DE MADRID",
+    "matched_key": "UNIVERSIDAD POLITECNICA DE MADRID",
+    "source": "exact"
+  },
+  "UNIVERSIDAD PUBLICA DE NAVARRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000SqycZQAR/view",
+    "score": 100,
+    "matched_name": "Universidad Pública de Navarra (UPNA) - Departamento de Ciencias",
+    "matched_key": "UNIVERSIDAD PUBLICA DE NAVARRA UPNA DEPARTAMENTO DE CIENCIAS",
+    "source": "fuzzy"
+  },
+  "UNIVERSIDAD REY JUAN CARLOS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1D0QAJ/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDAD REY JUAN CARLOS",
+    "matched_key": "UNIVERSIDAD REY JUAN CARLOS",
+    "source": "exact"
+  },
+  "UNIVERSIDADE DA BEIRA INTERIOR": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUDuQAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE DA BEIRA INTERIOR",
+    "matched_key": "UNIVERSIDADE DA BEIRA INTERIOR",
+    "source": "exact"
+  },
+  "UNIVERSIDADE DA CORUNA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000008Ni71QAC/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE DA CORUÑA",
+    "matched_key": "UNIVERSIDADE DA CORUNA",
+    "source": "exact"
+  },
+  "UNIVERSIDADE DE COIMBRA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUE4QAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE DE COIMBRA",
+    "matched_key": "UNIVERSIDADE DE COIMBRA",
+    "source": "exact"
+  },
+  "UNIVERSIDADE DE EVORA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbV5lQAF/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE DE EVORA",
+    "matched_key": "UNIVERSIDADE DE EVORA",
+    "source": "exact"
+  },
+  "UNIVERSIDADE DE SANTIAGO DE COMPOSTELA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCGsQAP/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE DE SANTIAGO DE COMPOSTELA",
+    "matched_key": "UNIVERSIDADE DE SANTIAGO DE COMPOSTELA",
+    "source": "exact"
+  },
+  "UNIVERSIDADE DO MINHO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUmiQAF/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE DO MINHO",
+    "matched_key": "UNIVERSIDADE DO MINHO",
+    "source": "exact"
+  },
+  "UNIVERSIDADE NOVA DE LISBOA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUEYQA3/view",
+    "score": 100,
+    "matched_name": "UNIVERSIDADE NOVA DE LISBOA",
+    "matched_key": "UNIVERSIDADE NOVA DE LISBOA",
+    "source": "exact"
+  },
+  "UNIVERSITAT AUTONOMA DE BARCELONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYC0QAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT DE BARCELONA",
+    "matched_key": "UNIVERSITAT DE BARCELONA",
+    "source": "fuzzy"
+  },
+  "UNIVERSITAT DE BARCELONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYC0QAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT DE BARCELONA",
+    "matched_key": "UNIVERSITAT DE BARCELONA",
+    "source": "exact"
+  },
+  "UNIVERSITAT DE GIRONA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCqYQAX/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT DE GIRONA",
+    "matched_key": "UNIVERSITAT DE GIRONA",
+    "source": "exact"
+  },
+  "UNIVERSITAT DE LES ILLES BALEARS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S000007k7bRQAQ/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT DE LES ILLES BALEARS",
+    "matched_key": "UNIVERSITAT DE LES ILLES BALEARS",
+    "source": "exact"
+  },
+  "UNIVERSITAT DE LLEIDA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhZlAQAV/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT DE LLEIDA",
+    "matched_key": "UNIVERSITAT DE LLEIDA",
+    "source": "exact"
+  },
+  "UNIVERSITAT DE VALENCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003d26tMQAQ/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT DE VALENCIA",
+    "matched_key": "UNIVERSITAT DE VALENCIA",
+    "source": "exact"
+  },
+  "UNIVERSITAT POLITECNICA DE CATALUNYA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPXUQA3/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT POLITECNICA DE CATALUNYA",
+    "matched_key": "UNIVERSITAT POLITECNICA DE CATALUNYA",
+    "source": "exact"
+  },
+  "UNIVERSITAT POLITECNICA DE VALENCIA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCBEQA5/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT POLITECNICA DE VALENCIA",
+    "matched_key": "UNIVERSITAT POLITECNICA DE VALENCIA",
+    "source": "exact"
+  },
+  "UNIVERSITAT ROVIRA I VIRGILI DE TARRAGONA CCT": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoPK6QAN/view",
+    "score": 100,
+    "matched_name": "UNIVERSITAT ROVIRA I VIRGILI DE TARRAGONA CCT",
+    "matched_key": "UNIVERSITAT ROVIRA I VIRGILI DE TARRAGONA CCT",
+    "source": "exact"
+  },
+  "UNION QUIMICO FARMACEUTICA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCfCQAX/view",
+    "score": 100,
+    "matched_name": "UNIÓN QUIMICO FARMACEUTICA - UQUIFA S.A.",
+    "matched_key": "UNION QUIMICO FARMACEUTICA UQUIFA",
+    "source": "fuzzy"
+  },
+  "URBASER SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/Account/0013X00003Yh18RQAR/view",
+    "score": 100,
+    "matched_name": "URBASER, SAU",
+    "matched_key": "URBASER SAU",
+    "source": "exact"
+  },
+  "URQUIMA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQCgFQAX/view",
+    "score": 100,
+    "matched_name": "URQUIMA SA",
+    "matched_key": "URQUIMA",
+    "source": "exact"
+  },
+  "VAIMA 2000 COMPONENTES": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1EnQAJ/view",
+    "score": 100,
+    "matched_name": "VAIMA 2000 COMPONENTES S.L.",
+    "matched_key": "VAIMA 2000 COMPONENTES",
+    "source": "exact"
+  },
+  "VASCO DA GAMA COLAB ENERGY STORAGE ASSOCIACAO": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0017S00000IbUEdQAN/view",
+    "score": 100,
+    "matched_name": "VASCO DA GAMA COLAB-ENERGY STORAGE-ASSOCIAÇÃO",
+    "matched_key": "VASCO DA GAMA COLAB ENERGY STORAGE ASSOCIACAO",
+    "source": "exact"
+  },
+  "VIDARA LIFE INGREDIENTS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003DbWCRQA3/view",
+    "score": 100,
+    "matched_name": "VIDARA LIFE INGREDIENTS SA",
+    "matched_key": "VIDARA LIFE INGREDIENTS",
+    "source": "exact"
+  },
+  "VIDRA FOC": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003EQD41QAH/view",
+    "score": 100,
+    "matched_name": "VIDRA FOC, S.A.",
+    "matched_key": "VIDRA FOC",
+    "source": "exact"
+  },
+  "VILOMIX IBERIA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1MxQAJ/view",
+    "score": 100,
+    "matched_name": "VILOMIX IBERIA, SLU",
+    "matched_key": "VILOMIX IBERIA SLU",
+    "source": "exact"
+  },
+  "VIRGEN DE LAS VINAS BODEGA Y ALMAZARA SOCIEDAD COOPERATIVA DE CASTILLA LA MANCHA": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh154QAB/view",
+    "score": 100,
+    "matched_name": "VIRGEN DE LAS VIÑAS BODEGA Y ALMAZARA SOCIEDAD COOPERATIVA DE CASTILLA LA MANCHA",
+    "matched_key": "VIRGEN DE LAS VINAS BODEGA Y ALMAZARA SOCIEDAD COOPERATIVA DE CASTILLA LA MANCHA",
+    "source": "exact"
+  },
+  "VISCOFAN ESPANA SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003GhYYPQA3/view",
+    "score": 100,
+    "matched_name": "VISCOFAN ESPAÑA, SLU",
+    "matched_key": "VISCOFAN ESPANA SLU",
+    "source": "exact"
+  },
+  "VITAE CAPS SAU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj000004smJtIAI/view",
+    "score": 100,
+    "matched_name": "VITAE CAPS, SAU",
+    "matched_key": "VITAE CAPS SAU",
+    "source": "exact"
+  },
+  "WINE TELLERS": {
+    "status": "NO_MATCH",
+    "url": null,
+    "score": 66,
+    "matched_name": "TINTEX - TEXTILES, S.A.",
+    "matched_key": "TINTEX TEXTILES",
+    "source": "below_threshold"
+  },
+  "WORLDPHARMA BIOTECH": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003ZoOfZQAV/view",
+    "score": 100,
+    "matched_name": "WORLDPHARMA BIOTECH SOCIEDAD LIMITADA.",
+    "matched_key": "WORLDPHARMA BIOTECH SOCIEDAD LIMITADA",
+    "source": "fuzzy"
+  },
+  "XAGOAZA PINASTER": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000QflYhIAJ/view",
+    "score": 100,
+    "matched_name": "XAGOAZA PINASTER SL.",
+    "matched_key": "XAGOAZA PINASTER",
+    "source": "exact"
+  },
+  "ZOCO PHARMACEUTICAL SLU": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh1JEQAZ/view",
+    "score": 100,
+    "matched_name": "ZOCO PHARMACEUTICAL SL.",
+    "matched_key": "ZOCO PHARMACEUTICAL",
+    "source": "fuzzy"
+  },
+  "ZOETIS MANUFACTURING AND RESEARCH SPAIN": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/0013X00003Yh15RQAR/view",
+    "score": 100,
+    "matched_name": "ZOETIS MANUFACTURING & RESEARCH SPAIN SOCIEDAD LIMITADA.",
+    "matched_key": "ZOETIS MANUFACTURING AND RESEARCH SPAIN SOCIEDAD LIMITADA",
+    "source": "fuzzy"
+  },
+  "ZUKARRI DRINKS": {
+    "status": "MATCHED",
+    "url": "https://buchi.lightning.force.com/lightning/r/001Vj00000QgSR4IAN/view",
+    "score": 100,
+    "matched_name": "ZUKARRI DRINKS SL.",
+    "matched_key": "ZUKARRI DRINKS",
+    "source": "exact"
+  },
+  "NAN": {
+    "status": "NO_MATCH",
+    "url": null,
+    "score": 75,
+    "matched_name": "NANTA SA",
+    "matched_key": "NANTA",
+    "source": "below_threshold"
+  }
+}
