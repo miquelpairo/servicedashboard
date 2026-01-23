@@ -13468,5 +13468,6537 @@
     "status": "HARDCODED",
     "suspect_score": 0,
     "timestamp": "2026-01-16T16:38:50.990920"
+  },
+  "01010_spain": {
+    "coords": [
+      42.8598697,
+      -2.6999611
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "01010",
+    "resolved_city": "Vitoria-Gasteiz",
+    "display_name": "01010, Sansomendi, Ali / Ehari, Vitoria-Gasteiz, Gasteizko kuadrilla, Araba / Álava, Euskadi, España",
+    "query_used": "structured: {'postalcode': '01010', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:02.017816"
+  },
+  "01510_spain": {
+    "coords": [
+      42.9268915,
+      -2.6586401
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "01510",
+    "resolved_city": "Vitoria-Gasteiz",
+    "display_name": "01510, Miñano Menor / Miñao Gutxia, Vitoria-Gasteiz, Gasteizko kuadrilla, Araba / Álava, Euskadi, España",
+    "query_used": "structured: {'postalcode': '01510', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:03.032474"
+  },
+  "02006_spain": {
+    "coords": [
+      38.9753696,
+      -1.8707481
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "02006",
+    "resolved_city": "Albacete",
+    "display_name": "02006, San Pedro-Mortero, Distrito 2, Albacete, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '02006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:04.010560"
+  },
+  "02008_spain": {
+    "coords": [
+      38.9808174,
+      -1.8441358
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "02008",
+    "resolved_city": "Albacete",
+    "display_name": "02008, Distrito 3, Albacete, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '02008', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:05.000065"
+  },
+  "02071_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "02071",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:22:07.994138"
+  },
+  "03002_spain": {
+    "coords": [
+      38.3474484,
+      -0.4774424
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03002",
+    "resolved_city": "Alacant / Alicante",
+    "display_name": "03002, Alacant / Alicante, l'Alacantí, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:08.998975"
+  },
+  "03006_spain": {
+    "coords": [
+      38.3448838,
+      -0.5065198
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03006",
+    "resolved_city": "Alacant / Alicante",
+    "display_name": "03006, Alacant / Alicante, l'Alacantí, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:10.006536"
+  },
+  "03007_spain": {
+    "coords": [
+      38.3420497,
+      -0.5089281
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03007",
+    "resolved_city": "Alacant / Alicante",
+    "display_name": "03007, Alacant / Alicante, l'Alacantí, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:11.003563"
+  },
+  "03114_spain": {
+    "coords": [
+      38.3391181,
+      -0.5684265
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03114",
+    "resolved_city": "Alacant / Alicante",
+    "display_name": "03114, Alacant / Alicante, l'Alacantí, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03114', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:11.999102"
+  },
+  "03559_spain": {
+    "coords": [
+      38.3896848,
+      -0.4428048
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03559",
+    "resolved_city": "Alacant / Alicante",
+    "display_name": "03559, Alacant / Alicante, l'Alacantí, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03559', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:13.003296"
+  },
+  "03600_spain": {
+    "coords": [
+      38.4750866,
+      -0.7950014
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03600",
+    "resolved_city": "Elda",
+    "display_name": "03600, Elda, el Vinalopó Mitjà / El Vinalopó Medio, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03600', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:14.006276"
+  },
+  "03690_spain": {
+    "coords": [
+      38.3952191,
+      -0.522642
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03690",
+    "resolved_city": "Sant Vicent del Raspeig / San Vicente del Raspeig",
+    "display_name": "03690, Sant Vicent del Raspeig / San Vicente del Raspeig, l'Alacantí, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03690', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:15.030989"
+  },
+  "03802_spain": {
+    "coords": [
+      38.6943428,
+      -0.484941
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "03802",
+    "resolved_city": "Alcoi / Alcoy",
+    "display_name": "03802, Alcoi / Alcoy, l'Alcoià, Alacant / Alicante, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '03802', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:16.024877"
+  },
+  "04131_spain": {
+    "coords": [
+      36.8608806,
+      -2.3162246
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "04131",
+    "resolved_city": "Almería",
+    "display_name": "04131, Almería, Andalucía, España",
+    "query_used": "structured: {'postalcode': '04131', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:17.006243"
+  },
+  "06071_spain": {
+    "coords": [
+      38.8869445,
+      -7.0113825
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "06071",
+    "resolved_city": "Badajoz",
+    "display_name": "06071, Badajoz, Tierra de Badajoz, Badajoz, Extremadura, España",
+    "query_used": "structured: {'postalcode': '06071', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:18.054685"
+  },
+  "06140_spain": {
+    "coords": [
+      38.8769484,
+      -6.772255
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "06140",
+    "resolved_city": "Talavera la Real",
+    "display_name": "06140, Talavera la Real, Tierra de Badajoz, Badajoz, Extremadura, España",
+    "query_used": "structured: {'postalcode': '06140', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:19.023040"
+  },
+  "06380_spain": {
+    "coords": [
+      38.3252951,
+      -6.7810953
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "06380",
+    "resolved_city": "Jerez de los Caballeros",
+    "display_name": "06380, Jerez de los Caballeros, Sierra Suroeste, Badajoz, Extremadura, España",
+    "query_used": "structured: {'postalcode': '06380', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:20.000859"
+  },
+  "07012_spain": {
+    "coords": [
+      39.5714679,
+      2.6453874
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "07012",
+    "resolved_city": "Palma",
+    "display_name": "07012, Palma, Illes Balears, España",
+    "query_used": "structured: {'postalcode': '07012', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:21.022932"
+  },
+  "07122_spain": {
+    "coords": [
+      39.6382584,
+      2.6457414
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "07122",
+    "resolved_city": "Palma",
+    "display_name": "07122, Palma, Illes Balears, España",
+    "query_used": "structured: {'postalcode': '07122', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:22.006000"
+  },
+  "07817_spain": {
+    "coords": [
+      38.8951661,
+      1.3942933
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "07817",
+    "resolved_city": "Sant Josep de sa Talaia",
+    "display_name": "07817, Sant Josep de sa Talaia, Eivissa, Illes Balears, España",
+    "query_used": "structured: {'postalcode': '07817', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:23.006722"
+  },
+  "07818_spain": {
+    "coords": [
+      38.8665132,
+      1.3923148
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "07818",
+    "resolved_city": "Sant Josep de sa Talaia",
+    "display_name": "07818, Sant Josep de sa Talaia, Eivissa, Illes Balears, España",
+    "query_used": "structured: {'postalcode': '07818', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:24.008252"
+  },
+  "08003_spain": {
+    "coords": [
+      41.3859079,
+      2.1803899
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08003",
+    "resolved_city": "Barcelona",
+    "display_name": "08003, Ciutat Vella, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08003', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:25.010419"
+  },
+  "08005_spain": {
+    "coords": [
+      41.3996625,
+      2.2010468
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08005",
+    "resolved_city": "Barcelona",
+    "display_name": "08005, Sant Martí, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08005', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:26.000529"
+  },
+  "08012_spain": {
+    "coords": [
+      41.4022191,
+      2.1573766
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08012",
+    "resolved_city": "Barcelona",
+    "display_name": "08012, Gràcia, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08012', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:27.005669"
+  },
+  "08016_spain": {
+    "coords": [
+      41.4337323,
+      2.179484
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08016",
+    "resolved_city": "Barcelona",
+    "display_name": "08016, Nou Barris, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08016', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:27.999145"
+  },
+  "08017_spain": {
+    "coords": [
+      41.4069815,
+      2.1136352
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08017",
+    "resolved_city": "Barcelona",
+    "display_name": "08017, Sarrià - Sant Gervasi, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08017', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:29.001993"
+  },
+  "08018_spain": {
+    "coords": [
+      41.4031918,
+      2.1916165
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08018",
+    "resolved_city": "Barcelona",
+    "display_name": "08018, Sant Martí, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08018', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:30.025413"
+  },
+  "08019_spain": {
+    "coords": [
+      41.410878,
+      2.2118385
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08019",
+    "resolved_city": "Barcelona",
+    "display_name": "08019, Sant Martí, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08019', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:31.003610"
+  },
+  "08020_spain": {
+    "coords": [
+      41.420541,
+      2.2015469
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08020",
+    "resolved_city": "Barcelona",
+    "display_name": "08020, Sant Martí, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08020', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:32.001618"
+  },
+  "08024_spain": {
+    "coords": [
+      41.4107855,
+      2.1601062
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08024",
+    "resolved_city": "Barcelona",
+    "display_name": "08024, Gràcia, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08024', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:33.044794"
+  },
+  "08028_spain": {
+    "coords": [
+      41.3782752,
+      2.1280804
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08028",
+    "resolved_city": "Barcelona",
+    "display_name": "08028, Sants-Montjuïc, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08028', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:34.000617"
+  },
+  "08029_spain": {
+    "coords": [
+      41.3864664,
+      2.1459649
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08029",
+    "resolved_city": "Barcelona",
+    "display_name": "08029, Eixample, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08029', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:34.996700"
+  },
+  "08034_spain": {
+    "coords": [
+      41.3938188,
+      2.119587
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08034",
+    "resolved_city": "Barcelona",
+    "display_name": "08034, Sarrià - Sant Gervasi, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08034', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:36.008474"
+  },
+  "08036_spain": {
+    "coords": [
+      41.3897768,
+      2.1526231
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08036",
+    "resolved_city": "Barcelona",
+    "display_name": "08036, Eixample, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08036', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:37.006788"
+  },
+  "08038_spain": {
+    "coords": [
+      41.3590155,
+      2.1429108
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08038",
+    "resolved_city": "Barcelona",
+    "display_name": "08038, Sants-Montjuïc, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08038', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:37.997364"
+  },
+  "08039_spain": {
+    "coords": [
+      41.3659646,
+      2.1771332
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08039",
+    "resolved_city": "Barcelona",
+    "display_name": "08039, Sants-Montjuïc, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08039', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:39.001396"
+  },
+  "08040_spain": {
+    "coords": [
+      41.3316152,
+      2.1350503
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08040",
+    "resolved_city": "Barcelona",
+    "display_name": "08040, Sants-Montjuïc, Barcelona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08040', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:40.004452"
+  },
+  "08100_spain": {
+    "coords": [
+      41.5398957,
+      2.213604
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08100",
+    "resolved_city": "Mollet del Vallès",
+    "display_name": "08100, Mollet del Vallès, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08100', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:40.998098"
+  },
+  "08130_spain": {
+    "coords": [
+      41.5318233,
+      2.1832047
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08130",
+    "resolved_city": "Santa Perpètua de Mogoda",
+    "display_name": "08130, Santa Perpètua de Mogoda, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08130', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:42.025751"
+  },
+  "08140_spain": {
+    "coords": [
+      41.631981,
+      2.1652795
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08140",
+    "resolved_city": "Caldes de Montbui",
+    "display_name": "08140, Caldes de Montbui, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08140', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:43.005414"
+  },
+  "08150_spain": {
+    "coords": [
+      41.5596717,
+      2.2222807
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08150",
+    "resolved_city": "Parets del Vallès",
+    "display_name": "08150, Parets del Vallès, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08150', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:44.014557"
+  },
+  "08160_spain": {
+    "coords": [
+      41.5542434,
+      2.2501719
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08160",
+    "resolved_city": "Montmeló",
+    "display_name": "08160, Montmeló, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08160', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:45.007555"
+  },
+  "08170_spain": {
+    "coords": [
+      41.5513694,
+      2.2616084
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08170",
+    "resolved_city": "Montornès del Vallès",
+    "display_name": "08170, Montornès del Vallès, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08170', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:46.006899"
+  },
+  "08173_spain": {
+    "coords": [
+      41.4752881,
+      2.0798366
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08173",
+    "resolved_city": "Sant Cugat del Vallès",
+    "display_name": "08173, Sant Cugat del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08173', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:47.015769"
+  },
+  "08174_spain": {
+    "coords": [
+      41.4851191,
+      2.0570163
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08174",
+    "resolved_city": "Sant Cugat del Vallès",
+    "display_name": "08174, Sant Cugat del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08174', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:48.012689"
+  },
+  "08181_spain": {
+    "coords": [
+      41.597927,
+      2.1288093
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08181",
+    "resolved_city": "Sentmenat",
+    "display_name": "08181, Sentmenat, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08181', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:49.024556"
+  },
+  "08184_spain": {
+    "coords": [
+      41.5810126,
+      2.177512
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08184",
+    "resolved_city": "Palau-solità i Plegamans",
+    "display_name": "08184, Palau-solità i Plegamans, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08184', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:50.006818"
+  },
+  "08185_spain": {
+    "coords": [
+      41.5873449,
+      2.2343774
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08185",
+    "resolved_city": "Lliçà de Vall",
+    "display_name": "08185, Lliçà de Vall, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08185', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:51.003662"
+  },
+  "08191_spain": {
+    "coords": [
+      41.4993538,
+      2.0378111
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08191",
+    "resolved_city": "Rubí",
+    "display_name": "08191, Rubí, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08191', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:52.006605"
+  },
+  "08192_spain": {
+    "coords": [
+      41.5328698,
+      2.078099
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08192",
+    "resolved_city": "Sant Quirze del Vallès",
+    "display_name": "08192, Sant Quirze del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08192', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:53.005822"
+  },
+  "08193_spain": {
+    "coords": [
+      41.5016503,
+      2.1001469
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08193",
+    "resolved_city": "Cerdanyola del Vallès",
+    "display_name": "08193, Cerdanyola del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08193', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:54.079765"
+  },
+  "08210_spain": {
+    "coords": [
+      41.5163924,
+      2.1277991
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08210",
+    "resolved_city": "Barberà del Vallès",
+    "display_name": "08210, Barberà del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08210', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:55.078837"
+  },
+  "08211_spain": {
+    "coords": [
+      41.6127128,
+      2.0902128
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08211",
+    "resolved_city": "Castellar del Vallès",
+    "display_name": "08211, Castellar del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08211', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:56.074022"
+  },
+  "08213_spain": {
+    "coords": [
+      41.5548749,
+      2.1567411
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08213",
+    "resolved_city": "Polinyà",
+    "display_name": "08213, Polinyà, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08213', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:57.081677"
+  },
+  "08222_spain": {
+    "coords": [
+      41.5642634,
+      2.0249864
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08222",
+    "resolved_city": "Terrassa",
+    "display_name": "08222, Terrassa, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08222', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:58.092604"
+  },
+  "08228_spain": {
+    "coords": [
+      41.5370677,
+      2.0393978
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08228",
+    "resolved_city": "Terrassa",
+    "display_name": "08228, Terrassa, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08228', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:22:59.107833"
+  },
+  "08243_spain": {
+    "coords": [
+      41.7268429,
+      1.8396324
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08243",
+    "resolved_city": "Manresa",
+    "display_name": "08243, Manresa, Bages, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08243', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:00.084708"
+  },
+  "08290_spain": {
+    "coords": [
+      41.4920368,
+      2.1388984
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08290",
+    "resolved_city": "Cerdanyola del Vallès",
+    "display_name": "08290, Cerdanyola del Vallès, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08290', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:01.081674"
+  },
+  "08297_spain": {
+    "coords": [
+      41.6815697,
+      1.8546021
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08297",
+    "resolved_city": "Castellgalí",
+    "display_name": "08297, Castellgalí, Bages, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08297', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:02.102018"
+  },
+  "08304_spain": {
+    "coords": [
+      41.5513064,
+      2.4554947
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08304",
+    "resolved_city": "Mataró",
+    "display_name": "08304, Mataró, Maresme, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08304', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:03.099866"
+  },
+  "08310_spain": {
+    "coords": [
+      41.5509511,
+      2.4025751
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08310",
+    "resolved_city": "Argentona",
+    "display_name": "08310, Argentona, Maresme, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08310', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:04.082828"
+  },
+  "08348_spain": {
+    "coords": [
+      41.524479,
+      2.3684783
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08348",
+    "resolved_city": "Cabrils",
+    "display_name": "08348, Cabrils, Maresme, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08348', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:05.096415"
+  },
+  "08380_spain": {
+    "coords": [
+      41.643409,
+      2.7357878
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08380",
+    "resolved_city": "Malgrat de Mar",
+    "display_name": "08380, Malgrat de Mar, Maresme, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08380', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:06.077686"
+  },
+  "08389_spain": {
+    "coords": [
+      41.677631,
+      2.7403205
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08389",
+    "resolved_city": "Palafolls",
+    "display_name": "08389, Palafolls, Maresme, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08389', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:07.077182"
+  },
+  "08400_spain": {
+    "coords": [
+      41.5998952,
+      2.2794708
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08400",
+    "resolved_city": "Granollers",
+    "display_name": "08400, Granollers, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08400', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:08.074715"
+  },
+  "08403_spain": {
+    "coords": [
+      41.6094907,
+      2.2772561
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08403",
+    "resolved_city": "Granollers",
+    "display_name": "08403, Granollers, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08403', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:09.090441"
+  },
+  "08450_spain": {
+    "coords": [
+      41.6200702,
+      2.3848247
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08450",
+    "resolved_city": "Llinars del Vallès",
+    "display_name": "08450, Llinars del Vallès, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08450', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:10.081928"
+  },
+  "08470_spain": {
+    "coords": [
+      41.6469517,
+      2.5085172
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08470",
+    "resolved_city": "Vallgorguina",
+    "display_name": "08470, Vallgorguina, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08470', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:11.082604"
+  },
+  "08480_spain": {
+    "coords": [
+      41.6673832,
+      2.2619041
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08480",
+    "resolved_city": "l'Ametlla del Vallès",
+    "display_name": "08480, l'Ametlla del Vallès, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08480', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:12.132685"
+  },
+  "08490_spain": {
+    "coords": [
+      41.6950606,
+      2.6974018
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08490",
+    "resolved_city": "Tordera",
+    "display_name": "08490, Tordera, Maresme, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08490', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:13.077684"
+  },
+  "08500_spain": {
+    "coords": [
+      41.9323923,
+      2.248603
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08500",
+    "resolved_city": "Vic",
+    "display_name": "08500, Vic, Osona, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08500', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:14.082878"
+  },
+  "08503_spain": {
+    "coords": [
+      41.945364,
+      2.2347941
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08503",
+    "resolved_city": "Gurb",
+    "display_name": "08503, Gurb, Osona, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08503', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:15.083138"
+  },
+  "08520_spain": {
+    "coords": [
+      41.6281825,
+      2.296869
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08520",
+    "resolved_city": "les Franqueses del Vallès",
+    "display_name": "08520, les Franqueses del Vallès, Vallès Oriental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08520', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:16.075456"
+  },
+  "08551_spain": {
+    "coords": [
+      41.8499862,
+      2.2265122
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08551",
+    "resolved_city": "Tona",
+    "display_name": "08551, Tona, Osona, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08551', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:17.089102"
+  },
+  "08560_spain": {
+    "coords": [
+      42.0023732,
+      2.2850749
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08560",
+    "resolved_city": "Manlleu",
+    "display_name": "08560, Manlleu, Osona, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08560', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:18.078897"
+  },
+  "08620_spain": {
+    "coords": [
+      41.3946092,
+      2.0070578
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08620",
+    "resolved_city": "Sant Vicenç dels Horts",
+    "display_name": "08620, Sant Vicenç dels Horts, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08620', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:19.106950"
+  },
+  "08630_spain": {
+    "coords": [
+      41.5159135,
+      1.9008338
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08630",
+    "resolved_city": "Abrera",
+    "display_name": "08630, Abrera, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08630', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:20.080697"
+  },
+  "08720_spain": {
+    "coords": [
+      41.344158,
+      1.6945498
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08720",
+    "resolved_city": "Vilafranca del Penedès",
+    "display_name": "08720, Vilafranca del Penedès, Alt Penedès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08720', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:21.099500"
+  },
+  "08740_spain": {
+    "coords": [
+      41.4487056,
+      1.9672537
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08740",
+    "resolved_city": "Sant Andreu de la Barca",
+    "display_name": "08740, Sant Andreu de la Barca, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08740', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:22.081362"
+  },
+  "08755_spain": {
+    "coords": [
+      41.4807357,
+      1.9730195
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08755",
+    "resolved_city": "Castellbisbal",
+    "display_name": "08755, Castellbisbal, Vallès Occidental, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08755', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:23.084838"
+  },
+  "08757_spain": {
+    "coords": [
+      41.4169362,
+      1.9141831
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08757",
+    "resolved_city": "Corbera de Llobregat",
+    "display_name": "08757, Corbera de Llobregat, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08757', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:24.075539"
+  },
+  "08760_spain": {
+    "coords": [
+      41.4760963,
+      1.9245734
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08760",
+    "resolved_city": "Martorell",
+    "display_name": "08760, Martorell, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08760', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:25.101090"
+  },
+  "08770_spain": {
+    "coords": [
+      41.4185112,
+      1.7873566
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08770",
+    "resolved_city": "Sant Sadurní d'Anoia",
+    "display_name": "08770, Sant Sadurní d'Anoia, Alt Penedès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08770', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:26.076676"
+  },
+  "08777_spain": {
+    "coords": [
+      41.4626925,
+      1.6643095
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08777",
+    "resolved_city": "Sant Quintí de Mediona",
+    "display_name": "08777, Sant Quintí de Mediona, Alt Penedès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08777', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:27.074500"
+  },
+  "08788_spain": {
+    "coords": [
+      41.5720279,
+      1.638149
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08788",
+    "resolved_city": "Vilanova del Camí",
+    "display_name": "08788, Vilanova del Camí, Anoia, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08788', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:28.078636"
+  },
+  "08793_spain": {
+    "coords": [
+      41.3646691,
+      1.7874147
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08793",
+    "resolved_city": "Avinyonet del Penedès",
+    "display_name": "08793, Avinyonet del Penedès, Alt Penedès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08793', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:29.078384"
+  },
+  "08799_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08799",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:23:32.079830"
+  },
+  "08820_spain": {
+    "coords": [
+      41.3250975,
+      2.0953553
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08820",
+    "resolved_city": "el Prat de Llobregat",
+    "display_name": "08820, el Prat de Llobregat, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08820', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:33.094387"
+  },
+  "08830_spain": {
+    "coords": [
+      41.3459834,
+      2.032091
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08830",
+    "resolved_city": "Sant Boi de Llobregat",
+    "display_name": "08830, Sant Boi de Llobregat, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08830', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:34.081672"
+  },
+  "08850_spain": {
+    "coords": [
+      41.2866848,
+      2.011059
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08850",
+    "resolved_city": "Gavà",
+    "display_name": "08850, Gavà, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08850', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:35.078931"
+  },
+  "08904_spain": {
+    "coords": [
+      41.3731778,
+      2.1169913
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08904",
+    "resolved_city": "l'Hospitalet de Llobregat",
+    "display_name": "08904, Districte II, l'Hospitalet de Llobregat, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08904', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:36.079035"
+  },
+  "08907_spain": {
+    "coords": [
+      41.3528799,
+      2.109897
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08907",
+    "resolved_city": "l'Hospitalet de Llobregat",
+    "display_name": "08907, Districte VI, l'Hospitalet de Llobregat, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08907', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:37.077681"
+  },
+  "08915_spain": {
+    "coords": [
+      41.4624851,
+      2.246267
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08915",
+    "resolved_city": "Badalona",
+    "display_name": "08915, Districte 3, Badalona, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08915', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:38.079693"
+  },
+  "08930_spain": {
+    "coords": [
+      41.428093,
+      2.2198945
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08930",
+    "resolved_city": "Sant Adrià de Besòs",
+    "display_name": "08930, Sant Adrià de Besòs, Barcelonès, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08930', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:39.082627"
+  },
+  "08950_spain": {
+    "coords": [
+      41.3772266,
+      2.0886926
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08950",
+    "resolved_city": "Esplugues de Llobregat",
+    "display_name": "08950, Esplugues de Llobregat, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08950', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:40.092974"
+  },
+  "08960_spain": {
+    "coords": [
+      41.3842472,
+      2.065444
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08960",
+    "resolved_city": "Sant Just Desvern",
+    "display_name": "08960, Sant Just Desvern, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08960', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:41.076680"
+  },
+  "08970_spain": {
+    "coords": [
+      41.369213,
+      2.0627242
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08970",
+    "resolved_city": "Sant Joan Despí",
+    "display_name": "08970, Sant Joan Despí, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08970', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:42.085725"
+  },
+  "08980_spain": {
+    "coords": [
+      41.3843595,
+      2.0480467
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "08980",
+    "resolved_city": "Sant Feliu de Llobregat",
+    "display_name": "08980, Sant Feliu de Llobregat, Baix Llobregat, Barcelona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '08980', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:43.149269"
+  },
+  "09001_spain": {
+    "coords": [
+      42.3542311,
+      -3.7302127
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "09001",
+    "resolved_city": "Burgos",
+    "display_name": "09001, Burgos, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '09001', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:44.101273"
+  },
+  "09007_spain": {
+    "coords": [
+      42.3538229,
+      -3.6561227
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "09007",
+    "resolved_city": "Burgos",
+    "display_name": "09007, Burgos, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '09007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:45.081692"
+  },
+  "09320_spain": {
+    "coords": [
+      42.1709508,
+      -3.7121413
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "09320",
+    "resolved_city": "Valdorros",
+    "display_name": "09320, Valdorros, Burgos, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '09320', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:46.079261"
+  },
+  "10003_spain": {
+    "coords": [
+      39.4767238,
+      -6.3718786
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "10003",
+    "resolved_city": "Cáceres",
+    "display_name": "10003, Margallo, Cáceres, Extremadura, España",
+    "query_used": "structured: {'postalcode': '10003', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:47.093323"
+  },
+  "10310_spain": {
+    "coords": [
+      39.9857223,
+      -5.6092024
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "10310",
+    "resolved_city": "Talayuela",
+    "display_name": "10310, Talayuela, Cáceres, Extremadura, España",
+    "query_used": "structured: {'postalcode': '10310', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:48.084768"
+  },
+  "1049_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "1049",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:23:51.099941"
+  },
+  "10700_spain": {
+    "coords": [
+      40.2706357,
+      -5.8622659
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "10700",
+    "resolved_city": "Hervás",
+    "display_name": "10700, Hervás, Cáceres, Extremadura, España",
+    "query_used": "structured: {'postalcode': '10700', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:52.095276"
+  },
+  "11510_spain": {
+    "coords": [
+      36.528836,
+      -6.1797502
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "11510",
+    "resolved_city": "Puerto Real",
+    "display_name": "11510, Puerto Real, Bahía de Cádiz, Cádiz, Andalucía, España",
+    "query_used": "structured: {'postalcode': '11510', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:53.079959"
+  },
+  "11591_spain": {
+    "coords": [
+      36.7185166,
+      -6.0888104
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "11591",
+    "resolved_city": "Jerez de la Frontera",
+    "display_name": "11591, Jerez de la Frontera, Campiña de Jerez, Cádiz, Andalucía, España",
+    "query_used": "structured: {'postalcode': '11591', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:54.073694"
+  },
+  "1200_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "1200",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:23:57.157645"
+  },
+  "12006_spain": {
+    "coords": [
+      39.9846319,
+      -0.0583077
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "12006",
+    "resolved_city": "Castelló de la Plana / Castellón de la Plana",
+    "display_name": "12006, Castelló de la Plana / Castellón de la Plana, la Plana Alta, Castelló / Castellón, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '12006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:58.086675"
+  },
+  "12580_spain": {
+    "coords": [
+      40.4197519,
+      0.4236261
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "12580",
+    "resolved_city": "Benicarló",
+    "display_name": "12580, Benicarló, el Baix Maestrat, Castelló / Castellón, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '12580', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:23:59.090100"
+  },
+  "13003_spain": {
+    "coords": [
+      38.9895883,
+      -3.9280039
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "13003",
+    "resolved_city": "Ciudad Real",
+    "display_name": "13003, Ciudad Real, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '13003', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:00.073816"
+  },
+  "13005_spain": {
+    "coords": [
+      38.9879258,
+      -3.923671
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "13005",
+    "resolved_city": "Ciudad Real",
+    "display_name": "13005, Ciudad Real, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '13005', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:01.139662"
+  },
+  "1350_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "1350",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:24:04.100137"
+  },
+  "13500_spain": {
+    "coords": [
+      38.6885704,
+      -4.1072192
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "13500",
+    "resolved_city": "Puertollano",
+    "display_name": "13500, Puertollano, Ciudad Real, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '13500', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:05.078713"
+  },
+  "13600_spain": {
+    "coords": [
+      39.3871129,
+      -3.2110227
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "13600",
+    "resolved_city": "Alcázar de San Juan",
+    "display_name": "13600, Alcázar de San Juan, Ciudad Real, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '13600', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:06.078751"
+  },
+  "13610_spain": {
+    "coords": [
+      39.4045872,
+      -3.124738
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "13610",
+    "resolved_city": "Campo de Criptana",
+    "display_name": "13610, Campo de Criptana, Ciudad Real, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '13610', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:07.096087"
+  },
+  "14014_spain": {
+    "coords": [
+      37.898418,
+      -4.7427962
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "14014",
+    "resolved_city": "Córdoba",
+    "display_name": "14014, Córdoba, Andalucía, España",
+    "query_used": "structured: {'postalcode': '14014', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:08.093636"
+  },
+  "14071_spain": {
+    "coords": [
+      37.8851736,
+      -4.7912979
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "14071",
+    "resolved_city": "Córdoba",
+    "display_name": "14071, Distrito Poniente Sur, Córdoba, Andalucía, España",
+    "query_used": "structured: {'postalcode': '14071', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:09.084605"
+  },
+  "1495_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "1495",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:24:12.097398"
+  },
+  "15001_spain": {
+    "coords": [
+      43.371545,
+      -8.3952417
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15001",
+    "resolved_city": "A Coruña",
+    "display_name": "15001, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15001', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:13.079340"
+  },
+  "15008_spain": {
+    "coords": [
+      43.3385576,
+      -8.4166369
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15008",
+    "resolved_city": "A Coruña",
+    "display_name": "15008, San Cristovo das Viñas, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15008', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:14.091679"
+  },
+  "15071_spain": {
+    "coords": [
+      43.3401654,
+      -8.4079943
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15071",
+    "resolved_city": "A Coruña",
+    "display_name": "15071, San Cristovo das Viñas, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15071', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:15.081371"
+  },
+  "15071A_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15071A",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:24:18.066093"
+  },
+  "15318_spain": {
+    "coords": [
+      43.2012163,
+      -8.3056726
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15318",
+    "resolved_city": "Abegondo",
+    "display_name": "15318, Folgoso, Abegondo, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15318', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:19.081326"
+  },
+  "15565_spain": {
+    "coords": [
+      43.5333215,
+      -7.9321387
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15565",
+    "resolved_city": "A Igrexa",
+    "display_name": "15565, As Somozas, A Igrexa, As Somozas, Ferrol, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15565', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:20.079049"
+  },
+  "15567_spain": {
+    "coords": [
+      43.5263548,
+      -7.8805194
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15567",
+    "resolved_city": "As Somozas",
+    "display_name": "15567, Seixas, As Somozas, Ferrol, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15567', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:21.083042"
+  },
+  "15679_spain": {
+    "coords": [
+      43.3144708,
+      -8.3562459
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15679",
+    "resolved_city": "Cambre",
+    "display_name": "15679, O Temple, Cambre, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15679', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:22.080075"
+  },
+  "15705_spain": {
+    "coords": [
+      42.8853252,
+      -8.5425183
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15705",
+    "resolved_city": "Santiago de Compostela",
+    "display_name": "15705, Santiago de Compostela, Santiago, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15705', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:23.119602"
+  },
+  "15706_spain": {
+    "coords": [
+      42.868023,
+      -8.5590269
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15706",
+    "resolved_city": "Santiago de Compostela",
+    "display_name": "15706, Santiago de Compostela, Santiago, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15706', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:24.102370"
+  },
+  "15782_spain": {
+    "coords": [
+      42.8810211,
+      -8.5518024
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15782",
+    "resolved_city": "Santiago de Compostela",
+    "display_name": "15782, Santiago de Compostela, Santiago, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15782', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:25.107681"
+  },
+  "15822_spain": {
+    "coords": [
+      42.8663707,
+      -8.3318387
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15822",
+    "resolved_city": "Touro",
+    "display_name": "15822, Loxo, Touro, Arzúa, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15822', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:26.095706"
+  },
+  "15890_spain": {
+    "coords": [
+      42.9061069,
+      -8.5172882
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "15890",
+    "resolved_city": "Santiago de Compostela",
+    "display_name": "15890, San Caetano, Santiago de Compostela, Santiago, A Coruña, Galicia, España",
+    "query_used": "structured: {'postalcode': '15890', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:27.095927"
+  },
+  "1649_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "1649",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:24:30.129346"
+  },
+  "17003_spain": {
+    "coords": [
+      41.9653145,
+      2.8215496
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17003",
+    "resolved_city": "Girona",
+    "display_name": "17003, Girona, Gironès, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17003', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:31.097103"
+  },
+  "17007_spain": {
+    "coords": [
+      41.9968111,
+      2.8186767
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17007",
+    "resolved_city": "Girona",
+    "display_name": "17007, Girona, Gironès, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:32.090932"
+  },
+  "17121_spain": {
+    "coords": [
+      41.9841356,
+      3.0111422
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17121",
+    "resolved_city": "Corçà",
+    "display_name": "17121, Corçà, Baix Empordà, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17121', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:33.098508"
+  },
+  "17412_spain": {
+    "coords": [
+      41.7444053,
+      2.7811034
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17412",
+    "resolved_city": "Maçanet de la Selva",
+    "display_name": "17412, Maçanet de la Selva, la Selva, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17412', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:34.103009"
+  },
+  "17460_spain": {
+    "coords": [
+      42.0297183,
+      2.8868354
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17460",
+    "resolved_city": "Celrà",
+    "display_name": "17460, Celrà, Gironès, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17460', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:35.097872"
+  },
+  "17461_spain": {
+    "coords": [
+      42.0234132,
+      2.850676
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17461",
+    "resolved_city": "Celrà",
+    "display_name": "17461, Celrà, Gironès, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17461', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:36.103285"
+  },
+  "1749_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "1749",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:24:39.117683"
+  },
+  "17860_spain": {
+    "coords": [
+      42.2357539,
+      2.2901334
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "17860",
+    "resolved_city": "Sant Joan de les Abadesses",
+    "display_name": "17860, Sant Joan de les Abadesses, Ripollès, Girona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '17860', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:40.102991"
+  },
+  "18004_spain": {
+    "coords": [
+      37.1734508,
+      -3.6098117
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "18004",
+    "resolved_city": "Granada",
+    "display_name": "18004, Ronda, Granada, Comarca de la Vega de Granada, Granada, Andalucía, España",
+    "query_used": "structured: {'postalcode': '18004', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:41.104341"
+  },
+  "18010_spain": {
+    "coords": [
+      37.1800112,
+      -3.5951509
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "18010",
+    "resolved_city": "Granada",
+    "display_name": "18010, Albaicín, Granada, Comarca de la Vega de Granada, Granada, Andalucía, España",
+    "query_used": "structured: {'postalcode': '18010', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:42.095802"
+  },
+  "18071_spain": {
+    "coords": [
+      37.1846504,
+      -3.6048099
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "18071",
+    "resolved_city": "Granada",
+    "display_name": "18071, Beiro, Granada, Comarca de la Vega de Granada, Granada, Andalucía, España",
+    "query_used": "structured: {'postalcode': '18071', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:43.110677"
+  },
+  "18100_spain": {
+    "coords": [
+      37.1454687,
+      -3.6193946
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "18100",
+    "resolved_city": "Armilla",
+    "display_name": "18100, Armilla, Comarca de la Vega de Granada, Granada, Andalucía, España",
+    "query_used": "structured: {'postalcode': '18100', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:44.114410"
+  },
+  "18130_spain": {
+    "coords": [
+      37.1932511,
+      -3.533496
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "18130",
+    "resolved_city": "Granada",
+    "display_name": "18130, Fargue, Albaicín, Granada, Comarca de la Vega de Granada, Granada, Andalucía, España",
+    "query_used": "structured: {'postalcode': '18130', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:45.105323"
+  },
+  "19200_spain": {
+    "coords": [
+      40.565991,
+      -3.2659545
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "19200",
+    "resolved_city": "Azuqueca de Henares",
+    "display_name": "19200, Azuqueca de Henares, Guadalajara, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '19200', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:46.112475"
+  },
+  "19208_spain": {
+    "coords": [
+      40.5949015,
+      -3.2469209
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "19208",
+    "resolved_city": "Alovera",
+    "display_name": "19208, Alovera, Guadalajara, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '19208', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:47.095286"
+  },
+  "20009_spain": {
+    "coords": [
+      43.3043305,
+      -1.9893245
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20009",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "20009, Aiete, Mendebaldea, Donostia / San Sebastián, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20009', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:48.121781"
+  },
+  "20014_spain": {
+    "coords": [
+      43.3008298,
+      -1.9685077
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20014",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "20014, Mendebaldea, Donostia / San Sebastián, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20014', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:49.140963"
+  },
+  "20018_spain": {
+    "coords": [
+      43.2964568,
+      -2.0089826
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20018",
+    "resolved_city": "Donostia / San Sebastián",
+    "display_name": "20018, Añorga, Mendebaldea, Donostia / San Sebastián, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20018', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:51.208011"
+  },
+  "2005_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2005",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:24:54.155682"
+  },
+  "20100_spain": {
+    "coords": [
+      43.3130205,
+      -1.8959743
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20100",
+    "resolved_city": "Errenteria",
+    "display_name": "20100, Errenteria, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20100', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:55.116598"
+  },
+  "20150_spain": {
+    "coords": [
+      43.1914186,
+      -2.0530672
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20150",
+    "resolved_city": "Villabona",
+    "display_name": "20150, Villabona, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20150', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:56.103018"
+  },
+  "20160_spain": {
+    "coords": [
+      43.2649188,
+      -2.017931
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20160",
+    "resolved_city": "Lasarte-Oria",
+    "display_name": "20160, Lasarte-Oria, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20160', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:57.112669"
+  },
+  "20271_spain": {
+    "coords": [
+      43.1664271,
+      -2.0680593
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "20271",
+    "resolved_city": "Irura",
+    "display_name": "20271, Irura, Gipuzkoa, Euskadi, España",
+    "query_used": "structured: {'postalcode': '20271', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:58.112698"
+  },
+  "21001_spain": {
+    "coords": [
+      37.2683121,
+      -6.8623525
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "21001",
+    "resolved_city": "Moguer",
+    "display_name": "21001, Moguer, Comarca Metropolitana de Huelva, Huelva, Andalucía, España",
+    "query_used": "structured: {'postalcode': '21001', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:24:59.151840"
+  },
+  "2130_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2130",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:02.143963"
+  },
+  "21810_spain": {
+    "coords": [
+      37.2257346,
+      -6.8915387
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "21810",
+    "resolved_city": "Palos de la Frontera",
+    "display_name": "21810, Palos de la Frontera, Comarca Metropolitana de Huelva, Huelva, Andalucía, España",
+    "query_used": "structured: {'postalcode': '21810', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:03.116450"
+  },
+  "22234_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "22234",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:06.143595"
+  },
+  "22282_spain": {
+    "coords": [
+      42.0667747,
+      -0.685267
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "22282",
+    "resolved_city": "Alcalá de Gurrea",
+    "display_name": "22282, Alcalá de Gurrea, Hoya de Huesca / Plana de Uesca, Huesca, Aragón, España",
+    "query_used": "structured: {'postalcode': '22282', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:07.121682"
+  },
+  "22300_spain": {
+    "coords": [
+      42.0356115,
+      0.1259704
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "22300",
+    "resolved_city": "Barbastro",
+    "display_name": "22300, Barbastro, Somontano de Barbastro, Huesca, Aragón, España",
+    "query_used": "structured: {'postalcode': '22300', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:08.107689"
+  },
+  "22540_spain": {
+    "coords": [
+      41.8009797,
+      0.4135833
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "22540",
+    "resolved_city": "Altorricón / el Torricó",
+    "display_name": "22540, Altorricón / el Torricó, La Litera / La Llitera, Huesca, Aragón, España",
+    "query_used": "structured: {'postalcode': '22540', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:09.158692"
+  },
+  "23009_spain": {
+    "coords": [
+      37.7889816,
+      -3.7834249
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "23009",
+    "resolved_city": "Jaén",
+    "display_name": "23009, Jaén, Andalucía, España",
+    "query_used": "structured: {'postalcode': '23009', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:10.095731"
+  },
+  "2380_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2380",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:13.102965"
+  },
+  "24009_spain": {
+    "coords": [
+      42.5953,
+      -5.5873181
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "24009",
+    "resolved_city": "León",
+    "display_name": "24009, La Vega, León, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '24009', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:14.097411"
+  },
+  "24071_spain": {
+    "coords": [
+      42.606913,
+      -5.5766216
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "24071",
+    "resolved_city": "León",
+    "display_name": "24071, Renueva - San Esteban, León, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '24071', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:14.639091"
+  },
+  "24193_spain": {
+    "coords": [
+      42.6312309,
+      -5.56827
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "24193",
+    "resolved_city": "Villaquilambre",
+    "display_name": "24193, Villaquilambre, León, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '24193', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:15.659430"
+  },
+  "24392_spain": {
+    "coords": [
+      42.4896946,
+      -5.7297292
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "24392",
+    "resolved_city": "Chozas de Abajo",
+    "display_name": "24392, Chozas de Abajo, León, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '24392', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:16.636684"
+  },
+  "24403_spain": {
+    "coords": [
+      42.5467874,
+      -6.6130845
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "24403",
+    "resolved_city": "Ponferrada",
+    "display_name": "24403, Ponferrada, El Bierzo, León, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '24403', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:17.650388"
+  },
+  "25002_spain": {
+    "coords": [
+      41.6127557,
+      0.6213851
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25002",
+    "resolved_city": "Lleida",
+    "display_name": "25002, Lleida, Segrià, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:18.695224"
+  },
+  "25003_spain": {
+    "coords": [
+      41.6137258,
+      0.6129157
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25003",
+    "resolved_city": "Lleida",
+    "display_name": "25003, Lleida, Segrià, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25003', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:19.647385"
+  },
+  "25198_spain": {
+    "coords": [
+      41.6407138,
+      0.5766707
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25198",
+    "resolved_city": "Lleida",
+    "display_name": "25198, Lleida, Segrià, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25198', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:20.700714"
+  },
+  "25200_spain": {
+    "coords": [
+      41.6537629,
+      1.2602577
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25200",
+    "resolved_city": "Cervera",
+    "display_name": "25200, Cervera, Segarra, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25200', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:21.698516"
+  },
+  "25210_spain": {
+    "coords": [
+      41.7785068,
+      1.2993026
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25210",
+    "resolved_city": "Guissona",
+    "display_name": "25210, Guissona, Segarra, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25210', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:22.747108"
+  },
+  "25230_spain": {
+    "coords": [
+      41.6275316,
+      0.8934595
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25230",
+    "resolved_city": "Mollerussa",
+    "display_name": "25230, Mollerussa, Pla d'Urgell, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25230', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:23.690689"
+  },
+  "25321_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25321",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:26.712669"
+  },
+  "25670_spain": {
+    "coords": [
+      41.7215547,
+      0.767337
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "25670",
+    "resolved_city": "Térmens",
+    "display_name": "25670, Térmens, Noguera, Lleida, Catalunya, España",
+    "query_used": "structured: {'postalcode': '25670', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:27.707846"
+  },
+  "26005_spain": {
+    "coords": [
+      42.469321,
+      -2.4693578
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "26005",
+    "resolved_city": "Logroño",
+    "display_name": "26005, Logroño, La Rioja, España",
+    "query_used": "structured: {'postalcode': '26005', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:28.706712"
+  },
+  "26006_spain": {
+    "coords": [
+      42.4557631,
+      -2.4271399
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "26006",
+    "resolved_city": "Logroño",
+    "display_name": "26006, Logroño, La Rioja, España",
+    "query_used": "structured: {'postalcode': '26006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:29.712685"
+  },
+  "26315_spain": {
+    "coords": [
+      42.3676717,
+      -2.656902
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "26315",
+    "resolved_city": "Santa Coloma",
+    "display_name": "26315, Santa Coloma, La Rioja, España",
+    "query_used": "structured: {'postalcode': '26315', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:30.705863"
+  },
+  "26510_spain": {
+    "coords": [
+      42.3338463,
+      -2.068495
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "26510",
+    "resolved_city": "Pradejón",
+    "display_name": "26510, Pradejón, La Rioja, España",
+    "query_used": "structured: {'postalcode': '26510', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:31.701486"
+  },
+  "26560_spain": {
+    "coords": [
+      42.2154867,
+      -2.0039237
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "26560",
+    "resolved_city": "Autol",
+    "display_name": "26560, Autol, La Rioja, España",
+    "query_used": "structured: {'postalcode': '26560', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:32.697223"
+  },
+  "2660_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2660",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:35.722677"
+  },
+  "2674_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2674",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:38.697023"
+  },
+  "2695_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2695",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:41.714664"
+  },
+  "27002_spain": {
+    "coords": [
+      43.0059608,
+      -7.5502655
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "27002",
+    "resolved_city": "Lugo",
+    "display_name": "27002, Lugo, Galicia, España",
+    "query_used": "structured: {'postalcode': '27002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:42.712691"
+  },
+  "27160_spain": {
+    "coords": [
+      42.9742156,
+      -7.5149408
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "27160",
+    "resolved_city": "Lugo",
+    "display_name": "27160, San Xoán de Pena, Lugo, Galicia, España",
+    "query_used": "structured: {'postalcode': '27160', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:43.695540"
+  },
+  "27260_spain": {
+    "coords": [
+      43.1452442,
+      -7.5050189
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "27260",
+    "resolved_city": "Castro de Rei",
+    "display_name": "27260, Ribeiras de Lea, Castro de Rei, Terra Chá, Lugo, Galicia, España",
+    "query_used": "structured: {'postalcode': '27260', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:44.696005"
+  },
+  "27400_spain": {
+    "coords": [
+      42.5240431,
+      -7.5133873
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "27400",
+    "resolved_city": "Monforte de Lemos",
+    "display_name": "27400, Monforte de Lemos, Terra de Lemos, Lugo, Galicia, España",
+    "query_used": "structured: {'postalcode': '27400', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:45.695866"
+  },
+  "27618_spain": {
+    "coords": [
+      42.7434737,
+      -7.4251132
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "27618",
+    "resolved_city": "Sarria",
+    "display_name": "27618, San Pedro de Froián, Sarria, Lugo, Galicia, España",
+    "query_used": "structured: {'postalcode': '27618', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:46.688601"
+  },
+  "2780_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2780",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:49.715657"
+  },
+  "2790_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2790",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:25:52.745677"
+  },
+  "28002_spain": {
+    "coords": [
+      40.4449057,
+      -3.6741549
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28002",
+    "resolved_city": "Madrid",
+    "display_name": "28002, Chamartín, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:53.696904"
+  },
+  "28006_spain": {
+    "coords": [
+      40.4356668,
+      -3.6793494
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28006",
+    "resolved_city": "Madrid",
+    "display_name": "28006, Salamanca, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:54.712014"
+  },
+  "28009_spain": {
+    "coords": [
+      40.4188191,
+      -3.6726294
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28009",
+    "resolved_city": "Madrid",
+    "display_name": "28009, Retiro, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28009', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:55.781329"
+  },
+  "28014_spain": {
+    "coords": [
+      40.4135439,
+      -3.6940107
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28014",
+    "resolved_city": "Madrid",
+    "display_name": "28014, Centro, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28014', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:56.690859"
+  },
+  "28015_spain": {
+    "coords": [
+      40.4311229,
+      -3.7102196
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28015",
+    "resolved_city": "Madrid",
+    "display_name": "28015, Chamberí, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28015', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:57.697383"
+  },
+  "28017_spain": {
+    "coords": [
+      40.4287028,
+      -3.6454205
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28017",
+    "resolved_city": "Madrid",
+    "display_name": "28017, Ciudad Lineal, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28017', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:58.700699"
+  },
+  "28040_spain": {
+    "coords": [
+      40.4522992,
+      -3.7205655
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28040",
+    "resolved_city": "Madrid",
+    "display_name": "28040, Moncloa-Aravaca, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28040', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:25:59.700027"
+  },
+  "28043_spain": {
+    "coords": [
+      40.461546,
+      -3.6405769
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28043",
+    "resolved_city": "Madrid",
+    "display_name": "28043, Hortaleza, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28043', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:00.693672"
+  },
+  "28049_spain": {
+    "coords": [
+      40.5112736,
+      -3.6989341
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28049",
+    "resolved_city": "Madrid",
+    "display_name": "28049, Fuencarral-El Pardo, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28049', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:01.716926"
+  },
+  "28050_spain": {
+    "coords": [
+      40.493105,
+      -3.6619603
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28050",
+    "resolved_city": "Madrid",
+    "display_name": "28050, Hortaleza, Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28050', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:02.693486"
+  },
+  "2810_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2810",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:05.717472"
+  },
+  "28108_spain": {
+    "coords": [
+      40.5278524,
+      -3.6446427
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28108",
+    "resolved_city": "Alcobendas",
+    "display_name": "28108, Alcobendas, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28108', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:06.719776"
+  },
+  "28230_spain": {
+    "coords": [
+      40.5030843,
+      -3.8830826
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28230",
+    "resolved_city": "Las Rozas de Madrid",
+    "display_name": "28230, Las Rozas de Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28230', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:07.715673"
+  },
+  "28232_spain": {
+    "coords": [
+      40.5200721,
+      -3.912959
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28232",
+    "resolved_city": "Las Rozas de Madrid",
+    "display_name": "28232, Las Rozas de Madrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28232', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:08.690065"
+  },
+  "2829_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2829",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:11.739057"
+  },
+  "28300_spain": {
+    "coords": [
+      40.0438553,
+      -3.5942521
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28300",
+    "resolved_city": "Aranjuez",
+    "display_name": "28300, Aranjuez, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28300', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:12.698661"
+  },
+  "28522_spain": {
+    "coords": [
+      40.3606701,
+      -3.5326475
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28522",
+    "resolved_city": "Rivas-Vaciamadrid",
+    "display_name": "28522, Rivas Centro, Rivas-Vaciamadrid, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28522', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:13.690048"
+  },
+  "2855_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2855",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:16.717918"
+  },
+  "28709_spain": {
+    "coords": [
+      40.5661666,
+      -3.6074547
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28709",
+    "resolved_city": "San Sebastián de los Reyes",
+    "display_name": "28709, San Sebastián de los Reyes, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28709', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:17.725703"
+  },
+  "28750_spain": {
+    "coords": [
+      40.6938315,
+      -3.613383
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28750",
+    "resolved_city": "San Agustín del Guadalix",
+    "display_name": "28750, San Agustín del Guadalix, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28750', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:18.705804"
+  },
+  "28760_spain": {
+    "coords": [
+      40.6090454,
+      -3.6936345
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28760",
+    "resolved_city": "Tres Cantos",
+    "display_name": "28760, Tres Cantos, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28760', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:19.697667"
+  },
+  "28770_spain": {
+    "coords": [
+      40.6595627,
+      -3.7682661
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28770",
+    "resolved_city": "Colmenar Viejo",
+    "display_name": "28770, Colmenar Viejo, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28770', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:20.695795"
+  },
+  "28805_spain": {
+    "coords": [
+      40.5003309,
+      -3.3506959
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28805",
+    "resolved_city": "Alcalá de Henares",
+    "display_name": "28805, Distrito V, Alcalá de Henares, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28805', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:21.690427"
+  },
+  "28806_spain": {
+    "coords": [
+      40.4986176,
+      -3.3722193
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28806",
+    "resolved_city": "Alcalá de Henares",
+    "display_name": "28806, Distrito IV, Alcalá de Henares, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28806', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:22.695269"
+  },
+  "28823_spain": {
+    "coords": [
+      40.4297727,
+      -3.5388648
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28823",
+    "resolved_city": "Coslada",
+    "display_name": "28823, Coslada, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28823', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:23.697285"
+  },
+  "28850_spain": {
+    "coords": [
+      40.4465041,
+      -3.4755171
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28850",
+    "resolved_city": "Torrejón de Ardoz",
+    "display_name": "28850, Torrejón de Ardoz, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28850', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:24.841563"
+  },
+  "28880_spain": {
+    "coords": [
+      40.5523458,
+      -3.326318
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28880",
+    "resolved_city": "Meco",
+    "display_name": "28880, Meco, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28880', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:25.694775"
+  },
+  "28906_spain": {
+    "coords": [
+      40.3155191,
+      -3.7000597
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28906",
+    "resolved_city": "Getafe",
+    "display_name": "28906, Getafe, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28906', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:26.689461"
+  },
+  "28919_spain": {
+    "coords": [
+      40.3492375,
+      -3.7313988
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28919",
+    "resolved_city": "Leganés",
+    "display_name": "28919, Leganés, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28919', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:27.689057"
+  },
+  "28922_spain": {
+    "coords": [
+      40.3395446,
+      -3.8337763
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28922",
+    "resolved_city": "Alcorcón",
+    "display_name": "28922, Suroeste, Alcorcón, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28922', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:28.702633"
+  },
+  "28925_spain": {
+    "coords": [
+      40.3554893,
+      -3.8063183
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28925",
+    "resolved_city": "Alcorcón",
+    "display_name": "28925, Norte, Alcorcón, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28925', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:29.689908"
+  },
+  "28931_spain": {
+    "coords": [
+      40.323771,
+      -3.8654485
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28931",
+    "resolved_city": "Móstoles",
+    "display_name": "28931, Móstoles, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28931', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:31.027687"
+  },
+  "28933_spain": {
+    "coords": [
+      40.3326548,
+      -3.8680617
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28933",
+    "resolved_city": "Móstoles",
+    "display_name": "28933, Móstoles, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28933', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:31.999612"
+  },
+  "28935_spain": {
+    "coords": [
+      40.3182623,
+      -3.8955413
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "28935",
+    "resolved_city": "Móstoles",
+    "display_name": "28935, Móstoles, Comunidad de Madrid, España",
+    "query_used": "structured: {'postalcode': '28935', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:33.001676"
+  },
+  "29006_spain": {
+    "coords": [
+      36.7081488,
+      -4.463612
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "29006",
+    "resolved_city": "Málaga",
+    "display_name": "29006, Teatinos-Universidad, Málaga, Málaga-Costa del Sol, Málaga, Andalucía, España",
+    "query_used": "structured: {'postalcode': '29006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:34.030429"
+  },
+  "29048_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "29048",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:37.007888"
+  },
+  "2910_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "2910",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:40.021671"
+  },
+  "29320_spain": {
+    "coords": [
+      37.0461351,
+      -4.861687
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "29320",
+    "resolved_city": "Campillos",
+    "display_name": "29320, Campillos, Guadalteba, Málaga, Andalucía, España",
+    "query_used": "structured: {'postalcode': '29320', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:40.999588"
+  },
+  "29400_spain": {
+    "coords": [
+      36.7455743,
+      -5.1645003
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "29400",
+    "resolved_city": "Ronda",
+    "display_name": "29400, Ronda, Serranía de Ronda, Málaga, Andalucía, España",
+    "query_used": "structured: {'postalcode': '29400', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:42.020448"
+  },
+  "30010_spain": {
+    "coords": [
+      37.9705492,
+      -1.13115
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30010",
+    "resolved_city": "Murcia",
+    "display_name": "30010, Murcia, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30010', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:43.005289"
+  },
+  "3004_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "3004",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:46.067680"
+  },
+  "30100_spain": {
+    "coords": [
+      38.0142081,
+      -1.1627103
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30100",
+    "resolved_city": "Murcia",
+    "display_name": "30100, El Puntal, Murcia, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30100', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:47.023080"
+  },
+  "30107_spain": {
+    "coords": [
+      37.9949957,
+      -1.1857496
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30107",
+    "resolved_city": "Murcia",
+    "display_name": "30107, Murcia, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30107', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:48.027006"
+  },
+  "30130_spain": {
+    "coords": [
+      38.042776,
+      -0.9997581
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30130",
+    "resolved_city": "Beniel",
+    "display_name": "30130, Beniel, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30130', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:49.003642"
+  },
+  "30150_spain": {
+    "coords": [
+      37.9379664,
+      -1.1411199
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30150",
+    "resolved_city": "Murcia",
+    "display_name": "30150, La Alberca, Murcia, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30150', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:50.001299"
+  },
+  "30169_spain": {
+    "coords": [
+      37.9547127,
+      -1.1806466
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30169",
+    "resolved_city": "Murcia",
+    "display_name": "30169, Murcia, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30169', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:51.000997"
+  },
+  "30350_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30350",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:54.010674"
+  },
+  "30500_spain": {
+    "coords": [
+      38.0543386,
+      -1.2099246
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30500",
+    "resolved_city": "Molina de Segura",
+    "display_name": "30500, Molina de Segura, Vega Media del Segura, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30500', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:55.014632"
+  },
+  "30550_spain": {
+    "coords": [
+      38.206001,
+      -1.3975334
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30550",
+    "resolved_city": "Abarán",
+    "display_name": "30550, Abarán, Vega Alta del Segura, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30550', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:56.005775"
+  },
+  "30564_spain": {
+    "coords": [
+      38.0935509,
+      -1.2396244
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30564",
+    "resolved_city": "Lorquí",
+    "display_name": "30564, Lorquí, Vega Media del Segura, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30564', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:26:57.023337"
+  },
+  "05644_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "305644",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:26:59.998659"
+  },
+  "30640_spain": {
+    "coords": [
+      38.2089869,
+      -1.0406679
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30640",
+    "resolved_city": "Abanilla",
+    "display_name": "30640, Abanilla, Oriental, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30640', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:01.009700"
+  },
+  "30820_spain": {
+    "coords": [
+      37.9718117,
+      -1.2110401
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30820",
+    "resolved_city": "Alcantarilla",
+    "display_name": "30820, Alcantarilla, Área Metropolitana de Murcia, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30820', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:02.011626"
+  },
+  "30840_spain": {
+    "coords": [
+      37.8428229,
+      -1.4187511
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "30840",
+    "resolved_city": "Alhama de Murcia",
+    "display_name": "30840, Alhama de Murcia, Bajo Guadalentín, Región de Murcia, España",
+    "query_used": "structured: {'postalcode': '30840', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:03.006709"
+  },
+  "3100_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "3100",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:27:06.034937"
+  },
+  "31002_spain": {
+    "coords": [
+      42.8147679,
+      -1.6424914
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31002",
+    "resolved_city": "Pamplona / Iruña",
+    "display_name": "31002, Segundo Ensanche, Pamplona / Iruña, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:07.016676"
+  },
+  "31006_spain": {
+    "coords": [
+      42.8034289,
+      -1.6352721
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31006",
+    "resolved_city": "Pamplona / Iruña",
+    "display_name": "31006, Milagrosa-Arrosadia, Pamplona / Iruña, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:07.996990"
+  },
+  "31008_spain": {
+    "coords": [
+      42.8083299,
+      -1.6683464
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31008",
+    "resolved_city": "Pamplona / Iruña",
+    "display_name": "31008, Ermitagaña-Mendebaldea, Pamplona / Iruña, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31008', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:09.001713"
+  },
+  "31110_spain": {
+    "coords": [
+      42.7627601,
+      -1.635515
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31110",
+    "resolved_city": "Valle de Elorz / Elortzibar",
+    "display_name": "31110, Valle de Elorz / Elortzibar, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31110', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:09.999768"
+  },
+  "31153_spain": {
+    "coords": [
+      42.6756366,
+      -1.7313267
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31153",
+    "resolved_city": "Enériz / Eneritz",
+    "display_name": "31153, Enériz / Eneritz, Izarbeibar-Novenera, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31153', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:11.013703"
+  },
+  "31160_spain": {
+    "coords": [
+      42.8227498,
+      -1.6971574
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31160",
+    "resolved_city": "Orkoien",
+    "display_name": "31160, Orkoien, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31160', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:12.002139"
+  },
+  "31170_spain": {
+    "coords": [
+      42.8165653,
+      -1.721839
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31170",
+    "resolved_city": "Cendea de Olza / Oltza Zendea",
+    "display_name": "31170, Arazuri, Cendea de Olza / Oltza Zendea, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31170', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:12.998294"
+  },
+  "31191_spain": {
+    "coords": [
+      42.7515213,
+      -1.655807
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31191",
+    "resolved_city": "Galar",
+    "display_name": "31191, Galar, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31191', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:14.006650"
+  },
+  "31195_spain": {
+    "coords": [
+      42.8456381,
+      -1.6861332
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31195",
+    "resolved_city": "Berrioplano / Berriobeiti",
+    "display_name": "31195, Berriobeiti, Berrioplano / Berriobeiti, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31195', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:15.012532"
+  },
+  "31261_spain": {
+    "coords": [
+      42.3726363,
+      -1.9473364
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31261",
+    "resolved_city": "Andosilla",
+    "display_name": "31261, Andosilla, Estellerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31261', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:16.009117"
+  },
+  "31490_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31490",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:27:19.029557"
+  },
+  "31500_spain": {
+    "coords": [
+      42.0592763,
+      -1.606157
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31500",
+    "resolved_city": "Tudela",
+    "display_name": "31500, Tudela, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31500', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:20.007812"
+  },
+  "31570_spain": {
+    "coords": [
+      42.3338605,
+      -1.9341947
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31570",
+    "resolved_city": "San Adrián",
+    "display_name": "31570, San Adrián, Estellerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31570', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:21.006852"
+  },
+  "31621_spain": {
+    "coords": [
+      42.8117062,
+      -1.5964327
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "31621",
+    "resolved_city": "Valle de Egüés / Eguesibar",
+    "display_name": "31621, Sarriguren, Valle de Egüés / Eguesibar, Iruñerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "structured: {'postalcode': '31621', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:22.002423"
+  },
+  "32300_spain": {
+    "coords": [
+      42.4160978,
+      -6.9861971
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "32300",
+    "resolved_city": "O Barco",
+    "display_name": "32300, O Barco, O Barco de Valdeorras, Valdeorras, Ourense, Galicia, España",
+    "query_used": "structured: {'postalcode': '32300', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:23.005676"
+  },
+  "32900_spain": {
+    "coords": [
+      42.3018206,
+      -7.8099526
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "32900",
+    "resolved_city": "San Cibrao das Viñas",
+    "display_name": "32900, Pazos de San Clodio, San Cibrao das Viñas, Ourense, Galicia, España",
+    "query_used": "structured: {'postalcode': '32900', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:23.997648"
+  },
+  "33010_spain": {
+    "coords": [
+      43.3665482,
+      -5.8310979
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33010",
+    "resolved_city": "Oviedo",
+    "display_name": "33010, Ventanielles, Oviedo / Uviéu, Oviedo, Asturias / Asturies, España",
+    "query_used": "structured: {'postalcode': '33010', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:25.023642"
+  },
+  "33418_spain": {
+    "coords": [
+      43.5966532,
+      -5.9258264
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33418",
+    "resolved_city": "Gozón",
+    "display_name": "33418, Gozón, Asturias / Asturies, España",
+    "query_used": "structured: {'postalcode': '33418', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:26.055491"
+  },
+  "33420_spain": {
+    "coords": [
+      43.4051974,
+      -5.810348
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33420",
+    "resolved_city": "Siero",
+    "display_name": "33420, Lugones / Llugones, Siero, Asturias / Asturies, España",
+    "query_used": "structured: {'postalcode': '33420', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:27.032682"
+  },
+  "33428_spain": {
+    "coords": [
+      43.4229777,
+      -5.8258925
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33428",
+    "resolved_city": "Llanera",
+    "display_name": "33428, Llanera, Asturias / Asturies, España",
+    "query_used": "structured: {'postalcode': '33428', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:28.001181"
+  },
+  "33584_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33584",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:27:31.008061"
+  },
+  "33719_spain": {
+    "coords": [
+      43.5411839,
+      -6.7391278
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33719",
+    "resolved_city": "Coaña",
+    "display_name": "33719, Coaña, Asturias / Asturies, España",
+    "query_used": "structured: {'postalcode': '33719', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:32.001528"
+  },
+  "33934_spain": {
+    "coords": [
+      43.3028582,
+      -5.7059876
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "33934",
+    "resolved_city": "Llangréu / Langreo",
+    "display_name": "33934, Llangréu / Langreo, Asturias / Asturies, España",
+    "query_used": "structured: {'postalcode': '33934', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:32.999558"
+  },
+  "34004_spain": {
+    "coords": [
+      42.0008503,
+      -4.5211775
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "34004",
+    "resolved_city": "Palencia",
+    "display_name": "34004, Palencia, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '34004', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:34.013038"
+  },
+  "34005_spain": {
+    "coords": [
+      42.0076004,
+      -4.5415414
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "34005",
+    "resolved_city": "Palencia",
+    "display_name": "34005, Palencia, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '34005', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:35.007700"
+  },
+  "34800_spain": {
+    "coords": [
+      42.7932115,
+      -4.2635595
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "34800",
+    "resolved_city": "Aguilar de Campoo",
+    "display_name": "34800, Aguilar de Campoo, Palencia, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '34800', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:36.002002"
+  },
+  "36153_spain": {
+    "coords": [
+      42.4080095,
+      -8.6688514
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36153",
+    "resolved_city": "Pontevedra",
+    "display_name": "36153, Lourizán, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36153', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:37.027414"
+  },
+  "36203_spain": {
+    "coords": [
+      42.2286499,
+      -8.7233182
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36203",
+    "resolved_city": "Vigo",
+    "display_name": "36203, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36203', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:37.995608"
+  },
+  "36204_spain": {
+    "coords": [
+      42.2319769,
+      -8.7118607
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36204",
+    "resolved_city": "Vigo",
+    "display_name": "36204, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36204', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:39.756674"
+  },
+  "36214_spain": {
+    "coords": [
+      42.2193539,
+      -8.6970212
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36214",
+    "resolved_city": "Vigo",
+    "display_name": "36214, Lavadores, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36214', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:40.762834"
+  },
+  "36310_spain": {
+    "coords": [
+      42.1689585,
+      -8.6839669
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36310",
+    "resolved_city": "Vigo",
+    "display_name": "36310, Zamáns, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36310', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:41.776679"
+  },
+  "36315_spain": {
+    "coords": [
+      42.1734958,
+      -8.7218799
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36315",
+    "resolved_city": "Vigo",
+    "display_name": "36315, Valadares, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36315', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:42.773367"
+  },
+  "36400_spain": {
+    "coords": [
+      42.160754,
+      -8.620498
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36400",
+    "resolved_city": "O Porriño",
+    "display_name": "36400, O Porriño, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36400', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:43.761028"
+  },
+  "36416_spain": {
+    "coords": [
+      42.202905,
+      -8.6550699
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36416",
+    "resolved_city": "San Eleuterio",
+    "display_name": "36416, Tameiga, San Eleuterio, Mos, Vigo, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36416', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:44.763685"
+  },
+  "36614_spain": {
+    "coords": [
+      42.5507958,
+      -8.7340842
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "36614",
+    "resolved_city": "Vilanova de Arousa",
+    "display_name": "36614, Baión, Vilanova de Arousa, O Salnés, Pontevedra, Galicia, España",
+    "query_used": "structured: {'postalcode': '36614', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:45.787526"
+  },
+  "37002_spain": {
+    "coords": [
+      40.966426,
+      -5.664573
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "37002",
+    "resolved_city": "Salamanca",
+    "display_name": "37002, Centro, Salamanca, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '37002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:46.766154"
+  },
+  "37007_spain": {
+    "coords": [
+      40.968243,
+      -5.6731045
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "37007",
+    "resolved_city": "Salamanca",
+    "display_name": "37007, San Bernardo, Salamanca, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '37007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:27:47.776492"
+  },
+  "3800_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "3800",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:27:50.785884"
+  },
+  "3810_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "3810",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:27:55.028968"
+  },
+  "3810193_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "3810-193",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:27:57.340978"
+  },
+  "3860_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "3860",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:00.242225"
+  },
+  "39011_spain": {
+    "coords": [
+      43.4498496,
+      -3.8538754
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "39011",
+    "resolved_city": "Santander",
+    "display_name": "39011, Santander, Cantabria, España",
+    "query_used": "structured: {'postalcode': '39011', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:01.243482"
+  },
+  "39611_spain": {
+    "coords": [
+      43.3966131,
+      -3.8450782
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "39611",
+    "resolved_city": "El Astillero",
+    "display_name": "39611, El Astillero, Cantabria, España",
+    "query_used": "structured: {'postalcode': '39611', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:02.226678"
+  },
+  "39706_spain": {
+    "coords": [
+      43.3541837,
+      -3.18442
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "39706",
+    "resolved_city": "Castro-Urdiales",
+    "display_name": "39706, Castro-Urdiales, Cantabria, España",
+    "query_used": "structured: {'postalcode': '39706', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:03.230022"
+  },
+  "40260_spain": {
+    "coords": [
+      41.221326,
+      -4.1785664
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "40260",
+    "resolved_city": "Fuentepelayo",
+    "display_name": "40260, Fuentepelayo, Segovia, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '40260', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:04.236535"
+  },
+  "4050_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4050",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:07.281310"
+  },
+  "41007_spain": {
+    "coords": [
+      37.3927982,
+      -5.9618279
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "41007",
+    "resolved_city": "Sevilla",
+    "display_name": "41007, Distrito San Pablo-Santa Justa, Sevilla, Andalucía, España",
+    "query_used": "structured: {'postalcode': '41007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:08.502920"
+  },
+  "41012_spain": {
+    "coords": [
+      37.3518563,
+      -5.982631
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "41012",
+    "resolved_city": "Sevilla",
+    "display_name": "41012, Distrito Bellavista-La Palmera, Sevilla, Andalucía, España",
+    "query_used": "structured: {'postalcode': '41012', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:09.247408"
+  },
+  "41016_spain": {
+    "coords": [
+      37.3908727,
+      -5.9275849
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "41016",
+    "resolved_city": "Sevilla",
+    "display_name": "41016, Distrito Este-Alcosa-Torreblanca, Sevilla, Andalucía, España",
+    "query_used": "structured: {'postalcode': '41016', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:10.292704"
+  },
+  "41440_spain": {
+    "coords": [
+      37.6565552,
+      -5.5201368
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "41440",
+    "resolved_city": "Lora del Río",
+    "display_name": "41440, Lora del Río, Sevilla, Andalucía, España",
+    "query_used": "structured: {'postalcode': '41440', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:11.244177"
+  },
+  "4169_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4169",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:14.649339"
+  },
+  "41700_spain": {
+    "coords": [
+      37.262219,
+      -5.8990709
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "41700",
+    "resolved_city": "Dos Hermanas",
+    "display_name": "41700, Dos Hermanas, Sevilla, Andalucía, España",
+    "query_used": "structured: {'postalcode': '41700', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:15.597179"
+  },
+  "41910_spain": {
+    "coords": [
+      37.3849362,
+      -6.037125
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "41910",
+    "resolved_city": "Camas",
+    "display_name": "41910, Camas, Sevilla, Andalucía, España",
+    "query_used": "structured: {'postalcode': '41910', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:16.599901"
+  },
+  "4200_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4200",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:19.633722"
+  },
+  "42100_spain": {
+    "coords": [
+      41.8412484,
+      -1.9347061
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "42100",
+    "resolved_city": "Ágreda",
+    "display_name": "42100, Ágreda, Soria, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '42100', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:20.610616"
+  },
+  "43006_spain": {
+    "coords": [
+      41.1204473,
+      1.2154819
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43006",
+    "resolved_city": "Tarragona",
+    "display_name": "43006, Tarragona, Tarragonès, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43006', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:21.635254"
+  },
+  "43007_spain": {
+    "coords": [
+      41.1317813,
+      1.2675245
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43007",
+    "resolved_city": "Tarragona",
+    "display_name": "43007, Tarragona, Tarragonès, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:22.620926"
+  },
+  "43110_spain": {
+    "coords": [
+      41.1245622,
+      1.1777799
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43110",
+    "resolved_city": "la Canonja",
+    "display_name": "43110, la Canonja, Tarragonès, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43110', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:23.607171"
+  },
+  "43201_spain": {
+    "coords": [
+      41.1553789,
+      1.1108061
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43201",
+    "resolved_city": "Reus",
+    "display_name": "43201, Reus, Baix Camp, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43201', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:24.783422"
+  },
+  "43206_spain": {
+    "coords": [
+      41.1572609,
+      1.096757
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43206",
+    "resolved_city": "Reus",
+    "display_name": "43206, Reus, Baix Camp, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43206', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:25.768597"
+  },
+  "43460_spain": {
+    "coords": [
+      41.2627327,
+      1.1641333
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43460",
+    "resolved_city": "Alcover",
+    "display_name": "43460, Alcover, Alt Camp, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43460', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:26.769912"
+  },
+  "43500_spain": {
+    "coords": [
+      40.8127292,
+      0.5219061
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43500",
+    "resolved_city": "Tortosa",
+    "display_name": "43500, Tortosa, Baix Ebre, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43500', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:27.763671"
+  },
+  "43711_spain": {
+    "coords": [
+      41.2791699,
+      1.5818025
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43711",
+    "resolved_city": "Banyeres del Penedès",
+    "display_name": "43711, Banyeres del Penedès, Baix Penedès, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43711', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:28.795001"
+  },
+  "43800_spain": {
+    "coords": [
+      41.2973634,
+      1.2422653
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43800",
+    "resolved_city": "Valls",
+    "display_name": "43800, Valls, Alt Camp, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43800', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:29.785243"
+  },
+  "43897_spain": {
+    "coords": [
+      40.76204,
+      0.5550936
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "43897",
+    "resolved_city": "Tortosa",
+    "display_name": "43897, Tortosa, Baix Ebre, Tarragona, Catalunya, España",
+    "query_used": "structured: {'postalcode': '43897', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:30.769704"
+  },
+  "4410_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4410",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:33.816917"
+  },
+  "4420_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4420",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:37.013688"
+  },
+  "4440_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4440",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:40.009934"
+  },
+  "44424_spain": {
+    "coords": [
+      42.5194761,
+      -1.3632359
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "44424",
+    "resolved_city": "Cáseda",
+    "display_name": "44424, Carretera Venta de Judas - Aibar - Carcastillo, Kaseda, Cáseda, Zangozerria, Navarra, Navarra / Nafarroa, España",
+    "query_used": "free-text: 44424, Spain (country=es)",
+    "validated": true,
+    "low_confidence": true,
+    "is_generic": false,
+    "status": "OK_LOW_CONFIDENCE",
+    "suspect_score": 1,
+    "timestamp": "2026-01-23T20:28:42.069478"
+  },
+  "4450_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4450",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:45.000879"
+  },
+  "44547_spain": {
+    "coords": [
+      41.0467876,
+      -0.5836836
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "44547",
+    "resolved_city": "Ariño",
+    "display_name": "44547, Ariño, Andorra-Sierra de Arcos, Teruel, Aragón, España",
+    "query_used": "structured: {'postalcode': '44547', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:45.986759"
+  },
+  "45007_spain": {
+    "coords": [
+      39.8686926,
+      -3.9406337
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "45007",
+    "resolved_city": "Toledo",
+    "display_name": "45007, Toledo, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '45007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:47.096310"
+  },
+  "45310_spain": {
+    "coords": [
+      39.9007004,
+      -3.3241276
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "45310",
+    "resolved_city": "Villatobas",
+    "display_name": "45310, Villatobas, Toledo, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '45310', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:48.085250"
+  },
+  "45508_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "45508",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:28:51.106797"
+  },
+  "45600_spain": {
+    "coords": [
+      39.9636152,
+      -4.8225355
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "45600",
+    "resolved_city": "Talavera de la Reina",
+    "display_name": "45600, Talavera de la Reina, Toledo, Castilla-La Mancha, España",
+    "query_used": "structured: {'postalcode': '45600', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:52.102246"
+  },
+  "46010_spain": {
+    "coords": [
+      39.4816956,
+      -0.3659889
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46010",
+    "resolved_city": "València",
+    "display_name": "46010, la Saïdia, València, Comarca de València, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46010', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:53.146575"
+  },
+  "46014_spain": {
+    "coords": [
+      39.4635266,
+      -0.4032598
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46014",
+    "resolved_city": "València",
+    "display_name": "46014, València, Comarca de València, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46014', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:54.147212"
+  },
+  "46020_spain": {
+    "coords": [
+      39.4862514,
+      -0.3596832
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46020",
+    "resolved_city": "València",
+    "display_name": "46020, Benimaclet, València, Comarca de València, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46020', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:55.109702"
+  },
+  "46022_spain": {
+    "coords": [
+      39.475483,
+      -0.3404903
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46022",
+    "resolved_city": "València",
+    "display_name": "46022, Algirós, València, Comarca de València, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46022', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:56.105350"
+  },
+  "46026_spain": {
+    "coords": [
+      39.4475836,
+      -0.3780023
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46026",
+    "resolved_city": "València",
+    "display_name": "46026, Quatre Carreres, València, Comarca de València, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46026', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:57.082289"
+  },
+  "46100_spain": {
+    "coords": [
+      39.5133851,
+      -0.4123554
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46100",
+    "resolved_city": "Burjassot",
+    "display_name": "46100, Burjassot, l'Horta Nord, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46100', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:58.093195"
+  },
+  "46185_spain": {
+    "coords": [
+      39.5988035,
+      -0.5366056
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46185",
+    "resolved_city": "la Pobla de Vallbona",
+    "display_name": "46185, la Pobla de Vallbona, el Camp de Túria, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46185', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:28:59.120191"
+  },
+  "46240_spain": {
+    "coords": [
+      39.228486,
+      -0.5078581
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46240",
+    "resolved_city": "Carlet",
+    "display_name": "46240, Carlet, la Ribera Alta, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46240', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:00.093319"
+  },
+  "46340_spain": {
+    "coords": [
+      39.488354,
+      -1.1029915
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46340",
+    "resolved_city": "Requena",
+    "display_name": "46340, Requena, La Plana de Utiel-Requena, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46340', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:01.082069"
+  },
+  "46440_spain": {
+    "coords": [
+      39.3018788,
+      -0.4171431
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46440",
+    "resolved_city": "Almussafes",
+    "display_name": "46440, Almussafes, la Ribera Baixa, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46440', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:02.103988"
+  },
+  "46740_spain": {
+    "coords": [
+      39.1202912,
+      -0.4454657
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46740",
+    "resolved_city": "Carcaixent",
+    "display_name": "46740, Carcaixent, la Ribera Alta, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46740', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:03.609664"
+  },
+  "46900_spain": {
+    "coords": [
+      39.4349417,
+      -0.4695639
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46900",
+    "resolved_city": "Torrent",
+    "display_name": "46900, Torrent, l'Horta Sud, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46900', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:04.096119"
+  },
+  "46980_spain": {
+    "coords": [
+      39.5262518,
+      -0.4457127
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46980",
+    "resolved_city": "Paterna",
+    "display_name": "46980, Paterna, l'Horta Nord, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46980', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:05.093679"
+  },
+  "46988_spain": {
+    "coords": [
+      39.5124066,
+      -0.454266
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "46988",
+    "resolved_city": "Paterna",
+    "display_name": "46988, Paterna, l'Horta Nord, València / Valencia, Comunitat Valenciana, España",
+    "query_used": "structured: {'postalcode': '46988', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:06.116228"
+  },
+  "47001_spain": {
+    "coords": [
+      41.6497198,
+      -4.7198748
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47001",
+    "resolved_city": "Valladolid",
+    "display_name": "47001, Plaza España, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47001', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:07.085827"
+  },
+  "70011_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "470011",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:10.165674"
+  },
+  "47003_spain": {
+    "coords": [
+      41.6554804,
+      -4.7258342
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47003",
+    "resolved_city": "Valladolid",
+    "display_name": "47003, San Pablo - San Nicolás, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47003', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:11.116693"
+  },
+  "47009_spain": {
+    "coords": [
+      41.6701513,
+      -4.7362294
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47009",
+    "resolved_city": "Valladolid",
+    "display_name": "47009, La Victoria, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47009', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:12.079007"
+  },
+  "47011_spain": {
+    "coords": [
+      41.6609527,
+      -4.7073868
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47011",
+    "resolved_city": "Valladolid",
+    "display_name": "47011, Belén - Pilarica, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47011', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:13.079130"
+  },
+  "47012_spain": {
+    "coords": [
+      41.6349618,
+      -4.706969
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47012",
+    "resolved_city": "Valladolid",
+    "display_name": "47012, Delicias - Canterac, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47012', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:14.099544"
+  },
+  "47111_spain": {
+    "coords": [
+      41.5490943,
+      -5.1392555
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47111",
+    "resolved_city": "Villalar de los Comuneros",
+    "display_name": "47111, Villalar de los Comuneros, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47111', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:15.098571"
+  },
+  "4715_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4715",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:18.325991"
+  },
+  "47151_spain": {
+    "coords": [
+      41.5344396,
+      -4.70703
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47151",
+    "resolved_city": "Boecillo",
+    "display_name": "47151, Boecillo, Valladolid, Castilla y León, España",
+    "query_used": "structured: {'postalcode': '47151', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:19.275659"
+  },
+  "4745_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4745",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:22.302904"
+  },
+  "47515_spain": {
+    "coords": null,
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "47515",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:25.381673"
+  },
+  "4785_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "4785",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:28.277696"
+  },
+  "48012_spain": {
+    "coords": [
+      43.2550124,
+      -2.939897
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48012",
+    "resolved_city": "Bilbao",
+    "display_name": "48012, Errekalde, Bilbao, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48012', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:29.261595"
+  },
+  "48160_spain": {
+    "coords": [
+      43.2970347,
+      -2.8827467
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48160",
+    "resolved_city": "Derio",
+    "display_name": "48160, Derio, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48160', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:30.263342"
+  },
+  "48170_spain": {
+    "coords": [
+      43.290456,
+      -2.8653461
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48170",
+    "resolved_city": "Zamudio",
+    "display_name": "48170, Zamudio, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48170', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:31.097716"
+  },
+  "48360_spain": {
+    "coords": [
+      43.4072059,
+      -2.6996059
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48360",
+    "resolved_city": "Mundaka",
+    "display_name": "48360, Mundaka, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48360', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:32.090784"
+  },
+  "48395_spain": {
+    "coords": [
+      43.3945651,
+      -2.6981421
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48395",
+    "resolved_city": "Sukarrieta",
+    "display_name": "48395, Sukarrieta, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48395', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:33.092944"
+  },
+  "48508_spain": {
+    "coords": [
+      43.3496278,
+      -3.1051408
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48508",
+    "resolved_city": "Zierbena",
+    "display_name": "48508, Zierbena, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48508', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:34.091621"
+  },
+  "48930_spain": {
+    "coords": [
+      43.3279025,
+      -3.0103191
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48930",
+    "resolved_city": "Getxo",
+    "display_name": "48930, Getxo, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48930', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:35.096054"
+  },
+  "48940_spain": {
+    "coords": [
+      43.3276958,
+      -2.9898654
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48940",
+    "resolved_city": "Leioa",
+    "display_name": "48940, Leioa, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48940', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:36.092158"
+  },
+  "48980_spain": {
+    "coords": [
+      43.3297421,
+      -3.0350887
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48980",
+    "resolved_city": "Santurtzi",
+    "display_name": "48980, Santurtzi, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48980', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:37.042006"
+  },
+  "48992_spain": {
+    "coords": [
+      43.3436762,
+      -3.005449
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "48992",
+    "resolved_city": "Getxo",
+    "display_name": "48992, Getxo, Bizkaia, Euskadi, España",
+    "query_used": "structured: {'postalcode': '48992', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:38.046759"
+  },
+  "5000_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "5000",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:41.062713"
+  },
+  "50002_spain": {
+    "coords": [
+      41.6485826,
+      -0.8667146
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50002",
+    "resolved_city": "Zaragoza",
+    "display_name": "50002, Las Fuentes, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50002', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:42.046646"
+  },
+  "50007_spain": {
+    "coords": [
+      41.6301331,
+      -0.8822394
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50007",
+    "resolved_city": "Zaragoza",
+    "display_name": "50007, Torrero-La Paz, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50007', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:43.100711"
+  },
+  "50009_spain": {
+    "coords": [
+      41.6406767,
+      -0.9046331
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50009",
+    "resolved_city": "Zaragoza",
+    "display_name": "50009, Universidad, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50009', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:44.073515"
+  },
+  "50011_spain": {
+    "coords": [
+      41.6565325,
+      -0.9302427
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50011",
+    "resolved_city": "Zaragoza",
+    "display_name": "50011, Miralbueno, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50011', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:46.116629"
+  },
+  "50013_spain": {
+    "coords": [
+      41.6407254,
+      -0.8686797
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50013",
+    "resolved_city": "Zaragoza",
+    "display_name": "50013, San José, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50013', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:47.115975"
+  },
+  "50016_spain": {
+    "coords": [
+      41.6687434,
+      -0.8293036
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50016",
+    "resolved_city": "Zaragoza",
+    "display_name": "50016, Santa Isabel, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50016', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:48.126678"
+  },
+  "50018_spain": {
+    "coords": [
+      41.6740206,
+      -0.8879396
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50018",
+    "resolved_city": "Zaragoza",
+    "display_name": "50018, Actur-Rey Fernando, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50018', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:49.132681"
+  },
+  "50720_spain": {
+    "coords": [
+      41.6056034,
+      -0.8259593
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50720",
+    "resolved_city": "Zaragoza",
+    "display_name": "50720, Distrito Rural, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50720', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:50.151799"
+  },
+  "50840_spain": {
+    "coords": [
+      41.8306107,
+      -0.7674305
+    ],
+    "country": "spain",
+    "input_city": "",
+    "input_postal": "50840",
+    "resolved_city": "San Mateo de Gállego",
+    "display_name": "50840, San Mateo de Gállego, Zaragoza, Aragón, España",
+    "query_used": "structured: {'postalcode': '50840', 'country': 'Spain'} (country=es)",
+    "validated": true,
+    "low_confidence": false,
+    "is_generic": false,
+    "status": "OK",
+    "suspect_score": 0,
+    "timestamp": "2026-01-23T20:29:51.140176"
+  },
+  "5300_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "5300",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:54.144669"
+  },
+  "7300_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "7300",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:29:57.129599"
+  },
+  "7350_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "7350",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:00.127680"
+  },
+  "7520_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "7520",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:03.148694"
+  },
+  "7780_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "7780",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:06.122781"
+  },
+  "8005_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "8005",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:09.123483"
+  },
+  "8125_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "8125",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:12.121206"
+  },
+  "9020_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "9020",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:15.128923"
+  },
+  "9500_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "9500",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:18.129739"
+  },
+  "9700_portugal": {
+    "coords": null,
+    "country": "portugal",
+    "input_city": "",
+    "input_postal": "9700",
+    "resolved_city": null,
+    "display_name": null,
+    "query_used": "Failed after trying 3 queries",
+    "validated": false,
+    "low_confidence": false,
+    "status": "FAILED_META",
+    "timestamp": "2026-01-23T20:30:21.197817"
   }
 }

@@ -1,36 +1,22 @@
 """
-Geocoding Service Module - FINAL FIXED VERSION
-===============================================
+Geocoding Service Module - ADAPTED FOR NO-CITY GEOCODING
+=========================================================
 Handles all geocoding operations for the Service Planning Dashboard.
 
-CRITICAL FIXES FOR 16 FAILED ENTRIES:
-- ✅ Flexible postcode matching for PT (accepts 4-digit prefix match)
-- ✅ Flexible postcode matching for ES (accepts 5-digit prefix match)
-- ✅ Extended PT bbox to include Azores and Madeira properly
-- ✅ Improved validation that doesn't hard-reject on partial matches
-- ✅ Fallback to city-level when postcode mismatch but city/province match
-- ✅ FIX: Variables initialized before loop to avoid UnboundLocalError
-- ✅ FIX: Robust digits-based postcode handling for PT 4-digit cases
+NEW ADAPTATIONS:
+- ✅ Accepts City=None or empty string (geocodes with postal code only)
+- ✅ Uses Country column from DataFrame if available
+- ✅ Generates generic city names when City is missing
+- ✅ Adapted cache keys for postal-only geocoding
 
-Previous fixes:
-- ✅ 1. Unified cache_key helper with swap detection for geocode_dataframe()
-- ✅ 2. Increased Nominatim timeout + RateLimiter retry/backoff
-- ✅ 3. PT city-level policy with higher suspect_score
-- ✅ 4. DATA_SUSPECT_POSTAL elevated score (without hard rejection)
-- ✅ 5. ES city+province fallback improvements
-- ✅ 6. Hardcoded coords validation
-- ✅ 7. Debug prints with flag
-- ✅ 8. Triplet normalization for column shifts
-
-Features:
-- Postal-first geocoding strategy
-- Multi-country support (ES, PT, AD, GR, DE)
-- Postal code cleaning and normalization
-- Coordinate validation with bounding boxes
-- Persistent caching system
-- Statistics tracking
-- Swap detection (city↔postal)
-- Flexible postcode matching
+Previous features:
+- ✅ Flexible postcode matching for PT (4-digit prefix) and ES (5-digit prefix)
+- ✅ Extended PT bbox to include Azores and Madeira
+- ✅ Multi-country support (ES, PT, AD, GR, DE)
+- ✅ Postal code cleaning and normalization
+- ✅ Coordinate validation with bounding boxes
+- ✅ Persistent caching system
+- ✅ Statistics tracking
 """
 
 import json
@@ -40,6 +26,7 @@ from datetime import datetime
 from typing import Optional, Tuple, Dict, Any
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
+import pandas as pd
 
 
 # ============================================================================
@@ -99,32 +86,15 @@ HARDCODED_COORDS = {
     ("17460", "es"): (42.0333, 2.8833, "Celrà", "HARDCODED"),
     ("50360", "es"): (41.1167, -1.4167, "Daroca", "HARDCODED"),
     ("01510", "es"): (42.9167, -2.6667, "Miñano (Araba)", "HARDCODED"),
-    # ---------------------------------------------------------------------
-    # PT / ES — últimos casos problemáticos (forzar hardcoded)
-    # ---------------------------------------------------------------------
-
-    # 3801-501 Eixo (Aveiro)
+    # PT
     ("3801501", "pt"): (40.6050, -8.5960, "Eixo", "HARDCODED"),
-
-    # 4761-923 Vila Nova de Famalicão
     ("4761923", "pt"): (41.4078, -8.5198, "Vila Nova de Famalicão", "HARDCODED"),
-
-    # 9560-406 Ilha de São Miguel (Azores)
     ("9560406", "pt"): (37.7800, -25.4970, "Ilha de São Miguel", "HARDCODED"),
-
-    # 9600-049 Ribeira Grande (São Miguel)
     ("9600049", "pt"): (37.8202, -25.5147, "Ribeira Grande", "HARDCODED"),
-
-    # 9600-217 Ribeira Seca (Ribeira Grande)
     ("9600217", "pt"): (37.8130, -25.5140, "Ribeira Seca (Ribeira Grande)", "HARDCODED"),
-
-    # ---------------------------------------------------------------------
-    # ES
-    # ---------------------------------------------------------------------
-
-    # 45508 Zierbana (Bizkaia)
+    # ES additional
     ("45508", "es"): (43.3492, -3.0850, "Zierbana", "HARDCODED"),
-    }
+}
 
 # Known outlier cities
 OUTLIER_CITIES = {
@@ -159,39 +129,28 @@ SPAIN_PROVINCES = {
     50: "Zaragoza", 51: "Ceuta", 52: "Melilla"
 }
 
-# 🔥 FIXED: Extended PT bbox to properly include Azores and Madeira
 BOUNDING_BOXES = {
     "es": [
-        # España peninsular
-        {"lat": (35.5, 44.2), "lon": (-10.5, 5.5)},
-        # Canarias
-        {"lat": (27.3, 29.8), "lon": (-18.5, -13.0)},
-        # Baleares
-        {"lat": (38.6, 40.2), "lon": (1.0, 4.6)},
+        {"lat": (35.5, 44.2), "lon": (-10.5, 5.5)},  # Peninsula
+        {"lat": (27.3, 29.8), "lon": (-18.5, -13.0)},  # Canarias
+        {"lat": (38.6, 40.2), "lon": (1.0, 4.6)},  # Baleares
     ],
     "pt": [
-        # Portugal continental
-        {"lat": (36.8, 42.3), "lon": (-9.6, -6.0)},
-        # Madeira + Porto Santo
-        {"lat": (32.0, 33.6), "lon": (-17.5, -16.0)},
-        # 🔥 FIXED: Extended Azores bbox (was cutting off some islands)
-        {"lat": (36.6, 40.0), "lon": (-32.0, -24.5)},  # Extended west to -32.0 and north to 40.0
+        {"lat": (36.8, 42.3), "lon": (-9.6, -6.0)},  # Continental
+        {"lat": (32.0, 33.6), "lon": (-17.5, -16.0)},  # Madeira
+        {"lat": (36.6, 40.0), "lon": (-32.0, -24.5)},  # Azores (extended)
     ],
     "ad": [
-        # Andorra
-        {"lat": (42.4, 42.7), "lon": (1.4, 1.8)},
+        {"lat": (42.4, 42.7), "lon": (1.4, 1.8)},  # Andorra
     ],
     "gr": [
-        # Greece (mainland + islands)
-        {"lat": (34.5, 41.8), "lon": (19.0, 29.8)},
+        {"lat": (34.5, 41.8), "lon": (19.0, 29.8)},  # Greece
     ],
     "de": [
-        # Germany
-        {"lat": (47.2, 55.2), "lon": (5.5, 15.5)},
+        {"lat": (47.2, 55.2), "lon": (5.5, 15.5)},  # Germany
     ],
 }
 
-# Country names for geocoding queries
 COUNTRY_NAMES = {
     'es': ('Spain', 'es'),
     'pt': ('Portugal', 'pt'),
@@ -240,10 +199,9 @@ class GeocodingStats:
 
 
 # ============================================================================
-# TRIPLET INPUT NORMALIZATION (HANDLES COLUMN SHIFTS AND SWAPS)
+# TRIPLET INPUT NORMALIZATION
 # ============================================================================
 
-# Regex patterns for triplet normalization
 POSTAL_LIKE_RE = re.compile(r"^\s*(\d{5}|\d{4}[-\s]?\d{3})\s*$")
 COUNTRY2_RE = re.compile(r"^\s*[a-z]{2}\s*$", re.IGNORECASE)
 HAS_LETTERS_RE = re.compile(r"[A-ZÁÉÍÓÚÑÜ]", re.IGNORECASE)
@@ -251,19 +209,20 @@ HAS_LETTERS_RE = re.compile(r"[A-ZÁÉÍÓÚÑÜ]", re.IGNORECASE)
 
 def normalize_triplet_inputs(postal_raw: Any, city_raw: Any, country_raw: Any) -> Tuple[Any, Any, Any, str]:
     """
-    Normalize (postal, city, country) triplet to fix column misalignments.
+    Normalize (postal, city, country) triplet.
     
-    Cases handled:
-    - SWAP_POSTAL_CITY: postal has letters, city looks like postal → swap them
-    - ROTATE_COUNTRY_HAS_POSTAL: postal=CITY, city=COUNTRY, country=POSTAL → rotate
-    - ROTATE_POSTAL_IS_COUNTRY: postal=COUNTRY, city=CITY, country=POSTAL → rotate
+    ⭐ ADAPTED: Now handles city=None or empty
     
     Returns:
         Tuple of (postal_fixed, city_fixed, country_fixed, fix_tag)
     """
-    p = "" if postal_raw is None else str(postal_raw).strip()
-    c = "" if city_raw is None else str(city_raw).strip()
+    p = "" if postal_raw is None or str(postal_raw).strip() == '' else str(postal_raw).strip()
+    c = "" if city_raw is None or str(city_raw).strip() == '' else str(city_raw).strip()
     k = "" if country_raw is None else str(country_raw).strip()
+    
+    # ⭐ Si city está vacío, no intentamos swap
+    if not c:
+        return postal_raw, "", country_raw, "NO_CITY"
     
     p_has_letters = bool(HAS_LETTERS_RE.search(p))
     c_looks_postal = bool(POSTAL_LIKE_RE.match(c))
@@ -276,11 +235,11 @@ def normalize_triplet_inputs(postal_raw: Any, city_raw: Any, country_raw: Any) -
     if p_has_letters and c_looks_postal and not k_looks_postal:
         return city_raw, postal_raw, country_raw, "SWAP_POSTAL_CITY"
     
-    # Case B) 3-column shift: (postal=CITY, city=COUNTRY, country=POSTAL)
+    # Case B) 3-column shift
     if p_has_letters and c_is_country2 and k_looks_postal:
         return country_raw, postal_raw, city_raw, "ROTATE_COUNTRY_HAS_POSTAL"
     
-    # Case C) Variant shift: (postal=COUNTRY, city=CITY, country=POSTAL)
+    # Case C) Variant shift
     c_has_letters = bool(HAS_LETTERS_RE.search(c))
     p_is_country2 = bool(COUNTRY2_RE.match(p))
     
@@ -291,7 +250,7 @@ def normalize_triplet_inputs(postal_raw: Any, city_raw: Any, country_raw: Any) -
 
 
 # ============================================================================
-# 🔥 NEW: FLEXIBLE POSTAL CODE MATCHING
+# FLEXIBLE POSTAL CODE MATCHING
 # ============================================================================
 
 def _extract_digits(s: str) -> str:
@@ -303,44 +262,25 @@ def postcodes_match(requested: str, returned: str, country: str) -> bool:
     """
     Flexible postal code matching with country-specific rules.
     
-    This solves the "FAILED_META after 6 queries" problem by accepting
-    partial matches that are common with Nominatim.
-    
     Rules:
-    - Empty returned postcode: Accept (will be validated by bbox/country)
-    - PT: Accept if first 4 digits match (e.g., 1495131 ≈ 1495)
-    - ES: Accept if first 5 digits match (e.g., 28001XXX ≈ 28001)
-    - Exact match (normalized): Always accept
-    
-    Args:
-        requested: Requested postal code
-        returned: Returned postal code from geocoder
-        country: Country code
-    
-    Returns:
-        True if postcodes match according to country rules
+    - Empty returned postcode: Accept
+    - PT: Accept if first 4 digits match
+    - ES: Accept if first 5 digits match
+    - Exact match: Always accept
     """
     req = _extract_digits(requested)
     ret = _extract_digits(returned)
     
-    # If returned postcode is empty, don't fail here (bbox/country will decide)
     if not ret:
         return True
     
-    # Exact match (normalized)
     if req and ret == req:
         return True
     
-    # 🔥 PORTUGAL: Accept partial match by first 4 digits
-    # Example: requested=1495131, returned=1495 → OK
-    # This handles Nominatim often returning only the 4-digit prefix
     if country.lower() == "pt":
         if len(req) >= 4 and len(ret) >= 4 and ret[:4] == req[:4]:
             return True
     
-    # 🔥 ESPAÑA: Accept if first 5 digits match
-    # Example: requested=28001XXX, returned=28001 → OK
-    # This handles dirty input with trailing characters
     if country.lower() == "es":
         if len(req) >= 5 and len(ret) >= 5 and ret[:5] == req[:5]:
             return True
@@ -359,17 +299,17 @@ def extract_postal_clean(postal_code: Any) -> str:
 
     s = str(postal_code).strip().upper()
 
-    # PT patterns: 1234-567 OR 1234 567 OR 1234567
+    # PT patterns
     m = re.search(r"\b(\d{4})[\s-]?(\d{3})\b", s)
     if m:
         return f"{m.group(1)}-{m.group(2)}"
 
-    # ES patterns: 5 digits
+    # ES patterns
     m = re.search(r"\b(\d{5})\b", s)
     if m:
         return m.group(1)
 
-    # ES dirty 6 digits: often leading 0 + 5-digit real postal
+    # ES dirty 6 digits
     m = re.search(r"\b(\d{6})\b", s)
     if m:
         six = m.group(1)
@@ -393,7 +333,7 @@ def normalize_text(text: Any) -> str:
 
 
 def normalize_postal_code(postal_code: Any) -> str:
-    """Normalize postal code for cache key (remove spaces and hyphens)."""
+    """Normalize postal code for cache key."""
     if not postal_code or str(postal_code).strip() == '' or str(postal_code).lower() == 'nan':
         return ""
     
@@ -404,7 +344,7 @@ def normalize_postal_code(postal_code: Any) -> str:
 
 
 def is_incomplete_postal(postal_code: str, country_code: str) -> bool:
-    """Check if postal code is incomplete for the country."""
+    """Check if postal code is incomplete."""
     if not postal_code:
         return True
     
@@ -423,7 +363,7 @@ def is_incomplete_postal(postal_code: str, country_code: str) -> bool:
 
 
 def normalize_portugal_postal(postal_code: str) -> str:
-    """Normalize Portuguese postal code from 1234567 to 1234-567."""
+    """Normalize Portuguese postal code."""
     if re.match(r'^\d{7}$', postal_code):
         return f"{postal_code[:4]}-{postal_code[4:]}"
     return postal_code
@@ -451,7 +391,7 @@ def is_generic_result(display_name: str, resolved_city: str) -> bool:
 # ============================================================================
 
 def detect_country_from_postal(postal_code: Any, city: Optional[str] = None) -> str:
-    """Detect country code from postal code format + city overrides."""
+    """Detect country code from postal code format."""
     postal_clean = extract_postal_clean(postal_code)
     city_norm = normalize_text(city) if city else ""
     
@@ -480,7 +420,7 @@ def detect_country_from_postal(postal_code: Any, city: Optional[str] = None) -> 
 
 def validate_coordinates(lat: Optional[float], lon: Optional[float], 
                         country_code: str) -> bool:
-    """Validate if coordinates are within expected boundaries (incl. islands)."""
+    """Validate if coordinates are within expected boundaries."""
     if lat is None or lon is None:
         return False
 
@@ -499,28 +439,21 @@ def validate_coordinates(lat: Optional[float], lon: Optional[float],
 # ============================================================================
 
 def build_cache_key(postal_raw: Any, city_raw: Any, country_raw: str) -> str:
-    """Build unified cache key with triplet normalization."""
+    """
+    Build unified cache key.
+    
+    ⭐ ADAPTED: Handles city=None or empty
+    """
     # Triplet normalization
     postal_raw, city_raw, country_raw, fix_tag = normalize_triplet_inputs(postal_raw, city_raw, country_raw)
     
-    # Normalize country to lowercase
+    # Normalize country
     country_raw = (str(country_raw).strip().lower() if country_raw is not None else "es")
-    
-    # Detect additional swaps (second line of defense)
-    postal_str = str(postal_raw).strip().upper()
-    city_str = str(city_raw).strip().upper()
-    
-    postal_has_letters = bool(re.search(r'[A-ZÁÉÍÓÚÑÜ]', postal_str))
-    city_looks_like_postal = bool(re.match(r'^\d{5}$|^\d{4}-\d{3}$', city_str))
-    
-    if postal_has_letters and city_looks_like_postal:
-        postal_raw, city_raw = city_raw, postal_raw
-        country_raw = detect_country_from_postal(postal_raw, city_raw)
     
     # Clean postal code
     postal_clean = extract_postal_clean(postal_raw)
     
-    # Normalize Portugal postal if needed
+    # Normalize Portugal postal
     if country_raw == 'pt':
         postal_clean = normalize_portugal_postal(postal_clean)
     
@@ -530,10 +463,15 @@ def build_cache_key(postal_raw: Any, city_raw: Any, country_raw: str) -> str:
     # Check if incomplete
     is_incomplete = is_incomplete_postal(postal_clean, country_raw)
     
-    # Build cache key
+    # ⭐ ADAPTED: Si no hay city, usar solo postal + country
     if not postal_norm or is_incomplete:
-        city_hash = abs(hash(normalize_text(city_raw))) % 1000000
-        return f"incomplete_{city_hash}_{country_raw}"
+        if city_raw and str(city_raw).strip():
+            city_hash = abs(hash(normalize_text(city_raw))) % 1000000
+            return f"incomplete_{city_hash}_{country_raw}"
+        else:
+            # Sin city, usar hash del postal incompleto
+            postal_hash = abs(hash(postal_clean)) % 1000000
+            return f"incomplete_{postal_hash}_{country_raw}"
     else:
         return f"{postal_norm}_{country_raw}"
 
@@ -573,14 +511,9 @@ def save_cache_to_file(cache_dict: Dict[str, Any],
 
 class GeocodingService:
     """
-    Geocoding service with postal-first strategy and caching.
+    Geocoding service with postal-first strategy.
     
-    Features:
-        - Flexible postcode matching (PT 4-digit, ES 5-digit)
-        - Extended bbox for Azores/Madeira
-        - Multi-country support
-        - Triplet normalization for column shifts
-        - Persistent caching
+    ⭐ ADAPTED: Now handles City=None or empty string
     """
     
     def __init__(self, cache_file: str = DEFAULT_CACHE_FILE):
@@ -602,41 +535,33 @@ class GeocodingService:
         
         self.new_coords_added = 0
     
-    def geocode_location(self, postal_code: Any, city: str, 
+    def geocode_location(self, postal_code: Any, city: Optional[str] = None, 
                         country_code: str = 'es') -> Optional[Tuple[float, float]]:
         """
-        Geocode a location using POSTAL-FIRST strategy with FLEXIBLE validation.
+        Geocode a location using POSTAL-FIRST strategy.
         
-        🔥 KEY CHANGE: Now uses postcodes_match() for flexible matching
-        This fixes the "FAILED_META after 6 queries" problem.
+        ⭐ ADAPTED: city can be None or empty string
         
         Args:
             postal_code: Postal code (can be dirty)
-            city: City name
-            country_code: Country code (es, pt, ad, gr, de, other)
+            city: City name (can be None or empty)
+            country_code: Country code (es, pt, ad, gr, de)
         
         Returns:
             Tuple of (latitude, longitude) or None if failed
         """
+        # ⭐ Normalize city to empty string if None
+        if city is None or str(city).strip() == '':
+            city = ""
+        
         # Triplet normalization
         postal_code, city, country_code, fix_tag = normalize_triplet_inputs(postal_code, city, country_code)
         
-        if DEBUG_GEOCODE and fix_tag != "OK":
+        if DEBUG_GEOCODE and fix_tag != "OK" and fix_tag != "NO_CITY":
             print(f"[INPUT_FIX:{fix_tag}] postal={postal_code}, city={city}, country={country_code}")
         
-        # Normalize country_code to lowercase
+        # Normalize country_code
         country_code = (str(country_code).strip().lower() if country_code is not None else "es")
-        
-        # Detect additional swaps
-        postal_str = str(postal_code).strip().upper()
-        city_str = str(city).strip().upper()
-        
-        postal_has_letters = bool(re.search(r'[A-ZÁÉÍÓÚÑÜ]', postal_str))
-        city_looks_like_postal = bool(re.match(r'^\d{5}$|^\d{4}-\d{3}$', city_str))
-        
-        if postal_has_letters and city_looks_like_postal:
-            postal_code, city = city, postal_code
-            country_code = detect_country_from_postal(postal_code, city)
         
         # Clean postal code
         postal_clean = extract_postal_clean(postal_code)
@@ -649,7 +574,7 @@ class GeocodingService:
         if DEBUG_GEOCODE:
             print(
                 "[DEBUG] raw_postal=", postal_code,
-                "city=", city,
+                "city=", city if city else "(empty)",
                 "country=", country_code,
                 "postal_clean=", postal_clean,
                 "postal_norm=", postal_norm
@@ -660,9 +585,6 @@ class GeocodingService:
         # Check HARDCODED_COORDS
         hardcoded_key = (postal_norm, country_code)
         
-        if DEBUG_GEOCODE:
-            print(f"[DEBUG HARDCODED] {hardcoded_key} exists={hardcoded_key in HARDCODED_COORDS}")
-        
         if hardcoded_key in HARDCODED_COORDS:
             lat, lon, resolved_city, status = HARDCODED_COORDS[hardcoded_key]
             coords = (lat, lon)
@@ -670,7 +592,7 @@ class GeocodingService:
             metadata = {
                 'coords': coords,
                 'country': country_code,
-                'input_city': city,
+                'input_city': city if city else "",
                 'input_postal': postal_code,
                 'resolved_city': resolved_city,
                 'display_name': f"{resolved_city}, {country_code.upper()}",
@@ -707,194 +629,16 @@ class GeocodingService:
         # Not in cache, geocode
         self.stats.api_calls += 1
         
-        # Handle 'other' country (outliers)
-        if country_code == 'other':
-            try:
-                queries = [
-                    ({"city": city, "postalcode": postal_clean}, None, True),
-                    (f"{city} {postal_clean}", None, True),
-                    (f"{city}", None, True),
-                ]
-                
-                location = None
-                used_query = None
-                
-                for query, _, _ in queries:
-                    if isinstance(query, dict):
-                        location = self._geocode(query, addressdetails=True)
-                        used_query = f"structured: {query}"
-                    else:
-                        location = self._geocode(query, addressdetails=True)
-                        used_query = f"free-text: {query}"
-                    
-                    if location:
-                        break
-                
-                if location:
-                    coords = (location.latitude, location.longitude)
-                    
-                    address = location.raw.get("address", {})
-                    resolved_city = (
-                        address.get("city") or 
-                        address.get("town") or 
-                        address.get("village") or 
-                        address.get("municipality") or
-                        ""
-                    )
-                    
-                    metadata = {
-                        'coords': coords,
-                        'country': country_code,
-                        'input_city': city,
-                        'resolved_city': resolved_city,
-                        'display_name': location.address,
-                        'query_used': used_query,
-                        'validated': True,
-                        'low_confidence': True,
-                        'timestamp': datetime.now().isoformat()
-                    }
-                    
-                    self.cache[cache_key] = metadata
-                    self.new_coords_added += 1
-                    self.stats.low_confidence += 1
-                    return coords
-                
-                self.stats.failed += 1
-                self.cache[cache_key] = {
-                    'coords': None,
-                    'country': country_code,
-                    'input_city': city,
-                    'resolved_city': None,
-                    'display_name': None,
-                    'query_used': f"Failed outlier geocoding",
-                    'validated': False,
-                    'low_confidence': True,
-                    'timestamp': datetime.now().isoformat()
-                }
-                return None
-                
-            except Exception as e:
-                self.stats.failed += 1
-                self.cache[cache_key] = {
-                    'coords': None,
-                    'country': country_code,
-                    'input_city': city,
-                    'resolved_city': None,
-                    'display_name': None,
-                    'query_used': f"Exception: {str(e)}",
-                    'validated': False,
-                    'low_confidence': True,
-                    'timestamp': datetime.now().isoformat()
-                }
-                return None
-        
         # Normal countries (es, pt, ad, gr, de)
         country_name, cc = COUNTRY_NAMES.get(country_code, ('Spain', 'es'))
         
-        # If postal is INCOMPLETE → city fallback
-        if is_incomplete:
-            try:
-                province_name = None
-                if country_code == 'es' and len(postal_clean) >= 2:
-                    try:
-                        input_province_code = int(postal_clean[:2])
-                        province_name = SPAIN_PROVINCES.get(input_province_code, None)
-                    except:
-                        pass
-                
-                location = None
-                used_query = None
-                
-                if province_name:
-                    location = self._geocode(
-                        {"city": city, "state": province_name, "country": country_name},
-                        country_codes=cc,
-                        addressdetails=True
-                    )
-                    used_query = f"INCOMPLETE_POSTAL: city+province → {city}, {province_name}, {country_name}"
-                
-                if not location:
-                    location = self._geocode(
-                        {"city": city, "country": country_name},
-                        country_codes=cc,
-                        addressdetails=True
-                    )
-                    used_query = f"INCOMPLETE_POSTAL: city fallback → {city}, {country_name}"
-                
-                if location:
-                    coords = (location.latitude, location.longitude)
-                    
-                    address = location.raw.get("address", {})
-                    resolved_city = (
-                        address.get("city") or 
-                        address.get("town") or 
-                        address.get("village") or 
-                        address.get("municipality") or
-                        ""
-                    )
-                    
-                    metadata = {
-                        'coords': coords,
-                        'country': country_code,
-                        'input_city': city,
-                        'input_postal': postal_code,
-                        'resolved_city': resolved_city,
-                        'display_name': location.address,
-                        'query_used': used_query,
-                        'validated': validate_coordinates(coords[0], coords[1], country_code),
-                        'low_confidence': True,
-                        'status': 'INCOMPLETE_POSTAL',
-                        'timestamp': datetime.now().isoformat()
-                    }
-                    
-                    self.cache[cache_key] = metadata
-                    self.new_coords_added += 1
-                    self.stats.low_confidence += 1
-                    return coords
-                
-                self.stats.failed += 1
-                self.cache[cache_key] = {
-                    'coords': None,
-                    'country': country_code,
-                    'input_city': city,
-                    'input_postal': postal_code,
-                    'resolved_city': None,
-                    'display_name': None,
-                    'query_used': f"INCOMPLETE_POSTAL: fallback failed",
-                    'validated': False,
-                    'low_confidence': True,
-                    'status': 'FAILED_INCOMPLETE',
-                    'timestamp': datetime.now().isoformat()
-                }
-                return None
-                
-            except Exception as e:
-                self.stats.failed += 1
-                self.cache[cache_key] = {
-                    'coords': None,
-                    'country': country_code,
-                    'input_city': city,
-                    'input_postal': postal_code,
-                    'resolved_city': None,
-                    'display_name': None,
-                    'query_used': f"Exception: {str(e)}",
-                    'validated': False,
-                    'low_confidence': True,
-                    'status': 'FAILED_EXCEPTION',
-                    'timestamp': datetime.now().isoformat()
-                }
-                return None
-        
+        # ⭐ ADAPTED: Queries sin city
         try:
-            # POSTAL-FIRST with STRUCTURED queries
             if country_code == 'pt':
                 queries = [
                     (f"{postal_clean}, {country_name}", cc, False),
                     ({"postalcode": postal_clean, "country": country_name}, cc, False),
                     (f"{postal_clean}", cc, False),
-                    ({"postalcode": postal_clean, "city": city, "country": country_name}, cc, False),
-                    (f"{postal_clean} {city}, {country_name}", cc, False),
-                    ({"city": city, "country": country_name}, cc, True),
                 ]
             elif country_code == 'es':
                 province_name = None
@@ -908,32 +652,20 @@ class GeocodingService:
                 queries = [
                     ({"postalcode": postal_clean, "country": country_name}, cc, False),
                     (f"{postal_clean}, {country_name}", cc, False),
-                    (f"{postal_clean} {city}, {country_name}", cc, False),
-                    ({"postalcode": postal_clean, "city": city, "country": country_name}, cc, False),
                     (f"{postal_clean}", cc, False),
                 ]
-                
-                if province_name:
-                    queries.extend([
-                        (f"{city}, {province_name}, {country_name}", cc, True),
-                        ({"city": city, "state": province_name, "country": country_name}, cc, True),
-                    ])
-                
-                queries.append(({"city": city, "country": country_name}, cc, True))
             else:
                 queries = [
                     ({"postalcode": postal_clean, "country": country_name}, cc, False),
-                    ({"postalcode": postal_clean, "city": city, "country": country_name}, cc, False),
                     (f"{postal_clean}, {country_name}", cc, False),
                     (f"{postal_clean}", cc, False),
-                    ({"city": city, "country": country_name}, cc, True),
                 ]
             
             location = None
             used_query = None
             low_confidence = False
             
-            # 🔥 FIX: Initialize variables before loop to avoid UnboundLocalError
+            # Initialize variables
             returned_postcode = ""
             returned_postcode_clean = ""
             returned_postcode_norm = ""
@@ -944,7 +676,7 @@ class GeocodingService:
                 if query is None:
                     continue
                 
-                # Geocode with addressdetails
+                # Geocode
                 if isinstance(query, dict):
                     location = self._geocode(query, country_codes=country_codes, 
                                             addressdetails=True)
@@ -955,17 +687,14 @@ class GeocodingService:
                     query_str = f"free-text: {query}"
                 
                 if location:
-                    # 🔥 FIX: Robust digits-based postcode handling
                     address = location.raw.get("address", {}) or {}
 
                     returned_postcode = address.get("postcode", "") or ""
                     returned_country = address.get("country_code", "") or ""
 
-                    # 🔥 More robust digits-based handling
                     ret_digits = _extract_digits(returned_postcode)
                     req_digits = _extract_digits(postal_clean)
 
-                    # Keep your "clean/norm" fields for metadata
                     returned_postcode_clean = extract_postal_clean(returned_postcode)
                     returned_postcode_norm = normalize_postal_code(returned_postcode_clean)
 
@@ -977,13 +706,11 @@ class GeocodingService:
                         ""
                     )
 
-                    # --- POSTCODE VALIDATION (robust) ---
+                    # Postcode validation
                     has_any_postcode_info = bool(ret_digits)
 
                     if has_any_postcode_info:
-                        # ✅ Flexible match (handles PT 4-digit prefix and ES 5-digit)
                         if not postcodes_match(postal_clean, returned_postcode, country_code):
-                            # ES: allow same province fallback
                             if country_code == 'es':
                                 try:
                                     if len(req_digits) >= 2 and len(ret_digits) >= 2:
@@ -1005,75 +732,26 @@ class GeocodingService:
                                 self.stats.postcode_mismatch += 1
                                 location = None
                                 continue
-
                     else:
-                        # --- NO POSTCODE RETURNED ---
+                        # No postcode returned
                         coords_tmp = (location.latitude, location.longitude)
                         bbox_valid = validate_coordinates(coords_tmp[0], coords_tmp[1], country_code)
                         if not bbox_valid:
                             location = None
                             continue
-
-                        if country_code == 'pt':
-                            # Accept if country matches (or missing)
-                            if returned_country.lower() not in ("", "pt"):
-                                location = None
-                                continue
-                            low_confidence = True
-                        elif country_code == 'es':
-                            # Province/state heuristic
-                            try:
-                                if len(req_digits) >= 2:
-                                    input_province_code = int(req_digits[:2])
-                                    expected_province_name = SPAIN_PROVINCES.get(input_province_code, "").upper()
-                                    returned_state = (address.get("state", "") or "").upper()
-                                    if returned_state and expected_province_name:
-                                        if (expected_province_name not in returned_state and 
-                                            returned_state not in expected_province_name):
-                                            location = None
-                                            continue
-                                low_confidence = True
-                            except:
-                                low_confidence = True
-                        else:
-                            low_confidence = True
+                        low_confidence = True
                     
-                    # Level 3: Generic result check
+                    # Generic result check
                     if is_generic_result(location.address, resolved_city):
-                        if country_code == 'pt':
-                            coords_tmp = (location.latitude, location.longitude)
-                            bbox_valid = validate_coordinates(coords_tmp[0], coords_tmp[1], country_code)
-                            
-                            if bbox_valid:
-                                low_confidence = True
-                            else:
-                                location = None
-                                continue
+                        coords_tmp = (location.latitude, location.longitude)
+                        bbox_valid = validate_coordinates(coords_tmp[0], coords_tmp[1], country_code)
+                        
+                        if bbox_valid:
+                            low_confidence = True
                         else:
-                            if postal_clean and not is_incomplete:
-                                coords_tmp = (location.latitude, location.longitude)
-                                bbox_valid = validate_coordinates(coords_tmp[0], coords_tmp[1], country_code)
-                                
-                                if not is_low_conf:
-                                    location = None
-                                    continue
-                                
-                                if bbox_valid:
-                                    low_confidence = True
-                                else:
-                                    location = None
-                                    continue
-                            else:
-                                coords_tmp = (location.latitude, location.longitude)
-                                bbox_valid = validate_coordinates(coords_tmp[0], coords_tmp[1], country_code)
-                                
-                                if bbox_valid:
-                                    low_confidence = True
-                                else:
-                                    location = None
-                                    continue
+                            location = None
+                            continue
                     
-                    # All validations passed
                     used_query = f"{query_str} (country={country_codes})"
                     
                     if is_low_conf:
@@ -1094,90 +772,21 @@ class GeocodingService:
                 else:
                     self.stats.validated += 1
                 
-                address = location.raw.get("address", {})
-                resolved_city = (
-                    address.get("city") or 
-                    address.get("town") or 
-                    address.get("village") or 
-                    address.get("municipality") or
-                    ""
-                )
-                
                 is_generic = is_generic_result(location.address, resolved_city)
                 
-                returned_country = location.raw.get("address", {}).get("country_code", "")
-                
-                data_suspect = False
-                if country_code == 'es' and len(postal_clean) >= 2:
-                    try:
-                        input_province_code = int(postal_clean[:2])
-                        returned_state = address.get("state", "").upper()
-                        expected_province = SPAIN_PROVINCES.get(input_province_code, "").upper()
-                        
-                        if returned_state and expected_province:
-                            if (expected_province not in returned_state and 
-                                returned_state not in expected_province and
-                                returned_state != ""):
-                                data_suspect = True
-                    except:
-                        pass
-                
-                if data_suspect:
-                    status = 'DATA_SUSPECT_POSTAL'
-                    low_confidence = True
-                elif low_confidence:
-                    if country_code == 'pt':
-                        if is_generic:
-                            status = 'PT_CITY_LEVEL'
-                        elif not returned_country and not returned_postcode_norm:
-                            status = 'PT_NO_COUNTRY_CODE'
-                        else:
-                            status = 'OK_LOW_CONFIDENCE'
-                    elif country_code == 'es':
-                        if is_low_conf or not returned_postcode_norm:
-                            status = 'ES_CITY_LEVEL_OK'
-                        else:
-                            status = 'OK_LOW_CONFIDENCE'
-                    elif is_generic and is_low_conf:
-                        status = 'GENERIC_CITY_FALLBACK'
-                    else:
-                        status = 'OK_LOW_CONFIDENCE'
+                if low_confidence:
+                    status = 'OK_LOW_CONFIDENCE'
                 elif is_generic:
-                    coord_str = f"{coords[0]:.6f},{coords[1]:.6f}"
-                    cluster_count = sum(
-                        1 for v in self.cache.values()
-                        if isinstance(v, dict) and v.get('coords') and
-                        f"{v['coords'][0]:.6f},{v['coords'][1]:.6f}" == coord_str
-                    )
-                    
-                    if cluster_count >= 5:
-                        status = 'GENERIC_CLUSTER'
-                    else:
-                        status = 'OK_GENERIC'
+                    status = 'OK_GENERIC'
                 else:
                     status = 'OK'
                 
-                suspect_score = 0
-                
-                if status == 'PT_CITY_LEVEL':
-                    suspect_score += 4
-                elif status == 'ES_CITY_LEVEL_OK':
-                    suspect_score += 2
-                elif status == 'DATA_SUSPECT_POSTAL':
-                    suspect_score += 7
-                elif status == 'GENERIC_CLUSTER':
-                    suspect_score += 2
-                elif status == 'PT_NO_COUNTRY_CODE':
-                    suspect_score += 1
-                elif status == 'GENERIC_CITY_FALLBACK':
-                    suspect_score += 3
-                elif low_confidence:
-                    suspect_score += 1
+                suspect_score = 1 if low_confidence else 0
                 
                 metadata = {
                     'coords': coords,
                     'country': country_code,
-                    'input_city': city,
+                    'input_city': city if city else "",
                     'input_postal': postal_code,
                     'resolved_city': resolved_city,
                     'display_name': location.address,
@@ -1199,11 +808,11 @@ class GeocodingService:
             self.cache[cache_key] = {
                 'coords': None,
                 'country': country_code,
-                'input_city': city,
+                'input_city': city if city else "",
                 'input_postal': postal_code,
                 'resolved_city': None,
                 'display_name': None,
-                'query_used': f"Failed after trying {len(queries)} queries with flexible validation",
+                'query_used': f"Failed after trying {len(queries)} queries",
                 'validated': False,
                 'low_confidence': False,
                 'status': 'FAILED_META',
@@ -1216,7 +825,7 @@ class GeocodingService:
             self.cache[cache_key] = {
                 'coords': None,
                 'country': country_code,
-                'input_city': city,
+                'input_city': city if city else "",
                 'input_postal': postal_code,
                 'resolved_city': None,
                 'display_name': None,
@@ -1233,7 +842,7 @@ class GeocodingService:
         return save_cache_to_file(self.cache, self.cache_file)
     
     def clear_cache(self) -> bool:
-        """Clear all cache from memory and file."""
+        """Clear all cache."""
         self.cache = {}
         self.new_coords_added = 0
         
@@ -1278,7 +887,7 @@ class GeocodingService:
 
 
 # ============================================================================
-# IMPROVED BATCH PROCESSING
+# BATCH PROCESSING
 # ============================================================================
 
 def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
@@ -1287,14 +896,17 @@ def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
     """
     Geocode a DataFrame with postal codes.
     
-    Uses unified build_cache_key() and triplet normalization.
+    ⭐ ADAPTED: Handles city_col that may be empty or None
     """
     unique_postals = df[[postal_col, city_col, country_col]].drop_duplicates()
     
     postals_to_geocode = []
     for idx, row in unique_postals.iterrows():
+        # ⭐ Handle empty city
+        city_val = row[city_col] if city_col in row and pd.notna(row[city_col]) else ""
+        
         postal_fixed, city_fixed, country_fixed, fix_tag = normalize_triplet_inputs(
-            row[postal_col], row[city_col], row[country_col]
+            row[postal_col], city_val, row[country_col]
         )
         
         cache_key = build_cache_key(postal_fixed, city_fixed, country_fixed)
@@ -1309,8 +921,10 @@ def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
             progress_bar = st.progress(0)
             
             for progress_idx, (idx, row) in enumerate(postals_to_geocode):
+                city_val = row[city_col] if city_col in row and pd.notna(row[city_col]) else ""
+                
                 postal_fixed, city_fixed, country_fixed, _ = normalize_triplet_inputs(
-                    row[postal_col], row[city_col], row[country_col]
+                    row[postal_col], city_val, row[country_col]
                 )
                 
                 geocoding_service.geocode_location(
@@ -1323,8 +937,10 @@ def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
             progress_bar.empty()
         except ImportError:
             for idx, row in postals_to_geocode:
+                city_val = row[city_col] if city_col in row and pd.notna(row[city_col]) else ""
+                
                 postal_fixed, city_fixed, country_fixed, _ = normalize_triplet_inputs(
-                    row[postal_col], row[city_col], row[country_col]
+                    row[postal_col], city_val, row[country_col]
                 )
                 
                 geocoding_service.geocode_location(
@@ -1334,8 +950,10 @@ def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
                 )
     elif postals_to_geocode:
         for idx, row in postals_to_geocode:
+            city_val = row[city_col] if city_col in row and pd.notna(row[city_col]) else ""
+            
             postal_fixed, city_fixed, country_fixed, _ = normalize_triplet_inputs(
-                row[postal_col], row[city_col], row[country_col]
+                row[postal_col], city_val, row[country_col]
             )
             
             geocoding_service.geocode_location(
@@ -1344,12 +962,15 @@ def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
                 country_fixed
             )
     
+    # Build results
     coords_list = []
     resolved_city_list = []
     
     for idx, row in df.iterrows():
+        city_val = row[city_col] if city_col in row and pd.notna(row[city_col]) else ""
+        
         postal_fixed, city_fixed, country_fixed, _ = normalize_triplet_inputs(
-            row[postal_col], row[city_col], row[country_col]
+            row[postal_col], city_val, row[country_col]
         )
         
         cache_key = build_cache_key(postal_fixed, city_fixed, country_fixed)
@@ -1365,7 +986,8 @@ def geocode_dataframe(df, postal_col: str, city_col: str, country_col: str,
             resolved_city_list.append(
                 cached.get('resolved_city') or 
                 cached.get('input_city') or 
-                city_fixed
+                city_fixed or
+                "Unknown"
             )
         else:
             coords_list.append((None, None))

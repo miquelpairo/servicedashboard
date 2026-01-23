@@ -20,11 +20,19 @@ from core.geocoding_service import (
 
 from core.account_linker import AccountLinker
 
+# ⭐ NUEVO: Import column mapping system
+from column_mappings import (
+    detect_format, 
+    get_mapping_for_format, 
+    get_additional_columns,
+    validate_format,
+    get_format_info,
+    REQUIRED_COLUMNS
+)
 
 ACCOUNT_MAPPING_FILE = os.path.join("core", "accounts_URL.xlsx")
 ACCOUNT_CACHE_FILE = os.path.join("core", "account_link_cache.json")
-ACCOUNT_MIN_SCORE = 80  # el que quieras para export html (yo pondría 80 aquí)
-
+ACCOUNT_MIN_SCORE = 80
 
 # Page configuration
 st.set_page_config(
@@ -52,7 +60,6 @@ if "df_enriched" not in st.session_state:
 if "account_cache_dirty" not in st.session_state:
     st.session_state.account_cache_dirty = False
 
-
 if 'selected_city' not in st.session_state:
     st.session_state.selected_city = None
 
@@ -62,41 +69,147 @@ if 'selected_quick_filters' not in st.session_state:
 if 'quick_filter_mode' not in st.session_state:
     st.session_state.quick_filter_mode = 'AND'
 
-# Function to load file
-@st.cache_data
+# ⭐ MODIFICADO: Function to load file with multi-format support
+@st.cache_data(ttl=10)  # Cache corto para desarrollo
 def load_file(file):
+    """Load file and apply format detection and mapping"""
     if file is not None:
         try:
+            # 1. CARGAR DATOS RAW
             if file.name.endswith(".csv"):
                 df = pd.read_csv(file, encoding='utf-8')
             else:
                 df = pd.read_excel(file)
             
+            # ⭐ NUEVO: Limpiar filas basura (totales, filtros, etc.)
+            # Identificar filas que no son datos reales
+            df = df.copy()
+            
+            # Eliminar filas donde TODAS las columnas están vacías
+            df = df.dropna(how='all')
+            
+            # Eliminar filas que empiezan con "Total" en la primera columna (caso insensitive)
+            if len(df.columns) > 0:
+                first_col = df.columns[0]
+                df = df[~df[first_col].astype(str).str.strip().str.lower().str.startswith('total', na=False)]
+            
+            # Eliminar filas que contienen "Applied filters:" (indicador de metadata)
+            # Buscar en todas las columnas de tipo string
+            for col in df.columns:
+                if df[col].dtype == 'object':  # Solo columnas de texto
+                    mask = df[col].astype(str).str.contains('Applied filters:', case=False, na=False)
+                    df = df[~mask]
+            
+            # Eliminar filas donde la primera columna está vacía (probable metadata)
+            if len(df.columns) > 0:
+                first_col = df.columns[0]
+                df = df[df[first_col].notna()]
+            
+            # Reset index después de limpieza
+            df = df.reset_index(drop=True)
+            
+            # 2. DETECTAR FORMATO
+            format_type = detect_format(df.columns.tolist())
+            
+            if format_type == 'unknown':
+                st.error("❌ **Unknown file format detected**")
+                st.error(f"Available columns: {', '.join(df.columns.tolist())}")
+                st.info("💡 This application supports multiple export formats")
+                return None
+            
+            # 3. MOSTRAR INFO DEL FORMATO
+            format_info = get_format_info(format_type)
+            st.sidebar.success(f"✅ **{format_info['name']}** detected")
+            st.sidebar.info(f"📊 {format_info['description']}")
+            st.sidebar.caption(f"💰 Currency: {format_info['currency']}")
+            
+            # ⭐ NUEVO: Mostrar filas eliminadas en limpieza
+            original_rows = len(pd.read_excel(file) if file.name.endswith('.xlsx') else pd.read_csv(file, encoding='utf-8'))
+            cleaned_rows = len(df)
+            if original_rows > cleaned_rows:
+                st.sidebar.info(f"🧹 Cleaned {original_rows - cleaned_rows} metadata rows")
+            
+            # 4. VALIDAR FORMATO
+            is_valid, missing_cols = validate_format(df, format_type)
+            if not is_valid:
+                st.error(f"❌ Missing required columns: {', '.join(missing_cols)}")
+                return None
+            
+            # 5. APLICAR MAPEO DE COLUMNAS
+            mapping = get_mapping_for_format(format_type)
+            reverse_mapping = {}
+            
+            # ⭐ Mapear solo las columnas que existen en el archivo
+            for standard_name, actual_name in mapping.items():
+                if actual_name and actual_name in df.columns:
+                    reverse_mapping[actual_name] = standard_name
+            
+            # Renombrar columnas a nombres estandarizados
+            df = df.rename(columns=reverse_mapping)
+            
+            # 6. PROCESAR FECHAS
             df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+            
+            # ⭐ NUEVO: Eliminar filas con fechas inválidas (probable metadata)
+            df = df[df['Date'].notna()]
+            df = df.reset_index(drop=True)
+            
             df['Year'] = df['Date'].dt.year
             df['Month'] = df['Date'].dt.month
             df['Month_Name'] = df['Date'].dt.strftime('%B')
             
-            # Detect country from postal code + city
-            postal_col = None
-            for col in df.columns:
-                if col.lower() in ['postalcode', 'postal code', 'postal_code', 'zipcode', 'zip_code', 'cp', 'codigo postal']:
-                    postal_col = col
-                    break
-            
-            if postal_col:
-                df['Country'] = [
-                    detect_country_from_postal(p, c)
-                    for p, c in zip(df[postal_col], df['City'])
-                ]
+            # 7. ⭐ DETECT COUNTRY - usar columna si existe, sino detectar
+            if 'Country' in df.columns and df['Country'].notna().sum() > 0:
+                # ⭐ USAR COLUMNA COUNTRY DEL DF (nuevo formato)
+                st.sidebar.info("🌍 Using Country column from data")
+                # Normalizar valores (lowercase para consistencia)
+                df['Country'] = df['Country'].str.lower().fillna('es')
             else:
-                df['Country'] = 'es'  # Default España
+                # ⭐ DETECTAR COUNTRY (formato antiguo - fallback)
+                st.sidebar.info("🔍 Detecting Country from postal codes")
+                postal_col = None
+                for col in df.columns:
+                    if col.lower() in ['postalcode', 'postal code', 'postal_code', 'zipcode', 'zip_code', 'cp', 'codigo postal']:
+                        postal_col = col
+                        break
+                
+                # ⭐ IMPORTANTE: Si no hay City, solo usar postal
+                if postal_col:
+                    if 'City' in df.columns:
+                        df['Country'] = [
+                            detect_country_from_postal(p, c)
+                            for p, c in zip(df[postal_col], df['City'])
+                        ]
+                    else:
+                        df['Country'] = [
+                            detect_country_from_postal(p, None)
+                            for p in df[postal_col]
+                        ]
+                else:
+                    df['Country'] = 'es'  # Default España
+            
+            # 8. ⭐ INFORMAR SOBRE SFDC LINK
+            if 'SFDC Link' in df.columns and df['SFDC Link'].notna().sum() > 0:
+                st.sidebar.success(f"🔗 SFDC Links available: {df['SFDC Link'].notna().sum()} records")
+            
+            # 9. ⭐ CREAR COLUMNA CITY VACÍA SI NO EXISTE
+            if 'City' not in df.columns:
+                df['City'] = ''
+                st.sidebar.info("📍 No City column - using Postal Code only for geocoding")
+            
+            # 10. GUARDAR TIPO DE FORMATO EN SESSION STATE
+            st.session_state.file_format = format_type
+            st.session_state.format_info = format_info
             
             return df
+            
         except Exception as e:
             st.error(f"❌ Error loading file: {str(e)}")
+            import traceback
+            st.error(traceback.format_exc())
             return None
     return None
+
 
 # ============================================================================
 # FILE UPLOAD
@@ -110,19 +223,15 @@ uploaded_file = st.sidebar.file_uploader(
 
 if uploaded_file:
     df = load_file(uploaded_file)
-    # Identificador estable del fichero (nombre + tamaño) para evitar recalcular en cada rerun
     file_key = f"{uploaded_file.name}:{uploaded_file.size}"
     
     if df is None:
         st.stop()
     
-    # ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
     # 🔗 ACCOUNT LINKER: init + load cache + enrich ONCE per uploaded file
     # ------------------------------------------------------------------------
     mapping_file = ACCOUNT_MAPPING_FILE if os.path.exists(ACCOUNT_MAPPING_FILE) else None
-
-    # "fingerprint" simple para detectar cambio de archivo subido
-    # (nombre + tamaño). Si quieres más robusto luego hacemos hash.
     file_fingerprint = f"{uploaded_file.name}_{uploaded_file.size}"
 
     if st.session_state.get("account_file_fingerprint") != file_fingerprint:
@@ -130,36 +239,58 @@ if uploaded_file:
         st.session_state.df_enriched = None
         st.session_state.account_linker = None
 
-    if st.session_state.account_linker is None:
-        linker = AccountLinker(mapping_file, min_score=ACCOUNT_MIN_SCORE, debug=False) if mapping_file else AccountLinker(min_score=ACCOUNT_MIN_SCORE)
-        # carga cache si existe
-        try:
-            linker.load_cache(ACCOUNT_CACHE_FILE)
-        except Exception:
-            pass
+    # ⭐ MODIFICADO: Solo usar AccountLinker si NO hay SFDC Link en el DF
+    format_info = st.session_state.get('format_info', {})
+    has_sfdc_link = format_info.get('has_sfdc_link', False) and 'SFDC Link' in df.columns
+    
+    if has_sfdc_link:
+        # ⭐ USAR SFDC LINK DEL DF DIRECTAMENTE
+        st.sidebar.success("🔗 Using SFDC Links from data file")
+        df['account_url'] = df['SFDC Link']
+        df['url_source'] = 'data_file'
+        df['match_score'] = 100.0
+        st.session_state.df_enriched = df
+    else:
+        # ⭐ USAR ACCOUNT LINKER (formato antiguo)
+        st.sidebar.info("🔍 Linking accounts from external mapping")
+        if st.session_state.account_linker is None:
+            linker = AccountLinker(mapping_file, min_score=ACCOUNT_MIN_SCORE, debug=False) if mapping_file else AccountLinker(min_score=ACCOUNT_MIN_SCORE)
+            try:
+                linker.load_cache(ACCOUNT_CACHE_FILE)
+            except Exception:
+                pass
+            st.session_state.account_linker = linker
 
-        st.session_state.account_linker = linker
-
-    if st.session_state.df_enriched is None:
-        with st.spinner("🔗 Linking accounts (cached) ..."):
-            st.session_state.df_enriched = st.session_state.account_linker.enrich_dataframe(
-                df,
-                account_col="Business Partner Name"
-            )
-            st.session_state.account_cache_dirty = True
-
+        if st.session_state.df_enriched is None:
+            with st.spinner("🔗 Linking accounts (cached) ..."):
+                st.session_state.df_enriched = st.session_state.account_linker.enrich_dataframe(
+                    df,
+                    account_col="Business Partner Name"
+                )
+                st.session_state.account_cache_dirty = True
 
     st.sidebar.success(f"✅ {len(df)} records loaded")
     st.sidebar.info(f"📍 Cached coordinates: {len(st.session_state.geocoding_service.cache)}")
     
     df_base = st.session_state.df_enriched if st.session_state.df_enriched is not None else df
 
-    # Get available options
+# Get available options (usando nombres estandarizados)
     available_years = sorted(df['Year'].dropna().unique().astype(int).tolist())
     available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
     available_types = sorted(df['ProductType'].dropna().unique().tolist())
     available_sets = sorted(df['Set'].dropna().unique().tolist())
     available_countries = sorted(df['Country'].dropna().unique().tolist())
+    
+    # ⭐ NUEVOS: Filtros opcionales si existen las columnas
+    available_segments = []
+    available_market_orgs = []
+    
+    if 'End User Segment' in df.columns:
+        available_segments = sorted(df['End User Segment'].dropna().unique().tolist())
+    
+    if 'Market Organization Name' in df.columns:
+        available_market_orgs = sorted(df['Market Organization Name'].dropna().unique().tolist())
+    
     month_options = list(range(1, 13))
     month_labels = {
         1: 'January', 2: 'February', 3: 'March', 4: 'April',
@@ -175,6 +306,11 @@ if uploaded_file:
         st.session_state["type_filter"] = available_types
         st.session_state["set_filter"] = available_sets
         st.session_state["country_filter"] = available_countries
+        # ⭐ NUEVOS
+        if available_segments:
+            st.session_state["segment_filter"] = available_segments
+        if available_market_orgs:
+            st.session_state["market_org_filter"] = available_market_orgs
         st.session_state.selected_quick_filters = []
         st.session_state["search_filter"] = ""
         st.session_state["client_filter"] = ""
@@ -304,9 +440,51 @@ if uploaded_file:
             label_visibility="collapsed"
         )
     
+        # ⭐ NUEVO: End User Segment filter - COLLAPSIBLE (solo si existe)
+    if available_segments:
+        with st.sidebar.expander("🎯 End User Segment", expanded=False):
+            col_seg1, col_seg2 = st.columns(2)
+            with col_seg1:
+                st.button("✅ All", key="segment_all", use_container_width=True,
+                         on_click=lambda: st.session_state.update({"segment_filter": available_segments}))
+            with col_seg2:
+                st.button("❌ None", key="segment_none", use_container_width=True,
+                         on_click=lambda: st.session_state.update({"segment_filter": []}))
+            
+            selected_segments = st.multiselect(
+                "Select segments",
+                available_segments,
+                default=available_segments,
+                key="segment_filter",
+                label_visibility="collapsed"
+            )
+    else:
+        selected_segments = []
+    
+    # ⭐ NUEVO: Market Organization filter - COLLAPSIBLE (solo si existe)
+    if available_market_orgs:
+        with st.sidebar.expander("🏢 Market Organization", expanded=False):
+            col_org1, col_org2 = st.columns(2)
+            with col_org1:
+                st.button("✅ All", key="market_org_all", use_container_width=True,
+                         on_click=lambda: st.session_state.update({"market_org_filter": available_market_orgs}))
+            with col_org2:
+                st.button("❌ None", key="market_org_none", use_container_width=True,
+                         on_click=lambda: st.session_state.update({"market_org_filter": []}))
+            
+            selected_market_orgs = st.multiselect(
+                "Select market organizations",
+                available_market_orgs,
+                default=available_market_orgs,
+                key="market_org_filter",
+                label_visibility="collapsed"
+            )
+    else:
+        selected_market_orgs = []
+
+
     # Search filter - COLLAPSIBLE
     with st.sidebar.expander("🔍 Search Service", expanded=False):
-        # AND/OR selector
         quick_mode = st.radio(
             "Quick filter mode:",
             options=['AND', 'OR'],
@@ -349,7 +527,6 @@ if uploaded_file:
             label_visibility="collapsed"
         )
 
-    
     # RESET BUTTON
     st.sidebar.markdown("---")
     st.sidebar.button(
@@ -360,8 +537,8 @@ if uploaded_file:
         key="reset_btn"
     )
     
-    # ============================================================================
-    # APPLY FILTERS
+# ============================================================================
+    # APPLY FILTERS (usando nombres estandarizados)
     # ============================================================================
     
     df_filtered = df_base.copy()
@@ -383,6 +560,13 @@ if uploaded_file:
 
     if selected_sets:
         df_filtered = df_filtered[df_filtered['Set'].isin(selected_sets)]
+    
+    # ⭐ NUEVOS FILTROS
+    if selected_segments and 'End User Segment' in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered['End User Segment'].isin(selected_segments)]
+    
+    if selected_market_orgs and 'Market Organization Name' in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered['Market Organization Name'].isin(selected_market_orgs)]
 
     # Quick filters with AND/OR mode
     if st.session_state.selected_quick_filters:
@@ -406,8 +590,8 @@ if uploaded_file:
             df_filtered['Business Partner Name'].str.contains(client_search, case=False, na=False)
         ]
 
-    # ============================================================================
-    # METRICS
+# ============================================================================
+    # METRICS (usando nombres estandarizados)
     # ============================================================================
     
     col1, col2, col3, col4 = st.columns(4)
@@ -421,8 +605,22 @@ if uploaded_file:
         st.metric("📊 Services", f"{num_services:,}")
     
     with col3:
-        num_cities = df_filtered['City'].nunique()
-        st.metric("📍 Cities", f"{num_cities:,}")
+        # ⭐ MODIFICADO: City es opcional
+        if 'City' in df_filtered.columns and df_filtered['City'].notna().sum() > 0:
+            num_cities = df_filtered['City'].nunique()
+            st.metric("📍 Cities", f"{num_cities:,}")
+        else:
+            # Si no hay City, usar PostalCode
+            postal_col = None
+            for col in df_filtered.columns:
+                if col.lower() in ['postalcode', 'postal code', 'postal_code', 'zipcode', 'zip_code', 'cp', 'codigo postal']:
+                    postal_col = col
+                    break
+            if postal_col:
+                num_locations = df_filtered[postal_col].nunique()
+                st.metric("📍 Locations", f"{num_locations:,}")
+            else:
+                st.metric("📍 Locations", "N/A")
     
     with col4:
         num_clients = df_filtered['Business Partner Name'].nunique()
@@ -451,27 +649,41 @@ if uploaded_file:
     st.markdown("### 🗺️ Geographic Distribution")
     
     # Group by POSTAL + COUNTRY (not city)
-    map_data = df_filtered.groupby([postal_col, 'Country']).agg({
-        'City': lambda x: x.mode()[0] if len(x.mode()) > 0 else x.iloc[0],  # Most frequent city
+    # ⭐ MODIFICADO: City es opcional
+    agg_dict = {
         'EUR': 'sum',
         'Business Partner Name': 'count',
         'SalesRepresentative': lambda x: ', '.join(x.unique()[:3]),
         'ProductType': lambda x: x.mode()[0] if len(x.mode()) > 0 else 'Mixed'
-    }).reset_index()
+    }
     
-    map_data.columns = ['PostalCode', 'Country', 'City', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']
+    # ⭐ Añadir City solo si existe
+    if 'City' in df_filtered.columns:
+        agg_dict['City'] = lambda x: x.mode()[0] if len(x.mode()) > 0 else x.iloc[0]
+    
+    map_data = df_filtered.groupby([postal_col, 'Country']).agg(agg_dict).reset_index()
+    
+    # ⭐ MODIFICADO: Columnas dinámicas según si hay City
+    if 'City' in df_filtered.columns:
+        map_data.columns = ['PostalCode', 'Country', 'City', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']
+    else:
+        map_data.columns = ['PostalCode', 'Country', 'Total_EUR', 'Num_Services', 'Representatives', 'Main_Type']
+        map_data['City'] = ''  # ⭐ Columna vacía para geocoding
     
     # Reset geocoding stats for this run
     st.session_state.geocoding_service.stats.reset()
     st.session_state.geocoding_service.new_coords_added = 0
     
     if len(map_data) > 0:
-        # Get unique postal codes to geocode
-        unique_postals = map_data[['PostalCode', 'City', 'Country']].drop_duplicates()
+         # Get unique postal codes to geocode
+        # ⭐ MODIFICADO: City puede estar vacía
+        if 'City' in map_data.columns:
+            unique_postals = map_data[['PostalCode', 'City', 'Country']].drop_duplicates()
+        else:
+            unique_postals = map_data[['PostalCode', 'Country']].copy()
+            unique_postals['City'] = ''  # Vacío para geocoding
 
-        # ------------------------------------------------------------------------
-        # 1) Decide what needs geocoding (only missing from cache)
-        # ------------------------------------------------------------------------
+        # 1) Decide what needs geocoding
         postals_to_geocode = []
 
         for _, row in unique_postals.iterrows():
@@ -479,15 +691,12 @@ if uploaded_file:
                 row['PostalCode'], row['City'], row['Country']
             )
             cache_key = build_cache_key(postal_fixed, city_fixed, country_fixed)
-
             cached = st.session_state.geocoding_service.cache.get(cache_key)
 
             if (cached is None) or (isinstance(cached, dict) and cached.get("coords") is None):
                 postals_to_geocode.append((postal_fixed, city_fixed, country_fixed))
 
-        # ------------------------------------------------------------------------
         # 2) Geocode missing ones
-        # ------------------------------------------------------------------------
         if postals_to_geocode:
             st.info(
                 f"🌍 Need to geocode {len(postals_to_geocode)} unique postal codes "
@@ -505,7 +714,6 @@ if uploaded_file:
 
                 progress_bar.empty()
 
-            # ✅ GUARDA SIEMPRE (aunque todo haya fallado)
             saved = st.session_state.geocoding_service.save_cache()
 
             if saved:
@@ -522,10 +730,7 @@ if uploaded_file:
         else:
             st.success(f"✅ All {len(unique_postals)} unique postal codes already cached!")
 
-
-        # ------------------------------------------------------------------------
-        # 3) ALWAYS build coordinates for map (IMPORTANT: outside the if/else above)
-        # ------------------------------------------------------------------------
+        # 3) ALWAYS build coordinates for map
         coords_list = []
         resolved_city_list = []
 
@@ -540,11 +745,11 @@ if uploaded_file:
                 coords = cached.get('coords', (None, None))
                 coords_list.append(coords)
                 resolved_city_list.append(
-                    cached.get('resolved_city') or cached.get('input_city') or city_fixed
+                    cached.get('resolved_city') or cached.get('input_city') or city_fixed or "Unknown"
                 )
             else:
                 coords_list.append((None, None))
-                resolved_city_list.append(city_fixed)
+                resolved_city_list.append(city_fixed or "Unknown")
 
         map_data['Coordinates'] = coords_list
         map_data['ResolvedCity'] = resolved_city_list
@@ -554,7 +759,6 @@ if uploaded_file:
 
         map_data_geocoded = map_data.dropna(subset=['Latitude', 'Longitude']).copy()
 
-        # Recalculate GeoValidated with current bbox
         map_data_geocoded['GeoValidated'] = map_data_geocoded.apply(
             lambda r: validate_coordinates(r['Latitude'], r['Longitude'], r['Country']),
             axis=1
@@ -744,10 +948,13 @@ if uploaded_file:
                             st.markdown("### 📋 Service Lines")
                             location_data_sorted = location_data.sort_values('Date', ascending=False)
                             
-                            table_columns = [
+                            # ⭐ MODIFICADO: Columnas dinámicas
+                            all_possible_columns = [
                                 'Date', 'City', 'Business Partner Name', 
                                 'ItemIdAndName', 'Set', 'ProductType', 'EUR', 'SalesRepresentative'
                             ]
+                            
+                            table_columns = [col for col in all_possible_columns if col in location_data_sorted.columns]
                             
                             st.dataframe(
                                 location_data_sorted[table_columns],
@@ -761,9 +968,7 @@ if uploaded_file:
             
             st.caption(f"📍 Showing {len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious postal codes")
             
-            # ========================================================================
-            # 🔥 DEBUG PANEL: Missing Coordinates (solo si hay missing)
-            # ========================================================================
+            # DEBUG PANEL: Missing Coordinates
             missing_mask = map_data['Coordinates'].apply(lambda x: x == (None, None) or x is None)
             df_missing = map_data[missing_mask][['PostalCode', 'Country', 'City']].copy()
 
@@ -772,7 +977,6 @@ if uploaded_file:
                     st.write(f"**Missing coords:** {len(df_missing)}")
                     st.dataframe(df_missing, use_container_width=True, hide_index=True)
 
-                    # Show cache details for missing entries
                     st.markdown("---")
                     st.markdown("### 🔍 Cache Analysis")
 
@@ -801,7 +1005,6 @@ if uploaded_file:
 
                     df_cache_analysis = pd.DataFrame(rows)
 
-                    # Summary
                     st.markdown("#### Summary:")
                     failed_count = len([r for r in rows if r["cached_coords"] is None])
                     not_in_cache = len([r for r in rows if r["cached_type"] == "None"])
@@ -816,7 +1019,6 @@ if uploaded_file:
 
                     st.dataframe(df_cache_analysis, use_container_width=True, hide_index=True)
 
-                    # Tips
                     st.markdown("---")
                     st.markdown("#### 💡 Common Issues:")
                     st.markdown("""
@@ -826,7 +1028,6 @@ if uploaded_file:
                     - **cached_status = FAILED_...**: Check query_used for error details
                     """)
 
-                    # Retry button
                     st.markdown("---")
                     st.markdown("### ♻️ Retry Missing Coordinates")
 
@@ -865,7 +1066,6 @@ if uploaded_file:
                             st.success(f"✅ Retried {len(df_missing)} missing locations. Reloading...")
                             st.rerun()
 
-            
             # Suspicious expander
             if len(map_data_suspicious) > 0:
                 with st.expander(f"⚠️ {len(map_data_suspicious)} postal codes with suspicious coordinates (outside country boundaries)"):
@@ -887,10 +1087,13 @@ if uploaded_file:
     
     df_table = df_filtered.copy()
     
-    table_columns = [
+    # ⭐ MODIFICADO: Columnas dinámicas - solo incluir las que existen
+    all_possible_columns = [
         'Date', 'City', 'Business Partner Name', 
         'ItemIdAndName', 'Set', 'ProductType', 'EUR', 'SalesRepresentative'
     ]
+    
+    table_columns = [col for col in all_possible_columns if col in df_table.columns]
     
     st.dataframe(
         df_table[table_columns].sort_values('Date', ascending=False),
@@ -902,7 +1105,7 @@ if uploaded_file:
     st.caption(f"📊 Showing {len(df_table)} services")
     
     # ============================================================================
-    # ACCOUNT LINKING ANALYSIS (antes de Export Dashboard)
+    # ACCOUNT LINKING ANALYSIS
     # ============================================================================
     
     st.markdown("---")
@@ -910,14 +1113,42 @@ if uploaded_file:
 
     default_account_mapping = os.path.join("core", "accounts_URL.xlsx")
 
-    # Inicializa contenedores en session_state
     if "account_linking" not in st.session_state:
         st.session_state.account_linking = {}
 
-    # Solo calculamos si:
-    #  - existe el mapping
-    #  - no hay resultados para este file_key
-    if os.path.exists(default_account_mapping):
+    # ⭐ MODIFICADO: Solo mostrar análisis si NO usamos SFDC Link del DF
+    format_info = st.session_state.get('format_info', {})
+    has_sfdc_link = format_info.get('has_sfdc_link', False) and 'SFDC Link' in df.columns
+    
+    if has_sfdc_link:
+        # ⭐ MOSTRAR INFO DE SFDC LINKS DEL DF
+        with st.expander("🔗 SFDC Links Status (from data file)", expanded=False):
+            total_records = len(df)
+            records_with_link = df['SFDC Link'].notna().sum()
+            records_without_link = total_records - records_with_link
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("📊 Total Records", total_records)
+            with col2:
+                st.metric("✅ With SFDC Link", records_with_link)
+            with col3:
+                st.metric("❌ Without Link", records_without_link)
+            
+            if records_with_link > 0:
+                st.success(f"🎉 {(records_with_link/total_records*100):.1f}% of records have SFDC links")
+            
+            # Mostrar cuentas sin link
+            if records_without_link > 0:
+                st.markdown("### ⚠️ Accounts without SFDC Link")
+                accounts_without_link = df[df['SFDC Link'].isna()]['Business Partner Name'].unique()
+                st.dataframe(
+                    pd.DataFrame({'Account Name': accounts_without_link}),
+                    use_container_width=True,
+                    height=300
+                )
+    elif os.path.exists(default_account_mapping):
+        # ⭐ USAR LÓGICA ANTIGUA (Account Linker)
         if file_key not in st.session_state.account_linking:
             with st.spinner("🔍 Calculating account linking analysis (one-time per upload)..."):
                 linker = AccountLinker(default_account_mapping, min_score=85, debug=True)
@@ -930,7 +1161,6 @@ if uploaded_file:
                 stats = linker.get_stats()
                 match_report = linker.get_match_report()
 
-                # Guardar resultados “congelados” para este fichero
                 st.session_state.account_linking[file_key] = {
                     "stats": stats,
                     "match_report": match_report,
@@ -939,12 +1169,11 @@ if uploaded_file:
                     "n_unique_accounts": len(unique_accounts),
                 }
 
-        # Mostrar resultados guardados (instantáneo)
         data = st.session_state.account_linking[file_key]
         stats = data["stats"]
         match_report = data["match_report"]
 
-        with st.expander("📊 Account URL Matching Statistics & Analysis", expanded=False):
+        with st.expander("📊 Account URL Matching Statistics & Analysis (from external mapping)", expanded=False):
             st.caption(
                 f"Mapping: {data['mapping_file']} | "
                 f"Unique accounts: {data['n_unique_accounts']} | "
@@ -972,7 +1201,6 @@ if uploaded_file:
             st.markdown("### 🔍 Detailed Match Report")
             st.dataframe(match_report, use_container_width=True, height=400)
 
-            # Si quieres export, mejor recalcular log SOLO cuando pulses (porque el log es grande)
             col1, col2 = st.columns([3, 1])
             with col2:
                 if st.button("♻️ Recompute analysis now", use_container_width=True):
@@ -981,17 +1209,12 @@ if uploaded_file:
     else:
         st.info(f"ℹ️ Account mapping file not found: {default_account_mapping}")
 
-
-
-    # ------------------------------------------------------------------------
-    # 💾 SAVE Account Linking Cache (once per run if dirty)
-    # ------------------------------------------------------------------------
+    # Save Account Linking Cache
     if st.session_state.account_cache_dirty and st.session_state.account_linker is not None:
         ok = st.session_state.account_linker.save_cache(ACCOUNT_CACHE_FILE)
         if ok:
             st.session_state.account_cache_dirty = False
 
-    
     # ============================================================================
     # GENERATE HTML
     # ============================================================================
@@ -999,7 +1222,6 @@ if uploaded_file:
     st.markdown("---")
     st.markdown("## 📥 Export Dashboard")
     
-    # ⭐ NUEVO: Default account mapping file
     default_account_mapping = os.path.join("core", "accounts_URL.xlsx")
     
     col1, col2 = st.columns([2, 1])
@@ -1011,12 +1233,10 @@ if uploaded_file:
         if st.button("🌐 Generate HTML", type="primary", use_container_width=True):
             if len(map_data_valid) > 0:
                 with st.spinner("🔄 Generating HTML file..."):
-                    # ⭐ MODIFICADO: Use default account mapping if exists + show stats
                     mapping_file = default_account_mapping if os.path.exists(default_account_mapping) else None
                     
                     if mapping_file:
                         st.info(f"🔗 Using account mappings from: {mapping_file}")
-                        # ⭐ AÑADIDO: Show quick stats
                         linker_temp = AccountLinker(mapping_file, min_score=85, debug=False)
                         quick_stats = linker_temp.get_stats()
                         st.caption(f"📊 {quick_stats['total_mappings']} mappings loaded | Min score: {quick_stats['min_score']}")
@@ -1084,7 +1304,6 @@ if uploaded_file:
             col1, col2 = st.columns(2)
             with col1:
                 if st.button("♻️ Retry ALL Failed Geocodes", use_container_width=True):
-                    # Clear only failed entries
                     st.session_state.geocoding_service.cache = {
                         k: v for k, v in st.session_state.geocoding_service.cache.items()
                         if not (isinstance(v, dict) and v.get('coords') is None)
@@ -1098,18 +1317,68 @@ if uploaded_file:
         else:
             st.success("✅ No failed geocoding attempts!")
     
+    # ⭐ EXPANDER DE CACHE MANAGEMENT
+    with st.expander("📊 Cache Management"):
+        st.write(f"**Total cached locations:** {len(st.session_state.geocoding_service.cache)}")
+        st.write(f"**New coordinates added:** {st.session_state.geocoding_service.new_coords_added}")
+        st.write(f"**Cache file:** `{st.session_state.geocoding_service.cache_file}`")
+        
+        st.markdown("### 🔧 Cache Actions")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            if st.button("🗑️ Clear ALL cache", use_container_width=True, key="clear_all_cache"):
+                st.session_state.geocoding_service.clear_cache()
+                st.success("✅ Cache cleared!")
+                st.rerun()
+        with col2:
+            if st.button("🔄 Clear PT failed", use_container_width=True, key="clear_pt"):
+                st.session_state.geocoding_service.clear_failed_by_country('pt')
+                st.success("✅ PT failed cleared!")
+                st.rerun()
+        with col3:
+            if st.button("🔄 Clear ES failed", use_container_width=True, key="clear_es"):
+                st.session_state.geocoding_service.clear_failed_by_country('es')
+                st.success("✅ ES failed cleared!")
+                st.rerun()
+        
+        st.markdown("---")
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("♻️ Reset Cache (Enhanced)", use_container_width=True, type="primary", key="reset_cache"):
+                st.session_state.geocoding_service.clear_cache()
+                st.success("✅ Cache reset! Enhanced postal-first strategy with cleaning will be used on next geocoding.")
+                st.rerun()
+        with col2:
+            if st.button("🔄 Clear AD failed", use_container_width=True, key="clear_ad"):
+                st.session_state.geocoding_service.clear_failed_by_country('ad')
+                st.success("✅ AD failed cleared!")
+                st.rerun()
+
     with st.expander("ℹ️ How to use this dashboard"):
         st.markdown("""
         ### 🎯 Quick Guide:
         
-        **NEW: Enhanced Postal-First Geocoding** 🎯
-        - **Postal code cleaning**: Handles dirty formats like `"195 0256"`, `"2829-516 Caparica"`, `"CELRÀ 17460"`
-        - **Country detection**: Automatic ES/PT/AD detection + explicit overrides for GR/DE
-        - **Flexible validation**: Accepts results when postcode is empty (common in Nominatim)
-        - **Outlier support**: Athens (GR) and Weinheim (DE) properly handled
-        - **Modular architecture**: Geocoding logic is now in a separate module for better maintainability
+        **NEW: Multi-Format Support** 🎯
+        - **Automatic format detection**: Supports Original, New, and Mixed formats
+        - **Column name mapping**: Handles different naming conventions automatically
+        - **Backward compatible**: Old files continue to work seamlessly
+        - **Native SFDC Links**: New format includes SFDC links directly in data
+        - **Native Country**: New format includes Country column (no detection needed)
+        - **No City column**: Geocodes using Postal Code only
+        - **Segment filters**: End User Segment and Market Organization filters available
         
-        **Filters:** Collapsible sections including Country filter (🇪🇸 🇵🇹 🇦🇩 🇬🇷 🇩🇪)
+        **Enhanced Postal-First Geocoding** 🎯
+        - **Postal code cleaning**: Handles dirty formats automatically
+        - **Country detection**: Automatic ES/PT/AD detection + explicit overrides for GR/DE
+        - **Flexible validation**: Accepts results when postcode is empty
+        - **Outlier support**: Athens (GR) and Weinheim (DE) properly handled
+        
+        **Filters:** Collapsible sections including:
+        - Country filter (🇪🇸 🇵🇹 🇦🇩 🇬🇷 🇩🇪)
+        - End User Segment (if available in data)
+        - Market Organization (if available in data)
         
         **Reset Filters:** Click the "Reset All Filters" button to return to defaults
         
@@ -1120,88 +1389,36 @@ if uploaded_file:
         **Click on bubbles:** Opens a detail panel with all services for that postal code
         
         **Export HTML:** Standalone file with all data and interactive filters
-        
-        **Geocoding Strategy:**
-        1. **Clean postal code** first (extract valid format)
-        2. Primary: `{postal_clean}, {country}` 🎯
-        3. Alternative: `{postal_clean}` with country restriction
-        4. Fallback: `{postal_clean} {city}, {country}`
-        5. Last resort: `{city}, {country}` (marked as low confidence)
-        
-        **Validation:**
-        - Returned postcode compared to requested (if not empty)
-        - Bounding box check (warning only, not filter)
-        - Failed geocodes tracked and can be retried
-        - Dirty postal codes automatically cleaned
         """)
-    
-    with st.expander("📊 Cache Management"):
-        st.write(f"**Total cached locations:** {len(st.session_state.geocoding_service.cache)}")
-        st.write(f"**New coordinates added:** {st.session_state.geocoding_service.new_coords_added}")
-        st.write(f"**Cache file:** `{st.session_state.geocoding_service.cache_file}`")
-        
-        st.markdown("### 🔧 Cache Actions")
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            if st.button("🗑️ Clear ALL cache", use_container_width=True):
-                st.session_state.geocoding_service.clear_cache()
-                st.success("✅ Cache cleared!")
-                st.rerun()
-        with col2:
-            if st.button("🔄 Clear PT failed", use_container_width=True):
-                st.session_state.geocoding_service.clear_failed_by_country('pt')
-                st.success("✅ PT failed cleared!")
-                st.rerun()
-        with col3:
-            if st.button("🔄 Clear ES failed", use_container_width=True):
-                st.session_state.geocoding_service.clear_failed_by_country('es')
-                st.success("✅ ES failed cleared!")
-                st.rerun()
-        
-        st.markdown("---")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("♻️ Reset Cache (Enhanced)", use_container_width=True, type="primary", help="⚠️ Clear old cache to use enhanced postal-first strategy with cleaning"):
-                st.session_state.geocoding_service.clear_cache()
-                st.success("✅ Cache reset! Enhanced postal-first strategy with cleaning will be used on next geocoding.")
-                st.rerun()
-        with col2:
-            if st.button("🔄 Clear AD failed", use_container_width=True):
-                st.session_state.geocoding_service.clear_failed_by_country('ad')
-                st.success("✅ AD failed cleared!")
-                st.rerun()
 
+# ⭐ ESTE ELSE ESTÁ FUERA del if uploaded_file
 else:
     st.info("👆 **Upload your service data file to get started**")
     
     st.markdown("""
     ### 📋 Required columns:
-    - `Date`, `Business Partner Name`, `ItemIdAndName`, `ProductType`, `Set`
-    - `EUR`, `SalesRepresentative`, `City`, `PostalCode`
+    - Accepts **multiple formats** with automatic detection:
+      - **Original Format**: `EUR`, `ProductType`, `SalesRepresentative`, `City`, etc.
+      - **New Format**: `LC`, `Product Type`, `Sales Representative`, `End User`, etc.
+        - Includes: `Country`, `SFDC Link`, `End User Segment`, `Market Organization Name`
+        - **City column optional** - geocodes with Postal Code only
+      - **Mixed Format**: Combination of both naming conventions
     
     ### 🎯 Features:
-    - **NEW: Modular Architecture** 🏗️ - Geocoding logic in separate module
-    - **NEW: Enhanced Postal Cleaning** 🧹 - Handles dirty formats automatically
-    - **NEW: Multi-country Support** 🌍 - ES, PT, AD, GR, DE
-    - **NEW: Flexible Validation** ✅ - Accepts results when postcode is empty
+    - **NEW: Postal-Only Geocoding** 📍 - Works without City column
+    - **NEW: Native SFDC Links** 🔗 - Uses SFDC Link column from new format
+    - **NEW: Native Country** 🌍 - Uses Country column (no detection needed)
+    - **NEW: Segment Filters** 🎯 - Filter by End User Segment & Market Organization
+    - **Multi-Format Support** 🆕 - Automatic format detection and column mapping
+    - **Backward Compatible** ✅ - Old files work without changes
+    - **Modular Architecture** 🏗️ - Geocoding logic in separate module
+    - **Enhanced Postal Cleaning** 🧹 - Handles dirty formats automatically
+    - **Multi-country Support** 🌍 - ES, PT, AD, GR, DE
     - **Postal-First Geocoding** 🎯 - Postal code is source of truth
-    - **Andorra Support** 🇦🇩 - Properly detects Andorra postal codes (AD123)
-    - **Postcode Validation** - Prevents incorrect geocoding
     - Interactive map with service distribution
-    - Country filter (🇪🇸 Spain / 🇵🇹 Portugal / 🇦🇩 Andorra / 🇬🇷 Greece / 🇩🇪 Germany)
     - Quick filter tags with AND/OR mode
     - Collapsible filter sections in sidebar
-    - All/None buttons for each filter group
-    - Reset all filters with one click
-    - Click on map bubbles to see detailed service breakdown
     - Export to standalone HTML with filters
     - Two-layer map: valid (blue circles ●) + suspicious (red triangles ▲)
     - Comprehensive debug tools for geocoding issues
-    - Low confidence flagging for city-based geocoding
-    - Cache management with country-specific clearing
-    
-    ### 🔄 Migration Note:
-    If you have an existing cache, use the **"Reset Cache (Enhanced)"** button to clear the old cache and use the enhanced postal-first strategy with automatic cleaning.
     """)
