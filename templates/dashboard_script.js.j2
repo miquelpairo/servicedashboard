@@ -1,0 +1,976 @@
+/// ============================================
+// EMBEDDED DATA
+// ============================================
+const fullData = {{ full_data_json | safe }};
+const mapData = {{ map_data_json | safe }};
+const coordsCache = {{ coords_cache_json | safe }};
+
+const productTypes = {{ product_types_list | tojson }};
+const availableYears = {{ available_years | tojson }};
+const availableMonths = {{ available_months | tojson }};
+const availableReps = {{ available_reps | tojson }};
+const availableTypes = {{ available_types | tojson }};
+const availableSets = {{ available_sets | tojson }};
+const availableCountries = {{ available_countries | tojson }};
+
+{% if has_segment %}
+const availableSegments = {{ available_segments | tojson }};
+{% endif %}
+{% if has_market_org %}
+const availableMarketOrgs = {{ available_market_orgs | tojson }};
+{% endif %}
+
+const monthNames = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+
+// FEATURE FLAGS (desde Python)
+const HAS_CITY = {{ 'true' if has_city else 'false' }};
+const HAS_SEGMENT = {{ 'true' if has_segment else 'false' }};
+const HAS_MARKET_ORG = {{ 'true' if has_market_org else 'false' }};
+
+// Detectar si hay datos reales de City (no solo columna)
+const HAS_CITY_DATA = Array.isArray(fullData) && fullData.some(row => {
+  const city = String(row.City || '').trim();
+  return city.length > 0;
+});
+
+// ============================================
+// STATE
+// ============================================
+let filteredData = Array.isArray(fullData) ? [...fullData] : [];
+let filteredMapData = [];
+let activeQuickFilters = [];
+let quickMode = 'AND';
+let sortState = { column: 0, ascending: false };
+const STORAGE_KEY = 'service_dashboard_filters_v1';
+
+// ============================================
+// HELPERS
+// ============================================
+function $(id) { return document.getElementById(id); }
+
+function safeLower(v) {
+  return String(v ?? '').toLowerCase();
+}
+
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function normCountry(v) {
+  // clave estable para comparar: nombre en minúsculas sin espacios extra
+  return String(v ?? '').trim().toLowerCase();
+}
+
+function countryToISO2(v) {
+  // solo para mostrar banderitas (no afecta al filtro)
+  const s = normCountry(v);
+  const map = {
+    'spain': 'es',
+    'portugal': 'pt',
+    'united kingdom': 'gb',
+    'latvia': 'lv',
+    'lithuania': 'lt',
+    'estonia': 'ee',
+    'iceland': 'is',
+    'norway': 'no',
+    'finland': 'fi',
+    // añade aquí si quieres más
+  };
+  return map[s] || s; // si no está, devuelve el nombre
+}
+
+function formatCountryName(v) {
+  const iso = countryToISO2(v);
+  const flags = {
+    es: '🇪🇸 Spain',
+    pt: '🇵🇹 Portugal',
+    gb: '🇬🇧 United Kingdom',
+    lv: '🇱🇻 Latvia',
+    lt: '🇱🇹 Lithuania',
+    ee: '🇪🇪 Estonia',
+    is: '🇮🇸 Iceland',
+    no: '🇳🇴 Norway',
+    fi: '🇫🇮 Finland'
+  };
+  return flags[iso] || String(v); // fallback: texto tal cual
+}
+
+function normPostal(v) {
+  // Normaliza postal para key: trim + upper
+  // (no forzamos regex, porque fuera ES/PT hay formatos distintos)
+  return String(v ?? '').trim().toUpperCase();
+}
+
+function makeLocationKey(postal, country) {
+  return `${normPostal(postal)}__${normCountry(country)}`;
+}
+
+function getCheckedValues(selector, mapFn) {
+  return Array.from(document.querySelectorAll(selector + ':checked'))
+    .map(cb => mapFn ? mapFn(cb) : cb.value);
+}
+
+function setAll(selector, checked) {
+  document.querySelectorAll(selector).forEach(cb => cb.checked = checked);
+}
+
+function debounce(fn, ms) {
+  let t = null;
+  return function() {
+    clearTimeout(t);
+    t = setTimeout(() => fn(), ms);
+  };
+}
+
+function getAccountLinkFromRow(row) {
+  const name = String(row['Business Partner Name'] ?? '').trim();
+
+  // Prioridad: AccountURL (si lo generas en Python) -> SFDC Link (si viene en DF)
+  const url = (row?.AccountURL && String(row.AccountURL).trim())
+    ? String(row.AccountURL).trim()
+    : (row?.['SFDC Link'] && String(row['SFDC Link']).trim())
+      ? String(row['SFDC Link']).trim()
+      : null;
+
+  if (url) {
+    return `<a href="${url}" target="_blank" style="color:#2E86C1; text-decoration:none;">${escapeHtml(name)}</a>`;
+  }
+  return escapeHtml(name);
+}
+
+// ============================================
+// ALL/NONE GROUP BUTTONS
+// ============================================
+function setGroupChecked(group, checked) {
+  const map = {
+    country: '.country-filter',
+    year: '.year-filter',
+    month: '.month-filter',
+    rep: '.rep-filter',
+    type: '.type-filter',
+    set: '.set-filter'
+    {% if has_segment %}, segment: '.segment-filter'{% endif %}
+    {% if has_market_org %}, marketOrg: '.marketorg-filter'{% endif %}
+  };
+
+  const selector = map[group];
+  if (!selector) return;
+
+  setAll(selector, checked);
+  saveFilterState();
+  applyFilters();
+}
+
+// ============================================
+// QUICK FILTERS
+// ============================================
+function toggleQuickFilter(el) {
+  const key = el.getAttribute('data-keyword');
+  el.classList.toggle('active');
+
+  if (el.classList.contains('active')) {
+    if (!activeQuickFilters.includes(key)) activeQuickFilters.push(key);
+  } else {
+    activeQuickFilters = activeQuickFilters.filter(k => k !== key);
+  }
+
+  saveFilterState();
+}
+
+function setQuickMode(mode) {
+  quickMode = mode;
+  saveFilterState();
+  applyFilters();
+}
+
+// ============================================
+// INITIALIZE FILTER UI
+// ============================================
+function initializeFilters() {
+  const countryBox = $('countryFilters');
+  if (countryBox) {
+    // value = country normalizado (nombre lower)
+    availableCountries.forEach(c => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = normCountry(c);
+      cb.checked = true;
+      cb.className = 'country-filter';
+      l.appendChild(cb);
+      l.append(' ' + formatCountryName(c));
+      countryBox.appendChild(l);
+    });
+  }
+
+  const yearBox = $('yearFilters');
+  if (yearBox) {
+    availableYears.forEach(y => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = y;
+      cb.checked = true;
+      cb.className = 'year-filter';
+      l.appendChild(cb);
+      l.append(' ' + y);
+      yearBox.appendChild(l);
+    });
+  }
+
+  const monthBox = $('monthFilters');
+  if (monthBox) {
+    availableMonths.forEach(m => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = m;
+      cb.checked = false; // none => treat as all
+      cb.className = 'month-filter';
+      l.appendChild(cb);
+      l.append(' ' + (monthNames[m - 1] || String(m)));
+      monthBox.appendChild(l);
+    });
+  }
+
+  const repBox = $('repFilters');
+  if (repBox) {
+    availableReps.forEach(r => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = r;
+      cb.checked = true;
+      cb.className = 'rep-filter';
+      l.appendChild(cb);
+      l.append(' ' + r);
+      repBox.appendChild(l);
+    });
+  }
+
+  const typeBox = $('typeFilters');
+  if (typeBox) {
+    availableTypes.forEach(t => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = t;
+      cb.checked = true;
+      cb.className = 'type-filter';
+      l.appendChild(cb);
+      l.append(' ' + t);
+      typeBox.appendChild(l);
+    });
+  }
+
+  const setBox = $('setFilters');
+  if (setBox) {
+    availableSets.forEach(s => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = s;
+      cb.checked = true;
+      cb.className = 'set-filter';
+      l.appendChild(cb);
+      l.append(' ' + s);
+      setBox.appendChild(l);
+    });
+  }
+
+  {% if has_segment %}
+  const segmentBox = $('segmentFilters');
+  if (segmentBox) {
+    availableSegments.forEach(s => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = s;
+      cb.checked = true;
+      cb.className = 'segment-filter';
+      l.appendChild(cb);
+      l.append(' ' + s);
+      segmentBox.appendChild(l);
+    });
+  }
+  {% endif %}
+
+  {% if has_market_org %}
+  const marketOrgBox = $('marketOrgFilters');
+  if (marketOrgBox) {
+    availableMarketOrgs.forEach(m => {
+      const l = document.createElement('label');
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = m;
+      cb.checked = true;
+      cb.className = 'marketorg-filter';
+      l.appendChild(cb);
+      l.append(' ' + m);
+      marketOrgBox.appendChild(l);
+    });
+  }
+  {% endif %}
+
+  const applyDebounced = debounce(applyFilters, 200);
+
+  const extraSelectors =
+    '.country-filter, .year-filter, .month-filter, .rep-filter, .type-filter, .set-filter' +
+    {% if has_segment %} ', .segment-filter' {% else %} '' {% endif %} +
+    {% if has_market_org %} ', .marketorg-filter' {% else %} '' {% endif %};
+
+  document.querySelectorAll(extraSelectors).forEach(cb => cb.addEventListener('change', applyDebounced));
+}
+
+// ============================================
+// APPLY FILTERS
+// ============================================
+function applyFilters() {
+  const countries = getCheckedValues('.country-filter').map(normCountry);
+  const years = getCheckedValues('.year-filter', cb => parseInt(cb.value, 10));
+  let months = getCheckedValues('.month-filter', cb => parseInt(cb.value, 10));
+  const reps = getCheckedValues('.rep-filter');
+  const types = getCheckedValues('.type-filter');
+  const sets = getCheckedValues('.set-filter');
+
+  {% if has_segment %}
+  const segments = getCheckedValues('.segment-filter');
+  {% endif %}
+
+  {% if has_market_org %}
+  const marketOrgs = getCheckedValues('.marketorg-filter');
+  {% endif %}
+
+  const manualSearch = safeLower($('searchInput')?.value);
+  const clientSearch = safeLower($('clientInput')?.value);
+
+  if (months.length === 0) months = [...availableMonths];
+
+  filteredData = fullData.filter(row => {
+    const rowCountry = normCountry(row.Country);
+
+    if (countries.length && !countries.includes(rowCountry)) return false;
+
+    const d = new Date(row.Date);
+    const y = d.getFullYear();
+    const m = d.getMonth() + 1;
+
+    if (years.length && !years.includes(y)) return false;
+    if (months.length && !months.includes(m)) return false;
+    if (reps.length && !reps.includes(row.SalesRepresentative)) return false;
+    if (types.length && !types.includes(row.ProductType)) return false;
+    if (sets.length && !sets.includes(row.Set)) return false;
+
+    {% if has_segment %}
+    if (segments.length && !segments.includes(row['End User Segment'])) return false;
+    {% endif %}
+
+    {% if has_market_org %}
+    if (marketOrgs.length && !marketOrgs.includes(row['Market Organization Name'])) return false;
+    {% endif %}
+
+    // ⭐ FILTRO DE SERVICIO (quick filters + manual search)
+    // Busca en "Id - Name" o "ItemIdAndName" (el nombre del servicio)
+    const serviceName = safeLower(row['Id - Name'] || row.ItemIdAndName || '');
+
+    // Quick filters (tags como CARE, Exact, etc.)
+    if (activeQuickFilters.length > 0) {
+      const matches = (quickMode === 'AND')
+        ? activeQuickFilters.every(k => serviceName.includes(String(k).toLowerCase()))
+        : activeQuickFilters.some(k => serviceName.includes(String(k).toLowerCase()));
+      if (!matches) return false;
+    }
+    
+    // Manual search en servicio (campo de texto "Or type custom search")
+    if (manualSearch && !serviceName.includes(manualSearch)) {
+      return false;
+    }
+
+    // ⭐ FILTRO DE CLIENTE (separado e independiente)
+    // Busca en "Business Partner Name" (nombre del cliente)
+    if (clientSearch) {
+      const clientName = safeLower(row['Business Partner Name'] || '');
+      if (!clientName.includes(clientSearch)) return false;
+    }
+
+    return true;
+  });
+
+  updateMetrics();
+  updateMapData();
+  renderMap();
+  renderTable();
+  updateStatusUI();
+  saveFilterState();
+}
+
+// ============================================
+// STATUS UI
+// ============================================
+function updateStatusUI() {
+  const total = fullData.length;
+  const shown = filteredData.length;
+
+  if ($('resultCount')) $('resultCount').textContent = `Showing ${shown} of ${total} records`;
+
+  const chipsEl = $('activeChips');
+  if (!chipsEl) return;
+
+  const chips = [];
+
+  activeQuickFilters.forEach(k => chips.push(`Service:${k}`));
+
+  const selectedCountries = getCheckedValues('.country-filter');
+  if (selectedCountries.length > 0 && selectedCountries.length < availableCountries.length) {
+    selectedCountries.forEach(v => chips.push(formatCountryName(v)));
+  }
+
+  const selectedYears = getCheckedValues('.year-filter');
+  if (selectedYears.length > 0 && selectedYears.length < availableYears.length) {
+    selectedYears.forEach(v => chips.push(`Year:${v}`));
+  }
+
+  const selectedMonths = getCheckedValues('.month-filter');
+  if (selectedMonths.length > 0) {
+    selectedMonths.forEach(v => chips.push(`Month:${monthNames[parseInt(v, 10) - 1]}`));
+  }
+
+  const selectedReps = getCheckedValues('.rep-filter');
+  if (selectedReps.length > 0 && selectedReps.length < availableReps.length) {
+    selectedReps.forEach(v => chips.push(`Rep:${v}`));
+  }
+
+  const selectedTypes = getCheckedValues('.type-filter');
+  if (selectedTypes.length > 0 && selectedTypes.length < availableTypes.length) {
+    selectedTypes.forEach(v => chips.push(`Type:${v}`));
+  }
+
+  const selectedSets = getCheckedValues('.set-filter');
+  if (selectedSets.length > 0 && selectedSets.length < availableSets.length) {
+    selectedSets.forEach(v => chips.push(`Set:${v}`));
+  }
+
+  {% if has_segment %}
+  const selectedSegments = getCheckedValues('.segment-filter');
+  if (selectedSegments.length > 0 && selectedSegments.length < availableSegments.length) {
+    selectedSegments.forEach(v => chips.push(`Segment:${v}`));
+  }
+  {% endif %}
+
+  {% if has_market_org %}
+  const selectedMarketOrgs = getCheckedValues('.marketorg-filter');
+  if (selectedMarketOrgs.length > 0 && selectedMarketOrgs.length < availableMarketOrgs.length) {
+    selectedMarketOrgs.forEach(v => chips.push(`MarketOrg:${v}`));
+  }
+  {% endif %}
+
+  chipsEl.innerHTML = '';
+  chips.forEach(c => {
+    const span = document.createElement('span');
+    span.className = 'active-chip';
+    span.textContent = c;
+    chipsEl.appendChild(span);
+  });
+}
+
+// ============================================
+// RESET
+// ============================================
+function resetFilters() {
+  setAll('.country-filter', true);
+  setAll('.year-filter', true);
+  setAll('.month-filter', false);
+  setAll('.rep-filter', true);
+  setAll('.type-filter', true);
+  setAll('.set-filter', true);
+
+  {% if has_segment %} setAll('.segment-filter', true); {% endif %}
+  {% if has_market_org %} setAll('.marketorg-filter', true); {% endif %}
+
+  activeQuickFilters = [];
+  document.querySelectorAll('.quick-filter-tag').forEach(el => el.classList.remove('active'));
+
+  if ($('searchInput')) $('searchInput').value = '';
+  if ($('clientInput')) $('clientInput').value = '';
+
+  quickMode = 'AND';
+  if ($('quickModeOr')) $('quickModeOr').checked = false;
+
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  applyFilters();
+}
+
+// ============================================
+// LOCAL STORAGE - DESHABILITADO
+// ============================================
+function saveFilterState() {
+  // Persistencia deshabilitada - los filtros se resetean al recargar
+  return;
+}
+
+function restoreFilterState() {
+  // Persistencia deshabilitada - siempre inicia con filtros por defecto
+  return;
+}
+
+// ============================================
+// METRICS
+// ============================================
+function updateMetrics() {
+  const totalEUR = filteredData.reduce((sum, row) => sum + (row.EUR || 0), 0);
+  const numServices = filteredData.length;
+
+  const numCities = HAS_CITY_DATA
+    ? new Set(filteredData.map(r => String(r.City || '').trim()).filter(Boolean)).size
+    : new Set(filteredData.map(r => normPostal(r.PostalCode)).filter(Boolean)).size;
+
+  const numClients = new Set(filteredData.map(r => String(r['Business Partner Name'] || '').trim()).filter(Boolean)).size;
+
+  if ($('metricEUR')) $('metricEUR').textContent = '€' + totalEUR.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if ($('metricServices')) $('metricServices').textContent = numServices.toLocaleString();
+  if ($('metricCities')) $('metricCities').textContent = numCities.toLocaleString();
+  if ($('metricClients')) $('metricClients').textContent = numClients.toLocaleString();
+}
+
+// ============================================
+// MAP DATA (country + postal robusto, sin O(n*m))
+// ============================================
+function updateMapData() {
+    const baseMapData = Array.isArray(mapData) ? mapData : [];
+
+    console.log('🔍 DEBUG updateMapData:');
+    console.log('  - filteredData rows:', filteredData.length);
+    console.log('  - baseMapData points:', baseMapData.length);
+
+    // Indexa filas filtradas por (postal,country)
+    const rowsByKey = {};
+    filteredData.forEach(row => {
+        const key = makeLocationKey(row.PostalCode, row.Country);
+        (rowsByKey[key] ||= []).push(row);
+    });
+
+    console.log('  - Unique location keys:', Object.keys(rowsByKey).length);
+
+  // Si hay mapData preprocesado desde Python, lo filtramos por key
+  if (baseMapData.length > 0) {
+    filteredMapData = baseMapData
+      .map(point => {
+        const key = makeLocationKey(point.PostalCode, point.Country);
+        const rows = rowsByKey[key];
+        if (!rows || rows.length === 0) return null;
+
+        const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
+        const numServices = rows.length;
+
+        const repsSet = new Set(rows.map(r => r.SalesRepresentative).filter(Boolean));
+        const representatives = Array.from(repsSet).slice(0, 3).join(', ');
+
+        const ptCount = {};
+        rows.forEach(r => {
+          const t = r.ProductType || 'Unknown';
+          ptCount[t] = (ptCount[t] || 0) + 1;
+        });
+        const types = Object.entries(ptCount);
+        const mainType = types.length ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0] : 'Mixed';
+
+        const customers = {};
+        rows.forEach(r => {
+          const cust = String(r['Business Partner Name'] || '').trim() || '(Unknown)';
+          customers[cust] = (customers[cust] || 0) + (r.EUR || 0);
+        });
+        const topCustomers = Object.entries(customers)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 3)
+          .map(([name]) => name)
+          .join(', ');
+        const moreCustomers = Object.keys(customers).length > 3 ? ` (+${Object.keys(customers).length - 3} more)` : '';
+
+        const cityName = String(point.ResolvedCity || point.City || '').trim();
+
+        return {
+          City: cityName,
+          PostalCode: normPostal(point.PostalCode),
+          Country: normCountry(point.Country),
+          LocationKey: key, // ⭐ ahora LocationKey es key estable postal+country
+          Total_EUR: totalEUR,
+          Num_Services: numServices,
+          Representatives: representatives,
+          Main_Type: mainType,
+          TopCustomers: topCustomers + moreCustomers,
+          Latitude: point.Latitude,
+          Longitude: point.Longitude
+        };
+      })
+      .filter(p => p && p.Latitude && p.Longitude);
+    
+      // 🔍 DEBUG: Verificar datos de salida
+    console.log('  - filteredMapData output:', filteredMapData.length);
+    if (filteredMapData.length > 0) {
+        console.log('  - Sample point:', {
+        City: filteredMapData[0].City,
+        TopCustomers: filteredMapData[0].TopCustomers,
+        Total_EUR: filteredMapData[0].Total_EUR
+        });
+    }
+
+
+    return;
+  }
+
+  // Fallback: si no hay baseMapData, podríamos generar puntos desde coordsCache,
+  // pero en tu caso dices que tienes coordenadas en mapData, así que aquí no deberías entrar.
+  filteredMapData = [];
+}
+
+// ============================================
+// DETAILS PANEL
+// ============================================
+function renderDetailsPanel(locationKey, rows) {
+  // locationKey = makeLocationKey(postal,country)
+  const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
+  const reps = Array.from(new Set(rows.map(r => r.SalesRepresentative).filter(Boolean))).slice(0, 6).join(', ');
+  const customers = new Set(rows.map(r => r['Business Partner Name'])).size;
+
+  // extraemos postal/country del key
+  const [postal, country] = locationKey.split('__');
+
+  if ($('detailsHeader')) {
+    $('detailsHeader').innerHTML =
+      `<b>📍 ${escapeHtml(postal)}</b> — ${escapeHtml(String(country).toUpperCase())}
+       &nbsp; | &nbsp; Total: <b>€${totalEUR.toFixed(2)}</b>
+       &nbsp; | &nbsp; Services: <b>${rows.length}</b>
+       &nbsp; | &nbsp; Customers: <b>${customers}</b>
+       &nbsp; | &nbsp; Reps: ${escapeHtml(reps)}`;
+  }
+
+  // Header dinámico
+  const customersTable = $('customersTable');
+  const thead = customersTable?.querySelector('thead tr');
+  if (thead) {
+    let headerHTML = '<th>Date</th>';
+    if (HAS_CITY_DATA) headerHTML += '<th>City</th>';
+    headerHTML += '<th>Client</th><th>Service</th><th>Type</th><th>Set</th>';
+    if (HAS_SEGMENT) headerHTML += '<th>Segment</th>';
+    if (HAS_MARKET_ORG) headerHTML += '<th>Market Org</th>';
+    headerHTML += '<th>EUR</th><th>Rep</th>';
+    thead.innerHTML = headerHTML;
+  }
+
+  const customersBody = $('customersBody');
+  if (!customersBody) return;
+
+  customersBody.innerHTML = '';
+  const sortedRows = [...rows].sort((a, b) => new Date(b.Date) - new Date(a.Date));
+
+  sortedRows.forEach(row => {
+    const tr = document.createElement('tr');
+    const date = new Date(row.Date).toLocaleDateString();
+
+    let html = `<td>${date}</td>`;
+    if (HAS_CITY_DATA) html += `<td>${escapeHtml(row.City || '')}</td>`;
+    html += `<td>${getAccountLinkFromRow(row)}</td>`;
+    html += `<td>${escapeHtml(row.ItemIdAndName || '')}</td>`;
+    html += `<td>${escapeHtml(row.ProductType || '')}</td>`;
+    html += `<td>${escapeHtml(row.Set || '')}</td>`;
+    if (HAS_SEGMENT) html += `<td>${escapeHtml(row['End User Segment'] || '')}</td>`;
+    if (HAS_MARKET_ORG) html += `<td>${escapeHtml(row['Market Organization Name'] || '')}</td>`;
+    html += `<td>€${(row.EUR || 0).toFixed(2)}</td>`;
+    html += `<td>${escapeHtml(row.SalesRepresentative || '')}</td>`;
+
+    tr.innerHTML = html;
+    customersBody.appendChild(tr);
+  });
+}
+
+// ============================================
+// MAP RENDER
+// ============================================
+function renderMap() {
+  const mapEl = $('map');
+  if (!mapEl) return;
+
+  if (!filteredMapData || filteredMapData.length === 0) {
+    mapEl.innerHTML = '<p style="text-align:center; padding:50px; color:#999;">No data to display</p>';
+    return;
+  }
+
+  const trace = {
+    type: 'scattermapbox',
+    lon: filteredMapData.map(d => d.Longitude),
+    lat: filteredMapData.map(d => d.Latitude),
+    mode: 'markers',
+    marker: {
+      size: filteredMapData.map(d => Math.max(10, Math.sqrt(Math.abs(d.Total_EUR || 0)) / 10)),
+      color: filteredMapData.map(d => productTypes.indexOf(d.Main_Type)),
+      colorscale: 'Viridis',
+      showscale: false,
+      sizemode: 'diameter'
+    },
+    text: filteredMapData.map(d => {
+      const parts = [];
+      
+      // Mostrar City o PostalCode como título
+      const locationName = (d.City && d.City.trim()) 
+        ? escapeHtml(d.City) 
+        : `📮 ${escapeHtml(d.PostalCode || '')}`;
+      parts.push(`<b>${locationName}</b>`);
+      
+      // Añadir país si está disponible
+      if (d.Country) {
+        parts.push(`🌍 ${escapeHtml(String(d.Country).toUpperCase())}`);
+      }
+      
+      // Métricas financieras
+      parts.push(`💰 Total: €${(d.Total_EUR || 0).toFixed(2)}`);
+      parts.push(`📊 Services: ${d.Num_Services || 0}`);
+      
+      // Tipo principal
+      if (d.Main_Type) {
+        parts.push(`🏷️ Type: ${escapeHtml(d.Main_Type)}`);
+      }
+      
+      // Top customers - ESTA ES LA PARTE CLAVE
+      if (d.TopCustomers && String(d.TopCustomers).trim()) {
+        parts.push(`👥 Top customers: ${escapeHtml(d.TopCustomers)}`);
+      }
+      
+      // Representantes
+      if (d.Representatives && String(d.Representatives).trim()) {
+        parts.push(`👤 Reps: ${escapeHtml(d.Representatives)}`);
+      }
+      
+      return parts.join('<br>');
+    }),
+    hoverinfo: 'text',
+    customdata: filteredMapData.map(d => [d.LocationKey])
+  };
+
+  const lats = filteredMapData.map(d => d.Latitude);
+  const lons = filteredMapData.map(d => d.Longitude);
+  const latCenter = lats.reduce((a, b) => a + b, 0) / lats.length;
+  const lonCenter = lons.reduce((a, b) => a + b, 0) / lons.length;
+
+  const latRange = Math.max(...lats) - Math.min(...lats);
+  const lonRange = Math.max(...lons) - Math.min(...lons);
+  const maxRange = Math.max(latRange, lonRange);
+
+  let zoom = 5;
+  if (maxRange < 1) zoom = 10;
+  else if (maxRange < 3) zoom = 8;
+  else if (maxRange < 7) zoom = 6;
+
+  const layout = {
+    mapbox: { style: 'open-street-map', center: { lon: lonCenter, lat: latCenter }, zoom: zoom },
+    margin: { r: 0, t: 0, l: 0, b: 0 },
+    height: 600
+  };
+
+  Plotly.newPlot('map', [trace], layout, { responsive: true });
+
+  mapEl.on('plotly_click', function(evt) {
+    if (!evt?.points?.length) return;
+    const locationKey = evt.points[0].customdata?.[0];
+    if (!locationKey) return;
+
+    const rows = filteredData.filter(r => makeLocationKey(r.PostalCode, r.Country) === locationKey);
+
+    renderDetailsPanel(locationKey, rows);
+
+    if ($('selectedSummary')) $('selectedSummary').textContent = `(${rows.length} lines)`;
+    const detailsEl = $('mapDetails');
+    if (detailsEl && !detailsEl.open) detailsEl.open = true;
+  });
+}
+
+// ============================================
+// TABLE HEADER
+// ============================================
+function generateTableHeader() {
+  const header = $('tableHeader');
+  if (!header) return;
+
+  let colIndex = 0;
+  let html = '';
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Date</th>`;
+  colIndex++;
+
+  if (HAS_CITY_DATA) {
+    html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">City</th>`;
+    colIndex++;
+  }
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Client</th>`;
+  colIndex++;
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Service</th>`;
+  colIndex++;
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Type</th>`;
+  colIndex++;
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Set</th>`;
+  colIndex++;
+
+  if (HAS_SEGMENT) {
+    html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Segment</th>`;
+    colIndex++;
+  }
+
+  if (HAS_MARKET_ORG) {
+    html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Market Org</th>`;
+    colIndex++;
+  }
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">EUR</th>`;
+  colIndex++;
+
+  html += `<th onclick="sortTable(${colIndex})" data-col="${colIndex}">Rep</th>`;
+
+  header.innerHTML = html;
+}
+
+// ============================================
+// SORT
+// ============================================
+function sortTable(colIndex) {
+  if (sortState.column === colIndex) sortState.ascending = !sortState.ascending;
+  else { sortState.column = colIndex; sortState.ascending = true; }
+  renderTable();
+}
+
+// ============================================
+// RENDER TABLE
+// ============================================
+function renderTable() {
+  const tbody = $('tableBody');
+  if (!tbody) return;
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    let aVal, bVal;
+    let currentCol = 0;
+
+    // Date
+    if (sortState.column === currentCol) {
+      aVal = new Date(a.Date);
+      bVal = new Date(b.Date);
+      return sortState.ascending ? aVal - bVal : bVal - aVal;
+    }
+    currentCol++;
+
+    // City
+    if (HAS_CITY_DATA) {
+      if (sortState.column === currentCol) {
+        aVal = a.City || '';
+        bVal = b.City || '';
+      }
+      currentCol++;
+    }
+
+    // Client
+    if (sortState.column === currentCol) {
+      aVal = a['Business Partner Name'] || '';
+      bVal = b['Business Partner Name'] || '';
+    }
+    currentCol++;
+
+    // Service
+    if (sortState.column === currentCol) {
+      aVal = a['Id - Name'] || a.ItemIdAndName || '';
+      bVal = b['Id - Name'] || b.ItemIdAndName || '';
+    }
+    currentCol++;
+
+        // Type
+        if (sortState.column === currentCol) {
+            aVal = a.ProductType || '';
+            bVal = b.ProductType || '';
+        }
+        currentCol++;
+
+        // Set
+        if (sortState.column === currentCol) {
+            aVal = a.Set || '';
+            bVal = b.Set || '';
+        }
+        currentCol++;
+
+        // Segment
+        if (HAS_SEGMENT) {
+            if (sortState.column === currentCol) {
+                aVal = a['End User Segment'] || '';
+                bVal = b['End User Segment'] || '';
+            }
+            currentCol++;
+        }
+
+        // Market Org
+        if (HAS_MARKET_ORG) {
+            if (sortState.column === currentCol) {
+                aVal = a['Market Organization Name'] || '';
+                bVal = b['Market Organization Name'] || '';
+            }
+            currentCol++;
+        }
+
+        // EUR
+        if (sortState.column === currentCol) {
+            aVal = a.EUR || 0;
+            bVal = b.EUR || 0;
+            return sortState.ascending ? aVal - bVal : bVal - aVal;
+        }
+        currentCol++;
+
+        // Rep
+        if (sortState.column === currentCol) {
+            aVal = a.SalesRepresentative || '';
+            bVal = b.SalesRepresentative || '';
+        }
+
+        if (typeof aVal === 'string') {
+            return sortState.ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+        }
+        return sortState.ascending ? (aVal - bVal) : (bVal - aVal);
+    });
+
+    tbody.innerHTML = '';
+
+    sortedData.forEach(row => {
+        const tr = document.createElement('tr');
+        const date = new Date(row.Date).toLocaleDateString();
+
+        let html = `<td>${date}</td>`;
+        if (HAS_CITY_DATA) html += `<td>${escapeHtml(row.City || '')}</td>`;
+        html += `<td>${getAccountLinkFromRow(row)}</td>`;
+        html += `<td>${escapeHtml(row.ItemIdAndName || '')}</td>`;
+        html += `<td>${escapeHtml(row.ProductType || '')}</td>`;
+        html += `<td>${escapeHtml(row.Set || '')}</td>`;
+        if (HAS_SEGMENT) html += `<td>${escapeHtml(row['End User Segment'] || '')}</td>`;
+        if (HAS_MARKET_ORG) html += `<td>${escapeHtml(row['Market Organization Name'] || '')}</td>`;
+        html += `<td>€${(row.EUR || 0).toFixed(2)}</td>`;
+        html += `<td>${escapeHtml(row.SalesRepresentative || '')}</td>`;
+
+        tr.innerHTML = html;
+        tbody.appendChild(tr);
+    });
+
+    // Sort indicator
+    document.querySelectorAll('#serviceTable th').forEach((th, idx) => {
+        th.classList.remove('sort-asc', 'sort-desc');
+        if (idx === sortState.column) th.classList.add(sortState.ascending ? 'sort-asc' : 'sort-desc');
+    });
+}
+
+// ============================================
+// BOOT
+// ============================================
+generateTableHeader();
+initializeFilters();
+restoreFilterState();
+applyFilters();

@@ -1,0 +1,71 @@
+{
+  "by_client_id": {
+    "SAP_Buchi_BIB§§§491001203 - FISHER SCIENTIFIC SL": {
+      "original_postal": "1950256",
+      "corrected_postal": "1950-256",
+      "country": "pt",
+      "notes": "Lisboa - Fisher Scientific - formato portugués corregido",
+      "corrected_by": "manual",
+      "corrected_date": "2025-01-24"
+    }
+  },
+  "by_postal_pattern": {
+    "^E0(\\d{4})$": {
+      "replacement": "0\\1",
+      "countries": ["es"],
+      "description": "Remove leading E from Spanish postal codes with E prefix"
+    },
+    "^E(\\d{5})$": {
+      "replacement": "\\1",
+      "countries": ["es"],
+      "description": "Remove leading E from Spanish postal codes"
+    },
+    "^(\\d{5})-(\\d{3})$": {
+      "replacement": "\\1\\2",
+      "countries": ["pt"],
+      "description": "Remove hyphen from Portuguese postal codes for normalization"
+    },
+    "^(\\d{7})$": {
+      "replacement": "\\1",
+      "countries": ["pt"],
+      "description": "Portuguese 7-digit format is valid"
+    }
+  },
+  "global_replacements": {
+    "70011": {
+      "corrected": "47011",
+      "country": "es",
+      "reason": "Common OCR error - Valladolid"
+    },
+    "84450": {
+      "corrected": "08450",
+      "country": "es",
+      "reason": "Llinars del Vallès - leading digit error"
+    },
+    "88490": {
+      "corrected": "08490",
+      "country": "es",
+      "reason": "Tordera - leading digit error"
+    },
+    "5000": {
+      "corrected": "05000",
+      "country": "es",
+      "reason": "Missing leading zero - Ávila"
+    },
+    "2805": {
+      "corrected": "2805-001",
+      "country": "pt",
+      "reason": "Almada - incomplete Portuguese postal"
+    },
+    "2014": {
+      "corrected": "20014",
+      "country": "es",
+      "reason": "San Sebastián - missing digit"
+    }
+  },
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-01-24",
+    "description": "Postal code correction dictionary for global geocoding service"
+  }
+}

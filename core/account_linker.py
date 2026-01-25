@@ -8,31 +8,26 @@ Manages URL mapping for customer accounts in reports using fuzzy matching.
   get_html_link, enrich_dataframe, get_stats, get_match_report, export_match_log
 - Singleton helpers kept: get_default_linker, set_default_mapping
 
-Key improvements:
-- Strong normalization (accents, punctuation, legal suffixes, spacing, &/AND)
-- Fixes bug where fuzzy matched original names didn't map reliably to url_map
-- Uses robust two-stage matching:
-  1) exact match on normalized keys (plus compact key)
-  2) fuzzy match on normalized keys (token_set_ratio) + compact fallback
-- Better handling of "VIDRAFOC" vs "VIDRA FOC" via compact keys
+NEW (your requirement):
+- If df already contains a link column (e.g. 'SFDC Link' / 'AccountURL'), use it and SKIP matching.
+- Fallback: if no link present, do NOT attempt fuzzy matching (no link).
 """
 
 from __future__ import annotations
 
+import json
+import os
 import re
 import unicodedata
 from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 from rapidfuzz import fuzz, process
-import json
-import os
 
 # =============================================================================
 # NORMALIZATION HELPERS
 # =============================================================================
 
-# Common legal suffixes (extend if you want)
 _LEGAL_SUFFIXES = {
     "SA", "S A", "S.A", "S.A.",
     "SL", "S L", "S.L", "S.L.",
@@ -44,7 +39,6 @@ _LEGAL_SUFFIXES = {
 }
 
 _STOPWORDS = {
-    # light stopwords that often create noise in B2B names
     "THE", "GROUP", "HOLDING", "HOLDINGS",
 }
 
@@ -52,15 +46,6 @@ _STOPWORDS = {
 def _strip_accents(s: str) -> str:
     s = unicodedata.normalize("NFKD", s)
     return "".join(c for c in s if not unicodedata.combining(c))
-
-def _compact_key(s: str) -> str:
-    """
-    Extra-normalization for tricky cases:
-    - uses _normalize_name first
-    - removes ALL spaces so 'VIDRA FOC' == 'VIDRAFOC'
-    """
-    base = _normalize_name(s)
-    return base.replace(" ", "")
 
 
 def _normalize_name(s: str) -> str:
@@ -72,7 +57,7 @@ def _normalize_name(s: str) -> str:
     - strip punctuation
     - collapse spaces
     - remove trailing legal suffixes (SA/SL/...)
-    - remove some stopwords (kept conservative)
+    - remove some stopwords (conservative)
     """
     if s is None:
         return ""
@@ -88,7 +73,7 @@ def _normalize_name(s: str) -> str:
     s = re.sub(r"[^A-Z0-9\s]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
 
-    # remove stopwords anywhere (conservative)
+    # remove stopwords
     tokens = [t for t in s.split() if t not in _STOPWORDS]
 
     # remove trailing legal suffix tokens (one or more)
@@ -122,15 +107,10 @@ def _safe_html(text: str) -> str:
 # =============================================================================
 # HARD-CODED OVERRIDES (manual fixes)
 # =============================================================================
-# Clave = nombre tal como te llega (se normaliza internamente)
-# Valor = URL final (o bien un "mapped_name" si prefieres, pero aquí guardamos URL directa)
+
 ACCOUNT_OVERRIDES: Dict[str, str] = {
-    # Ejemplos:
-    # "VIDRAFoc": "https://tu-crm/.../vidrafoc",
-    # "VIDRA FOC": "https://tu-crm/.../vidrafoc",
+    # "VIDRAFoc": "https://...",
 }
-
-
 
 # =============================================================================
 # MAIN CLASS
@@ -149,12 +129,11 @@ class AccountLinker:
         self.min_score = int(min_score)
         self.debug = bool(debug)
 
-        # normalized_key -> url (NOTE: includes both normal and compact keys)
+        # normalized_key -> url (includes normal + compact keys)
         self.url_map: Dict[str, str] = {}
         # normalized_key -> original_name (from mapping file)
         self.original_names: Dict[str, str] = {}
 
-        # Matching statistics
         self.stats: Dict[str, int] = {
             "exact_matches": 0,
             "fuzzy_matches": 0,
@@ -162,16 +141,10 @@ class AccountLinker:
             "total_queries": 0,
         }
 
-        # Detailed log for analysis (when debug=True)
         self.match_log: List[Dict[str, Any]] = []
 
-        # ---------------------------------------------------------------------
-        # Persistent match cache (like geocoding cache)
-        # ---------------------------------------------------------------------
+        # Persistent cache
         self.cache_file: Optional[str] = None
-
-        # normalized_input_key -> dict(result)
-        # result = {"status": "MATCHED"|"NO_MATCH", "url": str|None, "score": int|None, "matched_name": str|None}
         self.match_cache: Dict[str, Dict[str, Any]] = {}
 
         # hardcoded overrides (normalized_key -> url)
@@ -179,7 +152,6 @@ class AccountLinker:
             _normalize_name(k): v for k, v in ACCOUNT_OVERRIDES.items()
             if k and v
         }
-        # also add compact override keys
         self.overrides.update({
             _compact_key(k): v for k, v in ACCOUNT_OVERRIDES.items()
             if k and v
@@ -192,20 +164,12 @@ class AccountLinker:
     # Loading
     # -------------------------------------------------------------------------
     def load_mapping(self, filepath: str) -> None:
-        """
-        Load account URL mapping from Excel/CSV.
-
-        Expected columns:
-        - "Account Name": Name of the customer/account
-        - "Account URL": Full URL to the account page
-        """
         try:
             if filepath.lower().endswith(".csv"):
                 df = pd.read_csv(filepath, encoding="utf-8")
             else:
                 df = pd.read_excel(filepath)
 
-            # Validate columns
             if "Account Name" in df.columns and "Account URL" in df.columns:
                 name_col, url_col = "Account Name", "Account URL"
             elif "AccountName" in df.columns and "AccountURL" in df.columns:
@@ -220,7 +184,6 @@ class AccountLinker:
             self.url_map.clear()
             self.original_names.clear()
 
-            # Build dictionaries using normalized keys (normal + compact)
             for _, row in df.iterrows():
                 name = row.get(name_col)
                 url = row.get(url_col)
@@ -239,7 +202,6 @@ class AccountLinker:
 
                 key_compact = key.replace(" ", "")
 
-                # Keep first occurrence (avoid overriding if duplicates)
                 if key not in self.url_map:
                     self.url_map[key] = url_str
                     self.original_names[key] = name_str
@@ -255,15 +217,10 @@ class AccountLinker:
             self.url_map = {}
             self.original_names = {}
 
-
-
     # -------------------------------------------------------------------------
     # Cache persistence
     # -------------------------------------------------------------------------
     def load_cache(self, cache_filepath: str) -> bool:
-        """
-        Load persistent matching cache from JSON.
-        """
         self.cache_file = cache_filepath
         try:
             if not cache_filepath or not os.path.exists(cache_filepath):
@@ -285,9 +242,6 @@ class AccountLinker:
             return False
 
     def save_cache(self, cache_filepath: Optional[str] = None) -> bool:
-        """
-        Save persistent matching cache to JSON.
-        """
         path = cache_filepath or self.cache_file
         if not path:
             return False
@@ -295,7 +249,6 @@ class AccountLinker:
         try:
             os.makedirs(os.path.dirname(path), exist_ok=True)
         except Exception:
-            # if dirname is empty (current folder), ignore
             pass
 
         try:
@@ -309,7 +262,6 @@ class AccountLinker:
     # Matching
     # -------------------------------------------------------------------------
     def get_url_exact(self, account_name: str) -> Optional[str]:
-        """Exact match on normalized key (fast). Also tries compact key."""
         if not account_name or pd.isna(account_name):
             return None
 
@@ -330,10 +282,6 @@ class AccountLinker:
         top_n: int = 5,
         scorer=fuzz.token_set_ratio,
     ) -> List[Tuple[str, float, int]]:
-        """
-        Returns rapidfuzz results over normalized keys (normal + compact query):
-        [(matched_key, score, idx), ...]
-        """
         key_query = _normalize_name(account_name)
         if not key_query or not self.url_map:
             return []
@@ -347,7 +295,6 @@ class AccountLinker:
         combined = r1 + r2
         combined.sort(key=lambda x: x[1], reverse=True)
 
-        # Dedup by key, keep best score
         seen = set()
         out: List[Tuple[str, float, int]] = []
         for k, sc, idx in combined:
@@ -360,26 +307,9 @@ class AccountLinker:
         return out
 
     def _cache_key_for_input(self, account_name: str) -> str:
-        """
-        Cache key for an input string. We store both forms:
-        - normalized with spaces (stable tokens)
-        - compact (no spaces) to catch cases like 'VIDRA FOC' vs 'VIDRAFOC'
-        We'll use the normalized-with-spaces as primary cache key.
-        """
         return _normalize_name(account_name)
 
-
     def get_url_fuzzy(self, account_name: str, top_n: int = 5) -> Optional[Tuple[str, int, str]]:
-        """
-        Get URL using:
-        1) hardcoded overrides
-        2) persistent cache (MATCHED / NO_MATCH)
-        3) exact + fuzzy
-        and save result back to cache.
-
-        Returns:
-            (url, score, matched_name) where matched_name is original mapped name (or input if override)
-        """
         if not account_name or pd.isna(account_name):
             return None
 
@@ -388,13 +318,10 @@ class AccountLinker:
         norm = _normalize_name(account_str)
         comp = _compact_key(account_str)
 
-        # ---------------------------------------------------------------------
-        # 1) HARD OVERRIDES (manual)
-        # ---------------------------------------------------------------------
-        # try normalized + compact
+        # 1) overrides
         override_url = self.overrides.get(norm) or self.overrides.get(comp)
         if override_url:
-            self.stats["exact_matches"] += 1  # count as "exact" (deterministic)
+            self.stats["exact_matches"] += 1
             if self.debug:
                 self.match_log.append({
                     "input": account_str,
@@ -406,9 +333,8 @@ class AccountLinker:
                     "url": override_url,
                 })
 
-            # Store in cache as matched
-            key = self._cache_key_for_input(account_str)
-            self.match_cache[key] = {
+            cache_key = self._cache_key_for_input(account_str)
+            self.match_cache[cache_key] = {
                 "status": "MATCHED",
                 "url": override_url,
                 "score": 100,
@@ -417,20 +343,16 @@ class AccountLinker:
             }
             return (override_url, 100, account_str)
 
-        # ---------------------------------------------------------------------
-        # 2) CACHE HIT (MATCHED or NO_MATCH)
-        # ---------------------------------------------------------------------
+        # 2) cache
         cache_key = self._cache_key_for_input(account_str)
         cached = self.match_cache.get(cache_key)
-
-        # extra: sometimes previous runs stored under compact by older code
         if cached is None and comp:
             cached = self.match_cache.get(comp)
 
         if isinstance(cached, dict):
             status = cached.get("status")
             if status == "MATCHED" and cached.get("url"):
-                self.stats["exact_matches"] += 1  # treat cache hit as exact (no compute)
+                self.stats["exact_matches"] += 1
                 if self.debug:
                     self.match_log.append({
                         "input": account_str,
@@ -454,9 +376,7 @@ class AccountLinker:
                     })
                 return None
 
-        # ---------------------------------------------------------------------
-        # 3) EXACT MATCH (normalized)
-        # ---------------------------------------------------------------------
+        # 3) exact
         exact_url = self.get_url_exact(account_str)
         if exact_url:
             self.stats["exact_matches"] += 1
@@ -483,9 +403,7 @@ class AccountLinker:
             }
             return (exact_url, 100, matched_name)
 
-        # ---------------------------------------------------------------------
-        # 4) FUZZY MATCH (normalized keys)
-        # ---------------------------------------------------------------------
+        # 4) fuzzy
         if not self.url_map:
             self.stats["no_matches"] += 1
             self.match_cache[cache_key] = {
@@ -535,7 +453,6 @@ class AccountLinker:
                     }
                     return (url, best_score_int, matched_name)
 
-            # Below threshold: cache as NO_MATCH so we don't recompute every rerun
             self.stats["no_matches"] += 1
             self.match_cache[cache_key] = {
                 "status": "NO_MATCH",
@@ -547,7 +464,6 @@ class AccountLinker:
             }
             return None
 
-        # No candidates at all
         self.stats["no_matches"] += 1
         self.match_cache[cache_key] = {
             "status": "NO_MATCH",
@@ -558,10 +474,7 @@ class AccountLinker:
         }
         return None
 
-
-
     def get_url(self, account_name: str) -> Optional[str]:
-        """Convenience: returns URL only."""
         result = self.get_url_fuzzy(account_name)
         return result[0] if result else None
 
@@ -572,9 +485,6 @@ class AccountLinker:
     # Rendering / enrichment
     # -------------------------------------------------------------------------
     def get_html_link(self, account_name: str, css_class: str = "") -> str:
-        """
-        Generate HTML link for account name if URL exists; otherwise return plain text.
-        """
         if not account_name or pd.isna(account_name):
             return ""
 
@@ -593,21 +503,37 @@ class AccountLinker:
         """
         Adds AccountURL / AccountMatchScore / AccountMatchedName.
 
-        Optimized: computes matches once per unique name (not per row).
+        YOUR RULE:
+        - If df contains a link column (AccountURL or SFDC Link variants) with real values, use it and SKIP matching.
+        - Otherwise fallback is NO LINK (do not run fuzzy).
         """
         df_copy = df.copy()
 
-        s = df_copy[account_col].astype(str).fillna("").map(lambda x: x.strip())
-        unique_names = sorted({x for x in s.values if x})
+        # 1) Respect existing AccountURL (if it has values)
+        if "AccountURL" in df_copy.columns:
+            non_empty = df_copy["AccountURL"].notna() & (df_copy["AccountURL"].astype(str).str.strip() != "")
+            if int(non_empty.sum()) > 0:
+                df_copy["AccountMatchScore"] = None
+                df_copy["AccountMatchedName"] = None
+                return df_copy
 
-        cache: Dict[str, Optional[Tuple[str, int, str]]] = {}
-        for name in unique_names:
-            cache[name] = self.get_url_fuzzy(name)
+        # 2) Use SFDC Link if present
+        sfdc_cols = ["SFDC Link", "SFDC_Link", "SFDC URL", "SFDC_URL", "SFDCLink", "SFDCURL"]
+        sfdc_col = next((c for c in sfdc_cols if c in df_copy.columns), None)
 
-        df_copy["AccountURL"] = s.map(lambda n: (cache.get(n)[0] if cache.get(n) else None))
-        df_copy["AccountMatchScore"] = s.map(lambda n: (cache.get(n)[1] if cache.get(n) else None))
-        df_copy["AccountMatchedName"] = s.map(lambda n: (cache.get(n)[2] if cache.get(n) else None))
+        if sfdc_col:
+            url = df_copy[sfdc_col].fillna("").astype(str).str.strip()
+            url = url.where((url != "") & (url.str.lower() != "nan"), None)
 
+            df_copy["AccountURL"] = url
+            df_copy["AccountMatchScore"] = None
+            df_copy["AccountMatchedName"] = None
+            return df_copy
+
+        # 3) Fallback: no link, no matching
+        df_copy["AccountURL"] = None
+        df_copy["AccountMatchScore"] = None
+        df_copy["AccountMatchedName"] = None
         return df_copy
 
     # -------------------------------------------------------------------------
@@ -642,10 +568,6 @@ class AccountLinker:
         }
 
     def get_match_report(self, account_names: list = None, top_n: int = 10) -> pd.DataFrame:
-        """
-        Generate a matching report for a list of account names.
-        If account_names is None, uses the internal match_log (debug=True).
-        """
         if account_names is not None:
             results = []
             for name in account_names:
@@ -654,25 +576,21 @@ class AccountLinker:
                 result = self.get_url_fuzzy(str(name), top_n=top_n)
                 if result:
                     url, score, matched_name = result
-                    results.append(
-                        {
-                            "Input Name": name,
-                            "Matched Name": matched_name,
-                            "Score": score,
-                            "URL": url,
-                            "Status": "✅ Matched",
-                        }
-                    )
+                    results.append({
+                        "Input Name": name,
+                        "Matched Name": matched_name,
+                        "Score": score,
+                        "URL": url,
+                        "Status": "✅ Matched",
+                    })
                 else:
-                    results.append(
-                        {
-                            "Input Name": name,
-                            "Matched Name": None,
-                            "Score": None,
-                            "URL": None,
-                            "Status": f"❌ No match (min score: {self.min_score})",
-                        }
-                    )
+                    results.append({
+                        "Input Name": name,
+                        "Matched Name": None,
+                        "Score": None,
+                        "URL": None,
+                        "Status": f"❌ No match (min score: {self.min_score})",
+                    })
             return pd.DataFrame(results)
 
         if not self.match_log:
@@ -682,15 +600,13 @@ class AccountLinker:
         for entry in self.match_log:
             input_name = entry.get("input", "")
             if entry.get("match_type") == "exact":
-                out_rows.append(
-                    {
-                        "Input Name": input_name,
-                        "Match Type": "Exact",
-                        "Best Match": entry.get("matched_name", ""),
-                        "Best Score": 100,
-                        "Status": "✅ Exact",
-                    }
-                )
+                out_rows.append({
+                    "Input Name": input_name,
+                    "Match Type": "Exact",
+                    "Best Match": entry.get("matched_name", ""),
+                    "Best Score": 100,
+                    "Status": "✅ Exact",
+                })
                 continue
 
             candidates = entry.get("candidates", [])
@@ -702,35 +618,28 @@ class AccountLinker:
                     if (best_score is not None and int(best_score) >= self.min_score)
                     else f"❌ <{self.min_score}"
                 )
-                out_rows.append(
-                    {
-                        "Input Name": input_name,
-                        "Match Type": "Fuzzy" if status.startswith("✅") else "No Match",
-                        "Best Match": best.get("name", ""),
-                        "Best Score": best_score,
-                        "Top 3 Candidates": " | ".join(
-                            [f"{c.get('name','')} ({c.get('score','')})" for c in candidates[:3]]
-                        ),
-                        "Status": status,
-                    }
-                )
+                out_rows.append({
+                    "Input Name": input_name,
+                    "Match Type": "Fuzzy" if status.startswith("✅") else "No Match",
+                    "Best Match": best.get("name", ""),
+                    "Best Score": best_score,
+                    "Top 3 Candidates": " | ".join(
+                        [f"{c.get('name','')} ({c.get('score','')})" for c in candidates[:3]]
+                    ),
+                    "Status": status,
+                })
             else:
-                out_rows.append(
-                    {
-                        "Input Name": input_name,
-                        "Match Type": "No Match",
-                        "Best Match": None,
-                        "Best Score": None,
-                        "Status": "❌ No candidates",
-                    }
-                )
+                out_rows.append({
+                    "Input Name": input_name,
+                    "Match Type": "No Match",
+                    "Best Match": None,
+                    "Best Score": None,
+                    "Status": "❌ No candidates",
+                })
 
         return pd.DataFrame(out_rows)
 
     def export_match_log(self, filepath: str = "account_matching_log.xlsx") -> None:
-        """
-        Export detailed match log to Excel for analysis.
-        """
         if not self.match_log:
             print("⚠️ No match log available. Enable debug=True when initializing AccountLinker.")
             return
@@ -740,50 +649,43 @@ class AccountLinker:
             input_name = entry.get("input", "")
 
             if entry.get("match_type") == "exact":
-                rows.append(
-                    {
-                        "Input Name": input_name,
-                        "Input Norm": entry.get("input_norm", ""),
-                        "Match Type": "Exact",
-                        "Candidate Key": entry.get("matched_key", ""),
-                        "Candidate Name": entry.get("matched_name", ""),
-                        "Score": 100,
-                        "URL": entry.get("url", ""),
-                        "Status": "Matched",
-                    }
-                )
+                rows.append({
+                    "Input Name": input_name,
+                    "Input Norm": entry.get("input_norm", ""),
+                    "Match Type": "Exact",
+                    "Candidate Key": entry.get("matched_key", ""),
+                    "Candidate Name": entry.get("matched_name", ""),
+                    "Score": 100,
+                    "URL": entry.get("url", ""),
+                    "Status": "Matched",
+                })
                 continue
 
             candidates = entry.get("candidates", [])
             if candidates:
                 for i, c in enumerate(candidates):
-                    rows.append(
-                        {
-                            "Input Name": input_name if i == 0 else "",
-                            "Input Norm": entry.get("input_norm", "") if i == 0 else "",
-                            "Match Type": "Fuzzy",
-                            "Rank": i + 1,
-                            "Candidate Key": c.get("key", ""),
-                            "Candidate Name": c.get("name", ""),
-                            "Score": c.get("score", ""),
-                            "URL": c.get("url", ""),
-                            "Status": "Matched"
-                            if (i == 0 and int(c.get("score", 0) or 0) >= self.min_score)
-                            else "Below threshold",
-                        }
-                    )
+                    rows.append({
+                        "Input Name": input_name if i == 0 else "",
+                        "Input Norm": entry.get("input_norm", "") if i == 0 else "",
+                        "Match Type": "Fuzzy",
+                        "Rank": i + 1,
+                        "Candidate Key": c.get("key", ""),
+                        "Candidate Name": c.get("name", ""),
+                        "Score": c.get("score", ""),
+                        "URL": c.get("url", ""),
+                        "Status": "Matched"
+                        if (i == 0 and int(c.get("score", 0) or 0) >= self.min_score)
+                        else "Below threshold",
+                    })
             else:
-                rows.append(
-                    {
-                        "Input Name": input_name,
-                        "Input Norm": entry.get("input_norm", ""),
-                        "Match Type": "None",
-                        "Status": "No candidates found",
-                    }
-                )
+                rows.append({
+                    "Input Name": input_name,
+                    "Input Norm": entry.get("input_norm", ""),
+                    "Match Type": "None",
+                    "Status": "No candidates found",
+                })
 
-        df = pd.DataFrame(rows)
-        df.to_excel(filepath, index=False)
+        pd.DataFrame(rows).to_excel(filepath, index=False)
         print(f"✅ Match log exported to: {filepath}")
 
 
@@ -794,7 +696,6 @@ _default_linker: Optional[AccountLinker] = None
 
 
 def get_default_linker() -> AccountLinker:
-    """Get or create default AccountLinker instance."""
     global _default_linker
     if _default_linker is None:
         _default_linker = AccountLinker()
@@ -802,12 +703,6 @@ def get_default_linker() -> AccountLinker:
 
 
 def set_default_mapping(filepath: str, min_score: int = 85, debug: bool = False) -> Tuple[AccountLinker, AccountLinker]:
-    """
-    Set default mapping file for all reports.
-
-    NOTE: Kept return signature compatible with your original code
-    (you were returning `_default_linker, _default_linker`).
-    """
     global _default_linker
     _default_linker = AccountLinker(filepath, min_score, debug)
     return _default_linker, _default_linker
