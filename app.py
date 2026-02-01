@@ -245,15 +245,24 @@ def load_file(file):
             df['Month_Name'] = df['Date'].dt.strftime('%B')
             
             # ========================================================================
-            # 8. CRITICAL FIX #1: NORMALIZE COUNTRY TO ISO2
+            # 8. CRITICAL FIX #1: NORMALIZE COUNTRY TO ISO2 (LOWER)
             # ========================================================================
             if 'Country' in df.columns and df['Country'].notna().sum() > 0:
-                print("🌍 Normalizing Country column to ISO2...", flush=True)
+                print("🌍 Normalizing Country column to ISO2 lower...", flush=True)
+                
                 # Apply normalize_country_code to convert "Spain" → "es", "Netherlands" → "nl", etc.
                 df['Country'] = df['Country'].apply(normalize_country_code_global)
-                # Ensure all are valid ISO2 (fallback to 'es' if invalid)
-                df.loc[df['Country'].astype(str).str.len() != 2, 'Country'] = 'es'
-                print(f"✅ Country normalized: {df['Country'].value_counts().to_dict()}", flush=True)
+                
+                # ⚠️ CRITICAL: Convert to lowercase (JS expects "es", not "ES")
+                df['Country'] = df['Country'].astype(str).str.lower().str.strip()
+                
+                # Ensure all are valid ISO2 (2 chars lowercase)
+                invalid_mask = df['Country'].str.len() != 2
+                if invalid_mask.sum() > 0:
+                    print(f"⚠️ Found {invalid_mask.sum()} invalid country codes, setting to 'es'", flush=True)
+                    df.loc[invalid_mask, 'Country'] = 'es'
+                
+                print(f"✅ Country normalized to ISO2 lower: {df['Country'].unique().tolist()}", flush=True)
             else:
                 print("🔍 Detecting Country from postal codes", flush=True)
                 postal_col = None
@@ -273,6 +282,13 @@ def load_file(file):
                             detect_country_from_postal(p, None)
                             for p in df[postal_col]
                         ]
+                    
+                    # ⚠️ CRITICAL: También normalizar a lowercase después de detectar
+                    df['Country'] = df['Country'].astype(str).str.lower().str.strip()
+                    invalid_mask = df['Country'].str.len() != 2
+                    if invalid_mask.sum() > 0:
+                        print(f"⚠️ Detected: {invalid_mask.sum()} invalid countries → 'es'", flush=True)
+                        df.loc[invalid_mask, 'Country'] = 'es'
                 else:
                     df['Country'] = 'es'
             
@@ -348,7 +364,6 @@ if st.sidebar.button("🧹 Clear file cache", use_container_width=True):
     st.session_state.loaded_file_fingerprint = None
     st.success("✅ File cache cleared")
     st.rerun()
-
 
     
 # ========================================================================
@@ -427,22 +442,28 @@ else:
 df_base = st.session_state.df_enriched if st.session_state.df_enriched is not None else df
 
 # ========================================================================
-# GET AVAILABLE OPTIONS
+# GET AVAILABLE OPTIONS (FROM df_base AFTER ENRICHMENT)
 # ========================================================================
-available_years = sorted(df['Year'].dropna().unique().astype(int).tolist())
-available_reps = sorted(df['SalesRepresentative'].dropna().unique().tolist())
-available_types = sorted(df['ProductType'].dropna().unique().tolist())
-available_sets = sorted(df['Set'].dropna().unique().tolist())
-available_countries = sorted(df['Country'].dropna().unique().tolist())
+
+# ⚠️ CRITICAL: Extract from df_base (enriched data), not df (raw)
+available_years = sorted(df_base['Year'].dropna().unique().astype(int).tolist())
+available_reps = sorted(df_base['SalesRepresentative'].dropna().unique().tolist())
+available_types = sorted(df_base['ProductType'].dropna().unique().tolist())
+available_sets = sorted(df_base['Set'].dropna().unique().tolist())
+
+# ⚠️ CRITICAL: Countries are already ISO2 lower from load_file()
+available_countries = sorted(df_base['Country'].dropna().unique().tolist())
+
+print(f"🔍 DEBUG - Available countries for filters: {available_countries}", flush=True)
 
 available_segments = []
 available_market_orgs = []
 
-if 'End User Segment' in df.columns:
-    available_segments = sorted(df['End User Segment'].dropna().unique().tolist())
+if 'End User Segment' in df_base.columns:
+    available_segments = sorted(df_base['End User Segment'].dropna().unique().tolist())
 
-if 'Market Organization Name' in df.columns:
-    available_market_orgs = sorted(df['Market Organization Name'].dropna().unique().tolist())
+if 'Market Organization Name' in df_base.columns:
+    available_market_orgs = sorted(df_base['Market Organization Name'].dropna().unique().tolist())
 
 month_options = list(range(1, 13))
 month_labels = {
@@ -495,6 +516,7 @@ with st.sidebar.expander("🌍 Country", expanded=False):
         'fr': '🇫🇷 France',
         'it': '🇮🇹 Italy',
         'uk': '🇬🇧 United Kingdom',
+        'gb': '🇬🇧 United Kingdom',
         'us': '🇺🇸 United States',
     }
     
@@ -650,7 +672,7 @@ with st.sidebar.expander("🔍 Search Service", expanded=False):
         help="AND = All keywords must match | OR = Any keyword matches"
     )
     
-    quick_filter_keywords = ['CARE', 'Exact', 'Start', 'Circle', 'Maintain', 'IQ/OQ', 'OQ', 'Install']
+    quick_filter_keywords = ['CARE', 'Exact', 'Start', 'Circle', 'Maintain', 'IQ/OQ', 'OQ', 'Install', 'Plus', 'Academy']
     
     cols = st.columns(3)
     for idx, keyword in enumerate(quick_filter_keywords):
@@ -850,7 +872,7 @@ if service_type == 'global':
         
         # A) CALCULATE POSTALS TO GEOCODE (USING PROPER FUNCTIONS)
         for _, row in unique_postals.iterrows():
-            # 1. Normalize country
+            # 1. Normalize country (already ISO2 lower from load_file)
             cc = normalize_country_code_global(row['Country'])
             pc_raw = row['PostalCode']
             
@@ -915,7 +937,7 @@ if service_type == 'global':
         reason_list = []
         
         for _, row in map_data.iterrows():
-            # 1. Normalize country
+            # 1. Normalize country (already ISO2 lower)
             cc = normalize_country_code_global(row['Country'])
             pc_raw = row['PostalCode']
             
@@ -1449,7 +1471,7 @@ if st.session_state.account_cache_dirty and st.session_state.account_linker is n
 st.session_state.geocoding_service.save_cache()
 
 # ========================================================================
-# EXPORT HTML
+# EXPORT HTML - OPTIMIZED FOR LARGE DATASETS
 # ========================================================================
 
 st.markdown("---")
@@ -1469,7 +1491,72 @@ with col2:
                 if mapping_file:
                     st.info(f"🔗 Using account mappings from: {mapping_file}")
                 
-                # Prepare complete map data
+                # ================================================================
+                # OPTIMIZATION: Prepare minimal dataset with optimized dtypes
+                # ================================================================
+                
+                # Define essential columns for export
+                export_cols = [
+                    "Date", "Year", "Month", "Country", "City",
+                    "PostalCode", "Business Partner Name", "ItemIdAndName",
+                    "Set", "ProductType", "EUR", "SalesRepresentative",
+                    "End User Segment", "Market Organization Name",
+                    "SFDC Link", "account_url"
+                ]
+                
+                # Keep only existing columns
+                export_cols = [c for c in export_cols if c in df_base.columns]
+                df_export = df_base[export_cols].copy()
+                
+                # Standardize PostalCode column name
+                if postal_col and postal_col != "PostalCode" and postal_col in df_export.columns:
+                    df_export = df_export.rename(columns={postal_col: "PostalCode"})
+                elif "PostalCode" not in df_export.columns:
+                    # Create empty PostalCode if missing
+                    df_export["PostalCode"] = ""
+                
+                # ================================================================
+                # NORMALIZE COUNTRY BEFORE EXPORT (ENSURE ISO2 LOWER)
+                # ================================================================
+                if 'Country' in df_export.columns:
+                    print("🌍 Final Country normalization before export...", flush=True)
+                    df_export['Country'] = df_export['Country'].astype(str).str.lower().str.strip()
+                    invalid_mask = df_export['Country'].str.len() != 2
+                    if invalid_mask.sum() > 0:
+                        print(f"⚠️ Export: {invalid_mask.sum()} invalid countries → 'es'", flush=True)
+                        df_export.loc[invalid_mask, 'Country'] = 'es'
+                    print(f"✅ Export Country: {df_export['Country'].unique().tolist()}", flush=True)
+                
+                # ================================================================
+                # OPTIMIZE DTYPES - Reduce memory footprint
+                # ================================================================
+                
+                # Numeric columns: reduce precision
+                df_export["Year"] = df_export["Year"].astype("int16")
+                df_export["Month"] = df_export["Month"].astype("int8")
+                
+                # EUR: float32 is sufficient for most use cases
+                df_export["EUR"] = pd.to_numeric(
+                    df_export["EUR"], 
+                    errors="coerce"
+                ).fillna(0).astype("float32")
+                
+                # Categorical columns: massive memory savings for repeated values
+                categorical_cols = [
+                    "Country", "SalesRepresentative", "ProductType", 
+                    "Set", "End User Segment", "Market Organization Name"
+                ]
+                
+                for col in categorical_cols:
+                    if col in df_export.columns:
+                        df_export[col] = df_export[col].astype("category")
+                
+                st.info(f"📊 Optimized dataset: {len(df_export):,} rows × {len(df_export.columns)} cols")
+                st.caption(f"Memory usage: {df_export.memory_usage(deep=True).sum() / 1024**2:.1f} MB")
+                
+                # ================================================================
+                # PREPARE MAP DATA
+                # ================================================================
                 map_export = map_data_geocoded.copy()
                 
                 # Ensure essential columns
@@ -1497,13 +1584,20 @@ with col2:
                 map_export['Total_EUR'] = pd.to_numeric(map_export['Total_EUR'], errors='coerce')
                 map_export['Num_Services'] = pd.to_numeric(map_export['Num_Services'], errors='coerce').fillna(0).astype(int)
                 
-                # Normalize Country
-                map_export['Country'] = map_export['Country'].str.lower().fillna('es')
+                # Normalize Country (ensure ISO2 lower)
+                map_export['Country'] = map_export['Country'].astype(str).str.lower().str.strip()
+                invalid_mask = map_export['Country'].str.len() != 2
+                if invalid_mask.sum() > 0:
+                    print(f"⚠️ Map export: {invalid_mask.sum()} invalid countries → 'es'", flush=True)
+                    map_export.loc[invalid_mask, 'Country'] = 'es'
                 
-                st.info(f"📊 Exporting {len(map_export)} map points ({len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious)")
+                st.info(f"📍 Exporting {len(map_export)} map points ({len(map_data_valid)} valid + {len(map_data_suspicious)} suspicious)")
                 
+                # ================================================================
+                # GENERATE HTML WITH COLUMNAR+GZIP MODE
+                # ================================================================
                 html_content = generate_service_dashboard_html(
-                    df_base,
+                    df_export,  # Optimized dataframe
                     map_export,
                     available_years,
                     month_options,
@@ -1511,12 +1605,17 @@ with col2:
                     available_types,
                     available_sets,
                     st.session_state.geocoding_service.cache,
-                    account_mapping_file=mapping_file
+                    account_mapping_file=mapping_file,
+                    export_mode="columnar_gzip"  # ← CRITICAL: Enable columnar format
                 )
                 
                 if html_content and len(html_content) > 1000:
                     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                     filename = f"service_dashboard_{timestamp}.html"
+                    
+                    # Display size info
+                    size_mb = len(html_content) / 1024**2
+                    st.success(f"✅ HTML generated successfully! ({size_mb:.2f} MB)")
                     
                     st.download_button(
                         label="📥 Download HTML Dashboard",
@@ -1526,7 +1625,8 @@ with col2:
                         use_container_width=True
                     )
                     
-                    st.success(f"✅ HTML generated successfully! ({len(html_content):,} bytes)")
+                    # Show compression stats if available
+                    st.caption(f"💾 File size: {len(html_content):,} bytes ({size_mb:.2f} MB)")
                 else:
                     st.error("❌ HTML generation failed - output too small")
         else:

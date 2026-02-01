@@ -1,9 +1,410 @@
-/// ============================================
+// ============================================
 // EMBEDDED DATA
 // ============================================
-const fullData = {{ full_data_json | safe }};
-const mapData = {{ map_data_json | safe }};
-const coordsCache = {{ coords_cache_json | safe }};
+
+const DEBUG = false;
+
+// ============================================
+// GZIP + BASE64 DECODER
+// ============================================
+function decodeBase64ToUint8Array(b64) {
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+function loadJsonFromGzipBase64(b64gz) {
+  if (!b64gz || b64gz === "undefined") return null;
+  const bytes = decodeBase64ToUint8Array(b64gz);
+  const jsonStr = pako.ungzip(bytes, { to: "string" });
+  if (!jsonStr || jsonStr === "undefined") return null;
+  return JSON.parse(jsonStr);
+}
+
+// ============================================
+// COUNTRY NORMALIZATION (ISO2-based)
+// ============================================
+
+// Mapa bidireccional: nombre -> ISO2
+const COUNTRY_ISO_MAP = {
+  'spain': 'es', 'españa': 'es',
+  'portugal': 'pt',
+  'united kingdom': 'gb', 'uk': 'gb', 'great britain': 'gb',
+  'latvia': 'lv',
+  'lithuania': 'lt',
+  'estonia': 'ee',
+  'iceland': 'is',
+  'norway': 'no',
+  'finland': 'fi',
+  'sweden': 'se',
+  'denmark': 'dk',
+  'germany': 'de', 'deutschland': 'de',
+  'france': 'fr',
+  'italy': 'it', 'italia': 'it',
+  'netherlands': 'nl', 'holland': 'nl',
+  'belgium': 'be',
+  'austria': 'at',
+  'switzerland': 'ch',
+  'poland': 'pl',
+  'czech republic': 'cz', 'czechia': 'cz',
+  'ireland': 'ie',
+  'greece': 'gr',
+  'croatia': 'hr',
+  'slovenia': 'si',
+  'slovakia': 'sk',
+  'hungary': 'hu',
+  'romania': 'ro',
+  'bulgaria': 'bg'
+};
+
+// Normaliza country a ISO2 para KEYS (estable)
+function normCountryForKey(v) {
+  const s = String(v ?? '').trim().toLowerCase();
+  if (!s) return '';
+  
+  // Si ya es ISO2 válido (2 letras), retornar
+  if (s.length === 2 && /^[a-z]{2}$/.test(s)) return s;
+  
+  // Buscar en mapa
+  return COUNTRY_ISO_MAP[s] || s;
+}
+
+// Formatea country para display (con banderas)
+function formatCountryName(v) {
+  const s = String(v ?? '').trim();
+  if (!s) return '';
+  
+  // Si es ISO2, usar flags
+  const iso = normCountryForKey(v);
+  const flags = {
+    es: '🇪🇸 Spain',
+    pt: '🇵🇹 Portugal',
+    gb: '🇬🇧 United Kingdom',
+    lv: '🇱🇻 Latvia',
+    lt: '🇱🇹 Lithuania',
+    ee: '🇪🇪 Estonia',
+    is: '🇮🇸 Iceland',
+    no: '🇳🇴 Norway',
+    fi: '🇫🇮 Finland',
+    se: '🇸🇪 Sweden',
+    dk: '🇩🇰 Denmark',
+    de: '🇩🇪 Germany',
+    fr: '🇫🇷 France',
+    it: '🇮🇹 Italy',
+    nl: '🇳🇱 Netherlands',
+    be: '🇧🇪 Belgium',
+    at: '🇦🇹 Austria',
+    ch: '🇨🇭 Switzerland',
+    pl: '🇵🇱 Poland',
+    cz: '🇨🇿 Czech Republic',
+    ie: '🇮🇪 Ireland',
+    gr: '🇬🇷 Greece',
+    hr: '🇭🇷 Croatia',
+    si: '🇸🇮 Slovenia',
+    sk: '🇸🇰 Slovakia',
+    hu: '🇭🇺 Hungary',
+    ro: '🇷🇴 Romania',
+    bg: '🇧🇬 Bulgaria'
+  };
+  
+  return flags[iso] || s; // fallback: texto original
+}
+
+function normPostal(v) {
+  return String(v ?? '').trim().toUpperCase();
+}
+
+function makeLocationKey(postal, country) {
+  // Usa la versión KEY-safe del country (ISO2)
+  return `${normPostal(postal)}__${normCountryForKey(country)}`;
+}
+
+// ============================================
+// COLUMNAR HELPERS (multi-alias support)
+// ============================================
+
+// Busca la primera columna que existe entre aliases
+function pickCol(cols, ...aliases) {
+  if (!cols) return null;
+  for (const alias of aliases) {
+    if (cols[alias] !== undefined) return cols[alias];
+  }
+  return null;
+}
+
+// dict lookup seguro
+function dictGet(dictArr, id) {
+  if (id === null || id === undefined) return "";
+  const n = dictArr?.length ?? 0;
+  if (id < 0 || id >= n) return "";
+  return dictArr[id] ?? "";
+}
+
+// Parse fecha robusto (soporta múltiples formatos)
+function parseDate(v) {
+  if (!v) return null;
+  
+  // Si ya es Date
+  if (v instanceof Date) return isNaN(v) ? null : v;
+  
+  const s = String(v).trim();
+  if (!s) return null;
+  
+  // Timestamp numérico
+  if (/^\d+$/.test(s)) {
+    const ts = parseInt(s, 10);
+    const d = new Date(ts);
+    return isNaN(d) ? null : d;
+  }
+  
+  // ISO / YYYY-MM-DD / YYYY/MM/DD
+  if (/^\d{4}[-/]\d{1,2}[-/]\d{1,2}/.test(s)) {
+    const d = new Date(s);
+    return isNaN(d) ? null : d;
+  }
+  
+  // DD/MM/YYYY o DD-MM-YYYY
+  const dmy = s.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})/);
+  if (dmy) {
+    const d = new Date(`${dmy[3]}-${dmy[2]}-${dmy[1]}`);
+    return isNaN(d) ? null : d;
+  }
+  
+  // Fallback: new Date()
+  const d = new Date(s);
+  return isNaN(d) ? null : d;
+}
+
+// ============================================
+// COLUMNAR -> LEGACY (inflate)
+// ============================================
+
+function inflateColumnarDataset(ds) {
+  // Si ya es legacy (array de rows), devuelve tal cual
+  if (Array.isArray(ds)) return ds;
+
+  // Si no tiene estructura columnar, devuelve []
+  if (!ds || !ds.dict || !ds.cols || !ds.meta) return [];
+
+  const n = Number(ds.meta.n || 0);
+  const dicts = ds.dict;
+  const cols = ds.cols;
+
+  // Detectar columnas disponibles (alias-aware)
+  const colDate = pickCol(cols, 'date', 'Date', 'invoiceDate', 'invoice_date');
+  const colCountry = pickCol(cols, 'country', 'countryId', 'country_id', 'ctry', 'ctryId');
+  const colRep = pickCol(cols, 'rep', 'repId', 'rep_id', 'salesRep');
+  const colType = pickCol(cols, 'type', 'typeId', 'type_id', 'productType');
+  const colSet = pickCol(cols, 'set', 'setId', 'set_id');
+  const colClient = pickCol(cols, 'client', 'clientId', 'client_id', 'customer', 'customerId');
+  const colService = pickCol(cols, 'service', 'serviceId', 'service_id', 'item', 'itemId');
+  const colAccountUrl = pickCol(cols, 'accountUrl', 'accountUrlId', 'account_url', 'sfdc_link');
+  const colCity = pickCol(cols, 'city', 'cityId', 'city_id');
+  const colPostal = pickCol(cols, 'postal', 'postalId', 'postal_id', 'postalCode', 'postal_code', 'zip');
+  const colSegment = pickCol(cols, 'segment', 'segmentId', 'segment_id', 'endUserSegment');
+  const colMarketOrg = pickCol(cols, 'marketOrg', 'marketOrgId', 'market_org', 'marketOrgName');
+  const colEur = pickCol(cols, 'eur', 'EUR', 'euro', 'amount', 'value');
+
+  const rows = new Array(n);
+  let validDates = 0;
+
+  for (let i = 0; i < n; i++) {
+    // Parse fecha UNA VEZ y cachear año/mes
+    const dateStr = colDate?.[i] ?? "";
+    const dateObj = parseDate(dateStr);
+    const year = dateObj ? dateObj.getFullYear() : null;
+    const month = dateObj ? (dateObj.getMonth() + 1) : null;
+    
+    if (dateObj) validDates++;
+
+    // Country: nombre original para display
+    const countryName = dictGet(dicts.country, colCountry?.[i]);
+    
+    // 🔥 FIX #3: Pre-cache strings lowercase para búsquedas
+    const service = dictGet(dicts.service, colService?.[i]);
+    const client = dictGet(dicts.client, colClient?.[i]);
+
+    rows[i] = {
+      Date: dateStr,
+      __dateObj: dateObj,  // cache para sorts
+      __year: year,        // cache para filtros (evita new Date en loop)
+      __month: month,
+
+      // Display values (nombres originales)
+      Country: countryName,
+      CountryKey: normCountryForKey(countryName), // Para makeLocationKey
+      
+      SalesRepresentative: dictGet(dicts.rep, colRep?.[i]),
+      ProductType: dictGet(dicts.type, colType?.[i]),
+      Set: dictGet(dicts.set, colSet?.[i]),
+      "Business Partner Name": client,
+      ItemIdAndName: service,
+      AccountURL: dictGet(dicts.accountUrl, colAccountUrl?.[i]),
+      City: dictGet(dicts.city, colCity?.[i]),
+      PostalCode: normPostal(dictGet(dicts.postal, colPostal?.[i])),
+      "End User Segment": dictGet(dicts.segment, colSegment?.[i]),
+      "Market Organization Name": dictGet(dicts.marketOrg, colMarketOrg?.[i]),
+
+      // 🔥 FIX #3: Cache lowercase para búsquedas (evita toLowerCase en cada filtro)
+      __serviceLower: String(service || '').toLowerCase(),
+      __clientLower: String(client || '').toLowerCase(),
+
+      // num
+      EUR: Number(colEur?.[i] ?? 0)
+    };
+  }
+
+  if (DEBUG) {
+    console.log('🔍 inflateColumnarDataset:');
+    console.log(`  - Total rows: ${n}`);
+    console.log(`  - Valid dates: ${validDates} (${((validDates/n)*100).toFixed(1)}%)`);
+    console.log(`  - Sample row:`, rows[0]);
+    console.log(`  - Columns detected:`, {
+      date: !!colDate,
+      country: !!colCountry,
+      postal: !!colPostal,
+      eur: !!colEur
+    });
+  }
+
+  return rows;
+}
+
+function inflateMapPointsToLegacyMapData(mp) {
+  if (!mp || !mp.dict || !mp.cols) return [];
+
+  const n = Number(mp.meta?.n ?? (mp.cols.lat?.length || 0));
+  const dictLoc = mp.dict.locKey || [];
+  const dictCity = mp.dict.resolvedCity || [];
+  const cols = mp.cols;
+
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const lat = Number(cols.lat?.[i]);
+    const lon = Number(cols.lon?.[i]);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+
+    const locKey = dictGet(dictLoc, cols.locId?.[i]); // "POSTAL__country"
+    const parts = String(locKey || "__").split("__");
+    const postal = normPostal(parts[0] || "");
+    const countryFromKey = parts[1] || "";
+
+    out.push({
+      PostalCode: postal,
+      Country: countryFromKey, // nombre original del key
+      CountryKey: normCountryForKey(countryFromKey), // Para makeLocationKey
+      City: "",
+      ResolvedCity: dictGet(dictCity, cols.cityId?.[i]),
+      Latitude: lat,
+      Longitude: lon,
+      GeoValidated: (Number(cols.validated?.[i] ?? 1) === 1)
+    });
+  }
+
+  if (DEBUG) {
+    console.log('🔍 inflateMapPointsToLegacyMapData:');
+    console.log(`  - Total points: ${out.length}`);
+    if (out.length > 0) {
+      console.log(`  - Sample point:`, out[0]);
+    }
+  }
+
+  return out;
+}
+
+// ============================================
+// MAPDATA HELPERS (evita reasignación de const)
+// ============================================
+
+function getMapDataArray() {
+  if (typeof mapData !== "undefined" && Array.isArray(mapData)) return mapData;
+  if (!Array.isArray(window.mapData)) window.mapData = [];
+  return window.mapData;
+}
+
+function setMapDataArray(newArr) {
+  const target = getMapDataArray();
+  target.length = 0;
+  if (Array.isArray(newArr) && newArr.length) target.push(...newArr);
+}
+
+getMapDataArray();
+
+// ============================================
+// 🔥 GLOBAL INDEX (FIX #1 - CRÍTICO para performance)
+// ============================================
+let ALL_ROWS_BY_KEY = null;
+
+function buildGlobalIndex() {
+  if (!fullData || fullData.length === 0) return;
+  
+  console.time('🔨 Building global index');
+  const idx = {};
+  for (const row of fullData) {
+    const key = makeLocationKey(row.PostalCode, row.CountryKey);
+    (idx[key] ||= []).push(row);
+  }
+  ALL_ROWS_BY_KEY = idx;
+  console.timeEnd('🔨 Building global index');
+  
+  if (DEBUG) {
+    console.log(`✅ Global index built: ${Object.keys(idx).length} unique locations`);
+  }
+}
+
+// ============================================
+// LOAD DATA
+// ============================================
+
+let fullData = Array.isArray(window.fullData) ? window.fullData : [];
+let mapPoints = null;
+
+if (USE_COLUMNAR_MODE && FULL_DATA_B64_GZ && FULL_DATA_B64_GZ !== "undefined") {
+  const datasetObj = loadJsonFromGzipBase64(FULL_DATA_B64_GZ);
+  fullData = inflateColumnarDataset(datasetObj);
+
+  // 🔥 FIX #1: Construir índice global DESPUÉS de inflar fullData
+  buildGlobalIndex();
+
+  if (MAP_POINTS_B64_GZ && MAP_POINTS_B64_GZ !== "undefined") {
+    mapPoints = loadJsonFromGzipBase64(MAP_POINTS_B64_GZ);
+    const legacyMap = inflateMapPointsToLegacyMapData(mapPoints);
+    setMapDataArray(legacyMap);
+  }
+
+  if (DEBUG) {
+    console.log("✅ Columnar mode loaded");
+    console.log("📊 FULL rows:", fullData.length);
+    console.log("🗺️ MAP points:", getMapDataArray().length);
+    
+    if (fullData.length > 0) {
+      console.log("📋 Sample fullData row:", fullData[0]);
+      
+      // Verificar countries
+      const uniqueCountries = new Set(fullData.slice(0, 500).map(r => r.Country).filter(Boolean));
+      const uniqueCountryKeys = new Set(fullData.slice(0, 500).map(r => r.CountryKey).filter(Boolean));
+      console.log("🌍 Unique countries (display):", Array.from(uniqueCountries).sort());
+      console.log("🔑 Unique countryKeys (for matching):", Array.from(uniqueCountryKeys).sort());
+      
+      // Verificar location keys
+      const sampleKeys = fullData.slice(0, 5).map(r => 
+        makeLocationKey(r.PostalCode, r.CountryKey)
+      );
+      console.log("🔐 Sample location keys:", sampleKeys);
+    }
+    
+    if (getMapDataArray().length > 0) {
+      console.log("🗺️ Sample mapData point:", getMapDataArray()[0]);
+      const sampleMapKeys = getMapDataArray().slice(0, 5).map(p => 
+        makeLocationKey(p.PostalCode, p.CountryKey)
+      );
+      console.log("🔐 Sample map keys:", sampleMapKeys);
+    }
+  }
+} else {
+  fullData = Array.isArray(window.fullData) ? window.fullData : [];
+}
 
 const productTypes = {{ product_types_list | tojson }};
 const availableYears = {{ available_years | tojson }};
@@ -35,6 +436,28 @@ const HAS_CITY_DATA = Array.isArray(fullData) && fullData.some(row => {
 });
 
 // ============================================
+// MULTI-YEAR TRENDS - CONSTANTS
+// ============================================
+const YEAR_COLORS = {
+  '2021': '#1f77b4',
+  '2022': '#ff7f0e', 
+  '2023': '#2ca02c',
+  '2024': '#d62728',
+  '2025': '#9467bd',
+  '2026': '#8c564b',
+  '2027': '#e377c2',
+  '2028': '#7f7f7f',
+  '2029': '#bcbd22',
+  '2030': '#17becf'
+};
+
+const MONTH_ABBR = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const TOP_N_TRENDS = 25; // Mostrar top 25 elementos
+
+
+// ============================================
 // STATE
 // ============================================
 let filteredData = Array.isArray(fullData) ? [...fullData] : [];
@@ -43,6 +466,9 @@ let activeQuickFilters = [];
 let quickMode = 'AND';
 let sortState = { column: 0, ascending: false };
 const STORAGE_KEY = 'service_dashboard_filters_v1';
+
+// 🔥 FIX #2: Límite de renderizado de tabla
+const MAX_TABLE_ROWS = 2000;
 
 // ============================================
 // HELPERS
@@ -60,55 +486,6 @@ function escapeHtml(str) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
-}
-
-function normCountry(v) {
-  // clave estable para comparar: nombre en minúsculas sin espacios extra
-  return String(v ?? '').trim().toLowerCase();
-}
-
-function countryToISO2(v) {
-  // solo para mostrar banderitas (no afecta al filtro)
-  const s = normCountry(v);
-  const map = {
-    'spain': 'es',
-    'portugal': 'pt',
-    'united kingdom': 'gb',
-    'latvia': 'lv',
-    'lithuania': 'lt',
-    'estonia': 'ee',
-    'iceland': 'is',
-    'norway': 'no',
-    'finland': 'fi',
-    // añade aquí si quieres más
-  };
-  return map[s] || s; // si no está, devuelve el nombre
-}
-
-function formatCountryName(v) {
-  const iso = countryToISO2(v);
-  const flags = {
-    es: '🇪🇸 Spain',
-    pt: '🇵🇹 Portugal',
-    gb: '🇬🇧 United Kingdom',
-    lv: '🇱🇻 Latvia',
-    lt: '🇱🇹 Lithuania',
-    ee: '🇪🇪 Estonia',
-    is: '🇮🇸 Iceland',
-    no: '🇳🇴 Norway',
-    fi: '🇫🇮 Finland'
-  };
-  return flags[iso] || String(v); // fallback: texto tal cual
-}
-
-function normPostal(v) {
-  // Normaliza postal para key: trim + upper
-  // (no forzamos regex, porque fuera ES/PT hay formatos distintos)
-  return String(v ?? '').trim().toUpperCase();
-}
-
-function makeLocationKey(postal, country) {
-  return `${normPostal(postal)}__${normCountry(country)}`;
 }
 
 function getCheckedValues(selector, mapFn) {
@@ -131,7 +508,6 @@ function debounce(fn, ms) {
 function getAccountLinkFromRow(row) {
   const name = String(row['Business Partner Name'] ?? '').trim();
 
-  // Prioridad: AccountURL (si lo generas en Python) -> SFDC Link (si viene en DF)
   const url = (row?.AccountURL && String(row.AccountURL).trim())
     ? String(row.AccountURL).trim()
     : (row?.['SFDC Link'] && String(row['SFDC Link']).trim())
@@ -142,6 +518,200 @@ function getAccountLinkFromRow(row) {
     return `<a href="${url}" target="_blank" style="color:#2E86C1; text-decoration:none;">${escapeHtml(name)}</a>`;
   }
   return escapeHtml(name);
+}
+
+// ============================================
+// 🔥 CASCADING FILTERS (Bidirectional Country ↔ MarketOrg)
+// ============================================
+
+/**
+ * Filtra fullData EXCLUYENDO el grupo que estamos calculando (leave-one-out).
+ * @param {string} excludeGroup - 'country' o 'marketOrg' para excluir de filtrado
+ */
+function computeCascadeBase(excludeGroup = null) {
+  const selectedYears = getCheckedValues('.year-filter', cb => parseInt(cb.value, 10));
+  let selectedMonths = getCheckedValues('.month-filter', cb => parseInt(cb.value, 10));
+  
+  // 🔥 FIX: Leave-one-out - NO filtrar por el grupo que estamos calculando
+  const selectedCountries = (excludeGroup === 'country') 
+    ? [] 
+    : getCheckedValues('.country-filter');
+  
+  {% if has_market_org %}
+  const selectedMarketOrgs = (excludeGroup === 'marketOrg') 
+    ? [] 
+    : getCheckedValues('.marketorg-filter');
+  {% endif %}
+
+  if (selectedMonths.length === 0) selectedMonths = [...availableMonths];
+
+  return fullData.filter(row => {
+    // Filtrar por Country solo si NO estamos calculando Country
+    if (excludeGroup !== 'country' && selectedCountries.length && !selectedCountries.includes(row.Country)) {
+      return false;
+    }
+    
+    const y = row.__year;
+    const m = row.__month;
+    if (y === null || m === null) return false;
+    if (selectedYears.length && !selectedYears.includes(y)) return false;
+    if (selectedMonths.length && !selectedMonths.includes(m)) return false;
+
+    {% if has_market_org %}
+    // Filtrar por MarketOrg solo si NO estamos calculando MarketOrg
+    if (excludeGroup !== 'marketOrg' && selectedMarketOrgs.length && !selectedMarketOrgs.includes(row['Market Organization Name'])) {
+      return false;
+    }
+    {% endif %}
+
+    return true;
+  });
+}
+
+/**
+ * Calcula qué valores están disponibles en baseRows para cada filtro.
+ */
+function computeAvailableValues(baseRows) {
+  const available = {
+    countries: new Set(),
+    reps: new Set(),
+    types: new Set(),
+    sets: new Set()
+    {% if has_market_org %}, marketOrgs: new Set(){% endif %}
+  };
+
+  for (const row of baseRows) {
+    if (row.Country) available.countries.add(row.Country);
+    if (row.SalesRepresentative) available.reps.add(row.SalesRepresentative);
+    if (row.ProductType) available.types.add(row.ProductType);
+    if (row.Set) available.sets.add(row.Set);
+    {% if has_market_org %}
+    if (row['Market Organization Name']) available.marketOrgs.add(row['Market Organization Name']);
+    {% endif %}
+  }
+
+  return available;
+}
+
+/**
+ * 🔥 FIX: Aplica disable + hide SELECTIVAMENTE según el grupo.
+ * @param {object} available - Sets de valores disponibles
+ * @param {string} lastChangedGroup - 'country' | 'marketOrg' | null
+ */
+function applyAvailability(available, lastChangedGroup = null) {
+  // 🔥 Country: disable + hide SOLO si NO fue el último cambiado
+  const shouldHideCountry = (lastChangedGroup !== 'country');
+  document.querySelectorAll('.country-filter').forEach(cb => {
+    const isAvailable = available.countries.has(cb.value);
+    cb.disabled = !isAvailable;
+    // Solo hide si no es el grupo que estamos editando
+    cb.parentElement.style.display = (shouldHideCountry && !isAvailable) ? 'none' : '';
+  });
+
+  // 🔥 Sales Rep: SIEMPRE disable + hide (no es editable en cascada)
+  document.querySelectorAll('.rep-filter').forEach(cb => {
+    const isAvailable = available.reps.has(cb.value);
+    cb.disabled = !isAvailable;
+    cb.parentElement.style.display = isAvailable ? '' : 'none';
+  });
+
+  // Type: disable + hide
+  document.querySelectorAll('.type-filter').forEach(cb => {
+    const isAvailable = available.types.has(cb.value);
+    cb.disabled = !isAvailable;
+    cb.parentElement.style.display = isAvailable ? '' : 'none';
+  });
+
+  // Set: disable + hide
+  document.querySelectorAll('.set-filter').forEach(cb => {
+    const isAvailable = available.sets.has(cb.value);
+    cb.disabled = !isAvailable;
+    cb.parentElement.style.display = isAvailable ? '' : 'none';
+  });
+
+  {% if has_market_org %}
+  // 🔥 Market Organization: SOLO disable (NUNCA hide) + NO hide si es el último cambiado
+  const shouldDisableMarketOrg = (lastChangedGroup !== 'marketOrg');
+  document.querySelectorAll('.marketorg-filter').forEach(cb => {
+    const isAvailable = available.marketOrgs.has(cb.value);
+    // Solo disable si no es el grupo que estamos editando
+    cb.disabled = (shouldDisableMarketOrg && !isAvailable);
+    // NUNCA hide para Market Org
+    cb.parentElement.style.display = '';
+  });
+  {% endif %}
+}
+
+/**
+ * 🔥 FIX: Refresca las opciones disponibles con leave-one-out.
+ * @param {string} lastChangedGroup - 'country' | 'marketOrg' | null
+ */
+function refreshCascadeFilters(lastChangedGroup = null) {
+  if (DEBUG) console.time('🔄 refreshCascadeFilters');
+  
+  // 🔥 Calcular availability para Country (excluyendo Country del filtro)
+  const baseRowsForCountry = computeCascadeBase('country');
+  const availableForCountry = computeAvailableValues(baseRowsForCountry);
+  
+  {% if has_market_org %}
+  // 🔥 Calcular availability para MarketOrg (excluyendo MarketOrg del filtro)
+  const baseRowsForMarketOrg = computeCascadeBase('marketOrg');
+  const availableForMarketOrg = computeAvailableValues(baseRowsForMarketOrg);
+  {% endif %}
+  
+  // 🔥 Calcular availability para el resto (Rep/Type/Set) con todos los filtros
+  const baseRowsForRest = computeCascadeBase(null);
+  const availableForRest = computeAvailableValues(baseRowsForRest);
+  
+  // 🔥 Merge: combinamos los sets calculados
+  const available = {
+    countries: availableForCountry.countries,
+    reps: availableForRest.reps,
+    types: availableForRest.types,
+    sets: availableForRest.sets
+    {% if has_market_org %}, marketOrgs: availableForMarketOrg.marketOrgs{% endif %}
+  };
+  
+  // 🔥 Aplicar con hide selectivo
+  applyAvailability(available, lastChangedGroup);
+  
+  if (DEBUG) {
+    console.log('🔄 Cascade updated:', {
+      lastChangedGroup,
+      availableCountries: available.countries.size,
+      availableReps: available.reps.size,
+      {% if has_market_org %}availableMarketOrgs: available.marketOrgs.size{% endif %}
+    });
+    console.timeEnd('🔄 refreshCascadeFilters');
+  }
+}
+
+// Debounced version para otros filtros
+const refreshCascadeDebounced = debounce(() => refreshCascadeFilters(null), 300);
+
+/**
+ * Buscador "contains" dentro de cada filtro (inputs .filter-search).
+ */
+function wireFilterSearch() {
+  document.querySelectorAll('.filter-search').forEach(input => {
+    const targetId = input.getAttribute('data-target');
+    if (!targetId) return;
+
+    const container = $(targetId);
+    if (!container) return;
+
+    input.addEventListener('input', function() {
+      const query = safeLower(this.value);
+      
+      container.querySelectorAll('label').forEach(label => {
+        const text = safeLower(label.textContent);
+        const matches = !query || text.includes(query);
+        label.style.display = matches ? '' : 'none';
+      });
+    });
+  });
+
+  if (DEBUG) console.log('✅ Filter search wired for .filter-search inputs');
 }
 
 // ============================================
@@ -163,6 +733,16 @@ function setGroupChecked(group, checked) {
   if (!selector) return;
 
   setAll(selector, checked);
+  
+  // 🔥 FIX: Pasar el grupo que cambió
+  if (group === 'country') {
+    refreshCascadeFilters('country');
+  } {% if has_market_org %}else if (group === 'marketOrg') {
+    refreshCascadeFilters('marketOrg');
+  }{% endif %} else {
+    refreshCascadeFilters(null);
+  }
+  
   saveFilterState();
   applyFilters();
 }
@@ -195,12 +775,11 @@ function setQuickMode(mode) {
 function initializeFilters() {
   const countryBox = $('countryFilters');
   if (countryBox) {
-    // value = country normalizado (nombre lower)
     availableCountries.forEach(c => {
       const l = document.createElement('label');
       const cb = document.createElement('input');
       cb.type = 'checkbox';
-      cb.value = normCountry(c);
+      cb.value = c; // nombre original, no ISO2
       cb.checked = true;
       cb.className = 'country-filter';
       l.appendChild(cb);
@@ -231,7 +810,7 @@ function initializeFilters() {
       const cb = document.createElement('input');
       cb.type = 'checkbox';
       cb.value = m;
-      cb.checked = false; // none => treat as all
+      cb.checked = false;
       cb.className = 'month-filter';
       l.appendChild(cb);
       l.append(' ' + (monthNames[m - 1] || String(m)));
@@ -320,19 +899,338 @@ function initializeFilters() {
 
   const applyDebounced = debounce(applyFilters, 200);
 
-  const extraSelectors =
-    '.country-filter, .year-filter, .month-filter, .rep-filter, .type-filter, .set-filter' +
-    {% if has_segment %} ', .segment-filter' {% else %} '' {% endif %} +
-    {% if has_market_org %} ', .marketorg-filter' {% else %} '' {% endif %};
+  // ============================================
+  // 🔥 CHANGE LISTENERS CON CASCADING BIDIRECCIONAL + lastChangedGroup
+  // ============================================
+  
+  // 🔥 Country: pasar 'country' como lastChangedGroup
+  document.querySelectorAll('.country-filter').forEach(cb => {
+    cb.addEventListener('change', function() {
+      refreshCascadeFilters('country');
+      applyDebounced();
+    });
+  });
 
-  document.querySelectorAll(extraSelectors).forEach(cb => cb.addEventListener('change', applyDebounced));
+  {% if has_market_org %}
+  // 🔥 MarketOrg: pasar 'marketOrg' como lastChangedGroup
+  document.querySelectorAll('.marketorg-filter').forEach(cb => {
+    cb.addEventListener('change', function() {
+      refreshCascadeFilters('marketOrg');
+      applyDebounced();
+    });
+  });
+  {% endif %}
+
+  // Resto de filtros: sin lastChangedGroup (null)
+  const otherFilters = '.year-filter, .month-filter, .rep-filter, .type-filter, .set-filter' 
+    {% if has_segment %}+ ', .segment-filter'{% endif %};
+  
+  // 🔥 FIX #4: Para datasets muy grandes (>20k rows), deshabilitar auto-apply
+  if (fullData.length > 20000) {
+    console.warn(`⚠️ Dataset grande (${fullData.length} rows) - auto-apply deshabilitado. Usa el botón "Apply Filters".`);
+    // No añadir listeners automáticos, solo botón manual
+  } else {
+    document.querySelectorAll(otherFilters).forEach(cb => {
+      cb.addEventListener('change', function() {
+        refreshCascadeDebounced(); // sin lastChangedGroup
+        applyDebounced();
+      });
+    });
+  }
+
+  // ============================================
+  // 🔥 INICIALIZAR BUSCADORES Y CASCADE
+  // ============================================
+  wireFilterSearch();
+  refreshCascadeFilters(null); // inicial sin lastChangedGroup
 }
+
+// ============================================
+// MULTI-YEAR TRENDS - DATA AGGREGATION
+// ============================================
+
+/**
+ * Agrupa datos por año y categoría, retorna top N por último año
+ * @param {Array} data - Dataset filtrado
+ * @param {string} categoryField - Campo a agrupar ('SalesRepresentative', 'ProductType', 'Set')
+ * @param {number} topN - Número de elementos a retornar
+ * @returns {Object} { categories: [...], years: [...], matrix: {...} }
+ */
+function aggregateByYearAndCategory(data, categoryField, topN = TOP_N_TRENDS) {
+  if (!data || !data.length) return { categories: [], years: [], matrix: {} };
+
+  const yearSet = new Set();
+  const categoryTotals = {}; // { category: { year: eur } }
+
+  // 1. Agrupar por categoría y año
+  data.forEach(row => {
+    const year = row.__year;
+    const category = String(row[categoryField] || '(Unknown)').trim();
+    
+    if (year === null) return;
+    
+    yearSet.add(year);
+    
+    if (!categoryTotals[category]) categoryTotals[category] = {};
+    categoryTotals[category][year] = (categoryTotals[category][year] || 0) + (row.EUR || 0);
+  });
+
+  const years = Array.from(yearSet).sort((a, b) => a - b);
+  if (!years.length) return { categories: [], years: [], matrix: {} };
+
+  const lastYear = years[years.length - 1];
+
+  // 2. Ordenar categorías por total del último año
+  const categoriesWithTotal = Object.entries(categoryTotals).map(([cat, yearData]) => ({
+    category: cat,
+    lastYearTotal: yearData[lastYear] || 0
+  }));
+
+  categoriesWithTotal.sort((a, b) => b.lastYearTotal - a.lastYearTotal);
+
+  // 3. Tomar top N
+  const topCategories = categoriesWithTotal.slice(0, topN).map(c => c.category);
+
+  // 4. Construir matriz de datos
+  const matrix = {};
+  topCategories.forEach(cat => {
+    matrix[cat] = {};
+    years.forEach(y => {
+      matrix[cat][y] = categoryTotals[cat][y] || 0;
+    });
+  });
+
+  return { categories: topCategories, years, matrix };
+}
+
+/**
+ * Agrupa datos por año y mes
+ * @param {Array} data - Dataset filtrado
+ * @returns {Object} { years: [...], monthlyData: { year: { month: eur } } }
+ */
+function aggregateByYearAndMonth(data) {
+  if (!data || !data.length) return { years: [], monthlyData: {} };
+
+  const yearSet = new Set();
+  const monthlyData = {}; // { year: { month: eur } }
+
+  data.forEach(row => {
+    const year = row.__year;
+    const month = row.__month;
+    
+    if (year === null || month === null) return;
+    
+    yearSet.add(year);
+    
+    if (!monthlyData[year]) monthlyData[year] = {};
+    monthlyData[year][month] = (monthlyData[year][month] || 0) + (row.EUR || 0);
+  });
+
+  const years = Array.from(yearSet).sort((a, b) => a - b);
+
+  return { years, monthlyData };
+}
+
+// ============================================
+// MULTI-YEAR TRENDS - CHART RENDERING
+// ============================================
+
+/**
+ * Renderiza gráfico de barras agrupadas por año
+ */
+function renderGroupedBarChart(data, categoryField, divId, title) {
+  const { categories, years, matrix } = aggregateByYearAndCategory(data, categoryField);
+
+  if (!categories.length || !years.length) {
+    $(divId).innerHTML = '<p style="text-align:center; padding:50px; color:#999;">No data available for this view</p>';
+    return;
+  }
+
+  const traces = years.map(year => ({
+    x: categories,
+    y: categories.map(cat => matrix[cat][year] || 0),
+    name: String(year),
+    type: 'bar',
+    marker: { 
+      color: YEAR_COLORS[String(year)] || '#999',
+      line: {
+        color: 'rgba(0,0,0,0.1)',
+        width: 1
+      }
+    },
+    text: categories.map(cat => {
+      const val = matrix[cat][year] || 0;
+      return val > 0 ? `€${val.toLocaleString('es-ES', {maximumFractionDigits: 0})}` : '';
+    }),
+    textposition: 'none',
+    hovertemplate: '<b>%{x}</b><br>' +
+                   String(year) + ': €%{y:,.0f}<br>' +
+                   '<extra></extra>'
+  }));
+
+  const layout = {
+    title: {
+      text: title,
+      font: { size: 18, weight: 'bold' }
+    },
+    autosize: true,
+    barmode: 'group',
+    bargap: 0.15,
+    bargroupgap: 0.1,
+    xaxis: { 
+      title: categoryField,
+      tickangle: -45,
+      tickfont: { size: 11 },
+      automargin: true
+    },
+    yaxis: { 
+      title: 'EUR',
+      tickformat: ',.0f',
+      gridcolor: 'rgba(0,0,0,0.1)',
+      zeroline: true
+    },
+    height: 500,
+    margin: { b: 150, l: 80, r: 40, t: 80 },
+    plot_bgcolor: 'rgba(250,250,250,0.5)',
+    paper_bgcolor: 'white',
+    showlegend: true,
+    legend: {
+      orientation: 'h',
+      yanchor: 'bottom',
+      y: 1.02,
+      xanchor: 'right',
+      x: 1,
+      bgcolor: 'rgba(255,255,255,0.8)',
+      bordercolor: '#ddd',
+      borderwidth: 1
+    },
+    hovermode: 'closest'
+  };
+
+  const config = {
+    responsive: true,
+    displayModeBar: true,
+    displaylogo: false,
+    modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d']
+  };
+
+  Plotly.newPlot(divId, traces, layout, config);
+}
+
+
+/**
+ * Renderiza gráfico de evolución mensual (BARRAS AGRUPADAS)
+ */
+function renderMonthEvolutionChart(data, divId) {
+  const { years, monthlyData } = aggregateByYearAndMonth(data);
+
+  if (!years.length) {
+    $(divId).innerHTML = '<p style="text-align:center; padding:50px; color:#999;">No data available for this view</p>';
+    return;
+  }
+
+  const traces = years.map(year => {
+    const yValues = [];
+    for (let m = 1; m <= 12; m++) {
+      yValues.push(monthlyData[year][m] || 0);
+    }
+
+    return {
+      x: MONTH_ABBR,
+      y: yValues,
+      name: String(year),
+      type: 'bar',  // ← BARRAS (no líneas)
+      marker: { 
+        color: YEAR_COLORS[String(year)] || '#999',
+        line: {
+          color: 'rgba(0,0,0,0.1)',
+          width: 1
+        }
+      },
+      hovertemplate: '<b>%{x}</b><br>' +
+                     String(year) + ': €%{y:,.0f}<br>' +
+                     '<extra></extra>'
+    };
+  });
+
+  const layout = {
+    title: {
+      text: 'Monthly Evolution by Year',
+      font: { size: 18, weight: 'bold' }
+    },
+    autosize: true,
+    barmode: 'group',  // ← Barras agrupadas
+    bargap: 0.15,
+    bargroupgap: 0.1,
+    xaxis: { 
+      title: '',
+      tickvals: MONTH_ABBR,
+      tickfont: { size: 12 }
+    },
+    yaxis: { 
+      title: 'EUR',
+      tickformat: ',.0f',
+      gridcolor: 'rgba(0,0,0,0.1)',
+      zeroline: true
+    },
+    height: 550,
+    margin: { b: 60, l: 80, r: 40, t: 80 },
+    plot_bgcolor: 'rgba(250,250,250,0.5)',
+    paper_bgcolor: 'white',
+    hovermode: 'closest',  // ← Tooltip por barra individual
+    showlegend: true,
+    legend: {
+      orientation: 'h',
+      yanchor: 'bottom',
+      y: 1.02,
+      xanchor: 'right',
+      x: 1,
+      bgcolor: 'rgba(255,255,255,0.8)',
+      bordercolor: '#ddd',
+      borderwidth: 1
+    }
+  };
+
+  const config = {
+    responsive: true,
+    displayModeBar: true,
+    displaylogo: false,
+    modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d']
+  };
+
+  Plotly.newPlot(divId, traces, layout, config);
+}
+
+/**
+ * Actualiza todos los gráficos de tendencias
+ */
+function updateTrendsCharts() {
+  if (!filteredData || !filteredData.length) {
+    ['chartRepsTrend', 'chartTypesTrend', 'chartSetsTrend', 'chartMonthTrend'].forEach(id => {
+      const el = $(id);
+      if (el) el.innerHTML = '<p style="text-align:center; padding:50px; color:#999;">No data to display</p>';
+    });
+    return;
+  }
+
+  console.time('  ↳ updateTrendsCharts');
+
+  renderGroupedBarChart(filteredData, 'SalesRepresentative', 'chartRepsTrend', 'Sales by Representative (Year-over-Year)');
+  renderGroupedBarChart(filteredData, 'ProductType', 'chartTypesTrend', 'Sales by Product Type (Year-over-Year)');
+  renderGroupedBarChart(filteredData, 'Set', 'chartSetsTrend', 'Sales by Set (Year-over-Year)');
+  renderMonthEvolutionChart(filteredData, 'chartMonthTrend');
+
+  console.timeEnd('  ↳ updateTrendsCharts');
+}
+
 
 // ============================================
 // APPLY FILTERS
 // ============================================
 function applyFilters() {
-  const countries = getCheckedValues('.country-filter').map(normCountry);
+  console.time('⏱️ applyFilters total');
+  
+  const countries = getCheckedValues('.country-filter'); // nombres originales
   const years = getCheckedValues('.year-filter', cb => parseInt(cb.value, 10));
   let months = getCheckedValues('.month-filter', cb => parseInt(cb.value, 10));
   const reps = getCheckedValues('.rep-filter');
@@ -347,19 +1245,21 @@ function applyFilters() {
   const marketOrgs = getCheckedValues('.marketorg-filter');
   {% endif %}
 
+  // 🔥 FIX #3: usar __serviceLower y __clientLower (pre-cacheados)
   const manualSearch = safeLower($('searchInput')?.value);
   const clientSearch = safeLower($('clientInput')?.value);
 
   if (months.length === 0) months = [...availableMonths];
 
+  console.time('  ↳ filter loop');
   filteredData = fullData.filter(row => {
-    const rowCountry = normCountry(row.Country);
+    if (countries.length && !countries.includes(row.Country)) return false;
 
-    if (countries.length && !countries.includes(rowCountry)) return false;
+    // Usar cache __year/__month (NO new Date())
+    const y = row.__year;
+    const m = row.__month;
 
-    const d = new Date(row.Date);
-    const y = d.getFullYear();
-    const m = d.getMonth() + 1;
+    if (y === null || m === null) return false;
 
     if (years.length && !years.includes(y)) return false;
     if (months.length && !months.includes(m)) return false;
@@ -375,11 +1275,9 @@ function applyFilters() {
     if (marketOrgs.length && !marketOrgs.includes(row['Market Organization Name'])) return false;
     {% endif %}
 
-    // ⭐ FILTRO DE SERVICIO (quick filters + manual search)
-    // Busca en "Id - Name" o "ItemIdAndName" (el nombre del servicio)
-    const serviceName = safeLower(row['Id - Name'] || row.ItemIdAndName || '');
+    // 🔥 FIX #3: usar __serviceLower (pre-cacheado)
+    const serviceName = row.__serviceLower || '';
 
-    // Quick filters (tags como CARE, Exact, etc.)
     if (activeQuickFilters.length > 0) {
       const matches = (quickMode === 'AND')
         ? activeQuickFilters.every(k => serviceName.includes(String(k).toLowerCase()))
@@ -387,27 +1285,28 @@ function applyFilters() {
       if (!matches) return false;
     }
     
-    // Manual search en servicio (campo de texto "Or type custom search")
     if (manualSearch && !serviceName.includes(manualSearch)) {
       return false;
     }
 
-    // ⭐ FILTRO DE CLIENTE (separado e independiente)
-    // Busca en "Business Partner Name" (nombre del cliente)
-    if (clientSearch) {
-      const clientName = safeLower(row['Business Partner Name'] || '');
-      if (!clientName.includes(clientSearch)) return false;
+    // 🔥 FIX #3: usar __clientLower (pre-cacheado)
+    if (clientSearch && !(row.__clientLower || '').includes(clientSearch)) {
+      return false;
     }
 
     return true;
   });
+  console.timeEnd('  ↳ filter loop');
 
   updateMetrics();
   updateMapData();
   renderMap();
+  updateTrendsCharts();
   renderTable();
   updateStatusUI();
   saveFilterState();
+  
+  console.timeEnd('⏱️ applyFilters total');
 }
 
 // ============================================
@@ -500,9 +1399,12 @@ function resetFilters() {
   if ($('clientInput')) $('clientInput').value = '';
 
   quickMode = 'AND';
-  if ($('quickModeOr')) $('quickModeOr').checked = false;
+  const radioAnd = document.querySelector('input[name="quickMode"][value="AND"]');
+  if (radioAnd) radioAnd.checked = true;
 
   try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  
+  refreshCascadeFilters(null);
   applyFilters();
 }
 
@@ -510,12 +1412,10 @@ function resetFilters() {
 // LOCAL STORAGE - DESHABILITADO
 // ============================================
 function saveFilterState() {
-  // Persistencia deshabilitada - los filtros se resetean al recargar
   return;
 }
 
 function restoreFilterState() {
-  // Persistencia deshabilitada - siempre inicia con filtros por defecto
   return;
 }
 
@@ -539,105 +1439,123 @@ function updateMetrics() {
 }
 
 // ============================================
-// MAP DATA (country + postal robusto, sin O(n*m))
+// 🔥 MAP DATA (FIX #1 - USA ÍNDICE GLOBAL)
 // ============================================
 function updateMapData() {
-    const baseMapData = Array.isArray(mapData) ? mapData : [];
+  console.time('  ↳ updateMapData');
+  
+  const baseMapData = getMapDataArray();
 
+  if (!baseMapData.length || !ALL_ROWS_BY_KEY) { 
+    filteredMapData = []; 
+    console.timeEnd('  ↳ updateMapData');
+    return; 
+  }
+
+  if (DEBUG) {
     console.log('🔍 DEBUG updateMapData:');
     console.log('  - filteredData rows:', filteredData.length);
     console.log('  - baseMapData points:', baseMapData.length);
-
-    // Indexa filas filtradas por (postal,country)
-    const rowsByKey = {};
-    filteredData.forEach(row => {
-        const key = makeLocationKey(row.PostalCode, row.Country);
-        (rowsByKey[key] ||= []).push(row);
-    });
-
-    console.log('  - Unique location keys:', Object.keys(rowsByKey).length);
-
-  // Si hay mapData preprocesado desde Python, lo filtramos por key
-  if (baseMapData.length > 0) {
-    filteredMapData = baseMapData
-      .map(point => {
-        const key = makeLocationKey(point.PostalCode, point.Country);
-        const rows = rowsByKey[key];
-        if (!rows || rows.length === 0) return null;
-
-        const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
-        const numServices = rows.length;
-
-        const repsSet = new Set(rows.map(r => r.SalesRepresentative).filter(Boolean));
-        const representatives = Array.from(repsSet).slice(0, 3).join(', ');
-
-        const ptCount = {};
-        rows.forEach(r => {
-          const t = r.ProductType || 'Unknown';
-          ptCount[t] = (ptCount[t] || 0) + 1;
-        });
-        const types = Object.entries(ptCount);
-        const mainType = types.length ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0] : 'Mixed';
-
-        const customers = {};
-        rows.forEach(r => {
-          const cust = String(r['Business Partner Name'] || '').trim() || '(Unknown)';
-          customers[cust] = (customers[cust] || 0) + (r.EUR || 0);
-        });
-        const topCustomers = Object.entries(customers)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 3)
-          .map(([name]) => name)
-          .join(', ');
-        const moreCustomers = Object.keys(customers).length > 3 ? ` (+${Object.keys(customers).length - 3} more)` : '';
-
-        const cityName = String(point.ResolvedCity || point.City || '').trim();
-
-        return {
-          City: cityName,
-          PostalCode: normPostal(point.PostalCode),
-          Country: normCountry(point.Country),
-          LocationKey: key, // ⭐ ahora LocationKey es key estable postal+country
-          Total_EUR: totalEUR,
-          Num_Services: numServices,
-          Representatives: representatives,
-          Main_Type: mainType,
-          TopCustomers: topCustomers + moreCustomers,
-          Latitude: point.Latitude,
-          Longitude: point.Longitude
-        };
-      })
-      .filter(p => p && p.Latitude && p.Longitude);
-    
-      // 🔍 DEBUG: Verificar datos de salida
-    console.log('  - filteredMapData output:', filteredMapData.length);
-    if (filteredMapData.length > 0) {
-        console.log('  - Sample point:', {
-        City: filteredMapData[0].City,
-        TopCustomers: filteredMapData[0].TopCustomers,
-        Total_EUR: filteredMapData[0].Total_EUR
-        });
-    }
-
-
-    return;
   }
 
-  // Fallback: si no hay baseMapData, podríamos generar puntos desde coordsCache,
-  // pero en tu caso dices que tienes coordenadas en mapData, así que aquí no deberías entrar.
-  filteredMapData = [];
+  // 🔥 Crear Set de keys permitidas (mucho más rápido que agrupar)
+  const allowedKeys = new Set();
+  for (const row of filteredData) {
+    allowedKeys.add(makeLocationKey(row.PostalCode, row.CountryKey));
+  }
+
+  if (DEBUG) {
+    console.log('  - Allowed location keys:', allowedKeys.size);
+  }
+
+  // 🔥 Mapear puntos usando índice global (NO recalcular rowsByKey)
+  filteredMapData = baseMapData
+    .map(point => {
+      const key = makeLocationKey(point.PostalCode, point.CountryKey);
+      
+      // Si esta ubicación no tiene filas filtradas, skip
+      if (!allowedKeys.has(key)) return null;
+
+      // 🔥 Recuperar filas del índice global (sin agrupar de nuevo)
+      const allRowsAtLocation = ALL_ROWS_BY_KEY[key] || [];
+      if (!allRowsAtLocation.length) return null;
+
+      // ⚠️ IMPORTANTE: Para exactitud total, filtrar también aquí
+      // (porque ALL_ROWS_BY_KEY tiene TODAS las filas, no solo las filtradas)
+      // Si quieres aproximación (más rápido), quita este filter:
+      const rows = allRowsAtLocation.filter(r => filteredData.includes(r));
+      if (!rows.length) return null;
+
+      const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
+      const numServices = rows.length;
+
+      const repsSet = new Set(rows.map(r => r.SalesRepresentative).filter(Boolean));
+      const representatives = Array.from(repsSet).slice(0, 3).join(', ');
+
+      const ptCount = {};
+      rows.forEach(r => {
+        const t = r.ProductType || 'Unknown';
+        ptCount[t] = (ptCount[t] || 0) + 1;
+      });
+      const types = Object.entries(ptCount);
+      const mainType = types.length ? types.reduce((a, b) => a[1] > b[1] ? a : b)[0] : 'Mixed';
+
+      const customers = {};
+      rows.forEach(r => {
+        const cust = String(r['Business Partner Name'] || '').trim() || '(Unknown)';
+        customers[cust] = (customers[cust] || 0) + (r.EUR || 0);
+      });
+      const topCustomers = Object.entries(customers)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([name]) => name)
+        .join(', ');
+      const moreCustomers = Object.keys(customers).length > 3 ? ` (+${Object.keys(customers).length - 3} more)` : '';
+
+      const cityName = String(point.ResolvedCity || point.City || '').trim();
+
+      return {
+        City: cityName,
+        PostalCode: point.PostalCode,
+        Country: point.Country,
+        CountryKey: point.CountryKey,
+        LocationKey: key,
+        Total_EUR: totalEUR,
+        Num_Services: numServices,
+        Representatives: representatives,
+        Main_Type: mainType,
+        TopCustomers: topCustomers + moreCustomers,
+        Latitude: point.Latitude,
+        Longitude: point.Longitude
+      };
+    })
+    .filter(p => p && Number.isFinite(p.Latitude) && Number.isFinite(p.Longitude));
+  
+  if (DEBUG) {
+    console.log('  - filteredMapData output:', filteredMapData.length);
+    if (filteredMapData.length > 0) {
+      console.log('  - Sample filtered map point:', {
+        City: filteredMapData[0].City,
+        PostalCode: filteredMapData[0].PostalCode,
+        Country: filteredMapData[0].Country,
+        CountryKey: filteredMapData[0].CountryKey,
+        TopCustomers: filteredMapData[0].TopCustomers,
+        Total_EUR: filteredMapData[0].Total_EUR
+      });
+    }
+  }
+
+  console.timeEnd('  ↳ updateMapData');
 }
 
 // ============================================
 // DETAILS PANEL
 // ============================================
 function renderDetailsPanel(locationKey, rows) {
-  // locationKey = makeLocationKey(postal,country)
   const totalEUR = rows.reduce((s, r) => s + (r.EUR || 0), 0);
   const reps = Array.from(new Set(rows.map(r => r.SalesRepresentative).filter(Boolean))).slice(0, 6).join(', ');
   const customers = new Set(rows.map(r => r['Business Partner Name'])).size;
 
-  // extraemos postal/country del key
   const [postal, country] = locationKey.split('__');
 
   if ($('detailsHeader')) {
@@ -649,7 +1567,6 @@ function renderDetailsPanel(locationKey, rows) {
        &nbsp; | &nbsp; Reps: ${escapeHtml(reps)}`;
   }
 
-  // Header dinámico
   const customersTable = $('customersTable');
   const thead = customersTable?.querySelector('thead tr');
   if (thead) {
@@ -666,16 +1583,20 @@ function renderDetailsPanel(locationKey, rows) {
   if (!customersBody) return;
 
   customersBody.innerHTML = '';
-  const sortedRows = [...rows].sort((a, b) => new Date(b.Date) - new Date(a.Date));
+  const sortedRows = [...rows].sort((a, b) => {
+    const dateA = a.__dateObj || new Date(0);
+    const dateB = b.__dateObj || new Date(0);
+    return dateB - dateA;
+  });
 
   sortedRows.forEach(row => {
     const tr = document.createElement('tr');
-    const date = new Date(row.Date).toLocaleDateString();
+    const date = row.__dateObj ? row.__dateObj.toLocaleDateString() : row.Date;
 
-    let html = `<td>${date}</td>`;
+    let html = `<td>${escapeHtml(date)}</td>`;
     if (HAS_CITY_DATA) html += `<td>${escapeHtml(row.City || '')}</td>`;
     html += `<td>${getAccountLinkFromRow(row)}</td>`;
-    html += `<td>${escapeHtml(row.ItemIdAndName || '')}</td>`;
+    html += `<td>${escapeHtml(row['Id - Name'] || row.ItemIdAndName || '')}</td>`;
     html += `<td>${escapeHtml(row.ProductType || '')}</td>`;
     html += `<td>${escapeHtml(row.Set || '')}</td>`;
     if (HAS_SEGMENT) html += `<td>${escapeHtml(row['End User Segment'] || '')}</td>`;
@@ -710,41 +1631,21 @@ function renderMap() {
       color: filteredMapData.map(d => productTypes.indexOf(d.Main_Type)),
       colorscale: 'Viridis',
       showscale: false,
-      sizemode: 'diameter'
+      sizemode: 'diameter',
+      symbol: 'circle'
     },
     text: filteredMapData.map(d => {
       const parts = [];
-      
-      // Mostrar City o PostalCode como título
-      const locationName = (d.City && d.City.trim()) 
-        ? escapeHtml(d.City) 
+      const locationName = (d.City && d.City.trim())
+        ? escapeHtml(d.City)
         : `📮 ${escapeHtml(d.PostalCode || '')}`;
       parts.push(`<b>${locationName}</b>`);
-      
-      // Añadir país si está disponible
-      if (d.Country) {
-        parts.push(`🌍 ${escapeHtml(String(d.Country).toUpperCase())}`);
-      }
-      
-      // Métricas financieras
+      if (d.Country) parts.push(`🌍 ${escapeHtml(String(d.Country).toUpperCase())}`);
       parts.push(`💰 Total: €${(d.Total_EUR || 0).toFixed(2)}`);
       parts.push(`📊 Services: ${d.Num_Services || 0}`);
-      
-      // Tipo principal
-      if (d.Main_Type) {
-        parts.push(`🏷️ Type: ${escapeHtml(d.Main_Type)}`);
-      }
-      
-      // Top customers - ESTA ES LA PARTE CLAVE
-      if (d.TopCustomers && String(d.TopCustomers).trim()) {
-        parts.push(`👥 Top customers: ${escapeHtml(d.TopCustomers)}`);
-      }
-      
-      // Representantes
-      if (d.Representatives && String(d.Representatives).trim()) {
-        parts.push(`👤 Reps: ${escapeHtml(d.Representatives)}`);
-      }
-      
+      if (d.Main_Type) parts.push(`🏷️ Type: ${escapeHtml(d.Main_Type)}`);
+      if (d.TopCustomers && String(d.TopCustomers).trim()) parts.push(`👥 Top customers: ${escapeHtml(d.TopCustomers)}`);
+      if (d.Representatives && String(d.Representatives).trim()) parts.push(`👤 Reps: ${escapeHtml(d.Representatives)}`);
       return parts.join('<br>');
     }),
     hoverinfo: 'text',
@@ -766,7 +1667,11 @@ function renderMap() {
   else if (maxRange < 7) zoom = 6;
 
   const layout = {
-    mapbox: { style: 'open-street-map', center: { lon: lonCenter, lat: latCenter }, zoom: zoom },
+    mapbox: {
+      style: 'open-street-map',
+      center: { lon: lonCenter, lat: latCenter },
+      zoom: zoom
+    },
     margin: { r: 0, t: 0, l: 0, b: 0 },
     height: 600
   };
@@ -778,7 +1683,7 @@ function renderMap() {
     const locationKey = evt.points[0].customdata?.[0];
     if (!locationKey) return;
 
-    const rows = filteredData.filter(r => makeLocationKey(r.PostalCode, r.Country) === locationKey);
+    const rows = filteredData.filter(r => makeLocationKey(r.PostalCode, r.CountryKey) === locationKey);
 
     renderDetailsPanel(locationKey, rows);
 
@@ -846,9 +1751,11 @@ function sortTable(colIndex) {
 }
 
 // ============================================
-// RENDER TABLE
+// 🔥 RENDER TABLE (FIX #2 - LÍMITE DE FILAS)
 // ============================================
 function renderTable() {
+  console.time('  ↳ renderTable');
+  
   const tbody = $('tableBody');
   if (!tbody) return;
 
@@ -858,8 +1765,8 @@ function renderTable() {
 
     // Date
     if (sortState.column === currentCol) {
-      aVal = new Date(a.Date);
-      bVal = new Date(b.Date);
+      aVal = a.__dateObj || new Date(0);
+      bVal = b.__dateObj || new Date(0);
       return sortState.ascending ? aVal - bVal : bVal - aVal;
     }
     currentCol++;
@@ -887,85 +1794,297 @@ function renderTable() {
     }
     currentCol++;
 
-        // Type
-        if (sortState.column === currentCol) {
-            aVal = a.ProductType || '';
-            bVal = b.ProductType || '';
-        }
-        currentCol++;
+    // Type
+    if (sortState.column === currentCol) {
+      aVal = a.ProductType || '';
+      bVal = b.ProductType || '';
+    }
+    currentCol++;
 
-        // Set
-        if (sortState.column === currentCol) {
-            aVal = a.Set || '';
-            bVal = b.Set || '';
-        }
-        currentCol++;
+    // Set
+    if (sortState.column === currentCol) {
+      aVal = a.Set || '';
+      bVal = b.Set || '';
+    }
+    currentCol++;
 
-        // Segment
-        if (HAS_SEGMENT) {
-            if (sortState.column === currentCol) {
-                aVal = a['End User Segment'] || '';
-                bVal = b['End User Segment'] || '';
-            }
-            currentCol++;
-        }
+    // Segment
+    if (HAS_SEGMENT) {
+      if (sortState.column === currentCol) {
+        aVal = a['End User Segment'] || '';
+        bVal = b['End User Segment'] || '';
+      }
+      currentCol++;
+    }
 
-        // Market Org
-        if (HAS_MARKET_ORG) {
-            if (sortState.column === currentCol) {
-                aVal = a['Market Organization Name'] || '';
-                bVal = b['Market Organization Name'] || '';
-            }
-            currentCol++;
-        }
+    // Market Org
+    if (HAS_MARKET_ORG) {
+      if (sortState.column === currentCol) {
+        aVal = a['Market Organization Name'] || '';
+        bVal = b['Market Organization Name'] || '';
+      }
+      currentCol++;
+    }
 
-        // EUR
-        if (sortState.column === currentCol) {
-            aVal = a.EUR || 0;
-            bVal = b.EUR || 0;
-            return sortState.ascending ? aVal - bVal : bVal - aVal;
-        }
-        currentCol++;
+    // EUR
+    if (sortState.column === currentCol) {
+      aVal = a.EUR || 0;
+      bVal = b.EUR || 0;
+      return sortState.ascending ? aVal - bVal : bVal - aVal;
+    }
+    currentCol++;
 
-        // Rep
-        if (sortState.column === currentCol) {
-            aVal = a.SalesRepresentative || '';
-            bVal = b.SalesRepresentative || '';
-        }
+    // Rep
+    if (sortState.column === currentCol) {
+      aVal = a.SalesRepresentative || '';
+      bVal = b.SalesRepresentative || '';
+    }
 
-        if (typeof aVal === 'string') {
-            return sortState.ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-        }
-        return sortState.ascending ? (aVal - bVal) : (bVal - aVal);
-    });
+    if (typeof aVal === 'string') {
+      return sortState.ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+    }
+    return sortState.ascending ? (aVal - bVal) : (bVal - aVal);
+  });
 
-    tbody.innerHTML = '';
+  // 🔥 FIX #2: Limitar filas renderizadas
+  const rowsToRender = sortedData.slice(0, MAX_TABLE_ROWS);
+  const hiddenRows = sortedData.length - rowsToRender.length;
 
-    sortedData.forEach(row => {
-        const tr = document.createElement('tr');
-        const date = new Date(row.Date).toLocaleDateString();
+  tbody.innerHTML = '';
 
-        let html = `<td>${date}</td>`;
-        if (HAS_CITY_DATA) html += `<td>${escapeHtml(row.City || '')}</td>`;
-        html += `<td>${getAccountLinkFromRow(row)}</td>`;
-        html += `<td>${escapeHtml(row.ItemIdAndName || '')}</td>`;
-        html += `<td>${escapeHtml(row.ProductType || '')}</td>`;
-        html += `<td>${escapeHtml(row.Set || '')}</td>`;
-        if (HAS_SEGMENT) html += `<td>${escapeHtml(row['End User Segment'] || '')}</td>`;
-        if (HAS_MARKET_ORG) html += `<td>${escapeHtml(row['Market Organization Name'] || '')}</td>`;
-        html += `<td>€${(row.EUR || 0).toFixed(2)}</td>`;
-        html += `<td>${escapeHtml(row.SalesRepresentative || '')}</td>`;
+  rowsToRender.forEach(row => {
+    const tr = document.createElement('tr');
+    const date = row.__dateObj ? row.__dateObj.toLocaleDateString() : row.Date;
 
-        tr.innerHTML = html;
-        tbody.appendChild(tr);
-    });
+    let html = `<td>${escapeHtml(date)}</td>`;
+    if (HAS_CITY_DATA) html += `<td>${escapeHtml(row.City || '')}</td>`;
+    html += `<td>${getAccountLinkFromRow(row)}</td>`;
+    html += `<td>${escapeHtml(row['Id - Name'] || row.ItemIdAndName || '')}</td>`;
+    html += `<td>${escapeHtml(row.ProductType || '')}</td>`;
+    html += `<td>${escapeHtml(row.Set || '')}</td>`;
+    if (HAS_SEGMENT) html += `<td>${escapeHtml(row['End User Segment'] || '')}</td>`;
+    if (HAS_MARKET_ORG) html += `<td>${escapeHtml(row['Market Organization Name'] || '')}</td>`;
+    html += `<td>€${(row.EUR || 0).toFixed(2)}</td>`;
+    html += `<td>${escapeHtml(row.SalesRepresentative || '')}</td>`;
 
-    // Sort indicator
-    document.querySelectorAll('#serviceTable th').forEach((th, idx) => {
-        th.classList.remove('sort-asc', 'sort-desc');
-        if (idx === sortState.column) th.classList.add(sortState.ascending ? 'sort-asc' : 'sort-desc');
-    });
+    tr.innerHTML = html;
+    tbody.appendChild(tr);
+  });
+
+  // 🔥 Mostrar aviso si hay filas ocultas
+  if (hiddenRows > 0) {
+    const warningRow = document.createElement('tr');
+    warningRow.innerHTML = `<td colspan="20" style="text-align:center; background:#fff3cd; color:#856404; padding:10px; font-weight:bold;">
+      ⚠️ Mostrando ${rowsToRender.length.toLocaleString()} de ${sortedData.length.toLocaleString()} filas (${hiddenRows.toLocaleString()} ocultas por rendimiento). Usa filtros para refinar resultados.
+    </td>`;
+    tbody.appendChild(warningRow);
+  }
+
+  // Sort indicator
+  document.querySelectorAll('#serviceTable th').forEach((th, idx) => {
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (idx === sortState.column) th.classList.add(sortState.ascending ? 'sort-asc' : 'sort-desc');
+  });
+  
+  console.timeEnd('  ↳ renderTable');
 }
+
+// ============================================
+// CSV EXPORT
+// ============================================
+function exportTableToCSV() {
+  console.time('⏱️ CSV Export');
+  
+  // Preparar headers dinámicos según configuración
+  const headers = ['Date'];
+  if (HAS_CITY_DATA) headers.push('City');
+  headers.push('Client', 'Service', 'Type', 'Set');
+  if (HAS_SEGMENT) headers.push('Segment');
+  if (HAS_MARKET_ORG) headers.push('Market Organization');
+  headers.push('EUR', 'Sales Representative', 'Country', 'Postal Code');
+  
+  // Función para escapar campos CSV (maneja comillas y saltos de línea)
+  function escapeCSV(value) {
+    if (value == null) return '';
+    const str = String(value);
+    // Si contiene comillas, comas o saltos de línea, encerrar entre comillas y escapar comillas internas
+    if (str.includes('"') || str.includes(',') || str.includes('\n') || str.includes('\r')) {
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+  }
+  
+  // Construir CSV
+  const csvRows = [];
+  
+  // Header row
+  csvRows.push(headers.map(h => escapeCSV(h)).join(','));
+  
+  // Data rows (usar filteredData ordenado según sortState actual)
+  const sortedData = [...filteredData].sort((a, b) => {
+    let aVal, bVal;
+    let currentCol = 0;
+
+    // Date
+    if (sortState.column === currentCol) {
+      aVal = a.__dateObj || new Date(0);
+      bVal = b.__dateObj || new Date(0);
+      return sortState.ascending ? aVal - bVal : bVal - aVal;
+    }
+    currentCol++;
+
+    // City
+    if (HAS_CITY_DATA) {
+      if (sortState.column === currentCol) {
+        aVal = a.City || '';
+        bVal = b.City || '';
+      }
+      currentCol++;
+    }
+
+    // Client
+    if (sortState.column === currentCol) {
+      aVal = a['Business Partner Name'] || '';
+      bVal = b['Business Partner Name'] || '';
+    }
+    currentCol++;
+
+    // Service
+    if (sortState.column === currentCol) {
+      aVal = a['Id - Name'] || a.ItemIdAndName || '';
+      bVal = b['Id - Name'] || b.ItemIdAndName || '';
+    }
+    currentCol++;
+
+    // Type
+    if (sortState.column === currentCol) {
+      aVal = a.ProductType || '';
+      bVal = b.ProductType || '';
+    }
+    currentCol++;
+
+    // Set
+    if (sortState.column === currentCol) {
+      aVal = a.Set || '';
+      bVal = b.Set || '';
+    }
+    currentCol++;
+
+    // Segment
+    if (HAS_SEGMENT) {
+      if (sortState.column === currentCol) {
+        aVal = a['End User Segment'] || '';
+        bVal = b['End User Segment'] || '';
+      }
+      currentCol++;
+    }
+
+    // Market Org
+    if (HAS_MARKET_ORG) {
+      if (sortState.column === currentCol) {
+        aVal = a['Market Organization Name'] || '';
+        bVal = b['Market Organization Name'] || '';
+      }
+      currentCol++;
+    }
+
+    // EUR
+    if (sortState.column === currentCol) {
+      aVal = a.EUR || 0;
+      bVal = b.EUR || 0;
+      return sortState.ascending ? aVal - bVal : bVal - aVal;
+    }
+    currentCol++;
+
+    // Rep
+    if (sortState.column === currentCol) {
+      aVal = a.SalesRepresentative || '';
+      bVal = b.SalesRepresentative || '';
+    }
+
+    if (typeof aVal === 'string') {
+      return sortState.ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+    }
+    return sortState.ascending ? (aVal - bVal) : (bVal - aVal);
+  });
+  
+  sortedData.forEach(row => {
+    const rowData = [];
+    
+    // Date
+    const date = row.__dateObj ? row.__dateObj.toLocaleDateString() : row.Date;
+    rowData.push(escapeCSV(date));
+    
+    // City (si existe)
+    if (HAS_CITY_DATA) {
+      rowData.push(escapeCSV(row.City || ''));
+    }
+    
+    // Client (nombre sin link)
+    rowData.push(escapeCSV(row['Business Partner Name'] || ''));
+    
+    // Service
+    rowData.push(escapeCSV(row['Id - Name'] || row.ItemIdAndName || ''));
+    
+    // Type
+    rowData.push(escapeCSV(row.ProductType || ''));
+    
+    // Set
+    rowData.push(escapeCSV(row.Set || ''));
+    
+    // Segment (si existe)
+    if (HAS_SEGMENT) {
+      rowData.push(escapeCSV(row['End User Segment'] || ''));
+    }
+    
+    // Market Org (si existe)
+    if (HAS_MARKET_ORG) {
+      rowData.push(escapeCSV(row['Market Organization Name'] || ''));
+    }
+    
+    // EUR (con 2 decimales)
+    rowData.push(escapeCSV((row.EUR || 0).toFixed(2)));
+    
+    // Sales Representative
+    rowData.push(escapeCSV(row.SalesRepresentative || ''));
+    
+    // Country
+    rowData.push(escapeCSV(row.Country || ''));
+    
+    // Postal Code
+    rowData.push(escapeCSV(row.PostalCode || ''));
+    
+    csvRows.push(rowData.join(','));
+  });
+  
+  // Unir todas las filas
+  const csvContent = csvRows.join('\n');
+  
+  // Crear blob y descargar
+  const BOM = '\uFEFF';
+  const blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  
+  // Generar nombre de archivo con timestamp
+  const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+  const filename = `service_planning_export_${timestamp}.csv`;
+  
+  // Crear URL y descargar
+  if (navigator.msSaveBlob) { // IE 10+
+    navigator.msSaveBlob(blob, filename);
+  } else {
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+  console.timeEnd('⏱️ CSV Export');
+  console.log(`✅ Exported ${sortedData.length} rows to ${filename}`);
+}
+
 
 // ============================================
 // BOOT
@@ -974,3 +2093,83 @@ generateTableHeader();
 initializeFilters();
 restoreFilterState();
 applyFilters();
+
+// Helper para resize de gráficos Plotly
+function resizeVisibleCharts(selector) {
+  const charts = document.querySelectorAll(selector + ' .js-plotly-plot');
+  charts.forEach(gd => {
+    try {
+      Plotly.Plots.resize(gd);
+      Plotly.relayout(gd, { autosize: true });
+    } catch (err) {}
+  });
+}
+
+function forceResizeByIds(ids) {
+  ids.forEach(id => {
+    const gd = document.getElementById(id);
+    if (!gd) return;
+    try {
+      Plotly.Plots.resize(gd);
+      Plotly.relayout(gd, { autosize: true });
+    } catch (err) {}
+  });
+}
+
+// Manejo de tabs con vanilla JS
+const trendsTabs = document.querySelectorAll('#trendsTab a[data-toggle="tab"]');
+
+trendsTabs.forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Remover active de todos
+    document.querySelectorAll('#trendsTab .nav-link').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#trendsTabContent .tab-pane').forEach(p => {
+      p.classList.remove('show', 'active');
+    });
+    
+    // Activar clickeado
+    this.classList.add('active');
+    
+    const targetId = this.getAttribute('href');
+    const targetPane = document.querySelector(targetId);
+    
+    if (targetPane) {
+      targetPane.classList.add('show', 'active');
+      
+      // Map de tabs a chart IDs
+      const chartMap = {
+        '#reps-trend': ['chartRepsTrend'],
+        '#types-trend': ['chartTypesTrend'],
+        '#sets-trend': ['chartSetsTrend'],
+        '#month-trend': ['chartMonthTrend']
+      };
+      
+      const chartIds = chartMap[targetId] || [];
+      
+      // Función de resize con múltiples intentos (como en Sales Comparison)
+      function fix() {
+        resizeVisibleCharts(targetId);
+        forceResizeByIds(chartIds);
+      }
+      
+      // Múltiples llamadas para asegurar resize correcto
+      requestAnimationFrame(fix);
+      setTimeout(fix, 50);
+      setTimeout(fix, 180);
+      setTimeout(fix, 450);
+    }
+  });
+});
+
+// Resize inicial del primer tab (Sales Representatives)
+setTimeout(() => {
+  resizeVisibleCharts('#reps-trend');
+  forceResizeByIds(['chartRepsTrend']);
+}, 100);
+
+// Resize al cambiar tamaño de ventana
+window.addEventListener('resize', function() {
+  resizeVisibleCharts('#trendsTabContent');
+});

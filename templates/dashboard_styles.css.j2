@@ -494,3 +494,159 @@ tr:hover {
 .city-cell[style*="display: none"] {
     display: none !important;
 }
+
+.export-csv-btn {
+    background: #6CC24A; /* Verde BUCHI */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(108, 194, 74, 0.3);
+}
+
+.export-csv-btn:hover {
+    background: #5DA941; /* Verde BUCHI más oscuro */
+    box-shadow: 0 4px 8px rgba(108, 194, 74, 0.4);
+    transform: translateY(-2px);
+}
+
+.export-csv-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(108, 194, 74, 0.3);
+}
+
+#chartRepsTrend, #chartTypesTrend, #chartSetsTrend, #chartMonthTrend {
+    min-height: 550px !important;
+}
+
+/* ============================================
+   BOOTSTRAP TABS STYLING
+   ============================================ */
+.nav-tabs {
+    border-bottom: 2px solid #ddd;
+    background: #f5f5f5;
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link {
+    padding: 15px 30px;
+    border: none;
+    background: #e0e0e0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link:hover {
+    background: #d0d0d0;
+    color: {{ colors.primary }};
+}
+
+.nav-tabs .nav-link.active {
+    background: white;
+    color: {{ colors.primary }};
+    border-bottom-color: white;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-content {
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.tab-pane {
+    padding: 20px;
+    display: none; /* ← CRÍTICO */
+}
+
+.tab-pane.active {
+    display: block; /* ← CRÍTICO */
+}
+
+.tab-pane.show {
+    display: block; /* ← CRÍTICO */
+}
+
+.tab-pane .chart-container {
+    margin: 0;
+}
+
+/* Altura de gráficos de tendencias */
+#chartRepsTrend, #chartTypesTrend, #chartSetsTrend, #chartMonthTrend {
+    min-height: 550px !important;
+}
+
+.text-caption {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+/* --- FIX: Bootstrap tabs horizontales + sin bullets --- */
+#trendsTab.nav-tabs,
+#trendsTab.nav.nav-tabs,
+ul#trendsTab.nav-tabs {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-end !important;
+
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+#trendsTab.nav-tabs .nav-item {
+  list-style: none !important;
+  margin: 0 !important;
+}
+
+#trendsTab.nav-tabs .nav-link {
+  display: block !important;
+  white-space: nowrap !important;
+}
+/* ============================================
+   QUICK MODE TOGGLE - Radio buttons horizontales
+   ============================================ */
+.quick-mode-toggle {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.quick-mode-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+    cursor: pointer;
+    color: #fff !important;
+    font-size: 12px !important;
+    opacity: 0.9;
+    font-weight: normal !important;
+}
+
+.quick-mode-toggle input[type="radio"] {
+    margin: 0;
+    cursor: pointer;
+}

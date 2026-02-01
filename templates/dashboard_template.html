@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Planning Dashboard - {{ generation_date }}</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
+    <title>Sales Dashboard - {{ generation_date }}</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
 {% include 'dashboard_styles.css.j2' %}
     </style>
@@ -27,6 +33,7 @@
                             <button type="button" class="mini-btn" onclick="setGroupChecked('country', false); event.preventDefault(); event.stopPropagation();">None</button>
                         </span>
                     </summary>
+                    <input type="text" class="filter-search" data-target="countryFilters" placeholder="Search country..." style="margin-top:8px; width:100%; padding:6px 8px; border:1px solid #ddd; border-radius:6px;">
                     <div class="checkbox-group" id="countryFilters"></div>
                 </details>
             </div>
@@ -69,6 +76,7 @@
                             <button type="button" class="mini-btn" onclick="setGroupChecked('rep', false); event.preventDefault(); event.stopPropagation();">None</button>
                         </span>
                     </summary>
+                    <input type="text" class="filter-search" data-target="repFilters" placeholder="Search rep..." style="margin-top:8px; width:100%; padding:6px 8px; border:1px solid #ddd; border-radius:6px;">
                     <div class="checkbox-group" id="repFilters"></div>
                 </details>
             </div>
@@ -126,6 +134,7 @@
                             <button type="button" class="mini-btn" onclick="setGroupChecked('marketOrg', false); event.preventDefault(); event.stopPropagation();">None</button>
                         </span>
                     </summary>
+                    <input type="text" class="filter-search" data-target="marketOrgFilters" placeholder="Search market org..." style="margin-top:8px; width:100%; padding:6px 8px; border:1px solid #ddd; border-radius:6px;">
                     <div class="checkbox-group" id="marketOrgFilters"></div>
                 </details>
             </div>
@@ -135,7 +144,7 @@
             <div class="filter-group">
                 <details open>
                     <summary>
-                        <span class="summary-text">🔍 Search Service</span>
+                        <span class="summary-text">🔍 Search Item</span>
                     </summary>
                     <div class="quick-filters">
                         <span class="quick-filter-tag" data-keyword="CARE" onclick="toggleQuickFilter(this)">CARE</span>
@@ -143,16 +152,22 @@
                         <span class="quick-filter-tag" data-keyword="Start" onclick="toggleQuickFilter(this)">Start</span>
                         <span class="quick-filter-tag" data-keyword="Circle" onclick="toggleQuickFilter(this)">Circle</span>
                         <span class="quick-filter-tag" data-keyword="Maintain" onclick="toggleQuickFilter(this)">Maintain</span>
-                        <span class="quick-filter-tag" data-keyword="IQ/OQ" onclick="toggleQuickFilter(this)">IQ/OQ</span>
+                        <span class="quick-filter-tag" data-keyword="IQ" onclick="toggleQuickFilter(this)">IQ</span>
                         <span class="quick-filter-tag" data-keyword="OQ" onclick="toggleQuickFilter(this)">OQ</span>
                         <span class="quick-filter-tag" data-keyword="Install" onclick="toggleQuickFilter(this)">Install</span>
+                        <span class="quick-filter-tag" data-keyword="Plus" onclick="toggleQuickFilter(this)">Plus</span>
+                        <span class="quick-filter-tag" data-keyword="Academy" onclick="toggleQuickFilter(this)">Academy</span>
                     </div>
                     <input type="text" id="searchInput" placeholder="Or type custom search..." style="margin-top: 8px;">
                     
                     <div class="quick-mode-toggle">
                         <label>
-                            <input type="checkbox" id="quickModeOr" onchange="setQuickMode(this.checked ? 'OR' : 'AND')">
-                            Quick filters en modo OR (si no, AND)
+                            <input type="radio" name="quickMode" value="AND" checked onchange="setQuickMode('AND')">
+                            AND
+                        </label>
+                        <label>
+                            <input type="radio" name="quickMode" value="OR" onchange="setQuickMode('OR')">
+                            OR
                         </label>
                     </div>
                 </details>
@@ -182,7 +197,7 @@
 
     <!-- MAIN CONTENT -->
     <div class="main-content">
-        <h1>🗺️ Service Planning Dashboard</h1>
+        <h1>🗺️ Sales Dashboard</h1>
         
         <!-- INFO GENERAL -->
         <div class="info-box" id="dashboard-section">
@@ -197,8 +212,8 @@
                     <td>{{ total_records }}</td>
                 </tr>
                 <tr>
-                    <th>Coordenadas en caché</th>
-                    <td>{{ total_cache }}</td>
+                    <th>Puntos en el mapa</th>
+                    <td>{{ total_map_points }}</td>
                 </tr>
             </table>
         </div>
@@ -210,7 +225,7 @@
                 <div class="value" id="metricEUR">€0.00</div>
             </div>
             <div class="metric-card green">
-                <div class="label">📊 Services</div>
+                <div class="label">📊 Items</div>
                 <div class="value" id="metricServices">0</div>
             </div>
             <div class="metric-card orange">
@@ -241,7 +256,7 @@
                 <div id="detailsPanel" style="margin-top:12px;">
                     <div id="detailsHeader" style="margin-bottom:10px; font-weight:600;"></div>
                     
-                    <h3 style="margin:10px 0 6px;">📋 Service Lines</h3>
+                    <h3 style="margin:10px 0 6px;">📋 Item Lines</h3>
                     <div class="table-container" style="max-height: 400px;">
                         <table id="customersTable">
                             <thead>
@@ -249,7 +264,7 @@
                                     <th>Date</th>
                                     {% if has_city %}<th>City</th>{% endif %}
                                     <th>Client</th>
-                                    <th>Service</th>
+                                    <th>Item</th>
                                     <th>Type</th>
                                     <th>Set</th>
                                     {% if has_segment %}<th>Segment</th>{% endif %}
@@ -265,12 +280,69 @@
             </details>
         </div>
         
+        <!-- MULTI-YEAR TRENDS SECTION -->
+        <div class="info-box" id="trends-section">
+            <h2>Multi-Year Trends</h2>
+            <p class="text-caption">
+                <em>Historical analysis showing sales evolution by year. Charts update dynamically based on applied filters.</em>
+            </p>
+            
+            <ul class="nav nav-tabs" id="trendsTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#reps-trend" role="tab">Sales Representatives</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#types-trend" role="tab">Product Types</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#sets-trend" role="tab">Sets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#month-trend" role="tab">Month Evolution</a>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="trendsTabContent">
+                <div class="tab-pane fade show active" id="reps-trend" role="tabpanel">
+                    <div class="chart-container">
+                        <div id="chartRepsTrend"></div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="types-trend" role="tabpanel">
+                    <div class="chart-container">
+                        <div id="chartTypesTrend"></div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="sets-trend" role="tabpanel">
+                    <div class="chart-container">
+                        <div id="chartSetsTrend"></div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="month-trend" role="tabpanel">
+                    <div class="chart-container">
+                        <div id="chartMonthTrend"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- TABLE SECTION -->
         <div class="info-box" id="table-section">
-            <h2>📋 Service Details</h2>
+            <h2>📋 Item Details</h2>
             <p class="text-caption">
                 <em>Tabla detallada de todos los servicios filtrados. Haz clic en los encabezados para ordenar las columnas.</em>
             </p>
+
+            <div style="margin-bottom: 15px; text-align: right;">
+                <button class="export-csv-btn" onclick="exportTableToCSV()">
+                    📥 Export to CSV
+                </button>
+            </div>
+
             <div class="table-container">
                 <table id="serviceTable">
                     <thead>
@@ -291,8 +363,24 @@
         </div>
     </div>
 
+    <!-- ========================================================================
+         CRITICAL FIX: Variable names must match what generator passes
+         ======================================================================== -->
     <script>
-{% include 'dashboard_script.js.j2' %}
+    const USE_COLUMNAR_MODE = {{ use_columnar_mode | tojson }};
+    const FULL_DATA_B64_GZ  = {{ full_data_b64_gz | default('') | tojson }};
+    const MAP_POINTS_B64_GZ = {{ map_data_b64_gz | default('') | tojson }};
+
+    // ✅ Legacy fallback (solo si NO hay columnar)
+    window.fullData = {{ full_data_json | default('[]') | safe }};
+    window.mapData  = {{ map_data_json  | default('[]') | safe }};
+    window.coordsCache = {{ coords_cache_json | default('{}') | safe }};
     </script>
+    <!-- ========================================================================
+         LOAD LIBRARIES + MAIN SCRIPT
+         ======================================================================== -->
+    <script>{% include 'plotly.min.js' %}</script>
+    <script>{% include 'pako.min.js' %}</script>
+    <script>{% include 'dashboard_script.js.j2' %}</script>
 </body>
 </html>
