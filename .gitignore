@@ -2,6 +2,7 @@ __pycache__/
 *.pyc
 Data/*.html
 Data/*.csv
+Data
 core/geonames/*.csv
 
 
