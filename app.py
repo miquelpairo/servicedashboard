@@ -235,11 +235,15 @@ def load_file(file):
             
             df = df.rename(columns=reverse_mapping)
             
+            print(f"📊 AFTER MAPPING - Rows: {len(df)}, EUR: €{df['EUR'].sum():,.2f}")
+
             # 7. PROCESAR FECHAS
             df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
             df = df[df['Date'].notna()]
             df = df.reset_index(drop=True)
             
+            print(f"📊 AFTER DATE FILTER - Rows: {len(df)}, EUR: €{df['EUR'].sum():,.2f}")
+
             df['Year'] = df['Date'].dt.year
             df['Month'] = df['Date'].dt.month
             df['Month_Name'] = df['Date'].dt.strftime('%B')
@@ -297,8 +301,21 @@ def load_file(file):
                 df['City'] = ''
                 print("📍 No City column - using Postal Code only", flush=True)
             
-            print(f"✅ File processing complete: {len(df)} records", flush=True)
+            # 10. RELLENAR END USER SEGMENT VACÍOS
+            if 'End User Segment' in df.columns:
+                df['End User Segment'] = df['End User Segment'].fillna('Unknown')
+                print(f"📊 End User Segment: filled {df['End User Segment'].isna().sum()} empty values with 'Unknown'", flush=True)
             
+            # 11. RELLENAR MARKET ORGANIZATION VACÍOS
+            if 'Market Organization Name' in df.columns:
+                df['Market Organization Name'] = df['Market Organization Name'].fillna('Unknown')
+                print(f"📊 Market Organization: filled empty values with 'Unknown'", flush=True)
+            
+            print(f"✅ File processing complete: {len(df)} records", flush=True)
+
+            print(f"✅ File processing complete: {len(df)} records", flush=True)
+            print(f"📊 FINAL - Rows: {len(df)}, EUR: €{df['EUR'].sum():,.2f}")
+
             # RETURN DATA ONLY (no session state mutation)
             return df, format_type, format_info
             
@@ -440,6 +457,8 @@ else:
             st.session_state.account_cache_dirty = True
 
 df_base = st.session_state.df_enriched if st.session_state.df_enriched is not None else df
+
+print(f"📊 DEBUG df_base - Rows: {len(df_base)}, EUR: €{df_base['EUR'].sum():,.2f}")
 
 # ========================================================================
 # GET AVAILABLE OPTIONS (FROM df_base AFTER ENRICHMENT)
@@ -722,30 +741,39 @@ st.sidebar.button(
 # ========================================================================
 
 df_filtered = df_base.copy()
+print(f"🔹 START: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_countries:
     df_filtered = df_filtered[df_filtered['Country'].isin(selected_countries)]
+    print(f"🔹 After Country: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_years:
     df_filtered = df_filtered[df_filtered['Year'].isin(selected_years)]
+    print(f"🔹 After Year: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_months:
     df_filtered = df_filtered[df_filtered['Month'].isin(selected_months)]
+    print(f"🔹 After Month: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_reps:
     df_filtered = df_filtered[df_filtered['SalesRepresentative'].isin(selected_reps)]
+    print(f"🔹 After Reps: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_types:
     df_filtered = df_filtered[df_filtered['ProductType'].isin(selected_types)]
+    print(f"🔹 After Types: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_sets:
     df_filtered = df_filtered[df_filtered['Set'].isin(selected_sets)]
+    print(f"🔹 After Sets: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_segments and 'End User Segment' in df_filtered.columns:
     df_filtered = df_filtered[df_filtered['End User Segment'].isin(selected_segments)]
+    print(f"🔹 After Segments: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if selected_market_orgs and 'Market Organization Name' in df_filtered.columns:
     df_filtered = df_filtered[df_filtered['Market Organization Name'].isin(selected_market_orgs)]
+    print(f"🔹 After Market Org: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 # Quick filters with AND/OR mode
 if st.session_state.selected_quick_filters:
@@ -759,15 +787,21 @@ if st.session_state.selected_quick_filters:
         for keyword in st.session_state.selected_quick_filters:
             mask |= df_filtered['ItemIdAndName'].str.contains(keyword, case=False, na=False)
         df_filtered = df_filtered[mask]
+    print(f"🔹 After Quick Filters: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
+
 elif search_text:
     df_filtered = df_filtered[
         df_filtered['ItemIdAndName'].str.contains(search_text, case=False, na=False)
     ]
+    print(f"🔹 After Search: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
 
 if client_search:
     df_filtered = df_filtered[
         df_filtered['Business Partner Name'].str.contains(client_search, case=False, na=False)
     ]
+    print(f"🔹 After Client Search: {len(df_filtered)} rows, €{df_filtered['EUR'].sum():,.2f}")
+
+print(f"📊 DEBUG df_filtered - Rows: {len(df_filtered)}, EUR: €{df_filtered['EUR'].sum():,.2f}")
 
 # ========================================================================
 # METRICS
