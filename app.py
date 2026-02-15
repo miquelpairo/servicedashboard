@@ -237,6 +237,39 @@ def load_file(file):
             
             print(f"📊 AFTER MAPPING - Rows: {len(df)}, EUR: €{df['EUR'].sum():,.2f}")
 
+            # ✅ NUEVO: Rellenar Business Partner Name vacíos usando Id - Name como fallback
+            if 'Business Partner Name' in df.columns:
+                empty_mask = df['Business Partner Name'].isna()
+                empty_count = empty_mask.sum()
+                
+                if empty_count > 0:
+                    print(f"Found {empty_count} empty Business Partner Names", flush=True)
+                    
+                    # Buscar columna con nombre del cliente (Id - Name)
+                    id_name_col = None
+                    for col in df.columns:
+                        if 'Id - Name' in col or 'ID - Name' in col:
+                            id_name_col = col
+                            break
+                    
+                    if id_name_col and id_name_col in df.columns:
+                        # Extraer parte después del " - " 
+                        def extract_name_from_id(value):
+                            if pd.isna(value):
+                                return '(Unknown Customer)'
+                            value_str = str(value)
+                            if ' - ' in value_str:
+                                return value_str.split(' - ', 1)[1].strip()
+                            return value_str.strip()
+                        
+                        # Aplicar fallback solo a los vacíos
+                        df.loc[empty_mask, 'Business Partner Name'] = df.loc[empty_mask, id_name_col].apply(extract_name_from_id)
+                        print(f"Filled {empty_count} empty Business Partner Names from '{id_name_col}'", flush=True)
+                    else:
+                        # Si no existe Id - Name, usar Unknown
+                        df.loc[empty_mask, 'Business Partner Name'] = '(Unknown Customer)'
+                        print(f"No Id-Name column found, filled with '(Unknown Customer)'", flush=True)
+
             # 7. PROCESAR FECHAS
             df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
             df = df[df['Date'].notna()]

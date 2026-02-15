@@ -163676,5 +163676,3655 @@
     "accuracy": 4.0,
     "correction_applied": null,
     "timestamp": "2026-02-14T19:38:25.909052"
+  },
+  "3018_CH": {
+    "coords": [
+      46.9364,
+      7.3906
+    ],
+    "city": "Bern",
+    "admin1": "Canton de Berne",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "3018",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.525844"
+  },
+  "30280_ES": {
+    "coords": null,
+    "postal_normalized": "30280",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=th",
+    "display_name": "30280, จังหวัดนครราชสีมา, ประเทศไทย",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.931759"
+  },
+  "3052_CH": {
+    "coords": [
+      46.9959,
+      7.4548
+    ],
+    "city": "Zollikofen",
+    "admin1": "Canton de Berne",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "3052",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.937026"
+  },
+  "3072_CH": {
+    "coords": [
+      46.9559,
+      7.4956
+    ],
+    "city": "Ostermundigen 1",
+    "admin1": "Canton de Berne",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "3072",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.937026"
+  },
+  "30875_ES": {
+    "coords": [
+      37.5689,
+      -1.418
+    ],
+    "city": "Camposol",
+    "admin1": "Murcia",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "30875",
+    "source": "geonames",
+    "accuracy": 1.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.938023"
+  },
+  "31200_ES": {
+    "coords": [
+      42.6718,
+      -2.0323
+    ],
+    "city": "Lizarra",
+    "admin1": "Navarra",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "31200",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.939023"
+  },
+  "31254_ES": {
+    "coords": [
+      42.4723,
+      -1.8048
+    ],
+    "city": "Vergalijo",
+    "admin1": "Navarra",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "31254",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:26.940019"
+  },
+  "31816_ES": {
+    "coords": null,
+    "postal_normalized": "31816",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=us",
+    "display_name": "31816, Manchester, Meriwether County, Georgia, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:27.935517"
+  },
+  "319519_SG": {
+    "coords": [
+      1.3325,
+      103.8533
+    ],
+    "city": "Lorong 4 Toa Payoh",
+    "admin1": NaN,
+    "country": "sg",
+    "country_input": "sg",
+    "postal_normalized": "319519",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:27.936515"
+  },
+  "32113_BR": {
+    "coords": null,
+    "postal_normalized": "32113",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=lt",
+    "display_name": "32113, Zarasai, Zarasų seniūnija, Zarasų rajono savivaldybė, Utenos apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:28.962436"
+  },
+  "00322_ES": {
+    "coords": null,
+    "postal_normalized": "00322",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=lt",
+    "display_name": "00322, Palanga, Palangos miesto savivaldybė, Klaipėdos apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:30.473397"
+  },
+  "3260-000_PT": {
+    "coords": [
+      39.9041,
+      -8.2751
+    ],
+    "city": "Figueiró dos Vinhos",
+    "admin1": "Leiria",
+    "country": "pt",
+    "country_input": "pt",
+    "postal_normalized": "3260-000",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:30.474393"
+  },
+  "33155_US": {
+    "coords": [
+      25.7392,
+      -80.3103
+    ],
+    "city": "Miami",
+    "admin1": "Florida",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "33155",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:30.474393"
+  },
+  "33402_US": {
+    "coords": [
+      26.7153,
+      -80.0534
+    ],
+    "city": "West Palm Beach",
+    "admin1": "Florida",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "33402",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:30.475391"
+  },
+  "34360_ES": {
+    "coords": null,
+    "postal_normalized": "34360",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fr",
+    "display_name": "34360, Babeau-Bouldoux, Béziers, Hérault, Occitanie, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:30.957102"
+  },
+  "34368_ES": {
+    "coords": null,
+    "postal_normalized": "34368",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ua",
+    "display_name": "34368, Липне, Володимирецька селищна громада, Вараський район, Рівненська область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:31.979344"
+  },
+  "34394_ES": {
+    "coords": null,
+    "postal_normalized": "34394",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=tr",
+    "display_name": "34394, Esentepe Mahallesi, Şişli, İstanbul, Marmara Bölgesi, Türkiye",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:32.953626"
+  },
+  "3482_AT": {
+    "coords": [
+      48.4833,
+      15.8167
+    ],
+    "city": "Stettenhof",
+    "admin1": "Niederösterreich",
+    "country": "at",
+    "country_input": "at",
+    "postal_normalized": "3482",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:32.955622"
+  },
+  "34846_ES": {
+    "coords": [
+      42.8795,
+      -4.4746
+    ],
+    "city": "Valsadornin",
+    "admin1": "Castilla - Leon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "34846",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:32.956617"
+  },
+  "3565_NL": {
+    "coords": [
+      52.1271,
+      5.0876
+    ],
+    "city": "Utrecht",
+    "admin1": "Utrecht",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "3565",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:32.956617"
+  },
+  "35769-7406_US": {
+    "coords": [
+      34.6037073,
+      -86.0749003
+    ],
+    "city": "Scottsboro",
+    "admin1": "Alabama",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "35769-7406",
+    "source": "nominatim",
+    "display_name": "35769, Scottsboro, Jackson County, Alabama, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:33.940671"
+  },
+  "360-0111_JP": {
+    "coords": [
+      36.1347,
+      139.3331
+    ],
+    "city": "Oshikiri",
+    "admin1": "Saitama Ken",
+    "country": "jp",
+    "country_input": "jp",
+    "postal_normalized": "360-0111",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:33.940671"
+  },
+  "3601_NL": {
+    "coords": [
+      52.1446,
+      5.0437
+    ],
+    "city": "Maarssen",
+    "admin1": "Utrecht",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "3601",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:33.941670"
+  },
+  "36120_ES": {
+    "coords": [
+      42.4667,
+      -8.55
+    ],
+    "city": "Vilanova (Tenorio)",
+    "admin1": "Galicia",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "36120",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:33.941670"
+  },
+  "3700_CH": {
+    "coords": [
+      46.6857,
+      7.6698
+    ],
+    "city": "Spiez",
+    "admin1": "Canton de Berne",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "3700",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:33.941670"
+  },
+  "37000_ES": {
+    "coords": null,
+    "postal_normalized": "37000",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fr",
+    "display_name": "37000, Grammont, Tours, Indre-et-Loire, Centre-Val de Loire, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:35.045237"
+  },
+  "37300_GR": {
+    "coords": null,
+    "postal_normalized": "37300",
+    "country": "gr",
+    "country_input": "gr",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=gr got=es",
+    "display_name": "37300, Peñaranda de Bracamonte, Salamanca, Castilla y León, España",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:36.024648"
+  },
+  "37996-4539_US": {
+    "coords": null,
+    "postal_normalized": "37996-4539",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=mx",
+    "display_name": "37996, San José Iturbide, Guanajuato, México",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:37.353095"
+  },
+  "38408_BR": {
+    "coords": null,
+    "postal_normalized": "38408",
+    "country": "br",
+    "country_input": "br",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:38.324973"
+  },
+  "38610_BR": {
+    "coords": null,
+    "postal_normalized": "38610",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=fr",
+    "display_name": "38610, Gières, Grenoble, Isère, Auvergne-Rhône-Alpes, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:39.343121"
+  },
+  "38690_DE": {
+    "coords": [
+      51.9524,
+      10.5637
+    ],
+    "city": "Vienenburg",
+    "admin1": "Niedersachsen",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "38690",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:39.351099"
+  },
+  "3963_CH": {
+    "coords": [
+      46.3355,
+      7.5182
+    ],
+    "city": "Crans-Montana 1",
+    "admin1": "Canton du Valais",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "3963",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:39.351099"
+  },
+  "40132_ES": {
+    "coords": null,
+    "postal_normalized": "40132",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "40132, Lebak Siliwangi, Coblong, Kota Bandung, Jawa Barat, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:39.940505"
+  },
+  "40161_ES": {
+    "coords": [
+      41.0551,
+      -3.8248
+    ],
+    "city": "Navafria",
+    "admin1": "Castilla - Leon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "40161",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:39.941502"
+  },
+  "4023_CH": {
+    "coords": null,
+    "postal_normalized": "4023",
+    "country": "ch",
+    "country_input": "ch",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=ch got=bg",
+    "display_name": "4023, Хан Аспарух, Тракия, Пловдив, България",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:40.948355"
+  },
+  "4030_CH": {
+    "coords": [
+      47.5584,
+      7.5733
+    ],
+    "city": "Basel",
+    "admin1": "Kanton Basel-Stadt",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "4030",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:40.956331"
+  },
+  "40511-8480_US": {
+    "coords": null,
+    "postal_normalized": "40511-8480",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=id",
+    "display_name": "40511, Cimahi, Jawa Barat, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:41.940284"
+  },
+  "40553_ES": {
+    "coords": [
+      41.4691,
+      -3.5564
+    ],
+    "city": "Valdevarnes",
+    "admin1": "Castilla - Leon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "40553",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:41.941282"
+  },
+  "40600_ES": {
+    "coords": null,
+    "postal_normalized": "40600",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fi",
+    "display_name": "40600, Mattilanpelto, Kantakaupunki, Jyväskylä, Jyväskylän seutukunta, Keski-Suomi, Manner-Suomi, Suomi / Finland",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:42.956737"
+  },
+  "41050_ES": {
+    "coords": null,
+    "postal_normalized": "41050",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=kr",
+    "display_name": "41050, 동구, 대구광역시, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:43.939770"
+  },
+  "4112_CH": {
+    "coords": [
+      47.4916,
+      7.51
+    ],
+    "city": "Bättwil-Flüh",
+    "admin1": "Kanton Solothurn",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "4112",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:43.940768"
+  },
+  "41181_ES": {
+    "coords": null,
+    "postal_normalized": "41181",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "41181, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:45.443434"
+  },
+  "41423_ES": {
+    "coords": null,
+    "postal_normalized": "41423",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=kr",
+    "display_name": "41423, 북구, 대구광역시, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:46.349377"
+  },
+  "41504_ES": {
+    "coords": null,
+    "postal_normalized": "41504",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=kr",
+    "display_name": "41504, 산격2동, 북구, 대구광역시, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:46.881269"
+  },
+  "4320_ZA": {
+    "coords": null,
+    "postal_normalized": "4320",
+    "country": "za",
+    "country_input": "za",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=za got=at",
+    "display_name": "4320, Perg, Bezirk Perg, Oberösterreich, Österreich",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.343327"
+  },
+  "44616_ES": {
+    "coords": null,
+    "postal_normalized": "44616",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=eg",
+    "display_name": "44616, الشرقية, مصر",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.887281"
+  },
+  "44706_US": {
+    "coords": [
+      40.768,
+      -81.4119
+    ],
+    "city": "Canton",
+    "admin1": "Ohio",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "44706",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.888279"
+  },
+  "45181_ES": {
+    "coords": [
+      40.0158,
+      -4.0794
+    ],
+    "city": "Camarenilla",
+    "admin1": "Castilla - La Mancha",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "45181",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.889278"
+  },
+  "4625_CH": {
+    "coords": [
+      47.3122,
+      7.7598
+    ],
+    "city": "Oberbuchsiten",
+    "admin1": "Kanton Solothurn",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "4625",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.889278"
+  },
+  "4665_CH": {
+    "coords": [
+      47.3134,
+      7.939
+    ],
+    "city": "Oftringen 1",
+    "admin1": "Kanton Aargau",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "4665",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.889278"
+  },
+  "4691_NL": {
+    "coords": [
+      51.5339,
+      4.2156
+    ],
+    "city": "Tholen",
+    "admin1": "Zeeland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "4691",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:48.890274"
+  },
+  "46962-1232_US": {
+    "coords": null,
+    "postal_normalized": "46962-1232",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=kr",
+    "display_name": "46962, 사상구, 부산광역시, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:49.911319"
+  },
+  "48000_BR": {
+    "coords": null,
+    "postal_normalized": "48000",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=dz",
+    "display_name": "48000, Zemmora, Daïra Zemmora, Relizane, Algérie ⵍⵣⵣⴰⵢⴻⵔ الجزائر",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:50.945457"
+  },
+  "00501_ES": {
+    "coords": null,
+    "postal_normalized": "00501",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=gt",
+    "display_name": "00501, Escuintla, Guatemala",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:51.900077"
+  },
+  "50135_ES": {
+    "coords": [
+      41.4667,
+      -0.7058
+    ],
+    "city": "Mediana De Aragon",
+    "admin1": "Aragon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "50135",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:51.908057"
+  },
+  "50136_ES": {
+    "coords": [
+      41.2549,
+      -0.8029
+    ],
+    "city": "Letux",
+    "admin1": "Aragon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "50136",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:51.908057"
+  },
+  "50241_ES": {
+    "coords": null,
+    "postal_normalized": "50241",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "50241, Karangkidul, Semarang Tengah, Kota Semarang, Jawa Tengah, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:53.336104"
+  },
+  "50249_ES": {
+    "coords": [
+      41.4747,
+      -1.6374
+    ],
+    "city": "Viver De La Sierra",
+    "admin1": "Aragon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "50249",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:53.337103"
+  },
+  "50340_ES": {
+    "coords": [
+      41.2877,
+      -1.6166
+    ],
+    "city": "Maluenda",
+    "admin1": "Aragon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "50340",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:53.337103"
+  },
+  "50630_ES": {
+    "coords": [
+      41.7696,
+      -1.1191
+    ],
+    "city": "Alagon",
+    "admin1": "Aragon",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "50630",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:53.337103"
+  },
+  "52242-9999_US": {
+    "coords": null,
+    "postal_normalized": "52242-9999",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=tw",
+    "display_name": "52242, 饒平村, 田尾鄉, 彰化縣, 臺灣",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:53.908575"
+  },
+  "52623_ES": {
+    "coords": null,
+    "postal_normalized": "52623",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=us",
+    "display_name": "52623, Des Moines County, Iowa, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:54.944134"
+  },
+  "52806_US": {
+    "coords": [
+      41.5733,
+      -90.6038
+    ],
+    "city": "Davenport",
+    "admin1": "Iowa",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "52806",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:54.945129"
+  },
+  "52806-9340_US": {
+    "coords": null,
+    "postal_normalized": "52806-9340",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=kr",
+    "display_name": "52806, 진주시, 경상남도, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:55.947569"
+  },
+  "53123_DE": {
+    "coords": [
+      50.711,
+      7.0489
+    ],
+    "city": "Bonn",
+    "admin1": "Nordrhein-Westfalen",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "53123",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:55.947569"
+  },
+  "53718_US": {
+    "coords": [
+      43.0984,
+      -89.2734
+    ],
+    "city": "Madison",
+    "admin1": "Wisconsin",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "53718",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:55.948566"
+  },
+  "540-0003_JP": {
+    "coords": [
+      34.6798,
+      135.5313
+    ],
+    "city": "Morinomiyachuo",
+    "admin1": "Osaka Fu",
+    "country": "jp",
+    "country_input": "jp",
+    "postal_normalized": "540-0003",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:55.949564"
+  },
+  "54022-7521_US": {
+    "coords": null,
+    "postal_normalized": "54022-7521",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=ua",
+    "display_name": "54022, Широка Балка, Корабельний район, Миколаїв, Миколаївська міська громада, Миколаївський район, Миколаївська область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:57.346965"
+  },
+  "54972_ES": {
+    "coords": null,
+    "postal_normalized": "54972",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=cz",
+    "display_name": "549 72, Otovice u Broumova, Otovice, okres Náchod, Královéhradecký kraj, Severovýchod, Česko",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:57.944391"
+  },
+  "55103_ES": {
+    "coords": null,
+    "postal_normalized": "55103",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=lt",
+    "display_name": "55103, Šilų seniūnija, Jonavos rajono savivaldybė, Kauno apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:58.949387"
+  },
+  "55232_DE": {
+    "coords": [
+      49.7466,
+      8.1151
+    ],
+    "city": "Alzey",
+    "admin1": "Rheinland-Pfalz",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "55232",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:58.957368"
+  },
+  "55282_ES": {
+    "coords": null,
+    "postal_normalized": "55282",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "55282, Maguwoharjo, Depok, Sleman, Daerah Istimewa Yogyakarta, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:59.974685"
+  },
+  "55306_US": {
+    "coords": [
+      44.7307,
+      -93.2921
+    ],
+    "city": "Burnsville",
+    "admin1": "Minnesota",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "55306",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:59.983442"
+  },
+  "55431_US": {
+    "coords": [
+      44.8288,
+      -93.3118
+    ],
+    "city": "Minneapolis",
+    "admin1": "Minnesota",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "55431",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:59.984439"
+  },
+  "55566_DE": {
+    "coords": [
+      49.7667,
+      7.5667
+    ],
+    "city": "Kirschroth",
+    "admin1": "Rheinland-Pfalz",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "55566",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:38:59.985436"
+  },
+  "05595_ES": {
+    "coords": null,
+    "postal_normalized": "05595",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=kr",
+    "display_name": "05595, 송파구, 서울특별시, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:00.972975"
+  },
+  "55970_BR": {
+    "coords": null,
+    "postal_normalized": "55970",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=mx",
+    "display_name": "55970, Nopaltepec, Estado de México, México",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:01.890330"
+  },
+  "5616_CH": {
+    "coords": [
+      47.2902,
+      8.2258
+    ],
+    "city": "Meisterschwanden",
+    "admin1": "Kanton Aargau",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "5616",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:01.898309"
+  },
+  "56220_DE": {
+    "coords": [
+      50.3582,
+      7.4596
+    ],
+    "city": "Bassenheim",
+    "admin1": "Rheinland-Pfalz",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "56220",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:01.898309"
+  },
+  "5634_CH": {
+    "coords": [
+      47.2627,
+      8.3839
+    ],
+    "city": "Merenschwand",
+    "admin1": "Kanton Aargau",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "5634",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:01.899306"
+  },
+  "56856_DE": {
+    "coords": [
+      50.0292,
+      7.1823
+    ],
+    "city": "Zell",
+    "admin1": "Rheinland-Pfalz",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "56856",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:01.899306"
+  },
+  "57192_ES": {
+    "coords": null,
+    "postal_normalized": "57192",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=lt",
+    "display_name": "57192, Kėdainiai, Kėdainių miesto seniūnija, Kėdainių rajono savivaldybė, Kauno apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:02.948920"
+  },
+  "57454_ES": {
+    "coords": null,
+    "postal_normalized": "57454",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "57454, Klaten, Jawa Tengah, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:03.949969"
+  },
+  "57611_ES": {
+    "coords": null,
+    "postal_normalized": "57611",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "57611, Wonogiri, Jawa Tengah, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:04.972429"
+  },
+  "60165_ES": {
+    "coords": null,
+    "postal_normalized": "60165",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "60165, Perak Utara, Pabean Cantian, Surabaya, Jawa Timur, Jawa, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:05.948356"
+  },
+  "60222_ES": {
+    "coords": null,
+    "postal_normalized": "60222",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ee",
+    "display_name": "60222, Rootsiküla, Peipsiääre vald, Tartu maakond, Eesti",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:06.940215"
+  },
+  "60445_BR": {
+    "coords": null,
+    "postal_normalized": "60445",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=lt",
+    "display_name": "60445, Šiluvos seniūnija, Raseinių rajono savivaldybė, Kauno apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:08.339994"
+  },
+  "61392_ES": {
+    "coords": null,
+    "postal_normalized": "61392",
+    "country": "es",
+    "country_input": "es",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:08.950460"
+  },
+  "6252_CH": {
+    "coords": [
+      47.2159,
+      7.9951
+    ],
+    "city": "Dagmersellen",
+    "admin1": "Kanton Luzern",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "6252",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:08.951459"
+  },
+  "6269_NL": {
+    "coords": [
+      50.8215,
+      5.8218
+    ],
+    "city": "Margraten",
+    "admin1": "Limburg",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "6269",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:08.958439"
+  },
+  "62840_BR": {
+    "coords": null,
+    "postal_normalized": "62840",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=fr",
+    "display_name": "62840, Laventie, Béthune, Pas-de-Calais, Hauts-de-France, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:10.343839"
+  },
+  "628413_SG": {
+    "coords": [
+      1.3083,
+      103.6601
+    ],
+    "city": "Pioneer Sector 1",
+    "admin1": NaN,
+    "country": "sg",
+    "country_input": "sg",
+    "postal_normalized": "628413",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:10.351811"
+  },
+  "62901_US": {
+    "coords": [
+      37.72,
+      -89.2158
+    ],
+    "city": "Carbondale",
+    "admin1": "Illinois",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "62901",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:10.352810"
+  },
+  "63000_ES": {
+    "coords": null,
+    "postal_normalized": "63000",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=do",
+    "display_name": "63000, Partido, Dajabón, República Dominicana",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:11.386880"
+  },
+  "6331_CH": {
+    "coords": [
+      47.193,
+      8.4169
+    ],
+    "city": "Hünenberg",
+    "admin1": "Kanton Zug",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "6331",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:11.386880"
+  },
+  "06335_ES": {
+    "coords": null,
+    "postal_normalized": "06335",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=kr",
+    "display_name": "06335, 개포3동, 강남구, 서울특별시, 대한민국",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:11.987451"
+  },
+  "640-8060_JP": {
+    "coords": [
+      34.2393,
+      135.1707
+    ],
+    "city": "Yosujime",
+    "admin1": "Wakayama Ken",
+    "country": "jp",
+    "country_input": "jp",
+    "postal_normalized": "640-8060",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:11.988448"
+  },
+  "65145_ES": {
+    "coords": null,
+    "postal_normalized": "65145",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ee",
+    "display_name": "65145, Tsolli küla, Rõuge vald, Võru maakond, Eesti",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:12.968424"
+  },
+  "6598_NL": {
+    "coords": [
+      51.6727,
+      5.991
+    ],
+    "city": "Heijen",
+    "admin1": "Limburg",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "6598",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:12.969416"
+  },
+  "66550_ES": {
+    "coords": null,
+    "postal_normalized": "66550",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fr",
+    "display_name": "66550, Corneilla-la-Rivière, Perpignan, Pyrénées-Orientales, Occitanie, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:14.040438"
+  },
+  "6713_AT": {
+    "coords": [
+      47.2006,
+      9.8063
+    ],
+    "city": "Ludescherberg",
+    "admin1": "Vorarlberg",
+    "country": "at",
+    "country_input": "at",
+    "postal_normalized": "6713",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:14.041434"
+  },
+  "67162_ES": {
+    "coords": null,
+    "postal_normalized": "67162",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=cz",
+    "display_name": "671 62, Mšice, Oleksovice, okres Znojmo, Jihomoravský kraj, Jihovýchod, Česko",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:15.066876"
+  },
+  "6814_CH": {
+    "coords": [
+      46.0339,
+      8.9338
+    ],
+    "city": "Cadempino",
+    "admin1": "Ticino",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "6814",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:15.067876"
+  },
+  "6850_CH": {
+    "coords": [
+      45.8862,
+      8.9929
+    ],
+    "city": "Mendrisio Stazione",
+    "admin1": "Ticino",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "6850",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:15.067876"
+  },
+  "68789_DE": {
+    "coords": [
+      49.2659,
+      8.618
+    ],
+    "city": "Sankt Leon-Rot",
+    "admin1": "Baden-Württemberg",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "68789",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:15.067876"
+  },
+  "69118_DE": {
+    "coords": [
+      49.4194,
+      8.7345
+    ],
+    "city": "Heidelberg",
+    "admin1": "Baden-Württemberg",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "69118",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:15.068874"
+  },
+  "6961_AT": {
+    "coords": null,
+    "postal_normalized": "6961",
+    "country": "at",
+    "country_input": "at",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=at got=lu",
+    "display_name": "6961, Senningen, Niederanven, Canton Luxembourg, Lëtzebuerg",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:17.958334"
+  },
+  "70070_BR": {
+    "coords": null,
+    "postal_normalized": "70070",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=kw",
+    "display_name": "70070, الري - قطعة 2, الري, محافظة الفروانية, الكويت",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:18.529041"
+  },
+  "70110_ES": {
+    "coords": null,
+    "postal_normalized": "70110",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ee",
+    "display_name": "70110, Verilaske küla, Viljandi vald, Viljandi maakond, Eesti",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:19.425939"
+  },
+  "70583-5300_US": {
+    "coords": [
+      30.2471532,
+      -92.1031212
+    ],
+    "city": "Scott",
+    "admin1": "Louisiana",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "70583-5300",
+    "source": "nominatim",
+    "display_name": "70583, Scott, Lafayette Parish, Louisiana, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:20.356176"
+  },
+  "70770_BR": {
+    "coords": null,
+    "postal_normalized": "70770",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=us",
+    "display_name": "70770, East Baton Rouge Parish, Louisiana, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:21.429423"
+  },
+  "71190_ES": {
+    "coords": null,
+    "postal_normalized": "71190",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fr",
+    "display_name": "71190, Étang-sur-Arroux, Autun, Saône-et-Loire, Bourgogne-Franche-Comté, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:22.068015"
+  },
+  "71899_PL": {
+    "coords": [
+      53.43602,
+      14.541256
+    ],
+    "city": "Szczecin",
+    "admin1": "województwo zachodniopomorskie",
+    "country": "pl",
+    "country_input": "pl",
+    "postal_normalized": "71899",
+    "source": "nominatim",
+    "display_name": "71-899, Śródmieście-Północ, Śródmieście, Szczecin, województwo zachodniopomorskie, Polska",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:23.056782"
+  },
+  "72180_ES": {
+    "coords": null,
+    "postal_normalized": "72180",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=lt",
+    "display_name": "72180, Norkaičiai, Mažonų seniūnija, Tauragės rajono savivaldybė, Tauragės apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:24.141628"
+  },
+  "7500_CH": {
+    "coords": [
+      46.4905,
+      9.8174
+    ],
+    "city": "St. Moritz",
+    "admin1": "Kanton Graubünden",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "7500",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:24.142626"
+  },
+  "75240_BR": {
+    "coords": null,
+    "postal_normalized": "75240",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=ba",
+    "display_name": "75240, Вукосавци, Opština Lopare, Република Српска / Republika Srpska, Bosna i Hercegovina / Босна и Херцеговина",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:25.243408"
+  },
+  "75313_ES": {
+    "coords": null,
+    "postal_normalized": "75313",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ee",
+    "display_name": "75313, Vaskjala küla, Rae vald, Harju maakond, Eesti",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:26.593390"
+  },
+  "75323_DE": {
+    "coords": [
+      48.75,
+      8.55
+    ],
+    "city": "Bad Wildbad im Schwarzwald",
+    "admin1": "Baden-Württemberg",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "75323",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:26.594387"
+  },
+  "7551_NL": {
+    "coords": [
+      52.2656,
+      6.7922
+    ],
+    "city": "Hengelo",
+    "admin1": "Overijssel",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "7551",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:26.601369"
+  },
+  "76190_BR": {
+    "coords": null,
+    "postal_normalized": "76190",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=fr",
+    "display_name": "76190, Yvetot, Rouen, Seine-Maritime, Normandie, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:27.487059"
+  },
+  "76385_ES": {
+    "coords": null,
+    "postal_normalized": "76385",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=us",
+    "display_name": "76385, Wilbarger County, Texas, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:28.104406"
+  },
+  "76689_DE": {
+    "coords": [
+      49.1347,
+      8.5303
+    ],
+    "city": "Karlsdorf-Neuthard",
+    "admin1": "Baden-Württemberg",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "76689",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:28.105406"
+  },
+  "78008_FR": {
+    "coords": null,
+    "postal_normalized": "78008",
+    "country": "fr",
+    "country_input": "fr",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=fr got=us",
+    "display_name": "78008, Atascosa County, Texas, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:29.143874"
+  },
+  "78043_BR": {
+    "coords": null,
+    "postal_normalized": "78043",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=ua",
+    "display_name": "78043, Тлумацька міська громада, Івано-Франківський район, Івано-Франківська область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:30.122996"
+  },
+  "78455_BR": {
+    "coords": null,
+    "postal_normalized": "78455",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=ua",
+    "display_name": "78455, Ланчин, Ланчинська селищна громада, Надвірнянський район, Івано-Франківська область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:31.145050"
+  },
+  "79020_BR": {
+    "coords": null,
+    "postal_normalized": "79020",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=ee",
+    "display_name": "79020, Põllu küla, Kehtna vald, Rapla maakond, Eesti",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.124244"
+  },
+  "79539_DE": {
+    "coords": [
+      47.6181,
+      7.6589
+    ],
+    "city": "Lörrach",
+    "admin1": "Baden-Württemberg",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "79539",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.132222"
+  },
+  "8008_CH": {
+    "coords": [
+      47.3538,
+      8.5587
+    ],
+    "city": "Zürich",
+    "admin1": "Kanton Zürich",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8008",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.132222"
+  },
+  "8047_AT": {
+    "coords": [
+      47.1352,
+      15.4601
+    ],
+    "city": "Graz,10.Bez.:Ries",
+    "admin1": "Steiermark",
+    "country": "at",
+    "country_input": "at",
+    "postal_normalized": "8047",
+    "source": "geonames",
+    "accuracy": 3.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.133218"
+  },
+  "8049_CH": {
+    "coords": [
+      47.4085,
+      8.4944
+    ],
+    "city": "Zürich",
+    "admin1": "Kanton Zürich",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8049",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.133218"
+  },
+  "8108_CH": {
+    "coords": [
+      47.4394,
+      8.4324
+    ],
+    "city": "Dällikon",
+    "admin1": "Kanton Zürich",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8108",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.133218"
+  },
+  "8253_CH": {
+    "coords": [
+      47.6812,
+      8.746
+    ],
+    "city": "Diessenhofen",
+    "admin1": "Kanton Thurgau",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8253",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.134216"
+  },
+  "83098_DE": {
+    "coords": [
+      47.74,
+      12.0917
+    ],
+    "city": "Brannenburg",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "83098",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.134216"
+  },
+  "8315_CH": {
+    "coords": [
+      47.4433,
+      8.6764
+    ],
+    "city": "Lindau",
+    "admin1": "Kanton Zürich",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8315",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:32.135213"
+  },
+  "84005_ES": {
+    "coords": null,
+    "postal_normalized": "84005",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ua",
+    "display_name": "84005, Олександрівська селищна громада, Краматорський район, Донецька область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:33.198265"
+  },
+  "8422_CH": {
+    "coords": [
+      47.5112,
+      8.6425
+    ],
+    "city": "Pfungen",
+    "admin1": "Kanton Zürich",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8422",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:33.198265"
+  },
+  "84290_ES": {
+    "coords": null,
+    "postal_normalized": "84290",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fr",
+    "display_name": "84290, Cairanne, Carpentras, Vaucluse, Provence-Alpes-Côte d'Azur, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:34.374485"
+  },
+  "8430_AT": {
+    "coords": [
+      46.8,
+      15.5833
+    ],
+    "city": "Hasendorf an der Mur",
+    "admin1": "Steiermark",
+    "country": "at",
+    "country_input": "at",
+    "postal_normalized": "8430",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:34.375485"
+  },
+  "00844_ES": {
+    "coords": null,
+    "postal_normalized": "00844",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=pl",
+    "display_name": "00-844, Podstacja Trakcyjna \"Grzybowska\", Mirów, Wola, Warszawa, województwo mazowieckie, Polska",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:35.133774"
+  },
+  "8441_NL": {
+    "coords": [
+      52.965,
+      5.9183
+    ],
+    "city": "Heerenveen",
+    "admin1": "Friesland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "8441",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:35.141752"
+  },
+  "85000_ES": {
+    "coords": null,
+    "postal_normalized": "85000",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=fr",
+    "display_name": "85000, Pyramides, La Roche-sur-Yon, Vendée, Pays de la Loire, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:36.144252"
+  },
+  "85716_US": {
+    "coords": [
+      32.2468,
+      -110.9222
+    ],
+    "city": "Tucson",
+    "admin1": "Arizona",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "85716",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:36.145252"
+  },
+  "85833_BR": {
+    "coords": null,
+    "postal_normalized": "85833",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=pl",
+    "display_name": "85-833, Zimne Wody - Czersko Polskie, Bydgoszcz, województwo kujawsko-pomorskie, Polska",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:37.130917"
+  },
+  "8594_CH": {
+    "coords": [
+      47.6118,
+      9.3003
+    ],
+    "city": "Güttingen",
+    "admin1": "Kanton Thurgau",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8594",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:37.130917"
+  },
+  "8605_AT": {
+    "coords": [
+      47.4385,
+      15.2303
+    ],
+    "city": "Schörgendorf",
+    "admin1": "Steiermark",
+    "country": "at",
+    "country_input": "at",
+    "postal_normalized": "8605",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:37.138898"
+  },
+  "86380_BR": {
+    "coords": null,
+    "postal_normalized": "86380",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=fr",
+    "display_name": "86380, La Citière, Vendeuvre-du-Poitou, Saint-Martin-la-Pallu, Poitiers, Vienne, Nouvelle-Aquitaine, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:38.154068"
+  },
+  "86899_DE": {
+    "coords": [
+      48.0482,
+      10.8828
+    ],
+    "city": "Landsberg am Lech",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "86899",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:38.154068"
+  },
+  "08725_ES": {
+    "coords": null,
+    "postal_normalized": "08725",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=ua",
+    "display_name": "08725, Красне Перше, Обухівська міська громада, Обухівський район, Київська область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:39.134015"
+  },
+  "87696_ES": {
+    "coords": null,
+    "postal_normalized": "87696",
+    "country": "es",
+    "country_input": "es",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:40.189297"
+  },
+  "88040_BR": {
+    "coords": null,
+    "postal_normalized": "88040",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=it",
+    "display_name": "88040, Lamezia Terme, Catanzaro, Calabria, Italia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:41.131976"
+  },
+  "88138_DE": {
+    "coords": [
+      47.5833,
+      9.7667
+    ],
+    "city": "Sigmarszell",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "88138",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:41.131976"
+  },
+  "8845_CH": {
+    "coords": [
+      47.0436,
+      8.8589
+    ],
+    "city": "Studen SZ",
+    "admin1": "Kanton Schwyz",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8845",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:41.139959"
+  },
+  "8915_NL": {
+    "coords": [
+      53.2095,
+      5.7702
+    ],
+    "city": "Leeuwarden",
+    "admin1": "Friesland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "8915",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:41.140951"
+  },
+  "89415_DE": {
+    "coords": [
+      48.5654,
+      10.4297
+    ],
+    "city": "Lauingen (Donau)",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "89415",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:41.140951"
+  },
+  "89560_BR": {
+    "coords": null,
+    "postal_normalized": "89560",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=fr",
+    "display_name": "89560, Courson-les-Carrières, Auxerre, Yonne, Bourgogne-Franche-Comté, France métropolitaine, France",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.540016"
+  },
+  "8957_CH": {
+    "coords": [
+      47.418,
+      8.3672
+    ],
+    "city": "Spreitenbach",
+    "admin1": "Kanton Aargau",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "8957",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.540016"
+  },
+  "901-0306_JP": {
+    "coords": [
+      26.1388,
+      127.6668
+    ],
+    "city": "Nishizakicho",
+    "admin1": "Okinawa Ken",
+    "country": "jp",
+    "country_input": "jp",
+    "postal_normalized": "901-0306",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.541014"
+  },
+  "90402_DE": {
+    "coords": [
+      49.4504,
+      11.0778
+    ],
+    "city": "Nürnberg",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "90402",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.547995"
+  },
+  "90403_DE": {
+    "coords": [
+      49.4541,
+      11.0768
+    ],
+    "city": "Nürnberg",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "90403",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.548992"
+  },
+  "9055_CH": {
+    "coords": [
+      47.3783,
+      9.4266
+    ],
+    "city": "Bühler",
+    "admin1": "Kanton Appenzell Ausserrhoden",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "9055",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.548992"
+  },
+  "9113_CH": {
+    "coords": [
+      47.3734,
+      9.1981
+    ],
+    "city": "Degersheim",
+    "admin1": "Kanton St. Gallen",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "9113",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:42.548992"
+  },
+  "91400_ES": {
+    "coords": null,
+    "postal_normalized": "91400",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=lk",
+    "display_name": "91400, Monaragala District, Uva Province, Sri Lanka",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:43.074293"
+  },
+  "91403_ES": {
+    "coords": null,
+    "postal_normalized": "91403",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=us",
+    "display_name": "91403, Sherman Oaks Neighborhood Council District, Los Angeles, Los Angeles County, California, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:44.152869"
+  },
+  "91555_DE": {
+    "coords": [
+      49.1629,
+      10.3385
+    ],
+    "city": "Feuchtwangen",
+    "admin1": "Bayern",
+    "country": "de",
+    "country_input": "de",
+    "postal_normalized": "91555",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:44.152869"
+  },
+  "9230_CH": {
+    "coords": [
+      47.4053,
+      9.1977
+    ],
+    "city": "Flawil 1",
+    "admin1": "Kanton St. Gallen",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "9230",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:44.153867"
+  },
+  "92332_PL": {
+    "coords": null,
+    "postal_normalized": "92332",
+    "country": "pl",
+    "country_input": "pl",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=pl got=ee",
+    "display_name": "92332, Hagaste küla, Hiiumaa vald, Hiiu maakond, Eesti",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:45.132106"
+  },
+  "93106-7000_US": {
+    "coords": null,
+    "postal_normalized": "93106-7000",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=ua",
+    "display_name": "93106, Сіверськодонецький район, Луганська область, Україна",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:46.158384"
+  },
+  "9403_CH": {
+    "coords": [
+      47.4859,
+      9.4782
+    ],
+    "city": "Goldach",
+    "admin1": "Kanton St. Gallen",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "9403",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:46.158384"
+  },
+  "9466_CH": {
+    "coords": [
+      47.2623,
+      9.5013
+    ],
+    "city": "Sennwald",
+    "admin1": "Kanton St. Gallen",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "9466",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:46.159380"
+  },
+  "94938_US": {
+    "coords": [
+      38.0139,
+      -122.7016
+    ],
+    "city": "Lagunitas",
+    "admin1": "California",
+    "country": "us",
+    "country_input": "us",
+    "postal_normalized": "94938",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:46.159380"
+  },
+  "9552_CH": {
+    "coords": [
+      47.481,
+      9.0301
+    ],
+    "city": "Bronschhofen",
+    "admin1": "Kanton St. Gallen",
+    "country": "ch",
+    "country_input": "ch",
+    "postal_normalized": "9552",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:46.159380"
+  },
+  "95853_BR": {
+    "coords": null,
+    "postal_normalized": "95853",
+    "country": "br",
+    "country_input": "br",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=br got=sk",
+    "display_name": "958 53, Skačany, okres Partizánske, Trenčiansky kraj, Západné Slovensko, Slovensko",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:47.154274"
+  },
+  "96010_IT": {
+    "coords": [
+      37.2513,
+      15.0909
+    ],
+    "city": "Villasmundo",
+    "admin1": "Sicilia",
+    "country": "it",
+    "country_input": "it",
+    "postal_normalized": "96010",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:47.154274"
+  },
+  "97800_BR": {
+    "coords": null,
+    "postal_normalized": "97800",
+    "country": "br",
+    "country_input": "br",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:48.137683"
+  },
+  "979-1151_JP": {
+    "coords": [
+      37.3464,
+      141.0222
+    ],
+    "city": "Motoka",
+    "admin1": "Fukushima Ken",
+    "country": "jp",
+    "country_input": "jp",
+    "postal_normalized": "979-1151",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:48.138683"
+  },
+  "98109-4433_US": {
+    "coords": null,
+    "postal_normalized": "98109-4433",
+    "country": "us",
+    "country_input": "us",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=us got=lt",
+    "display_name": "98109, Skuodas, Skuodo miesto seniūnija, Skuodo rajono savivaldybė, Klaipėdos apskritis, Lietuva",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:49.142982"
+  },
+  "98315_ES": {
+    "coords": null,
+    "postal_normalized": "98315",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=id",
+    "display_name": "98315, Manokwari, Papua Barat, Irian Barat, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:50.152872"
+  },
+  "AB25_2ZD_GB": {
+    "coords": [
+      57.1560356,
+      -2.1368189
+    ],
+    "city": "Aberdeen City",
+    "admin1": "Alba / Scotland",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "AB25 2ZD",
+    "source": "nominatim",
+    "display_name": "AB25 2ZD, Rosemount and Mile End, Aberdeen City, Alba / Scotland, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:51.129425"
+  },
+  "BT9_5AG_GB": {
+    "coords": null,
+    "postal_normalized": "BT9 5AG",
+    "country": "gb",
+    "country_input": "gb",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:52.074689"
+  },
+  "CB25_9QT_GB": {
+    "coords": [
+      52.2709385,
+      0.1814247
+    ],
+    "city": "South Cambridgeshire",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "CB25 9QT",
+    "source": "nominatim",
+    "display_name": "CB25 9QT, Denny End Industrial Estate, Waterbeach, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:53.073218"
+  },
+  "CF82_7FQ_GB": {
+    "coords": [
+      51.64423,
+      -3.2469199
+    ],
+    "city": "Ystrad Mynach",
+    "admin1": "Cymru / Wales",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "CF82 7FQ",
+    "source": "nominatim",
+    "display_name": "CF82 7FQ, Tredomen Buisness Park, Ystrad Mynach, Gelligaer, Ystrad Mynach, Gelligaer, Caerphilly, Cymru / Wales, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:54.146673"
+  },
+  "G3G_2E4_CA": {
+    "coords": null,
+    "postal_normalized": "G3G 2E4",
+    "country": "ca",
+    "country_input": "ca",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:55.537254"
+  },
+  "G5Y_3G1_CA": {
+    "coords": [
+      46.1267085,
+      -70.6690643
+    ],
+    "city": "Saint-Georges",
+    "admin1": "Québec",
+    "country": "ca",
+    "country_input": "ca",
+    "postal_normalized": "G5Y 3G1",
+    "source": "nominatim",
+    "display_name": "G5Y 3G1, Saint-Georges, Beauce-Sartigan, Chaudière-Appalaches, Québec, Canada",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:56.097972"
+  },
+  "K1A_0C5_CA": {
+    "coords": null,
+    "postal_normalized": "K1A 0C5",
+    "country": "ca",
+    "country_input": "ca",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:57.072319"
+  },
+  "K36CC66_IE": {
+    "coords": null,
+    "postal_normalized": "K36CC66",
+    "country": "ie",
+    "country_input": "ie",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:58.077480"
+  },
+  "LE11_3AB_GB": {
+    "coords": [
+      52.77239,
+      -1.21742
+    ],
+    "city": "Charnwood",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "LE11 3AB",
+    "source": "nominatim",
+    "display_name": "LE11 3AB, Charnwood, Leicestershire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:39:59.164627"
+  },
+  "M27_8WA_GB": {
+    "coords": [
+      53.50951,
+      -2.30248
+    ],
+    "city": "Salford",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "M27 8WA",
+    "source": "nominatim",
+    "display_name": "M27 8WA, Salford, Greater Manchester, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:00.147072"
+  },
+  "MK16_0DG_GB": {
+    "coords": [
+      52.08053,
+      -0.7205899
+    ],
+    "city": "Newport Pagnell",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "MK16 0DG",
+    "source": "nominatim",
+    "display_name": "MK16 0DG, Newport Pagnell, City of Milton Keynes, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:01.165416"
+  },
+  "20250_ES": {
+    "coords": [
+      43.085,
+      -2.1483
+    ],
+    "city": "Legorreta",
+    "admin1": "Pais Vasco",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "20250",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:01.166413"
+  },
+  "S021_3RQ_GB": {
+    "coords": null,
+    "postal_normalized": "S021 3RQ",
+    "country": "gb",
+    "country_input": "gb",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:02.152311"
+  },
+  "S0G_3Z0_CA": {
+    "coords": [
+      50.4792349,
+      -104.4126022
+    ],
+    "city": "Pilot Butte",
+    "admin1": "Saskatchewan",
+    "country": "ca",
+    "country_input": "ca",
+    "postal_normalized": "S0G 3Z0",
+    "source": "nominatim",
+    "display_name": "S0G 3Z0, Pilot Butte, Saskatchewan, Canada",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:03.150228"
+  },
+  "SG8_6DP_GB": {
+    "coords": [
+      52.0753886,
+      0.0120091
+    ],
+    "city": "South Cambridgeshire",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "SG8 6DP",
+    "source": "nominatim",
+    "display_name": "SG8 6DP, PA Consulting, Melbourn, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:04.151115"
+  },
+  "T6G_2R3_CA": {
+    "coords": [
+      53.5262811,
+      -113.5247349
+    ],
+    "city": "Edmonton",
+    "admin1": "Alberta",
+    "country": "ca",
+    "country_input": "ca",
+    "postal_normalized": "T6G 2R3",
+    "source": "nominatim",
+    "display_name": "T6G 2R3, University of Alberta, Greater Strathcona, Edmonton, Alberta, Canada",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:05.547965"
+  },
+  "〒532-0033_JP": {
+    "coords": [
+      34.7351746,
+      135.484767
+    ],
+    "city": "大阪市",
+    "admin1": "",
+    "country": "jp",
+    "country_input": "jp",
+    "postal_normalized": "〒532-0033",
+    "source": "nominatim",
+    "display_name": "532-0033, 三国本町二丁目, 淀川区, 大阪市, 大阪府, 日本",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:40:06.178389"
+  },
+  "0180_NO": {
+    "coords": [
+      59.9127,
+      10.7461
+    ],
+    "city": "Oslo",
+    "admin1": "Oslo County",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "0180",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:37.013071"
+  },
+  "0380_NO": {
+    "coords": [
+      59.9127,
+      10.7461
+    ],
+    "city": "Oslo",
+    "admin1": "Oslo County",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "0380",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:37.014070"
+  },
+  "0485_NO": {
+    "coords": [
+      59.9127,
+      10.7461
+    ],
+    "city": "Oslo",
+    "admin1": "Oslo County",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "0485",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:37.015068"
+  },
+  "0504_NO": {
+    "coords": [
+      59.9127,
+      10.7461
+    ],
+    "city": "Oslo",
+    "admin1": "Oslo County",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "0504",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:37.016064"
+  },
+  "0884_NO": {
+    "coords": [
+      59.9127,
+      10.7461
+    ],
+    "city": "Oslo",
+    "admin1": "Oslo County",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "0884",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:37.016064"
+  },
+  "10691_SE": {
+    "coords": null,
+    "postal_normalized": "10691",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=es",
+    "display_name": "10691, Galisteo, Cáceres, Extremadura, España",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:37.176635"
+  },
+  "11636_SE": {
+    "coords": null,
+    "postal_normalized": "11636",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=eg",
+    "display_name": "11636, القاهرة, مصر",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:38.111293"
+  },
+  "1618_NO": {
+    "coords": [
+      59.234,
+      10.984
+    ],
+    "city": "Fredrikstad",
+    "admin1": "Østfold",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "1618",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:38.112291"
+  },
+  "1731_BE": {
+    "coords": [
+      50.8991,
+      4.2769
+    ],
+    "city": "Relegem",
+    "admin1": "Vlaanderen",
+    "country": "be",
+    "country_input": "be",
+    "postal_normalized": "1731",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:38.120632"
+  },
+  "1811_NL": {
+    "coords": [
+      52.631,
+      4.7486
+    ],
+    "city": "Alkmaar",
+    "admin1": "North Holland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "1811",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:38.122628"
+  },
+  "21118_SE": {
+    "coords": null,
+    "postal_normalized": "21118",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=id",
+    "display_name": "21118, Kota Pematangsiantar, Sumatera Utara, Sumatera, Indonesia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:39.144500"
+  },
+  "21616_SE": {
+    "coords": null,
+    "postal_normalized": "21616",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=eg",
+    "display_name": "21616, الإسكندرية, مصر",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:40.179515"
+  },
+  "230_IS": {
+    "coords": [
+      63.9981,
+      -22.5611
+    ],
+    "city": "Reykjanesbæ",
+    "admin1": NaN,
+    "country": "is",
+    "country_input": "is",
+    "postal_normalized": "230",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:40.180511"
+  },
+  "2315_NO": {
+    "coords": [
+      60.7945,
+      11.068
+    ],
+    "city": "Hamar",
+    "admin1": "Innlandet",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "2315",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:40.189515"
+  },
+  "2360_NO": {
+    "coords": [
+      60.9744,
+      10.7754
+    ],
+    "city": "Rudshøgda",
+    "admin1": "Innlandet",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "2360",
+    "source": "geonames",
+    "accuracy": 1.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:40.194506"
+  },
+  "2610_DK": {
+    "coords": [
+      55.6889,
+      12.451
+    ],
+    "city": "Rødovre",
+    "admin1": "Capital Region",
+    "country": "dk",
+    "country_input": "dk",
+    "postal_normalized": "2610",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:40.200485"
+  },
+  "28921_ES": {
+    "coords": [
+      40.3458,
+      -3.8249
+    ],
+    "city": "Alcorcon",
+    "admin1": "Madrid",
+    "country": "es",
+    "country_input": "es",
+    "postal_normalized": "28921",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:40.202479"
+  },
+  "29622_SE": {
+    "coords": null,
+    "postal_normalized": "29622",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=us",
+    "display_name": "29622, Anderson County, South Carolina, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:41.565055"
+  },
+  "3545_BE": {
+    "coords": [
+      50.9341,
+      5.0698
+    ],
+    "city": "Loksbergen",
+    "admin1": "Vlaanderen",
+    "country": "be",
+    "country_input": "be",
+    "postal_normalized": "3545",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:41.566048"
+  },
+  "3553_NL": {
+    "coords": [
+      52.1093,
+      5.0878
+    ],
+    "city": "Utrecht",
+    "admin1": "Utrecht",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "3553",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:41.566048"
+  },
+  "3650_BE": {
+    "coords": [
+      51.0385,
+      5.7394
+    ],
+    "city": "Dilsen",
+    "admin1": "Vlaanderen",
+    "country": "be",
+    "country_input": "be",
+    "postal_normalized": "3650",
+    "source": "geonames",
+    "accuracy": 3.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:41.567048"
+  },
+  "37165_SE": {
+    "coords": null,
+    "postal_normalized": "37165",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=us",
+    "display_name": "37165, Slayden, Dickson County, Middle Tennessee, Tennessee, United States",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:42.136379"
+  },
+  "3936_NO": {
+    "coords": [
+      59.1131,
+      9.6483
+    ],
+    "city": "Porsgrunn",
+    "admin1": "Telemark",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "3936",
+    "source": "geonames",
+    "accuracy": NaN,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:42.137375"
+  },
+  "4033_NO": {
+    "coords": [
+      58.9701,
+      5.7333
+    ],
+    "city": "Stavanger",
+    "admin1": "Rogaland",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "4033",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:42.139373"
+  },
+  "4305_DK": {
+    "coords": [
+      55.7717,
+      11.813
+    ],
+    "city": "Orø",
+    "admin1": "Zealand",
+    "country": "dk",
+    "country_input": "dk",
+    "postal_normalized": "4305",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:42.141365"
+  },
+  "4411_NL": {
+    "coords": [
+      51.4169,
+      4.1836
+    ],
+    "city": "Rilland",
+    "admin1": "Zeeland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "4411",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:42.150341"
+  },
+  "46593_SE": {
+    "coords": null,
+    "postal_normalized": "46593",
+    "country": "se",
+    "country_input": "se",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=se got=es",
+    "display_name": "46593, Algar de Palància, el Camp de Morvedre, València / Valencia, Comunitat Valenciana, España",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.221112"
+  },
+  "4735_NL": {
+    "coords": [
+      51.5568,
+      4.5164
+    ],
+    "city": "Zegge",
+    "admin1": "North Brabant",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "4735",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.230085"
+  },
+  "4880_BE": {
+    "coords": [
+      50.7019,
+      5.8581
+    ],
+    "city": "Aubel",
+    "admin1": "Wallonie",
+    "country": "be",
+    "country_input": "be",
+    "postal_normalized": "4880",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.231082"
+  },
+  "5141_NO": {
+    "coords": [
+      60.4193,
+      5.2856
+    ],
+    "city": "Fyllingsdalen",
+    "admin1": "Vestland",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "5141",
+    "source": "geonames",
+    "accuracy": 1.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.232079"
+  },
+  "5525_NO": {
+    "coords": [
+      59.4138,
+      5.268
+    ],
+    "city": "Haugesund",
+    "admin1": "Rogaland",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "5525",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.233076"
+  },
+  "6057_NO": {
+    "coords": [
+      62.5006,
+      6.0252
+    ],
+    "city": "Ellingsøy",
+    "admin1": "Møre og Romsdal",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "6057",
+    "source": "geonames",
+    "accuracy": 1.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.234073"
+  },
+  "6084_NO": {
+    "coords": [
+      62.2028,
+      5.5773
+    ],
+    "city": "Larsnes",
+    "admin1": "Møre og Romsdal",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "6084",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.235072"
+  },
+  "7034_NO": {
+    "coords": [
+      63.4305,
+      10.3951
+    ],
+    "city": "Trondheim",
+    "admin1": "Trøndelag",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "7034",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:43.236069"
+  },
+  "73247_SE": {
+    "coords": null,
+    "postal_normalized": "73247",
+    "country": "se",
+    "country_input": "se",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:44.186633"
+  },
+  "7491_NO": {
+    "coords": [
+      63.4305,
+      10.3951
+    ],
+    "city": "Trondheim",
+    "admin1": "Trøndelag",
+    "country": "no",
+    "country_input": "no",
+    "postal_normalized": "7491",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:44.186633"
+  },
+  "75183_SE": {
+    "coords": null,
+    "postal_normalized": "75183",
+    "country": "se",
+    "country_input": "se",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.166417"
+  },
+  "7521_NL": {
+    "coords": [
+      52.2293,
+      6.8612
+    ],
+    "city": "Enschede",
+    "admin1": "Overijssel",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "7521",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.167414"
+  },
+  "7553_NL": {
+    "coords": [
+      52.2552,
+      6.7901
+    ],
+    "city": "Hengelo",
+    "admin1": "Overijssel",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "7553",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.167414"
+  },
+  "7668_NL": {
+    "coords": [
+      52.406,
+      6.8372
+    ],
+    "city": "Haarle",
+    "admin1": "Overijssel",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "7668",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.168411"
+  },
+  "7700_BE": {
+    "coords": [
+      50.7395,
+      3.236
+    ],
+    "city": "Luingne",
+    "admin1": "Wallonie",
+    "country": "be",
+    "country_input": "be",
+    "postal_normalized": "7700",
+    "source": "geonames",
+    "accuracy": 4.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.176974"
+  },
+  "8321_NL": {
+    "coords": [
+      52.6632,
+      5.6091
+    ],
+    "city": "Urk",
+    "admin1": "Flevoland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "8321",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.176974"
+  },
+  "8937_NL": {
+    "coords": [
+      53.1962,
+      5.8198
+    ],
+    "city": "Leeuwarden",
+    "admin1": "Friesland",
+    "country": "nl",
+    "country_input": "nl",
+    "postal_normalized": "8937",
+    "source": "geonames",
+    "accuracy": 6.0,
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:45.186946"
+  },
+  "AB11_9DB_GB": {
+    "coords": [
+      57.1382551,
+      -2.0709668
+    ],
+    "city": "Aberdeen City",
+    "admin1": "Alba / Scotland",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "AB11 9DB",
+    "source": "nominatim",
+    "display_name": "AB11 9DB, Torry, Aberdeen City, Alba / Scotland, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:46.216339"
+  },
+  "BS8_1TH_GB": {
+    "coords": [
+      51.4589645,
+      -2.6021928
+    ],
+    "city": "Bristol",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "BS8 1TH",
+    "source": "nominatim",
+    "display_name": "BS8 1TH, Bristol, City of Bristol, West of England, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:47.222309"
+  },
+  "CB2_0PY_GB": {
+    "coords": [
+      52.1737415,
+      0.1435383
+    ],
+    "city": "Cambridge",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "CB2 0PY",
+    "source": "nominatim",
+    "display_name": "CB2 0PY, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:48.229080"
+  },
+  "CB2_0RE_GB": {
+    "coords": [
+      52.1768656,
+      0.1355555
+    ],
+    "city": "Cambridge",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "CB2 0RE",
+    "source": "nominatim",
+    "display_name": "CB2 0RE, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:49.262346"
+  },
+  "CH65_4BF_GB": {
+    "coords": [
+      53.28096,
+      -2.87366
+    ],
+    "city": "Ellesmere Port",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "CH65 4BF",
+    "source": "nominatim",
+    "display_name": "CH65 4BF, Ellesmere Port, Cheshire West and Chester, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:50.587522"
+  },
+  "CH8_9HE_GB": {
+    "coords": [
+      53.31899,
+      -3.26903
+    ],
+    "city": "Unknown",
+    "admin1": "Cymru / Wales",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "CH8 9HE",
+    "source": "nominatim",
+    "display_name": "CH8 9HE, Mostyn, Flintshire, Cymru / Wales, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:51.215338"
+  },
+  "DD2_1FD_GB": {
+    "coords": [
+      56.4649126,
+      -3.0461139
+    ],
+    "city": "Dundee",
+    "admin1": "Alba / Scotland",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "DD2 1FD",
+    "source": "nominatim",
+    "display_name": "DD2 1FD, Dundee Medipark, Gowrie Park, Dundee, Dundee City, Alba / Scotland, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:52.132963"
+  },
+  "DD2_5EH_GB": {
+    "coords": [
+      56.4605252,
+      -3.079672
+    ],
+    "city": "Unknown",
+    "admin1": "Alba / Scotland",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "DD2 5EH",
+    "source": "nominatim",
+    "display_name": "DD2 5EH, Perth and Kinross, Alba / Scotland, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:53.201496"
+  },
+  "DE11_0BB_GB": {
+    "coords": [
+      52.7714544,
+      -1.5806054
+    ],
+    "city": "South Derbyshire",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "DE11 0BB",
+    "source": "nominatim",
+    "display_name": "DE11 0BB, William Nadin Way Industrial Estate, Oversetts, Swadlincote, South Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:54.194644"
+  },
+  "DE56_4AN_GB": {
+    "coords": [
+      53.0062626,
+      -1.524098
+    ],
+    "city": "Amber Valley",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "DE56 4AN",
+    "source": "nominatim",
+    "display_name": "DE56 4AN, Lubrizol, Hazelwood CP, Amber Valley, Derbyshire, East Midlands, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:55.320968"
+  },
+  "E8_4DT_GB": {
+    "coords": [
+      51.53902,
+      -0.07597
+    ],
+    "city": "Greater London",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "E8 4DT",
+    "source": "nominatim",
+    "display_name": "E8 4DT, London Borough of Hackney, Greater London, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:56.132500"
+  },
+  "E9_5BF_GB": {
+    "coords": [
+      51.54355,
+      -0.0419
+    ],
+    "city": "Greater London",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "E9 5BF",
+    "source": "nominatim",
+    "display_name": "E9 5BF, London Borough of Hackney, Greater London, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:57.129720"
+  },
+  "EC1V_9BW_GB": {
+    "coords": [
+      51.5249308,
+      -0.0911465
+    ],
+    "city": "Greater London",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "EC1V 9BW",
+    "source": "nominatim",
+    "display_name": "EC1V 9BW, London Borough of Islington, Greater London, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:58.128496"
+  },
+  "EH6_7LU_GB": {
+    "coords": [
+      55.9701235,
+      -3.1443067
+    ],
+    "city": "City of Edinburgh",
+    "admin1": "Alba / Scotland",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "EH6 7LU",
+    "source": "nominatim",
+    "display_name": "EH6 7LU, Leith Business Centre, Craigentinny/Meadowbank, City of Edinburgh, Alba / Scotland, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:47:59.189903"
+  },
+  "HU12_8DS_GB": {
+    "coords": [
+      53.7362386,
+      -0.2361507
+    ],
+    "city": "Hull",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "HU12 8DS",
+    "source": "nominatim",
+    "display_name": "HU12 8DS, Saltend Chemicals Park, Preston, Hull, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:00.576036"
+  },
+  "00697_ES": {
+    "coords": null,
+    "postal_normalized": "00697",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=sd",
+    "display_name": "00697, Al Geneina, سلطنة دار المساليت, السودان",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:01.197305"
+  },
+  "LE11_4WH_GB": {
+    "coords": [
+      52.77106,
+      -1.23091
+    ],
+    "city": "Charnwood",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "LE11 4WH",
+    "source": "nominatim",
+    "display_name": "LE11 4WH, Charnwood, Leicestershire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:02.195177"
+  },
+  "LN2_2LQ_GB": {
+    "coords": [
+      53.25632,
+      -0.53555
+    ],
+    "city": "West Lindsey",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "LN2 2LQ",
+    "source": "nominatim",
+    "display_name": "LN2 2LQ, Riseholme CP, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:03.217006"
+  },
+  "LN5_0AX_GB": {
+    "coords": [
+      53.10788,
+      -0.46351
+    ],
+    "city": "North Kesteven",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "LN5 0AX",
+    "source": "nominatim",
+    "display_name": "LN5 0AX, Temple Bruer with Temple High Grange, North Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:04.597193"
+  },
+  "MK42_0LF_GB": {
+    "coords": [
+      52.12288,
+      -0.43203
+    ],
+    "city": "Unknown",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "MK42 0LF",
+    "source": "nominatim",
+    "display_name": "MK42 0LF, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:05.223019"
+  },
+  "N11_1NA_GB": {
+    "coords": [
+      51.6158208,
+      -0.1430335
+    ],
+    "city": "Greater London",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "N11 1NA",
+    "source": "nominatim",
+    "display_name": "N11 1NA, London Borough of Enfield, Greater London, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:06.258290"
+  },
+  "N15_4QA_GB": {
+    "coords": [
+      51.5830342,
+      -0.064498
+    ],
+    "city": "Greater London",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "N15 4QA",
+    "source": "nominatim",
+    "display_name": "N15 4QA, London Borough of Haringey, Greater London, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:07.194857"
+  },
+  "OL12_0AA_GB": {
+    "coords": [
+      53.62881,
+      -2.1548
+    ],
+    "city": "Rochdale",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "OL12 0AA",
+    "source": "nominatim",
+    "display_name": "OL12 0AA, Fieldhouse Industrial Estate, Syke, Rochdale, Greater Manchester, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:08.203010"
+  },
+  "OX1_7FZ_GB": {
+    "coords": null,
+    "postal_normalized": "OX1 7FZ",
+    "country": "gb",
+    "country_input": "gb",
+    "source": "failed",
+    "reason": "Not found in GeoNames or Nominatim",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:09.284784"
+  },
+  "OX3_7DQ_GB": {
+    "coords": [
+      51.7521856,
+      -1.2142075
+    ],
+    "city": "Oxford",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "OX3 7DQ",
+    "source": "nominatim",
+    "display_name": "OX3 7DQ, Headington, Oxford, Oxfordshire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:10.201496"
+  },
+  "PA34_4DR_GB": {
+    "coords": [
+      56.40859,
+      -5.46782
+    ],
+    "city": "Unknown",
+    "admin1": "Alba / Scotland",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "PA34 4DR",
+    "source": "nominatim",
+    "display_name": "PA34 4DR, Argyll and Bute, Alba / Scotland, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:11.218421"
+  },
+  "PO16_7ET_GB": {
+    "coords": [
+      50.86021,
+      -1.17923
+    ],
+    "city": "Fareham",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "PO16 7ET",
+    "source": "nominatim",
+    "display_name": "PO16 7ET, Fareham, Hampshire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:12.202717"
+  },
+  "00029_ES": {
+    "coords": null,
+    "postal_normalized": "00029",
+    "country": "es",
+    "country_input": "es",
+    "source": "nominatim_mismatch_country",
+    "reason": "Country mismatch: requested=es got=it",
+    "display_name": "00029, Vicovaro, Roma Capitale, Lazio, Italia",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:13.203476"
+  },
+  "RG42_6EX_GB": {
+    "coords": [
+      51.45252,
+      -0.75037
+    ],
+    "city": "Newell Green",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "RG42 6EX",
+    "source": "nominatim",
+    "display_name": "RG42 6EX, Warfield, Newell Green, Bracknell Forest, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:14.202205"
+  },
+  "RH13_6LU_GB": {
+    "coords": [
+      51.0405298,
+      -0.2591264
+    ],
+    "city": "Horsham",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "RH13 6LU",
+    "source": "nominatim",
+    "display_name": "RH13 6LU, Lower Beeding, Horsham, West Sussex, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:15.231495"
+  },
+  "SO16_7PT_GB": {
+    "coords": [
+      50.9629544,
+      -1.4254328
+    ],
+    "city": "Test Valley",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "SO16 7PT",
+    "source": "nominatim",
+    "display_name": "SO16 7PT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:16.230141"
+  },
+  "SY23_3EB_GB": {
+    "coords": [
+      52.4321075,
+      -4.0188856
+    ],
+    "city": "Unknown",
+    "admin1": "Cymru / Wales",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "SY23 3EB",
+    "source": "nominatim",
+    "display_name": "SY23 3EB, Trefeurig, Ceredigion, Cymru / Wales, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:17.227491"
+  },
+  "TS21_3FD_GB": {
+    "coords": [
+      54.6703629,
+      -1.4518932
+    ],
+    "city": "Sedgefield",
+    "admin1": "England",
+    "country": "gb",
+    "country_input": "gb",
+    "postal_normalized": "TS21 3FD",
+    "source": "nominatim",
+    "display_name": "TS21 3FD, Sedgefield, County Durham, North East, England, United Kingdom",
+    "correction_applied": null,
+    "timestamp": "2026-02-14T19:48:18.606555"
   }
 }
